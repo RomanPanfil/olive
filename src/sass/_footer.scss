@@ -1,0 +1,356 @@
+.footer {
+
+    &__min {
+        .footer-feedback {
+            @include mobile {
+                display: none;
+            }
+        }
+    }
+
+    &-title {
+        font-family: $second_font;
+        font-weight: 400;
+        font-size: p2r(72);
+        line-height: 0.85;
+        margin-bottom: p2r(40);
+        max-width: p2r(498);
+        // margin-top: p2r(22);
+
+
+        @include tablet {
+            font-size: p2r(32);
+            max-width: p2r(225);
+            margin-bottom: p2r(26);
+        }
+
+        @include mobile {
+            margin-bottom: p2r(24);
+        }
+    }
+
+    &-tel {
+        margin-bottom: p2r(77);
+
+        @include tablet {
+            margin-bottom: p2r(24);
+        }        
+
+        .contacts-main-tel-item:not(:last-child)::after {
+            width: p2r(14);
+            height: p2r(14);
+
+            @include tablet {
+                width: p2r(4);
+                height: p2r(4);
+            }
+        }
+    }
+
+    &-wrapper {
+        background-color: $primary;
+        border-radius: p2r(40);
+        padding: p2r(32) p2r(48);
+        margin-bottom: p2r(16);
+
+        @include tablet {
+            margin-right: p2r(-16);
+            margin-left: p2r(-16);
+            border-radius: p2r(24);
+            padding: p2r(22) p2r(16);
+        }
+    }
+
+    &-links {
+        border-bottom: 1px solid rgba(233, 181, 102, 0.3);
+        padding-bottom: p2r(24);
+        margin-bottom: p2r(24);
+        
+        @include tablet {
+            padding-bottom: p2r(0);
+            margin-bottom: p2r(12);
+        }
+
+        @include mobile {          
+            margin-bottom: p2r(20);
+        }
+    }
+
+    &-feedback {
+        display: flex;
+        align-items: center;
+        color: $font_accent;
+        font-size: p2r(16);
+        padding-bottom: p2r(24);
+
+        @include tablet {
+            font-size: p2r(14);          
+            flex-wrap: wrap;
+            padding-bottom: p2r(16);
+            margin-bottom: p2r(16);
+            border-bottom: 1px solid rgba(233, 181, 102, 0.3);
+        }
+        
+        // @include mobile {
+        //     display: none;
+        // }
+
+        &-item {
+            margin-right: p2r(40);
+            display: inline-block;
+            vertical-align: middle;           
+
+            @media (hover: hover) and (pointer: fine) {
+                &:hover {
+                    .footer-feedback-icon {
+                        filter: brightness(10);
+                    }
+                }
+            }
+
+            @include tablet {
+                display: flex;
+                align-items: center;
+            }
+
+            @include mobile {
+                color: $font_white;
+                font-size: p2r(14);
+                margin-right: 0;               
+                width: 100%;              
+
+                &:not(:last-of-type) {
+                    margin-bottom: p2r(12);
+                }
+
+                &:last-of-type {
+                    margin-bottom: p2r(8);
+                }
+            }
+
+            &__address {
+                @include tablet {                   
+                    width: 100%;
+                    margin-bottom: p2r(8);
+                    order: -2;
+                }
+
+                @include mobile {
+                    order: initial;
+                }
+            }
+
+            &__mail {
+                @include tablet {
+                    order: -1;
+                }
+                
+                @include mobile {
+                    order: initial;
+                }
+            }
+        }
+
+        &-icon {
+            width: p2r(16);
+            height: p2r(16);
+            display: inline-block;
+            vertical-align: middle;
+            fill: none;
+            margin-right: p2r(4);
+            transition: filter 0.1s;
+
+            @include tablet {
+                margin-right: p2r(2);
+            }
+
+            @include mobile {
+                filter: brightness(10);
+            }
+        }
+
+        &-socials {
+            display: inline-block;
+
+            @include tablet {
+                margin-left: p2r(32);
+            }
+
+            @include mobile {
+                margin-left: 0;               
+            }
+
+            a {                
+                @media (hover: hover) and (pointer: fine) {
+                    &:hover {
+                        filter: brightness(10);
+                        transition: filter 0.3s;
+                    }
+                }               
+            }
+
+            svg {
+                width: p2r(24);
+                height: p2r(24);
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: p2r(12);
+
+                @include mobile {
+                    filter: brightness(10);
+                }
+            }
+        }
+    }
+
+    &-nav {
+        @include mobile {
+            margin-bottom: p2r(6);
+        }
+
+        ul {
+            line-height: 1.2;
+            display: flex;
+
+            @include tablet {               
+                flex-wrap: wrap;
+            }
+
+            li {
+                font-size: p2r(16);
+                display: inline-block;
+                line-height: 1.2;
+                margin-right: p2r(32);
+                
+                @include tablet {
+                    font-size: p2r(14);
+                    
+                    order: 5;
+                    margin-bottom: p2r(12);
+
+                    &:nth-child(1) {
+                        order: 1;
+                        width: p2r(168);
+                    }                    
+              
+                    &:nth-child(3) {
+                        order: 2;
+                    }                    
+                
+                    &:nth-child(2) {
+                        order: 3;
+                        width: p2r(168);
+                    }                    
+
+                    &:nth-child(4) {
+                        order: 4;
+                    }
+                }
+
+                @include mobile {
+                    order: initial !important;
+                }
+            }
+        }
+    }
+
+    &-info {
+        font-size: p2r(12);
+        display: flex;
+
+        @include tablet {
+            flex-wrap: wrap;
+        }
+
+        &-main {
+            display: flex;
+            width: 100%;
+
+            @include tablet {
+                border-bottom: 1px solid rgba(233, 181, 102, 0.3);
+                padding-bottom: p2r(16);
+                margin-bottom: p2r(16);
+            }
+
+            @include mobile {
+                flex-direction: column;
+            }
+           
+        }   
+    }
+
+    &-confident {
+        display: flex;
+
+        @include tablet {
+            flex-direction: column;
+            max-width: p2r(178);
+        }
+
+        @include mobile {
+            max-width: unset;
+        }
+    }
+
+    &-copy {  
+        margin-right: p2r(32);
+
+        @include tablet {
+            max-width: p2r(168);
+        }
+
+        @include mobile {
+            max-width: 100%;
+            margin-bottom: p2r(10);
+        }
+
+        &-txt {
+            &:first-child {
+                margin-right: p2r(24);
+                position: relative;
+
+                &::after {
+                    content: '';
+                    width: p2r(4);
+                    height: p2r(4);
+                    border-radius: 50%;
+                    background-color: $font_white;
+                    position: absolute;
+                    right: p2r(-10);
+                    top: 50%;
+                    transform: translate(50%, -50%);
+
+                    @include mobile {
+                        display: none;
+                    }
+                }
+            }
+
+            @include mobile {
+                width: 100%;
+                display: block;
+            }
+        }
+    }
+
+    &-text {       
+        margin-right: p2r(32);
+
+        @include tablet {
+            margin-bottom: p2r(4);
+        }
+
+        @include mobile {
+            margin-right: 0;
+        }
+    }
+
+    &-created {
+        margin-left: auto;
+        white-space: nowrap;
+
+        @include tablet {
+            width: 100%;
+        }
+    }
+}

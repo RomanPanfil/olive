@@ -1,0 +1,230 @@
+.inner,
+.container {
+	max-width: p2r(1424);
+	padding-left: p2r(32);
+	padding-right: p2r(32);
+	margin-left: auto;
+	margin-right: auto;
+
+  @include tablet {
+    padding-left: p2r(16);
+    padding-right: p2r(16);
+  }
+}
+
+.container__min {
+  max-width: p2r(1270);
+
+  @include tablet {
+    max-width: unset;
+  }
+}
+
+.flex,
+%flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  display: -ms-flex;
+  display: -ms-inline-flexbox;
+  display: -ms-flexbox;
+  display: flex;
+}
+%flc,
+.flex-vertical {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+%jsb,
+.align-justify {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+}
+%jc,
+.align-center {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
+%jfs,
+.align-left,
+.align-start {
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  -ms-justify-content: flex-start;
+  justify-content: flex-start;
+}
+%jfe,
+.align-right,
+.align-end {
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  -ms-justify-content: flex-end;
+  justify-content: flex-end;
+}
+%aic,
+.valign-center {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+%aifs,
+.valign-start {
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  -ms-align-items: flex-start;
+  align-items: flex-start;
+}
+%aife,
+.valign-end {
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: end;
+  -ms-align-items: flex-end;
+  align-items: flex-end;
+}
+%aibsl,
+.valign-baseline {
+  -webkit-box-align: baseline;
+  -webkit-align-items: baseline;
+  -ms-flex-align: baseline;
+  -ms-align-items: baseline;
+  align-items: baseline;
+}
+.self-bottom {
+  -webkit-align-self: flex-end;
+  -ms-align-self: flex-end;
+  align-self: flex-end;
+}
+.self-top {
+  -webkit-align-self: flex-start;
+  -ms-align-self: flex-start;
+  align-self: flex-start;
+}
+.self-center {
+  -webkit-align-self: center;
+  -ms-align-self: center;
+  align-self: center;
+}
+%flg {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+%flw,
+.flex-wrap {
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+@mixin order($order) {
+  -webkit-box-ordinal-group: $order;
+  -webkit-order: $order;
+  -ms-flex-order: $order;
+  order: $order;
+}
+
+
+
+.inner:before,
+.inner:after,
+.clearfix:before,
+.clearfix:after {
+	content: "";
+	display: table;
+}
+.inner:after,
+.clearfix:after {
+	clear: both;
+}
+
+// Ряд
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -$gutter-desktop / 2;
+  margin-right: -$gutter-desktop / 2;
+
+  @include mobile {
+    margin-left: -$gutter-mobile / 2;
+    margin-right: -$gutter-mobile / 2;
+  }
+
+  &__indent {
+    @include tablet {
+      margin-left: -$gutter-mobile / 2;
+      margin-right: -$gutter-mobile / 2;
+
+      [class*="col-"] {
+        padding: 0 $gutter-mobile / 2;
+      }
+    }
+  }
+}
+
+$columns: 12;
+
+// Функция для вычисления процентной ширины
+@function col-width($size, $columns: $columns) {
+  @return percentage($size / $columns);
+}
+
+// Генерация классов колонок
+@mixin make-col($size, $columns: $columns) {
+  flex: 0 0 col-width($size, $columns);
+  max-width: col-width($size, $columns);
+}
+
+// Классы колонок для разных размеров экрана
+@for $i from 1 through $columns {
+  // Базовые стили (mobile first)
+  .col-#{$i} {
+    @include make-col($i, 4);
+    padding: 0 $gutter-mobile / 2;
+  }
+
+  // Стили для планшетов (md)
+  @include tablet {
+    .col-md-#{$i} {
+      @include make-col($i);
+      padding: 0 $gutter-desktop / 2;
+    }
+  }
+
+  // Стили для десктопов (lg)
+  @include desktop {
+    .col-lg-#{$i} {
+      @include make-col($i);
+      padding: 0 $gutter-desktop / 2;
+    }
+  }
+}
+
+// Специфичные стили для sm (мобильных), если нужно переопределить базовые
+@include mobile {
+  @for $i from 1 through 4 {
+    .col-sm-#{$i} {
+      @include make-col($i, 4);
+      padding: 0 $gutter-mobile / 2;
+    }
+  }
+}

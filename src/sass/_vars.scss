@@ -1,0 +1,124 @@
+// Colors & BG's ---
+$accent: #E9B566;
+$bg: #344135;
+$bg_article: #F4F0EC;
+$primary: #182C22;
+
+$font_white: #fff;
+$font_black: #3C392E;
+
+$font_accent: #E9B566;
+
+$bgc: #fff;
+
+
+
+$bg_banner: #FFDA00;
+$bg_input: #E5EEFF;
+$font: #002364;
+$font_white: #fff;
+$font_light: #506998;
+$font_extra_light: #C5D5F5;
+$font_prompt: #7C96C5;
+$button: #0077C8;
+$button_hover: #0061A3;
+
+$error: #FF0000;
+$warning: #EA5F5F;
+
+$primary_hover: lighten($primary, 10%);
+$primary_active: lighten($primary, 16%);
+
+
+$link: #E9B566;
+$link_hover: #fff;
+$link_active: $primary_active;
+$link_border: $primary_hover;
+$link_border_hover: transparent;
+
+$border: #C5D5F5;
+$border_tab: #FFCC00;
+
+// Layouts
+$inner: 1420px;
+$gutter: 30px;
+$block_margin: 0 0 25px;
+
+$gutter-desktop: 16px;
+$gutter-mobile: 8px;
+
+
+
+// Typography ---
+$fontsize: 20;
+$weight: 400;
+$basefont: 'TT Norms Pro';
+$second_font: 'TRIAL Oceanic Text';
+$lh: 1.4;
+$th: 1.4;
+$paragraph_margin: 0px 0px 28px;
+
+// headings
+$headings_font_family: $basefont;
+$headings_margin: 40px 0px 40px;
+$headings_font_weight: 500;
+$headings_text_transform: none;
+$h1: 88;
+$h2: 72;
+$h3: 56;
+$h4: 30;
+$h5: 24;
+$h6: $fontsize;
+
+$base: 1366; // Ширина контейнера
+
+$mobile-base: 320; // Ширина макета для мобильных устройств
+$tablet-base: 600; // Ширина макета для планшета
+$content-size: 1920; // Ширина макета для десктопа
+
+$base-font-size: 16; // Размер шрифта
+
+$xl-breakpoint: 1920; // брейкпоинт для широких экранов
+$lg-breakpoint: 1365; // desktop брейкпоинт
+$md-breakpoint: 899; // tablet break-point
+$sm-breakpoint: 599; // mobile брейкпоинт
+
+$xl-break-point: $xl-breakpoint + 0px;
+$desktop-break-point: $lg-breakpoint + 0px;
+$tablet-break-point: $md-breakpoint + 0px;
+$mobile-break-point: $sm-breakpoint + 0px;
+
+$xl-font-size: $base-font-size / ($xl-breakpoint / 100);
+$lg-font-size: $base-font-size / ($lg-breakpoint / 100);
+
+$md-font-size: ($lg-font-size / $tablet-base) * $base * ($lg-breakpoint / $content-size);
+$sm-font-size: ($lg-font-size / $mobile-base) * $base * ($lg-breakpoint / $content-size);
+
+
+@mixin mobile {
+	@media (max-width: $mobile-break-point) {
+	  @content;
+	}
+}
+
+@mixin tablet {
+	@media (max-width: $tablet-break-point) {
+		@content;
+	}
+}
+  
+@mixin desktop {
+	@media (min-width: $tablet-break-point) {
+		@content;
+	}
+}
+
+@function p2r($size) {
+	@if ($size == 0) {
+	  @return 0;
+	}
+  
+	@return (($size / $base) * $content-size) / $base-font-size + 0rem;
+}
+
+
