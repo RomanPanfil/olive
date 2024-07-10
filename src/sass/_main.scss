@@ -24,6 +24,10 @@
     padding-top: p2r(52);
   }  
 
+  @include mobile {
+    padding-top: p2r(32);
+  }  
+
   &-bg {
     position: absolute;
     top: 0;
@@ -168,6 +172,7 @@
     }
 
     @include mobile {
+      margin-top: p2r(24);
       margin-bottom: p2r(24);
     }
 
@@ -664,7 +669,7 @@
     line-height: 0.85;
     text-align: center;
     color: #FFFFFF;
-    margin-top: p2r(80);
+    margin-top: p2r(118);
     margin-bottom: p2r(64);
     z-index: -2;
     position: fixed;
@@ -678,26 +683,28 @@
       text-align: left;
       padding-left: p2r(16);
       padding-right: p2r(16);
+      margin-top: p2r(86);
       margin-bottom: p2r(32);
     }
 
     @include mobile {
       font-size: p2r(40);
+      margin-top: p2r(60);
       margin-bottom: p2r(24);
     }
   }
 
   &-previews {
-    margin-top: p2r(147);
+    margin-top: p2r(187);
     margin-bottom: p2r(-16);
 
     @include tablet {
-      margin-top: p2r(114);
+      margin-top: p2r(120);
       margin-bottom: p2r(-8);
     }
 
     @include mobile {
-      margin-top: p2r(90);
+      margin-top: p2r(84);
     }
   }
 }
@@ -714,8 +721,13 @@
 
     @include tablet {
       padding:  p2r(24) p2r(16) p2r(16) p2r(16);
-      aspect-ratio: 1.3;
+      aspect-ratio: 1.33;
       margin-bottom: p2r(8);
+    }
+
+    @include mobile {
+      aspect-ratio: 1.44;
+      padding-top: p2r(16);
     }
 
     @media (hover: hover) and (pointer: fine) {
@@ -917,6 +929,10 @@
     @include tablet {
       padding-top: p2r(10);
       margin-bottom: p2r(32);
+    }
+
+    @include mobile {
+      padding-top: p2r(3);
     }
   }
 

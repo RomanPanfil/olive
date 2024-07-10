@@ -20,7 +20,7 @@
         }
 
         @include mobile {
-            height: p2r(80);
+            height: p2r(60);
         }
   
         & > div {
@@ -74,13 +74,21 @@
         }
     }
 
-    &-logo {
-        width: p2r(77.5);
-        height: p2r(40);
+    &-logo {  
+        display: block;
         margin-right: p2r(56);
         transition: opacity 0.3s;
         position: relative;
         z-index: 2000;
+
+        img {
+            width: p2r(77.5);
+            height: auto;
+
+            @include mobile {
+                width: p2r(54);               
+            }
+        }
 
         @media (hover: hover) and (pointer: fine) {
             &:hover {
@@ -90,12 +98,7 @@
         
         @include tablet {
             margin-right: auto;
-        }
-
-        @include mobile {
-            width: p2r(54);
-            height: p2r(28);
-        }
+        }        
     }
 
     &-nav {
@@ -110,7 +113,7 @@
 
             li {
                 &:not(:last-child) {
-                    margin-right: p2r(24);
+                    margin-right: p2r(26);
 
                     @include tablet {
                         margin-right: p2r(32);
@@ -141,7 +144,8 @@
         &-icon {
             width: p2r(8);
             height: p2r(8);                    
-            stroke: $font_white; 
+            stroke: $font_white;
+            margin-left: p2r(4);
         }
 
         &-menu {
@@ -231,7 +235,7 @@
             stroke: $font_accent;           
             display: inline-block;
             vertical-align: middle;
-            margin-right: p2r(4);
+            margin-right: p2r(2);
             transition: filter 0.1s;
 
             @include tablet {
