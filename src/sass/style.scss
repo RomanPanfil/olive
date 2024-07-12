@@ -48,10 +48,19 @@ body {
   font-size: p2r($fontsize);
   line-height: $lh;
   background: $bg;
-  scroll-behavior: smooth;
-
-  
+  scroll-behavior: smooth;  
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
 }
+
+a, label{
+	-webkit-tap-highlight-color: transparent;
+}
+
+
+
 
 
 // @import "../images/sprite/sprite";

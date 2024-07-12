@@ -2,11 +2,11 @@
 $accent: #E9B566;
 $bg: #344135;
 $bg_article: #F4F0EC;
+$bg_light: #F2E7DC;
 $primary: #182C22;
 
 $font_white: #fff;
 $font_black: #3C392E;
-
 $font_accent: #E9B566;
 
 $bgc: #fff;
@@ -15,13 +15,13 @@ $bgc: #fff;
 
 $bg_banner: #FFDA00;
 $bg_input: #E5EEFF;
-$font: #002364;
-$font_white: #fff;
-$font_light: #506998;
-$font_extra_light: #C5D5F5;
-$font_prompt: #7C96C5;
-$button: #0077C8;
-$button_hover: #0061A3;
+$font: $font_black;
+
+// $font_light: #506998;
+// $font_extra_light: #C5D5F5;
+// $font_prompt: #7C96C5;
+// $button: #0077C8;
+// $button_hover: #0061A3;
 
 $error: #FF0000;
 $warning: #EA5F5F;
@@ -44,8 +44,8 @@ $inner: 1420px;
 $gutter: 30px;
 $block_margin: 0 0 25px;
 
-$gutter-desktop: 16px;
-$gutter-mobile: 8px;
+$gutter-desktop: 1.4055636896rem;
+$gutter-mobile: 0.7027818448rem;
 
 
 

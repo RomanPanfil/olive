@@ -64,8 +64,8 @@
 
     &-links {
         border-bottom: 1px solid rgba(233, 181, 102, 0.3);
-        padding-bottom: p2r(24);
-        margin-bottom: p2r(24);
+        padding-bottom: p2r(22);
+        margin-bottom: p2r(23);
         
         @include tablet {
             padding-bottom: p2r(0);
@@ -101,7 +101,7 @@
         &-item {
             margin-right: p2r(38);
             display: inline-block;
-            vertical-align: middle;           
+            vertical-align: middle;
 
             @media (hover: hover) and (pointer: fine) {
                 &:hover {
@@ -114,6 +114,7 @@
             @include tablet {
                 display: flex;
                 align-items: center;
+                margin-right: p2r(42);
             }
 
             @include mobile {
@@ -162,9 +163,11 @@
             fill: none;
             margin-right: p2r(2);
             transition: filter 0.1s;
+            margin-bottom: p2r(2);
 
             @include tablet {
                 margin-right: p2r(2);
+                margin-bottom: 0;
             }
 
             @include mobile {
@@ -311,7 +314,7 @@
 
         &-txt {
             &:first-child {
-                margin-right: p2r(24);
+                margin-right: p2r(22);
                 position: relative;
 
                 &::after {
