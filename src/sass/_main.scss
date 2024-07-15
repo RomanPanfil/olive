@@ -1089,6 +1089,16 @@
 
     &__sub {
       padding-top: p2r(32);
+      padding-bottom: p2r(46);
+      margin-bottom: p2r(28);
+
+      @include tablet {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        margin-top: p2r(-24);
+        margin-bottom: p2r(40);
+        padding-bottom: p2r(40);
+      }
     }
   }
 
@@ -1101,8 +1111,12 @@
       margin-bottom: p2r(28);
 
       @include tablet {
-        margin-bottom: p2r(16);
-      }     
+        margin-bottom: p2r(18);
+      }
+      
+      @include mobile {
+        margin-bottom: p2r(21);
+      }
     }
   }
 
@@ -1373,9 +1387,19 @@
     }
 
     &-item {
-      padding-top: p2r(16);
-      padding-bottom: p2r(16);   
+      padding-top: p2r(15);
+      padding-bottom: p2r(15);   
       border-bottom: 1px solid rgba(24, 44, 34, 0.1);
+
+      @include tablet {
+        padding-top: p2r(13);
+        padding-bottom: p2r(13); 
+      }
+
+      @include mobile {
+        padding-top: p2r(15);
+        padding-bottom: p2r(14);
+      }
 
       &:first-of-type {
         @include tablet {
@@ -1391,7 +1415,7 @@
       &-title {         
         font-size: p2r(24);
         line-height: 1.2;
-        margin-bottom: p2r(4);
+        margin-bottom: p2r(3);
 
         @include tablet {
           font-size: p2r(20);
@@ -1399,11 +1423,52 @@
 
         @include mobile {
           font-size: p2r(16);
+          margin-bottom: 0;      
         }
       }
 
       &-text {
         font-size: p2r(16);
+
+        @include mobile {
+          font-size: p2r(14);
+        }
+      }
+    }
+  }
+
+  &-picture {
+    display: none;
+    position: relative;
+    margin-top: p2r(-52);   
+    padding-top: p2r(60);
+
+    @include tablet {
+      aspect-ratio: 2.52;
+      display: block;
+  
+      border-radius: p2r(24);
+      overflow: hidden;
+    }
+
+    @include mobile {
+      margin-top: p2r(-58);  
+      aspect-ratio: 1.23;
+    }
+
+    &-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      aspect-ratio: 2.52;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: p2r(24);
+      z-index: 2;
+
+      @include mobile {
+        aspect-ratio: 1.23;
       }
     }
   }
@@ -1415,14 +1480,34 @@
     border-radius: p2r(40);
     margin-bottom: p2r(80);
     overflow: hidden;
+    margin-top: p2r(22);
+
+    @include tablet {
+      padding: 0;
+      padding-top: p2r(0);
+      margin-top: p2r(12);
+      margin-bottom: p2r(56);
+      background: none;
+      border-radius: 0;
+    }
+
+    @include mobile {
+      margin-top: p2r(16);
+      margin-bottom: p2r(38);
+    }
 
     &-image {
       position: absolute;
       top: 0;
       right: 0;
       bottom: 0;
-      max-width: p2r(901);
-      border-radius: p2r(40);
+      width: p2r(901);
+      height: 100%;
+      object-fit: cover;
+      
+      @include tablet {
+        display: none;
+      }
     }
 
     &-info {
@@ -1431,12 +1516,37 @@
       background-color: rgba(255, 255, 255, 0.5);
       backdrop-filter: blur(p2r(16));     
       border-radius: p2r(24);
+
+      @include tablet {
+        width: auto;
+        background-color: transparent;
+        backdrop-filter: unset;
+        padding: 0;
+        border-radius: 0;
+      }
     }
 
-    &-title {   
+    &-title {
+      font-family: $second_font;
       font-size: p2r(40);
       line-height: 1;
       margin-bottom: p2r(24);
+
+      @include tablet {
+        margin-bottom: p2r(16);
+        line-height: 0.85;
+      }
+
+      @include mobile {
+        word-wrap: break-word;
+        hyphens: manual;
+      }
+    }
+
+    &-text {
+      @include tablet {
+        font-size: p2r(16);
+      }      
     }
   }
 }
@@ -1650,7 +1760,7 @@
 }
 
 .also {
-  padding: p2r(56) p2r(48) p2r(80);
+  padding: p2r(56) p2r(48) p2r(60);
   background: $bg_light;
   border-radius: p2r(48);
   margin-bottom: p2r(28);
@@ -1661,6 +1771,11 @@
     margin-left: p2r(-16);
     margin-right: p2r(-16);
     border-radius: p2r(24);
+    margin-bottom: p2r(40);
+  }
+
+  @include mobile {
+    padding-bottom: p2r(8);
   }
 
   &-title {     
@@ -1673,7 +1788,7 @@
 
     @include tablet {
       font-size: p2r(32);
-      margin-bottom: p2r(16);
+      margin-bottom: p2r(14);
     }
 
     @include mobile {

@@ -178,14 +178,17 @@ table {
 	}
 }
 
-.ui-back {	
+.ui-back {
+	position: relative;
 	font-size: p2r(14);
 	display: inline-block;
 	vertical-align: middle;
 	color: $font_white;
+	z-index: 2;
 
 	@include mobile {
 		font-size: p2r(12);
+		margin-left: p2r(-7);
 	}
 	
 	&-icon {

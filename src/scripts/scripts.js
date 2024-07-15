@@ -420,6 +420,56 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   // фиксирование блока при прокрутке
+  // (function() {
+  //   if ($('.side-menu').length) {
+  //     function handleScroll() {
+  //       var windowWidth = $(window).width();
+  //       var windowOffset = $(window).scrollTop();
+  //       var floatOffset;
+        
+  //       if (windowWidth <= 899) {
+  //         floatOffset = $('.side-spase').offset().top - (parseFloat($('.header').height()) * 1.5);
+  //       } else {
+  //         floatOffset = $('.side-spase').offset().top - parseFloat($('.side-wrapper').css('padding-top'));
+  //       }
+        
+  //       var contentHeight = $('.side-wrapper').height();
+  //       var floatHeight = $('.side-menu').outerHeight();
+  //       var floatStop = floatOffset + contentHeight - floatHeight;
+
+  //       if (windowWidth <= 899) {
+  //         if (windowOffset > floatOffset && windowOffset < floatStop) {
+  //           $('.side-menu').addClass('float').removeClass('flip-bottom');
+  //           $('.header').addClass('header__light');
+  //         } else {
+  //           $('.side-menu').removeClass('float').addClass('flip-bottom');
+  //           $('.header').removeClass('header__light');
+  //           if (windowOffset < floatStop) {
+  //             $('.side-menu').removeClass('flip-bottom');
+  //           }
+  //         }
+  //       } else {
+  //         if (windowOffset > floatOffset && windowOffset < floatStop) {
+  //           $('.side-menu').addClass('float').removeClass('flip-bottom');
+  //         } else {
+  //           $('.side-menu').removeClass('float').addClass('flip-bottom');
+  //           if (windowOffset < floatStop) {
+  //             $('.side-menu').removeClass('flip-bottom');
+  //           }
+  //         }
+  //         // Убираем класс header__light для больших разрешений
+  //         $('.header').removeClass('header__light');
+  //       }
+  //     }
+
+  //     // Вызываем функцию при прокрутке и изменении размера окна
+  //     $(window).on('scroll resize', handleScroll);
+
+  //     // Вызываем функцию сразу после загрузки страницы
+  //     handleScroll();
+  //   }
+  // })();
+
   (function() {
     if ($('.side-menu').length) {
       function handleScroll() {
@@ -433,18 +483,22 @@ document.addEventListener('DOMContentLoaded', () => {
           floatOffset = $('.side-spase').offset().top - parseFloat($('.side-wrapper').css('padding-top'));
         }
         
-        var contentHeight = $('.side-wrapper').height();
+        var sideWrapper = $('.side-wrapper');
+        var contentHeight = sideWrapper.height();
         var floatHeight = $('.side-menu').outerHeight();
-        var floatStop = floatOffset + contentHeight - floatHeight;
-
+        var sideWrapperBottom = sideWrapper.offset().top + contentHeight;
+        var floatStop = sideWrapperBottom - floatHeight;
+  
         if (windowWidth <= 899) {
           if (windowOffset > floatOffset && windowOffset < floatStop) {
             $('.side-menu').addClass('float').removeClass('flip-bottom');
             $('.header').addClass('header__light');
           } else {
-            $('.side-menu').removeClass('float').addClass('flip-bottom');
+            $('.side-menu').removeClass('float');
             $('.header').removeClass('header__light');
-            if (windowOffset < floatStop) {
+            if (windowOffset >= floatStop) {
+              $('.side-menu').addClass('flip-bottom');
+            } else {
               $('.side-menu').removeClass('flip-bottom');
             }
           }
@@ -452,8 +506,10 @@ document.addEventListener('DOMContentLoaded', () => {
           if (windowOffset > floatOffset && windowOffset < floatStop) {
             $('.side-menu').addClass('float').removeClass('flip-bottom');
           } else {
-            $('.side-menu').removeClass('float').addClass('flip-bottom');
-            if (windowOffset < floatStop) {
+            $('.side-menu').removeClass('float');
+            if (windowOffset >= floatStop) {
+              $('.side-menu').addClass('flip-bottom');
+            } else {
               $('.side-menu').removeClass('flip-bottom');
             }
           }
@@ -461,10 +517,10 @@ document.addEventListener('DOMContentLoaded', () => {
           $('.header').removeClass('header__light');
         }
       }
-
+  
       // Вызываем функцию при прокрутке и изменении размера окна
       $(window).on('scroll resize', handleScroll);
-
+  
       // Вызываем функцию сразу после загрузки страницы
       handleScroll();
     }
