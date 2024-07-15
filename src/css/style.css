@@ -2708,6 +2708,8 @@ table {
   z-index: -1;
   border-top-left-radius: 3.513909224rem;
   border-top-right-radius: 3.513909224rem;
+  width: 100%;
+  height: auto;
 }
 .subcategory-margin {
   margin-left: 16.1639824305rem;
