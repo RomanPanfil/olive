@@ -180,8 +180,28 @@
 			<g clip-path="url(#a)" stroke="#fff" stroke-linecap="round"><path d="M15.11 15.611L.889 1.39M15.111 1.389L.89 15.61"></path></g><defs><clipPath id="a"><path fill="#fff" transform="translate(0 .5)" d="M0 0h16v16H0z"></path></clipPath></defs>
 		</symbol>
 	
+		<symbol id="document" viewBox="0 0 64 65">
+			<path d="M35.068 7.833H15.6a2.52 2.52 0 0 0-2.667 2.666v42.667a2.52 2.52 0 0 0 2.667 2.667h31.467a2.522 2.522 0 0 0 2.666-2.667V22.499M35.068 7.833v14.666h14.666M35.068 7.833l7.333 7.333 7.333 7.333m-26.4 11.467h16m-7.466 10.133h7.466m-16-20.96v.16" stroke="#E9B566" stroke-linecap="round" stroke-linejoin="round"></path>
+		</symbol>
+	
+		<symbol id="download" viewBox="0 0 24 25">
+			<path d="M12 18.947c.514-3.145 3.694-8.681 10-10M12 18.947c-.514-3.145-3.694-8.681-10-10M11.973 17.947V2.246M4.148 22.254H19.85" stroke="#E9B566"></path>
+		</symbol>
+	
 		<symbol id="envelope" viewBox="0 0 16 16">
 			<path d="M2 3v9h12V3M2 3h12M2 3l6 5 6-5" stroke="#E9B566"></path>
+		</symbol>
+	
+		<symbol id="gallery-close" viewBox="0 0 26 26">
+			<path d="M22.693 3.308L3.31 22.692M3.309 3.308l19.384 19.384" stroke="#E9B566" stroke-width="1.077" stroke-linecap="round" stroke-linejoin="round"></path>
+		</symbol>
+	
+		<symbol id="gallery-left" viewBox="0 0 16 16">
+			<g clip-path="url(#b)" stroke="#E9B566"><path d="M3 8c3.145.514 8.681 3.694 10 10M3 8c3.145-.514 8.681-3.694 10-10"></path></g><defs><clipPath id="a"><path fill="#fff" transform="rotate(-90 8 8)" d="M0 0h16v16H0z"></path></clipPath><clipPath id="b"><path fill="#fff" transform="rotate(90 9 5)" d="M0 0h24v12H0z"></path></clipPath></defs>
+		</symbol>
+	
+		<symbol id="gallery-right" viewBox="0 0 16 16">
+			<g clip-path="url(#b)" stroke="#E9B566"><path d="M13 8C9.855 7.486 4.319 4.306 3-2M13 8c-3.145.514-8.681 3.694-10 10"></path></g><defs><clipPath id="a"><path fill="#fff" transform="rotate(90 8 8)" d="M0 0h16v16H0z"></path></clipPath><clipPath id="b"><path fill="#fff" transform="rotate(-90 11 9)" d="M0 0h24v12H0z"></path></clipPath></defs>
 		</symbol>
 	
 		<symbol id="icons-service" viewBox="0 0 40 41">
@@ -217,15 +237,19 @@
 		</symbol>
 	
 		<symbol id="next" viewBox="0 0 11 16">
-			<path d="M10.5 8C7.355 7.486 1.819 4.306.5-2M10.5 8c-3.145.514-8.681 3.694-10 10" stroke="#182C22"></path>
+			<path d="M10.5 8C7.355 7.486 1.819 4.306.5-2M10.5 8c-3.145.514-8.681 3.694-10 10"></path>
 		</symbol>
 	
 		<symbol id="phone" viewBox="0 0 16 17">
 			<path d="M14.63 11.804v2a1.333 1.333 0 0 1-1.454 1.333 13.194 13.194 0 0 1-5.753-2.046 13.001 13.001 0 0 1-4-4 13.193 13.193 0 0 1-2.046-5.78 1.333 1.333 0 0 1 1.326-1.454h2a1.333 1.333 0 0 1 1.333 1.147 8.56 8.56 0 0 0 .467 1.873 1.333 1.333 0 0 1-.3 1.407l-.847.847a10.667 10.667 0 0 0 4 4l.847-.847a1.333 1.333 0 0 1 1.407-.3 8.56 8.56 0 0 0 1.873.467 1.333 1.333 0 0 1 1.147 1.353z" stroke="#E9B566" stroke-linecap="round" stroke-linejoin="round"></path>
 		</symbol>
 	
+		<symbol id="plus" viewBox="0 0 18 17">
+			<path d="M1 8.5h16M9 .5v16" stroke="#E9B566" stroke-linecap="round"></path>
+		</symbol>
+	
 		<symbol id="prew" viewBox="0 0 11 16">
-			<path d="M.5 8c3.145.514 8.681 3.694 10 10M.5 8c3.145-.514 8.681-3.694 10-10" stroke="#182C22"></path>
+			<path d="M.5 8c3.145.514 8.681 3.694 10 10M.5 8c3.145-.514 8.681-3.694 10-10"></path>
 		</symbol>
 	
 		<symbol id="ui-icons-right" viewBox="0 0 49 25">
@@ -247,7 +271,7 @@
 </svg>
 
 <header>
-    <h1 id="logo">Gulp SVG Sprites <small>(22 icons in &lt;symbol&gt; mode)</small></h1>
+    <h1 id="logo">Gulp SVG Sprites <small>(28 icons in &lt;symbol&gt; mode)</small></h1>
     <h4>Files Generated:</h4>
     <ol>
         <li><a href="svg/symbols.svg">svg/symbols.svg</a></li>
@@ -369,6 +393,40 @@
         </li>
         
 
+        <li title="document">
+            <div class="icon-box" id="icon-box-document">
+                <svg class="icon document">
+                    <use xlink:href="#document" />
+                </svg>
+            </div>
+            <h2>document</h2>
+            <button onclick="showPopover('snippet-document')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-document')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-document">
+                <pre><code>&lt;svg class=&quot;icon document&quot;&gt;&lt;use xlink:href=&quot;#document&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+
+        <li title="download">
+            <div class="icon-box" id="icon-box-download">
+                <svg class="icon download">
+                    <use xlink:href="#download" />
+                </svg>
+            </div>
+            <h2>download</h2>
+            <button onclick="showPopover('snippet-download')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-download')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-download">
+                <pre><code>&lt;svg class=&quot;icon download&quot;&gt;&lt;use xlink:href=&quot;#download&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+
         <li title="envelope">
             <div class="icon-box" id="icon-box-envelope">
                 <svg class="icon envelope">
@@ -381,6 +439,57 @@
             <button onclick="invertBackground('icon-box-envelope')">Invert Background</button>
             <div class="snippet-popover" id="snippet-envelope">
                 <pre><code>&lt;svg class=&quot;icon envelope&quot;&gt;&lt;use xlink:href=&quot;#envelope&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+
+        <li title="gallery-close">
+            <div class="icon-box" id="icon-box-gallery-close">
+                <svg class="icon gallery-close">
+                    <use xlink:href="#gallery-close" />
+                </svg>
+            </div>
+            <h2>gallery-close</h2>
+            <button onclick="showPopover('snippet-gallery-close')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-gallery-close')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-gallery-close">
+                <pre><code>&lt;svg class=&quot;icon gallery-close&quot;&gt;&lt;use xlink:href=&quot;#gallery-close&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+
+        <li title="gallery-left">
+            <div class="icon-box" id="icon-box-gallery-left">
+                <svg class="icon gallery-left">
+                    <use xlink:href="#gallery-left" />
+                </svg>
+            </div>
+            <h2>gallery-left</h2>
+            <button onclick="showPopover('snippet-gallery-left')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-gallery-left')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-gallery-left">
+                <pre><code>&lt;svg class=&quot;icon gallery-left&quot;&gt;&lt;use xlink:href=&quot;#gallery-left&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+
+        <li title="gallery-right">
+            <div class="icon-box" id="icon-box-gallery-right">
+                <svg class="icon gallery-right">
+                    <use xlink:href="#gallery-right" />
+                </svg>
+            </div>
+            <h2>gallery-right</h2>
+            <button onclick="showPopover('snippet-gallery-right')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-gallery-right')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-gallery-right">
+                <pre><code>&lt;svg class=&quot;icon gallery-right&quot;&gt;&lt;use xlink:href=&quot;#gallery-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>
@@ -551,6 +660,23 @@
             <button onclick="invertBackground('icon-box-phone')">Invert Background</button>
             <div class="snippet-popover" id="snippet-phone">
                 <pre><code>&lt;svg class=&quot;icon phone&quot;&gt;&lt;use xlink:href=&quot;#phone&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+                <button onclick="hidePopover()">Close</button>
+            </div>
+        </li>
+        
+
+        <li title="plus">
+            <div class="icon-box" id="icon-box-plus">
+                <svg class="icon plus">
+                    <use xlink:href="#plus" />
+                </svg>
+            </div>
+            <h2>plus</h2>
+            <button onclick="showPopover('snippet-plus')">Show Snippet</button>
+            <br/>
+            <button onclick="invertBackground('icon-box-plus')">Invert Background</button>
+            <div class="snippet-popover" id="snippet-plus">
+                <pre><code>&lt;svg class=&quot;icon plus&quot;&gt;&lt;use xlink:href=&quot;#plus&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
                 <button onclick="hidePopover()">Close</button>
             </div>
         </li>

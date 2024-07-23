@@ -10,7 +10,17 @@
     <meta name="description" content="Olive">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="format-detection" content="telephone=no">
-    <!-- <link href="https://db.onlinewebfonts.com/c/5d065db7b91a937338aa91552f827ec0?family=TRIAL+Oceanic+Text" rel="stylesheet"> -->
+    <style>
+      @font-face {
+      font-family: 'TRIAL Oceanic';
+      src: local('TRIAL Oceanic'), local('TRIAL Oceanic Regular'),
+        url('./fonts/oceanic/TRIAL_Oceanic-Regular.woff2') format('woff2'),
+        url('./fonts/oceanic/TRIAL_Oceanic-Regular.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-form-styler@latest/dist/jquery.formstyler.css">
     <link
       rel="stylesheet"
@@ -32,8 +42,12 @@
       media="all"
     >
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
-    <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon">
+    <!-- <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- ScrollTrigger -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <!-- gsap -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   </head>
   <body class="ui-noise">
     <div class="wrapper">
@@ -549,10 +563,16 @@
       <main class="main">
         <div class="container">
           <h3>Страницы</h3>
+          <h5>
+            Контакты
+          </h5>
           <ul>
             <li>
               <a href="contacts.html" target="_blank">Контакты</a>
             </li>
+          </ul>
+          <h5>Услуги</h5>
+          <ul>
             <li>
               <a href="services.html" target="_blank">Услуги</a>
             </li>
@@ -564,6 +584,26 @@
             </li>
             <li>
               <a href="service-sub-subcategory.html" target="_blank">Страница под-подкатеории услуги</a>
+            </li>
+          </ul>
+          <h5>
+            О клинике — Юридические страницы
+          </h5>
+          <ul>
+            <li>
+              <a href="diploms.html" target="_blank">Дипломы и сертификаты</a>
+            </li>
+            <li>
+              <a href="licenses.html" target="_blank">Лицензии</a>
+            </li>
+            <li>
+              <a href="for-patients.html" target="_blank">Информация для пациентов</a>
+            </li>
+            <li>
+              <a href="organisation-info.html" target="_blank">Информация об организации</a>
+            </li>
+            <li>
+              <a href="privacy-policy.html" target="_blank">Политика конфиденциальности</a>
             </li>
           </ul>
           <h3>Попапы</h3>
@@ -671,6 +711,16 @@
           </div>
         </div>
       </footer>
+      <div class="cookie">
+        <div class="cookie-text">
+          Мы используем
+          <a href="#">cookie</a>
+          , чтобы улучшить сайт для вас
+        </div>
+        <button class="ui-btn ui-btn-min ui-btn-transparent ui-noise">
+          Хорошо
+        </button>
+      </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-form-styler@latest/dist/jquery.formstyler.js"></script>

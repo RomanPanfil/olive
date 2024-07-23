@@ -11,6 +11,22 @@
         background-color: $bg_article;        
     }
 
+    &.black {        
+        .header-nav > ul > li > a {
+            color: $font_black;
+
+            @media (hover: hover) and (pointer: fine) {
+                &:hover {
+                    color: $font_accent;		
+                }
+            }
+        }
+
+        .header-nav-icon {
+            stroke: $primary;
+        }
+    }
+
     &-blur {
         position: absolute;
         left: 0;
@@ -300,7 +316,7 @@
             display: inline-block;
             vertical-align: middle;
             margin-right: p2r(1);
-            transition: filter 0.1s;
+            transition: filter 0.15s;
             margin-bottom: p2r(2);
 
             @include tablet {

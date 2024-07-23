@@ -10,7 +10,17 @@
     <meta name="description" content="Olive">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="format-detection" content="telephone=no">
-    <!-- <link href="https://db.onlinewebfonts.com/c/5d065db7b91a937338aa91552f827ec0?family=TRIAL+Oceanic+Text" rel="stylesheet"> -->
+    <style>
+      @font-face {
+      font-family: 'TRIAL Oceanic';
+      src: local('TRIAL Oceanic'), local('TRIAL Oceanic Regular'),
+        url('./fonts/oceanic/TRIAL_Oceanic-Regular.woff2') format('woff2'),
+        url('./fonts/oceanic/TRIAL_Oceanic-Regular.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-form-styler@latest/dist/jquery.formstyler.css">
     <link
       rel="stylesheet"
@@ -32,8 +42,12 @@
       media="all"
     >
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
-    <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon">
+    <!-- <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- ScrollTrigger -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <!-- gsap -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   </head>
   <body class="ui-noise">
     <div class="wrapper">
@@ -802,6 +816,16 @@
           </div>
         </div>
       </footer>
+      <div class="cookie">
+        <div class="cookie-text">
+          Мы используем
+          <a href="#">cookie</a>
+          , чтобы улучшить сайт для вас
+        </div>
+        <button class="ui-btn ui-btn-min ui-btn-transparent ui-noise">
+          Хорошо
+        </button>
+      </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-form-styler@latest/dist/jquery.formstyler.js"></script>
@@ -819,6 +843,7 @@
       referrerpolicy="no-referrer"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script> -->
     <script src="./scripts/scripts.js"></script>
   </body>
 </html>

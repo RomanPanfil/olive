@@ -51,7 +51,8 @@ body {
   scroll-behavior: smooth;  
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch; 
+  overflow-anchor: none;
   overflow-scrolling: touch;
 }
 

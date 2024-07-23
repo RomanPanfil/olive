@@ -17,7 +17,6 @@
         max-width: p2r(498);
         margin-top: p2r(24);
 
-
         @include tablet {
             font-size: p2r(32);
             max-width: p2r(225);
@@ -26,7 +25,7 @@
         }
 
         @include mobile {
-            margin-bottom: p2r(24);
+            margin-bottom: p2r(20);
         }
     }
 
@@ -35,7 +34,14 @@
 
         @include tablet {
             margin-bottom: p2r(24);
-        }        
+        }
+        
+        @include mobile {
+            margin-bottom: p2r(18);
+            font-size: p2r(35);
+        }
+
+        
 
         .contacts-main-tel-item:not(:last-child)::after {
             width: p2r(14);
@@ -44,8 +50,30 @@
             @include tablet {
                 width: p2r(4);
                 height: p2r(4);
-            }
+            }      
         }
+
+        .contacts-main-tel-item:not(:last-child) {
+            &::after {
+              content: '';
+              width: p2r(8.48);
+              height: p2r(8.48);
+              border-radius: 50%;
+              background-color: #FFB26A;
+              display: block;
+              margin-left: p2r(28);
+  
+              @include tablet {
+                margin-left: p2r(8);                
+              }
+  
+              @include mobile {
+                margin-left: p2r(5);
+                width: p2r(4);
+                height: p2r(4);
+              }
+            }
+          }
     }
 
     &-wrapper {
@@ -124,11 +152,11 @@
                 width: 100%;              
 
                 &:not(:last-of-type) {
-                    margin-bottom: p2r(12);
+                    margin-bottom: p2r(10);
                 }
 
                 &:last-of-type {
-                    margin-bottom: p2r(8);
+                    margin-bottom: p2r(10);
                 }
             }
 
@@ -162,7 +190,7 @@
             vertical-align: middle;
             fill: none;
             margin-right: p2r(2);
-            transition: filter 0.1s;
+            transition: filter 0.15s;
             margin-bottom: p2r(2);
 
             @include tablet {
@@ -171,7 +199,9 @@
             }
 
             @include mobile {
+                margin-right: p2r(4);
                 filter: brightness(10);
+                margin-bottom: p2r(-1);
             }
         }
 
@@ -186,10 +216,16 @@
                 margin-left: 0;               
             }
 
-            a {                
+            a {     
+                filter: brightness(1);
+                transition: filter 0.15s;
+
                 @media (hover: hover) and (pointer: fine) {
                     &:hover {
                         filter: brightness(10);
+                        filter: brightness(10);
+                        transition: filter 0.3s;
+                        filter: brightness(10);                        
                         transition: filter 0.3s;
                     }
                 }               

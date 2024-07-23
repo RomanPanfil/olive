@@ -32,36 +32,112 @@ const FARBA = {
   }
 }
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
+  // Нормализация скролла для mac
+  $(() => {
+    gsap.registerPlugin(ScrollTrigger);
+  
+    if (isMac()) {	
+      console.log('MAC');
+      ScrollTrigger.normalizeScroll(true);
+    }
+
+    function isMac() {
+      return navigator.platform.indexOf('Mac') > -1
+    }
+  })
+  
   // Открытие попапа
-  $(document).on("click", ".mfp-link", function () {
-    var a = $(this);
+  // $(document).on("click", ".mfp-link", function () {
+  //   var a = $(this);
+  //   $.magnificPopup.open({
+  //     items: { src: a.attr("data-href") },
+  //     type: "ajax",
+  //     overflowY: "scroll",
+  //     removalDelay: 300,
+  //     mainClass: 'my-mfp-zoom-in',
+  //     ajax: {
+  //       tError: "Error. Not valid url",
+  //     },
+  //     callbacks: {
+  //       open: function () {
+  //         setTimeout(function(){
+  //           $('.mfp-wrap').addClass('not_delay');
+  //           $('.mfp-popup').addClass('not_delay');
+  //         },700);
+  
+  //         document.documentElement.style.overflow = 'hidden'
+  //       },
+  
+  //       close: function() {
+  //         document.documentElement.style.overflow = ''
+  //       }
+  //     }
+  //   });
+  //   return false;
+  // });
+
+  // // открытие галереи
+  // $('.diploms-list').magnificPopup({
+  //   delegate: '.gallery-item', // селектор дочернего элемента
+  //   type: 'image',
+  //   gallery: {
+  //     enabled: true
+  //   },
+  //   image: {
+  //     titleSrc: function(item) {
+  //       return item.el.closest('.diploms-card').find('.diploms-card-title').text();
+  //     }
+  //   }
+  // });
+
+
+  $(document).on("click", ".mfp-link", function (e) {
+    e.preventDefault();
+    var clickedElement = $(this);
+    var galleryItems = [];
+  
+    // Собираем все элементы галереи
+    $(".mfp-gallery-item").each(function () {
+      galleryItems.push({
+        src: $(this).attr("data-href"),
+        title: $(this).find('.diploms-card-title').text().trim()
+      });
+    });
+  
+    // Находим индекс кликнутого элемента
+    var index = $(".mfp-gallery-item").index(clickedElement);
+  
     $.magnificPopup.open({
-      items: { src: a.attr("data-href") },
-      type: "ajax",
+      items: galleryItems,
+      type: 'image',
+      gallery: {
+        enabled: true,
+        navigateByImgClick: true,
+        preload: [0, 1],
+        tCounter: '%curr% из %total%' // Локализация счетчика на русский язык
+      },
       overflowY: "scroll",
       removalDelay: 300,
       mainClass: 'my-mfp-zoom-in',
-      ajax: {
-        tError: "Error. Not valid url",
-      },
       callbacks: {
         open: function () {
           setTimeout(function(){
             $('.mfp-wrap').addClass('not_delay');
             $('.mfp-popup').addClass('not_delay');
-          },700);
-  
-          document.documentElement.style.overflow = 'hidden'
+          }, 700);
+          document.documentElement.style.overflow = 'hidden';
         },
-  
         close: function() {
-          document.documentElement.style.overflow = ''
+          document.documentElement.style.overflow = '';
         }
       }
-    });
+    }, index);
+  
     return false;
-  });
+  });  
 
   // открытие меню в header  
   (function() {
@@ -201,6 +277,77 @@ document.addEventListener('DOMContentLoaded', () => {
       mainSections.forEach(section => observer.observe(section));
     });
   })();
+
+  // многоточие при переполнении текста в карточках
+  (function() {
+    function applyEllipsis() {
+      // Проверяем ширину окна
+      if (window.innerWidth <= 599) {
+        // Если ширина меньше или равна 599px, удаляем многоточия и восстанавливаем оригинальный текст
+        resetEllipsis();
+        return;
+      }
+  
+      const cards = document.querySelectorAll('.ui-ellipsis-card');
+      if (cards.length === 0) return;
+  
+      cards.forEach(card => {
+        const description = card.querySelector('.subcategory-card-description');
+        if (!description) return;
+  
+        const originalText = description.getAttribute('data-original-text') || description.textContent;
+        description.setAttribute('data-original-text', originalText);
+  
+        let words = originalText.split(' ');
+        
+        description.textContent = originalText;
+  
+        if (card.scrollHeight > card.clientHeight) {
+          while (card.scrollHeight > card.clientHeight && words.length > 0) {
+            words.pop();
+            description.textContent = words.join(' ') + '...';
+          }
+  
+          if (words.length < originalText.split(' ').length) {
+            const nextWord = originalText.split(' ')[words.length];
+            const testText = words.join(' ') + ' ' + nextWord;
+            
+            description.textContent = testText + '...';
+            
+            if (card.scrollHeight <= card.clientHeight) {
+              words.push(nextWord);
+            }
+            
+            description.textContent = words.join(' ') + '...';
+          }
+        }
+      });
+    }
+  
+    function resetEllipsis() {
+      const descriptions = document.querySelectorAll('.ui-ellipsis-card .subcategory-card-description');
+      descriptions.forEach(description => {
+        const originalText = description.getAttribute('data-original-text');
+        if (originalText) {
+          description.textContent = originalText;
+        }
+      });
+    }
+  
+    function handleResize() {
+      if (window.innerWidth > 599) {
+        applyEllipsis();
+      } else {
+        resetEllipsis();
+      }
+    }
+  
+    // Применяем эллипсис при загрузке страницы
+    handleResize();
+  
+    // Добавляем обработчик события resize
+    window.addEventListener('resize', handleResize);
+  })();
   
   // отображение скрытых услуг, если больше 6
   (function() {
@@ -250,9 +397,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             setTimeout(() => {
               card.style.opacity = show ? '1' : '0';
-            }, 50);
+            }, 5);
           }, delay);
-          delay += 100;
+          delay += 3;
         }
       });
     }
@@ -281,7 +428,7 @@ document.addEventListener('DOMContentLoaded', () => {
       toggleCards(isExpanded);
     });
 
-  })();
+  })();          
 
   // раскрытие текста в описании подкатегории
   (function() {
@@ -480,7 +627,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (windowWidth <= 899) {
           floatOffset = $('.side-spase').offset().top - (parseFloat($('.header').height()) * 1.5);
         } else {
-          floatOffset = $('.side-spase').offset().top - parseFloat($('.side-wrapper').css('padding-top'));
+          floatOffset = $('.side-spase').offset().top - (parseFloat($('.side-wrapper').css('padding-top')) * 1.38);
         }
         
         var sideWrapper = $('.side-wrapper');
@@ -490,7 +637,7 @@ document.addEventListener('DOMContentLoaded', () => {
         var floatStop = sideWrapperBottom - floatHeight;
   
         if (windowWidth <= 899) {
-          if (windowOffset > floatOffset && windowOffset < floatStop) {
+          if (windowOffset > floatOffset && windowOffset < floatStop) {            
             $('.side-menu').addClass('float').removeClass('flip-bottom');
             $('.header').addClass('header__light');
           } else {
@@ -531,13 +678,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuItems = document.querySelectorAll('.item-menu');
     const menuList = document.querySelector('.side-navigation-list');
     const navigation = document.querySelector('.side-menu');    
-
+    const header = document.querySelector('header');
+  
     if(!menuItems.length && navigation) {
       navigation.classList.add('hidden');
     }
     
-    if(!menuList) return   
-
+    if(!menuList) return;
+  
+    let isScrolling = false;
+    let timeoutId;
+  
+    function getOffsetTop() {
+      const headerHeight = header ? header.offsetHeight : 0;
+      return window.innerWidth < 899 ? headerHeight * 3 : headerHeight * 1.2;
+    }
+  
+    function getElementOffset(element) {
+      const rect = element.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      return rect.top + scrollTop;
+    }
+  
+    function scrollToElement(element) {
+      const offsetTop = getOffsetTop();
+      const elementPosition = getElementOffset(element) - offsetTop;
+  
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
+    }
+  
     menuItems.forEach((item, index) => {
       const li = document.createElement('li');
       li.classList.add('side-navigation-item');
@@ -547,36 +719,54 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       li.textContent = item.dataset.title || item.textContent;
-
+  
       li.addEventListener('click', () => {
-        item.scrollIntoView({
-          behavior: 'smooth'  
-        });
+        isScrolling = true;
+        clearTimeout(timeoutId);
+        
+        menuList.querySelectorAll('.side-navigation-item').forEach(el => el.classList.remove('active'));
+        li.classList.add('active');
+        
+        scrollToElement(item);
+        
+        timeoutId = setTimeout(() => {
+          isScrolling = false;
+        }, 1000); // Время, достаточное для завершения прокрутки
       });
-
+  
       menuList.appendChild(li);      
     });      
 
+
+  
     let currentActive = menuList.querySelector('.active');
     const menuOffset = menuList.getBoundingClientRect().top;
     
     document.addEventListener('scroll', () => {
+      if (isScrolling) return;
+      
+      const offsetTop = getOffsetTop();
       let nextIndex;
+  
       menuItems.forEach((item, index) => {
-        const rect = item.getBoundingClientRect();
-        if (rect.top - menuOffset < 130) {
+        const itemTop = getElementOffset(item) - offsetTop;
+        if (window.pageYOffset >= itemTop - 20) {
           nextIndex = index;
         }
       });
     
       if (nextIndex !== undefined) {
-        currentActive.classList.remove('active');
-        const nextActive = menuList.children[nextIndex];
-        nextActive.classList.add('active');
-        currentActive = nextActive;
+        menuList.querySelectorAll('.side-navigation-item').forEach((item, index) => {
+          if (index === nextIndex) {
+            item.classList.add('active');
+          } else {
+            item.classList.remove('active');
+          }
+        });
       }
     });
-  })();  
+  })();
+
 
   // вставка текущего года в копирайт футера
   (function() {   
@@ -592,11 +782,12 @@ document.addEventListener('DOMContentLoaded', () => {
   (function() {
     const wrapper = document.querySelector('.sticky-wrapper');
 
-    if(!wrapper) return
+    if(!wrapper) return;
 
     const stickyElem = wrapper.querySelector('.sticky-elem');
+    const servicesPreviews = wrapper.querySelector('.services-previews');
 
-    if(stickyElem) {
+    if(stickyElem && servicesPreviews) {
       let stickyElemOriginalTop = stickyElem.offsetTop;
       let stickyElemHeight = stickyElem.offsetHeight;
     
@@ -604,6 +795,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const wrapperRect = wrapper.getBoundingClientRect();
         const wrapperTop = wrapperRect.top;
         const wrapperBottom = wrapperRect.bottom - stickyElemHeight;
+        const servicesPreviewsRect = servicesPreviews.getBoundingClientRect();
     
         if (wrapperTop <= 0 && wrapperBottom > stickyElemHeight) {
           stickyElem.style.position = 'fixed';
@@ -613,6 +805,13 @@ document.addEventListener('DOMContentLoaded', () => {
           stickyElem.style.top = (wrapper.offsetHeight - stickyElemHeight) + 'px'; 
         } else {
           stickyElem.style.position = 'fixed';
+        }
+
+        // Check if the sticky element is hidden behind services-previews
+        if (servicesPreviewsRect.top <= stickyElemHeight) {
+          stickyElem.classList.add('hidden');
+        } else {
+          stickyElem.classList.remove('hidden');
         }
       }
     
@@ -637,77 +836,85 @@ document.addEventListener('DOMContentLoaded', () => {
 
       resetStickyElem();
     }
-  })();
+  })(); 
 
-
-  // многоточие при переполнении текста в карточках
+  // смена цвета хедера при скролле
   (function() {
-    function applyEllipsis() {
-      // Проверяем ширину окна
-      if (window.innerWidth <= 599) {
-        // Если ширина меньше или равна 599px, удаляем многоточия и восстанавливаем оригинальный текст
-        resetEllipsis();
-        return;
-      }
-  
-      const cards = document.querySelectorAll('.ui-ellipsis-card');
-      if (cards.length === 0) return;
-  
-      cards.forEach(card => {
-        const description = card.querySelector('.subcategory-card-description');
-        if (!description) return;
-  
-        const originalText = description.getAttribute('data-original-text') || description.textContent;
-        description.setAttribute('data-original-text', originalText);
-  
-        let words = originalText.split(' ');
-        
-        description.textContent = originalText;
-  
-        if (card.scrollHeight > card.clientHeight) {
-          while (card.scrollHeight > card.clientHeight && words.length > 0) {
-            words.pop();
-            description.textContent = words.join(' ') + '...';
-          }
-  
-          if (words.length < originalText.split(' ').length) {
-            const nextWord = originalText.split(' ')[words.length];
-            const testText = words.join(' ') + ' ' + nextWord;
-            
-            description.textContent = testText + '...';
-            
-            if (card.scrollHeight <= card.clientHeight) {
-              words.push(nextWord);
-            }
-            
-            description.textContent = words.join(' ') + '...';
-          }
+    const header = document.querySelector('.header');
+    const blackHeaderBlocks = document.querySelectorAll('.black-header');
+    
+    function isHeaderMiddleCrossing(el) {
+      const rect = el.getBoundingClientRect();
+      const headerMiddle = header.offsetHeight / 2;
+      return (
+        rect.top <= headerMiddle &&
+        rect.bottom >= headerMiddle
+      );
+    }
+    
+    function checkHeaderColor() {
+      let shouldBeBlack = false;
+      
+      blackHeaderBlocks.forEach(block => {
+        if (isHeaderMiddleCrossing(block)) {
+          shouldBeBlack = true;
         }
       });
-    }
-  
-    function resetEllipsis() {
-      const descriptions = document.querySelectorAll('.ui-ellipsis-card .subcategory-card-description');
-      descriptions.forEach(description => {
-        const originalText = description.getAttribute('data-original-text');
-        if (originalText) {
-          description.textContent = originalText;
-        }
-      });
-    }
-  
-    function handleResize() {
-      if (window.innerWidth > 599) {
-        applyEllipsis();
+      
+      if (shouldBeBlack) {
+        header.classList.add('black');
       } else {
-        resetEllipsis();
+        header.classList.remove('black');
       }
     }
-  
-    // Применяем эллипсис при загрузке страницы
-    handleResize();
-  
-    // Добавляем обработчик события resize
-    window.addEventListener('resize', handleResize);
+    
+    window.addEventListener('scroll', checkHeaderColor);
+    window.addEventListener('resize', checkHeaderColor);
+    
+    // Вызываем функцию сразу, чтобы установить начальное состояние
+    checkHeaderColor();
   })();
+
+  // плавный уход фона в прозрачность при скролле
+  (function() {
+    const uibg = document.querySelectorAll('.ui-fading-bg');
+
+    if (uibg) {
+
+      uibg.forEach((bg) => {
+        const bgHeight = bg.offsetHeight;
+      let lastScrollY = window.scrollY;
+
+      function updateOpacity() {
+        const scrollY = window.scrollY;
+        // const scrollDiff = scrollY - lastScrollY;
+        const opacity = Math.max(0, 1 - scrollY / bgHeight);
+
+        bg.style.opacity = opacity;
+        lastScrollY = scrollY;
+
+        requestAnimationFrame(updateOpacity);
+      }
+
+      updateOpacity();
+      })
+      
+    }
+  })();
+
+    // cookies
+    (function() {
+      if (!document.querySelector('.cookie') || !document.querySelector('.cookie .ui-btn')) return
+  
+      const cookiesBlock = document.querySelector('.cookie');
+      const closeBtn = document.querySelector('.cookie .ui-btn');
+  
+      closeBtn.addEventListener('click', closeCookiesBlock);
+  
+      function closeCookiesBlock() {
+        cookiesBlock.classList.add('hidden');
+      }
+    })();
+  
+
 })

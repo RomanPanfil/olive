@@ -10,7 +10,17 @@
     <meta name="description" content="Olive">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="format-detection" content="telephone=no">
-    <!-- <link href="https://db.onlinewebfonts.com/c/5d065db7b91a937338aa91552f827ec0?family=TRIAL+Oceanic+Text" rel="stylesheet"> -->
+    <style>
+      @font-face {
+      font-family: 'TRIAL Oceanic';
+      src: local('TRIAL Oceanic'), local('TRIAL Oceanic Regular'),
+        url('./fonts/oceanic/TRIAL_Oceanic-Regular.woff2') format('woff2'),
+        url('./fonts/oceanic/TRIAL_Oceanic-Regular.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-form-styler@latest/dist/jquery.formstyler.css">
     <link
       rel="stylesheet"
@@ -32,10 +42,14 @@
       media="all"
     >
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
-    <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon">
+    <!-- <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- ScrollTrigger -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <!-- gsap -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   </head>
-  <body>
+  <body class="ui-noise">
     <div class="wrapper">
       <header class="header">
         <div class="header-blur">
@@ -47,7 +61,13 @@
         <div class="container container__min">
           <div class="header-wrapper">
             <a href="#" class="header-logo">
-              <img src="./images/logo.svg" alt="olive" loading="lazy">
+              <img
+                src="./images/logo.svg"
+                alt="olive"
+                width="77"
+                height="40"
+                loading="lazy"
+              >
             </a>
             <nav class="header-nav">
               <ul>
@@ -532,33 +552,210 @@
                 </li>
               </ul>
             </nav>
-            <div class="header-feedback">
-              <a href="tel:88312000077" class="header-feedback-item header-feedback-phone">
+            <a href="#" class="header-feedback">
+              <div class="header-feedback-item header-feedback-phone">
                 <svg class="header-feedback-icon">
                   <use xlink:href="svg/svg/symbols.svg#phone"/>
                 </svg>
-                8 831 2-0000-77
-              </a>
-              <a href="tel:88312000077" class="header-feedback-item header-feedback-call">
+                <span class="hidden-tablet">8 831 2-0000-77</span>
+              </div>
+              <div class="header-feedback-item header-feedback-call hidden-tablet">
                 Перезвоните мне
-              </a>
-            </div>
+              </div>
+            </a>
           </div>
         </div>
       </header>
       <main class="main">
-        <img src="./images/main-bg.jpg" alt="bg" class="main-bg">
+        <img src="./images/main-bg.jpg" alt="bg" class="main-bg ui-noise ui-fading-bg">
+        <div class="container container__min">
+          <div class="main-banner">
+            <div class="main-banner-content ui-fading-bg">
+              <h1 class="main-banner-title">
+                Клиника естественной красоты
+              </h1>
+              <a href="#" class="ui-btn">
+                Наши услуги
+                <svg class="ui-btn-icon">
+                  <use xlink:href="svg/svg/symbols.svg#ui-icons-right"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
         <div class="container">
-          <div>
-            Клиника естественной красоты
+          <div class="founders">
+            <h2 class="founders-title">
+              Клиника, основанная
+              <span class="founders-title-accent">известными экспертами-косметологами</span>
+            </h2>
+            <img src="./images/founders.png" alt="founders" class="founders-image">
+            <div class="founders-trigger founders-trigger__left">
+              <div class="founders-trigger-text">
+                <div class="founders-trigger-surname">
+                  Филиппова
+                </div>
+                <div class="founders-trigger-lastname">
+                  Лариса Ивановна
+                </div>
+              </div>
+              <a href="#" class="founders-trigger-btn">
+                <svg class="founders-trigger-btn-icon">
+                  <use xlink:href="svg/svg/symbols.svg#plus"/>
+                </svg>
+              </a>
+            </div>
+            <div class="founders-trigger founders-trigger__right">
+              <a href="#" class="founders-trigger-btn">
+                <svg class="founders-trigger-btn-icon">
+                  <use xlink:href="svg/svg/symbols.svg#plus"/>
+                </svg>
+              </a>
+              <div class="founders-trigger-text">
+                <div class="founders-trigger-surname">
+                  Горская
+                </div>
+                <div class="founders-trigger-lastname">
+                  Антонина Александровна
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="period">
+            <div class="text-effect">
+              <span data-letter="2">2</span>
+              <span data-letter="0">0</span>
+            </div>
+            <!-- <div class="period-num">
+              20
+            </div> -->
           </div>
         </div>
       </main>
       <footer class="footer">
         <div class="container">
-          footer
+          <div class="footer-wrapper">
+            <div class="footer-title">
+              Приходите быть красивой
+            </div>
+            <a href="tel:88312000077" class="footer-tel contacts-main-tel">
+              <div class="contacts-main-tel-item">
+                8
+              </div>
+              <div class="contacts-main-tel-item">
+                831
+              </div>
+              <div class="contacts-main-tel-item">
+                2
+              </div>
+              <div class="contacts-main-tel-item">
+                0000
+              </div>
+              <div class="contacts-main-tel-item">
+                77
+              </div>
+            </a>
+            <div class="footer-links">
+              <div class="footer-feedback">
+                <a href="#" class="footer-feedback-item footer-feedback-item__address">
+                  <svg class="footer-feedback-icon">
+                    <use xlink:href="svg/svg/symbols.svg#marker"/>
+                  </svg>
+                  Нижний Новгород, ул. Тимирязева, 31а
+                </a>
+                <a href="tel:+78312000077" class="footer-feedback-item footer-feedback-item__phone">
+                  <svg class="footer-feedback-icon">
+                    <use xlink:href="svg/svg/symbols.svg#phone"/>
+                  </svg>
+                  +7 831 2-0000-77
+                </a>
+                <a href="mailto:olive.clinic@yandex.ru" class="footer-feedback-item footer-feedback-item__mail">
+                  <svg class="footer-feedback-icon">
+                    <use xlink:href="svg/svg/symbols.svg#envelope"/>
+                  </svg>
+                  olive.clinic@yandex.ru
+                </a>
+                <div class="footer-feedback-socials">
+                  <a href="#" target="_blank">
+                    <svg>
+                      <use xlink:href="svg/svg/symbols.svg#youtube"/>
+                    </svg>
+                  </a>
+                  <a href="#" target="_blank">
+                    <svg>
+                      <use xlink:href="svg/svg/symbols.svg#vk"/>
+                    </svg>
+                  </a>
+                  <a href="#" target="_blank">
+                    <svg>
+                      <use xlink:href="svg/svg/symbols.svg#viber"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <div class="footer-nav">
+                <ul>
+                  <li>
+                    <a href="#">
+                      Дипломы и сертификаты
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      Лицензии
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      Информация об организации
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      Информация для пациентов
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="footer-info">
+              <div class="footer-info-main">
+                <div class="footer-copy">
+                  <span class="footer-copy-txt">
+                    <span class="footer-copy-txt-year"></span>
+                    O'LIVE
+                  </span>
+                  <span class="footer-copy-txt">
+                    ООО «Клиника эстетической медицины»
+                  </span>
+                </div>
+                <div class="footer-confident">
+                  <div class="footer-text">
+                    Информация не является публичной офертой
+                  </div>
+                  <a href="#">
+                    Политика конфиденциальности
+                  </a>
+                </div>
+              </div>
+              <div class="footer-created">
+                Сделано в
+                <a href="https://vzdh.rocks/" target="_blank">VZDH</a>
+              </div>
+            </div>
+          </div>
         </div>
       </footer>
+      <div class="cookie">
+        <div class="cookie-text">
+          Мы используем
+          <a href="#">cookie</a>
+          , чтобы улучшить сайт для вас
+        </div>
+        <button class="ui-btn ui-btn-min ui-btn-transparent ui-noise">
+          Хорошо
+        </button>
+      </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-form-styler@latest/dist/jquery.formstyler.js"></script>
