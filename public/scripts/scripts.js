@@ -350,6 +350,89 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
   
   // отображение скрытых услуг, если больше 6
+  // плавное
+  // (function() {
+  //   const subcategoryList = document.querySelectorAll('.subcategory-list .subcategory-card');
+  //   const moreButton = document.querySelector('.subcategory-more');
+  //   const moreCount = document.querySelector('.subcategory-more-count');
+  //   const moreIcon = document.querySelector('.subcategory-more-icon');
+    
+  //   if (!moreButton || subcategoryList.length <= 6) return;
+
+  //   const hiddenCards = subcategoryList.length - 6;
+  //   let isExpanded = false;
+
+  //   function getServiceWord(number) {
+  //     const cases = [2, 0, 1, 1, 1, 2];
+  //     const titles = ['услуга', 'услуги', 'услуг'];
+  //     return titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
+  //   }
+
+  //   function updateButtonText() {
+  //     if (isExpanded) {
+  //       moreButton.textContent = 'Свернуть';
+  //       moreButton.appendChild(moreIcon);
+  //       moreIcon.style.transform = 'rotate(180deg)';
+  //     } else {
+  //       moreButton.textContent = 'Еще ';
+  //       moreButton.appendChild(moreCount);
+  //       moreCount.textContent = hiddenCards;
+  //       moreButton.appendChild(document.createTextNode(` ${getServiceWord(hiddenCards)} `));
+  //       moreButton.appendChild(moreIcon);
+  //       moreIcon.style.transform = 'rotate(0deg)';
+  //     }
+  //   }
+
+  //   function toggleCards(show) {
+  //     let delay = 0;
+  //     const isMobile = window.innerWidth < 599;
+      
+  //     subcategoryList.forEach((card, index) => {
+  //       if (index >= 6) {
+  //         setTimeout(() => {
+  //           if (isMobile) {
+  //             card.style.display = show ? 'flex' : 'none';
+  //           } else {
+  //             card.style.display = show ? 'block' : 'none';
+  //           }
+            
+  //           setTimeout(() => {
+  //             card.style.opacity = show ? '1' : '0';
+  //           }, 5);
+  //         }, delay);
+  //         delay += 3;
+  //       }
+  //     });
+  //   }
+
+  //   function init(show) {
+  //     subcategoryList.forEach((card, index) => {
+  //       if (index >= 6) {
+  //         card.style.display = show ? 'block' : 'none';      
+  //         card.style.opacity = show ? '1' : '0';
+  //       }
+  //     });
+  //   }
+
+  //   // Инициализация
+  //   init(false);
+  //   toggleCards(false);
+  //   updateButtonText();
+
+  //   moreButton.addEventListener('click', () => {
+  //     isExpanded = !isExpanded;
+  //     toggleCards(isExpanded);
+  //     updateButtonText();
+  //   });
+
+  //   window.addEventListener('resize', () => {
+  //     toggleCards(isExpanded);
+  //   });
+
+  // })();
+  
+  // отображение скрытых услуг, если больше 6
+  // мгновенное
   (function() {
     const subcategoryList = document.querySelectorAll('.subcategory-list .subcategory-card');
     const moreButton = document.querySelector('.subcategory-more');
@@ -382,53 +465,33 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    function toggleCards(show) {
-      let delay = 0;
-      const isMobile = window.innerWidth < 599;
-      
+    function toggleCards() {
       subcategoryList.forEach((card, index) => {
         if (index >= 6) {
-          setTimeout(() => {
-            if (isMobile) {
-              card.style.display = show ? 'flex' : 'none';
-            } else {
-              card.style.display = show ? 'block' : 'none';
-            }
-            
-            setTimeout(() => {
-              card.style.opacity = show ? '1' : '0';
-            }, 5);
-          }, delay);
-          delay += 3;
+          card.classList.toggle('hidden');
         }
       });
     }
 
-    function init(show) {
+    function init() {
       subcategoryList.forEach((card, index) => {
         if (index >= 6) {
-          card.style.display = show ? 'block' : 'none';      
-          card.style.opacity = show ? '1' : '0';
+          card.classList.add('hidden');
         }
       });
     }
 
     // Инициализация
-    init(false);
-    toggleCards(false);
+    init();
     updateButtonText();
 
     moreButton.addEventListener('click', () => {
       isExpanded = !isExpanded;
-      toggleCards(isExpanded);
+      toggleCards();
       updateButtonText();
     });
 
-    window.addEventListener('resize', () => {
-      toggleCards(isExpanded);
-    });
-
-  })();          
+  })();
 
   // раскрытие текста в описании подкатегории
   (function() {
@@ -903,18 +966,69 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
     // cookies
-    (function() {
-      if (!document.querySelector('.cookie') || !document.querySelector('.cookie .ui-btn')) return
+    // (function() {
+    //   if (!document.querySelector('.cookie') || !document.querySelector('.cookie .ui-btn')) return
   
+    //   const cookiesBlock = document.querySelector('.cookie');
+    //   const closeBtn = document.querySelector('.cookie .ui-btn');
+  
+    //   closeBtn.addEventListener('click', closeCookiesBlock);
+  
+    //   function closeCookiesBlock() {
+    //     cookiesBlock.classList.add('hidden');
+    //   }
+    // })();
+
+    (function() {
       const cookiesBlock = document.querySelector('.cookie');
       const closeBtn = document.querySelector('.cookie .ui-btn');
-  
+      
+      if (!cookiesBlock || !closeBtn) return;
+    
+      const cookieName = 'cookieConsent';
+      const expirationDays = 2;
+    
+      function handleCookieConsent() {
+        if (getCookie(cookieName) === '') {
+          // Если cookie согласия нет, показываем уведомление
+          cookiesBlock.classList.remove('hidden');
+        } else {
+          // Если cookie согласия есть, скрываем уведомление
+          cookiesBlock.classList.add('hidden');
+        }
+      }
+    
       closeBtn.addEventListener('click', closeCookiesBlock);
-  
+    
       function closeCookiesBlock() {
         cookiesBlock.classList.add('hidden');
+        setCookie(cookieName, 'true', expirationDays);
       }
+    
+      // Функция для установки cookie
+      function setCookie(name, value, days) {
+        let expires = '';
+        if (days) {
+          const date = new Date();
+          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+          expires = '; expires=' + date.toUTCString();
+        }
+        document.cookie = name + '=' + (value || '') + expires + '; path=/';
+      }
+    
+      // Функция для получения значения cookie
+      function getCookie(name) {
+        const nameEQ = name + '=';
+        const ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+          if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return '';
+      }
+    
+      // Запускаем обработку при загрузке страницы
+      handleCookieConsent();
     })();
-  
-
 })

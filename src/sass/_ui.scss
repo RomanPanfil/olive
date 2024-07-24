@@ -125,6 +125,10 @@ table {
 	}
 }
 
+.font-accent {
+	color: $font_accent;
+}
+
 .ui-noise {	
 	background-repeat: repeat;
 	background-size: 100px 100px;	
@@ -136,10 +140,9 @@ table {
 
 .ui-noise-png {	
 	background-repeat: repeat;
-	background-size: p2r(100) p2r(100);	
-	// background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='1.5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noiseFilter)' opacity='0.12'/%3E%3C/svg%3E");
-		
-	background-image: url(../images/ui-noise.png);	
+	background-size: p2r(100) p2r(100);		
+	background-image: url(../images/ui-noise.png);
+	mix-blend-mode: soft-light
 }
 
 // .fixed {
@@ -218,6 +221,18 @@ table {
 		font-family: $basefont;
 		height: p2r(47);
 		line-height: p2r(47);
+
+		@include tablet {
+			font-size: p2r(14);
+			height: p2r(45);
+			line-height: p2r(45);
+		}
+
+		@include mobile {
+			font-size: p2r(12);
+			height: p2r(42);
+			line-height: p2r(42);
+		}
 	}
 
 	&-transparent {		

@@ -557,6 +557,10 @@ table {
     background: #eec68a;
   }
 }
+.font-accent {
+  color: #E9B566;
+}
+
 .ui-noise {
   background-repeat: repeat;
   background-size: 100px 100px;
@@ -568,6 +572,7 @@ table {
   background-repeat: repeat;
   background-size: 8.78477306rem 8.78477306rem;
   background-image: url(../images/ui-noise.png);
+  mix-blend-mode: soft-light;
 }
 
 .sticky-wrapper {
@@ -644,6 +649,20 @@ table {
   font-family: "TT Norms Pro";
   height: 4.1288433382rem;
   line-height: 4.1288433382rem;
+}
+@media (max-width: 899px) {
+  .ui-btn-min {
+    font-size: 1.2298682284rem;
+    height: 3.953147877rem;
+    line-height: 3.953147877rem;
+  }
+}
+@media (max-width: 599px) {
+  .ui-btn-min {
+    font-size: 1.0541727672rem;
+    height: 3.6896046852rem;
+    line-height: 3.6896046852rem;
+  }
 }
 .ui-btn-transparent {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.4' numOctaves='1.5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
@@ -2132,12 +2151,39 @@ table {
           backdrop-filter: blur(1.4055636896rem);
   border-radius: 3.513909224rem;
   font-size: 1.4055636896rem;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+@media (max-width: 899px) {
+  .cookie {
+    font-size: 1.2298682284rem;
+  }
+}
+@media (max-width: 599px) {
+  .cookie {
+    font-size: 1.0541727672rem;
+    max-width: 16.8667642753rem;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 1.4055636896rem;
+    border-radius: 2.1083455344rem;
+  }
 }
 .cookie.hidden {
   display: none;
 }
 .cookie-text {
   margin-right: 1.4055636896rem;
+}
+@media (max-width: 599px) {
+  .cookie-text {
+    margin-right: 0;
+    margin-bottom: 0.878477306rem;
+    text-align: center;
+  }
 }
 
 .founders {
@@ -2222,45 +2268,40 @@ table {
 }
 
 .period {
-  margin-top: -26.3543191801rem;
+  margin-top: -4.39238653rem;
 }
-.period-num {
-  display: inline-block;
+.period-title {
+  width: 839px;
+  height: 300px;
   font-family: "TRIAL Oceanic";
-  font-weight: 800;
-  font-size: 63.953147877rem;
+  font-weight: 400;
+  font-size: 7.7306002928rem;
+  line-height: 0.85;
 }
 
-.text-effect {
-  font-family: "TRIAL Oceanic";
-  font-weight: 800;
-  font-size: 63.953147877rem;
-}
-
-.text-effect span {
+.svg-container {
   position: relative;
-  display: inline-block;
+  width: 86.7057101025rem;
+  height: 46.6471449488rem;
+  width: 88.1112737921rem;
+  height: 48.0527086384rem;
 }
 
-.text-effect span::before {
-  content: attr(data-letter);
+.blur-background {
   position: absolute;
-  left: 0;
-  top: 0;
-  color: transparent;
-  -webkit-text-stroke: 1px white;
-}
-
-.text-effect span::after {
-  content: attr(data-letter);
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  top: 0.7027818448rem;
+  left: 0.7027818448rem;
+  width: 100%;
+  height: 100%;
+  -webkit-filter: brightness(92%);
+          filter: brightness(92%);
+  -webkit-backdrop-filter: blur(0.878477306rem);
+          backdrop-filter: blur(0.878477306rem);
+  -webkit-mask-image: url(#svg-mask);
+          mask-image: url(#svg-mask);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.4' numOctaves='1.5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+  background-size: 8.78477306rem 8.78477306rem;
+  z-index: -1;
 }
 
 .menu-aside {
@@ -3357,6 +3398,9 @@ table {
   height: calc(100% - 1.4055636896rem);
   border-radius: 2.1083455344rem;
   padding: 1.4055636896rem 1.4055636896rem 2.1083455344rem 1.4055636896rem;
+}
+.subcategory-card.hidden {
+  display: none;
 }
 @media (max-width: 899px) {
   .subcategory-card {
@@ -4638,6 +4682,7 @@ table {
 @media (max-width: 899px) {
   .information-docs {
     margin-bottom: 1.4055636896rem;
+    padding-bottom: 0.7027818448rem;
   }
 }
 @media (max-width: 599px) {
@@ -4665,6 +4710,10 @@ table {
   }
 }
 
+.mfp-zoom-out-cur {
+  cursor: default;
+}
+
 .mfp-gallery .mfp-title {
   display: none;
 }
@@ -4674,19 +4723,33 @@ table {
   top: 2.8111273792rem;
   color: #E9B566;
   font-size: 1.756954612rem;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  background-color: #182C22;
+  padding-left: 1.4055636896rem;
+  padding-right: 1.4055636896rem;
+  border-radius: 3.513909224rem;
+  height: 3.513909224rem;
+  line-height: 3.513909224rem;
 }
 @media (max-width: 899px) {
   .mfp-gallery .mfp-counter {
     font-size: 1.5812591508rem;
+    height: 2.8111273792rem;
+    line-height: 2.8111273792rem;
   }
 }
 @media (max-width: 599px) {
   .mfp-gallery .mfp-counter {
     font-size: 1.4055636896rem;
+    top: 1.4055636896rem;
+    left: 1.4055636896rem;
   }
 }
 .mfp-gallery .mfp-close {
   position: fixed;
+  top: 2.8111273792rem;
   right: 3.3382137628rem;
   width: 4.9194729136rem;
   height: 4.9194729136rem;
@@ -4708,6 +4771,7 @@ table {
 @media (max-width: 599px) {
   .mfp-gallery .mfp-close {
     right: 1.4055636896rem;
+    top: 1.4055636896rem;
   }
 }
 .mfp-gallery .mfp-arrow {
@@ -4718,9 +4782,11 @@ table {
   background-position: center;
   background-size: 1.4055636896rem 1.4055636896rem;
   background-color: #182C22;
-  -webkit-transform: translateY(50%) scale(1);
-      -ms-transform: translateY(50%) scale(1);
-          transform: translateY(50%) scale(1);
+  -webkit-transform: translateY(-50%) scale(1);
+      -ms-transform: translateY(-50%) scale(1);
+          transform: translateY(-50%) scale(1);
+  margin: 0;
+  padding: 0;
 }
 .mfp-gallery .mfp-arrow::before {
   display: none;

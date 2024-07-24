@@ -72,6 +72,19 @@
   backdrop-filter: blur(p2r(16));
   border-radius: p2r(40);
   font-size: p2r(16);
+  width: max-content;
+
+  @include tablet {
+    font-size: p2r(14);
+  }
+
+  @include mobile {
+    font-size: p2r(12);
+    max-width: p2r(192);
+    flex-direction: column;
+    padding: p2r(16);
+    border-radius: p2r(24);
+  }
 
   &.hidden {
     display: none;
@@ -79,6 +92,12 @@
 
   &-text {
     margin-right: p2r(16);
+
+    @include mobile {
+      margin-right: 0;
+      margin-bottom: p2r(10);
+      text-align: center;
+    }
   }
 }
 
@@ -167,43 +186,42 @@
 }
 
 .period {
-  margin-top: p2r(-300);
+  margin-top: p2r(-50);
 
-  &-num {    
-    display: inline-block;
-    font-family: $second_font;   
-    font-weight: 800;
-    font-size: p2r(728);    
+  &-title {   
+
+    width: 839px;
+    height: 300px;    
+    
+    font-family: $second_font;    
+    font-weight: 400;
+    font-size: p2r(88);
+    line-height: 0.85;
+   
   }
 }
 
-.text-effect {
-  font-family: $second_font;   
-    font-weight: 800;
-    font-size: p2r(728);   
-}
-.text-effect span {
+.svg-container {
   position: relative;
-  display: inline-block;
+  width: p2r(987);
+  height: p2r(531);
+  width: p2r(1003);
+  height: p2r(547);
+  
 }
-.text-effect span::before {
-  content: attr(data-letter);
+.blur-background {
   position: absolute;
-  left: 0;
-  top: 0;
-  color: transparent;
-  -webkit-text-stroke: 1px white;
-}
-.text-effect span::after {
-  content: attr(data-letter);
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  top: p2r(8);
+  left: p2r(8);
+  width: 100%;
+  height: 100%;
+  filter: brightness(92%);
+  backdrop-filter: blur(p2r(10)); 
+  // background-color: rgb(47, 61, 48, 0.2);	
+  mask-image: url(#svg-mask);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.4' numOctaves='1.5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+  background-size: p2r(100) p2r(100);  
+  z-index: -1;
 }
 
 .menu {
@@ -1299,6 +1317,10 @@
     height: calc(100% - 1.4055636896rem);
     border-radius: p2r(24);
     padding: p2r(16) p2r(16) p2r(24) p2r(16);
+
+    &.hidden {
+      display: none;
+    }
 
     @include tablet {
       border-radius: p2r(16);
@@ -2542,6 +2564,7 @@
 
     @include tablet {
       margin-bottom: p2r(16);
+      padding-bottom: p2r(8);
     }
 
     @include mobile {
@@ -2569,6 +2592,10 @@
 }
 
 // gallery
+.mfp-zoom-out-cur {
+  cursor: default;
+}
+
 .mfp-gallery {
   .mfp-title {
     display: none;
@@ -2580,18 +2607,30 @@
     top: p2r(32);
     color: $font_accent;
     font-size: p2r(20);
+    width: max-content;
+    background-color: #182C22; 
+    padding-left: p2r(16);
+    padding-right: p2r(16);
+    border-radius: p2r(40);
+    height: p2r(40);
+    line-height: p2r(40);
 
     @include tablet {
       font-size: p2r(18);
+      height: p2r(32);
+      line-height: p2r(32);
     }
 
     @include mobile {
       font-size: p2r(16);
+      top: p2r(16);
+      left: p2r(16);
     }
   }
 
   .mfp-close {
     position: fixed;
+    top: p2r(32);
     right: p2r(38);
     width: p2r(56);
     height: p2r(56);
@@ -2611,6 +2650,7 @@
 
     @include mobile {
       right: p2r(16);
+      top: p2r(16);
     }
   }
 
@@ -2622,8 +2662,9 @@
     background-position: center;
     background-size: p2r(16) p2r(16);
     background-color: #182C22;
-    transform: translateY(50%) scale(1);
-   
+    transform: translateY(-50%) scale(1);
+    margin: 0;
+    padding: 0;
 
     &::before {
       display: none;
