@@ -634,6 +634,7 @@ table {
   -o-transition: filter 0.15s;
   transition: filter 0.15s;
   transition: filter 0.15s, -webkit-filter 0.15s;
+  margin-top: -0.3513909224rem;
 }
 @media (max-width: 899px) {
   .ui-btn-icon {
@@ -2175,6 +2176,11 @@ table {
     bottom: 2.1083455344rem;
   }
 }
+@media (max-width: 599px) {
+  .main-banner-content {
+    bottom: 1.4934114202rem;
+  }
+}
 .main-banner-title {
   font-size: 9.1361639824rem;
   margin-bottom: 4.9194729136rem;
@@ -2439,7 +2445,7 @@ table {
     width: 23.7188872621rem;
     height: 136px;
     left: 26.1786237189rem;
-    top: 7.2035139092rem;
+    top: 8.78477306rem;
     font-size: 3.513909224rem;
   }
 }
@@ -2484,22 +2490,22 @@ table {
 }
 @media (max-width: 899px) {
   .period-benefits-item-img {
+    width: 4.6559297218rem;
+    height: 4.6559297218rem;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 4.6559297218rem;
+            flex: 0 0 4.6559297218rem;
+    margin-right: 2.0204978038rem;
+  }
+}
+@media (max-width: 599px) {
+  .period-benefits-item-img {
     width: 5.7979502196rem;
     height: 5.7979502196rem;
     -webkit-box-flex: 0;
         -ms-flex: 0 0 5.7979502196rem;
             flex: 0 0 5.7979502196rem;
     margin-right: 2.0204978038rem;
-  }
-}
-@media (max-width: 599px) {
-  .period-benefits-item-img {
-    width: 4.6559297218rem;
-    height: 4.6559297218rem;
-    -webkit-box-flex: 0;
-        -ms-flex: 0 0 4.6559297218rem;
-            flex: 0 0 4.6559297218rem;
-    margin-right: 1.756954612rem;
   }
 }
 .period-benefits-item-title {
@@ -2598,7 +2604,7 @@ table {
     font-size: 2.8111273792rem;
     text-align: left;
     max-width: 19.3265007321rem;
-    margin-bottom: -1.4055636896rem;
+    margin-bottom: -1.756954612rem;
   }
 }
 @media (max-width: 599px) {
@@ -2769,6 +2775,11 @@ table {
   position: relative;
   margin-bottom: 4.9194729136rem;
 }
+@media (max-width: 899px) {
+  .svg-container {
+    margin-bottom: 1.756954612rem;
+  }
+}
 @media (max-width: 599px) {
   .svg-container.desktop-svg {
     display: none;
@@ -2804,9 +2815,6 @@ table {
 .desktop-svg {
   width: 88.1112737921rem;
   height: 48.0527086384rem;
-  -webkit-transform: translate(-0.7027818448rem, -0.7027818448rem);
-      -ms-transform: translate(-0.7027818448rem, -0.7027818448rem);
-          transform: translate(-0.7027818448rem, -0.7027818448rem);
 }
 
 .tablet-svg {

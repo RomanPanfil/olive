@@ -204,6 +204,7 @@ table {
 		vertical-align: middle;
 		margin-left: p2r(12);
 		transition: filter 0.15s;
+		margin-top: p2r(-4);
 
 		@include tablet {
 			height: p2r(16);
