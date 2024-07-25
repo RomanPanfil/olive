@@ -50,94 +50,79 @@ document.addEventListener('DOMContentLoaded', () => {
   })
   
   // Открытие попапа
-  // $(document).on("click", ".mfp-link", function () {
-  //   var a = $(this);
-  //   $.magnificPopup.open({
-  //     items: { src: a.attr("data-href") },
-  //     type: "ajax",
-  //     overflowY: "scroll",
-  //     removalDelay: 300,
-  //     mainClass: 'my-mfp-zoom-in',
-  //     ajax: {
-  //       tError: "Error. Not valid url",
-  //     },
-  //     callbacks: {
-  //       open: function () {
-  //         setTimeout(function(){
-  //           $('.mfp-wrap').addClass('not_delay');
-  //           $('.mfp-popup').addClass('not_delay');
-  //         },700);
-  
-  //         document.documentElement.style.overflow = 'hidden'
-  //       },
-  
-  //       close: function() {
-  //         document.documentElement.style.overflow = ''
-  //       }
-  //     }
-  //   });
-  //   return false;
-  // });
-
-  // // открытие галереи
-  // $('.diploms-list').magnificPopup({
-  //   delegate: '.gallery-item', // селектор дочернего элемента
-  //   type: 'image',
-  //   gallery: {
-  //     enabled: true
-  //   },
-  //   image: {
-  //     titleSrc: function(item) {
-  //       return item.el.closest('.diploms-card').find('.diploms-card-title').text();
-  //     }
-  //   }
-  // });
-
-
   $(document).on("click", ".mfp-link", function (e) {
     e.preventDefault();
     var clickedElement = $(this);
-    var galleryItems = [];
   
-    // Собираем все элементы галереи
-    $(".mfp-gallery-item").each(function () {
-      galleryItems.push({
-        src: $(this).attr("data-href"),
-        title: $(this).find('.diploms-card-title').text().trim()
+    // Проверяем, является ли элемент частью галереи
+    if (clickedElement.hasClass('mfp-gallery-item')) {
+      // Логика для открытия галереи
+      var galleryItems = [];
+  
+      // Собираем все элементы галереи
+      $(".mfp-gallery-item").each(function () {
+        galleryItems.push({
+          src: $(this).attr("data-href"),
+          title: $(this).find('.diploms-card-title').text().trim()
+        });
       });
-    });
   
-    // Находим индекс кликнутого элемента
-    var index = $(".mfp-gallery-item").index(clickedElement);
+      // Находим индекс кликнутого элемента
+      var index = $(".mfp-gallery-item").index(clickedElement);
   
-    $.magnificPopup.open({
-      items: galleryItems,
-      type: 'image',
-      gallery: {
-        enabled: true,
-        navigateByImgClick: true,
-        preload: [0, 1],
-        tCounter: '%curr% из %total%' // Локализация счетчика на русский язык
-      },
-      overflowY: "scroll",
-      removalDelay: 300,
-      mainClass: 'my-mfp-zoom-in',
-      callbacks: {
-        open: function () {
-          setTimeout(function(){
-            $('.mfp-wrap').addClass('not_delay');
-            $('.mfp-popup').addClass('not_delay');
-          }, 700);
-          document.documentElement.style.overflow = 'hidden';
+      $.magnificPopup.open({
+        items: galleryItems,
+        type: 'image',
+        gallery: {
+          enabled: true,
+          navigateByImgClick: true,
+          preload: [0, 1],
+          tCounter: '%curr% из %total%' // Локализация счетчика на русский язык
         },
-        close: function() {
-          document.documentElement.style.overflow = '';
+        overflowY: "scroll",
+        removalDelay: 300,
+        mainClass: 'my-mfp-zoom-in',
+        callbacks: {
+          open: function () {
+            setTimeout(function(){
+              $('.mfp-wrap').addClass('not_delay');
+              $('.mfp-popup').addClass('not_delay');
+            }, 700);
+            document.documentElement.style.overflow = 'hidden';
+          },
+          close: function() {
+            document.documentElement.style.overflow = '';
+          }
         }
-      }
-    }, index);
+      }, index);
+    } else {
+      // Логика для открытия обычного попапа
+      $.magnificPopup.open({
+        items: { src: clickedElement.attr("data-href") },
+        type: "ajax",
+        overflowY: "scroll",
+        removalDelay: 300,
+        mainClass: 'my-mfp-zoom-in',
+        ajax: {
+          tError: "Error. Not valid url",
+        },
+        callbacks: {
+          open: function () {
+            setTimeout(function(){
+              $('.mfp-wrap').addClass('not_delay');
+              $('.mfp-popup').addClass('not_delay');
+            }, 700);
+            document.documentElement.style.overflow = 'hidden';
+          },
+          close: function() {
+            document.documentElement.style.overflow = '';
+          }
+        }
+      });
+    }
   
     return false;
-  });  
+  });
 
   // открытие меню в header  
   (function() {
