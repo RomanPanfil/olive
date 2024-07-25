@@ -699,6 +699,16 @@ table {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.4' numOctaves='1.5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
   background-color: rgba(16, 51, 43, 0.5);
 }
+.ui-btn-opacity {
+  background-color: transparent;
+  -webkit-backdrop-filter: unset;
+          backdrop-filter: unset;
+  padding: 0;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  line-height: 1;
+}
 
 .info-title {
   margin-left: 15.9004392387rem;
@@ -1225,6 +1235,7 @@ table {
   }
 }
 
+/* Стили для попапа, выезжающего слева */
 .inner,
 .container {
   max-width: 125.0951683748rem;
@@ -2303,7 +2314,7 @@ table {
   right: 0;
   background-color: #11231F;
   height: 59.7364568082rem;
-  width: auto;
+  width: 100%;
   z-index: -1;
   -o-object-fit: cover;
      object-fit: cover;
@@ -2443,7 +2454,7 @@ table {
 @media (max-width: 899px) {
   .period-title {
     width: 23.7188872621rem;
-    height: 136px;
+    height: 11.9472913616rem;
     left: 26.1786237189rem;
     top: 8.78477306rem;
     font-size: 3.513909224rem;
@@ -2607,30 +2618,30 @@ table {
     margin-bottom: -1.756954612rem;
   }
 }
-@media (max-width: 599px) {
-  .team-image {
-    margin-left: -1.4055636896rem;
-    margin-right: -1.4055636896rem;
-  }
-}
-.team-img {
-  display: block;
+.team-image {
   width: 114.5534407028rem;
   height: 64.4802342606rem;
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 @media (max-width: 899px) {
-  .team-img {
+  .team-image {
     width: 49.9853587116rem;
     height: 27.9355783309rem;
   }
 }
 @media (max-width: 599px) {
-  .team-img {
+  .team-image {
     width: 34.5241581259rem;
     height: 19.3265007321rem;
+    margin-left: -1.4055636896rem;
+    margin-right: -1.4055636896rem;
   }
+}
+.team-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .team::before {
   content: "";
@@ -2654,8 +2665,6 @@ table {
 }
 
 .photos {
-  padding-left: 4.2166910688rem;
-  padding-right: 4.2166910688rem;
   margin-bottom: 14.055636896rem;
 }
 @media (max-width: 899px) {
@@ -4720,8 +4729,8 @@ table {
   left: 0;
   top: 0.878477306rem;
   content: "";
-  width: 8px;
-  height: 8px;
+  width: 0.7027818448rem;
+  height: 0.7027818448rem;
   border-radius: 50%;
   background-color: #E9B566;
 }
@@ -4772,7 +4781,7 @@ table {
 }
 @media (max-width: 599px) {
   .diploms-wrapper {
-    margin-bottom: 40px;
+    margin-bottom: 3.513909224rem;
     padding: 1.6691068814rem 1.4934114202rem 1.4055636896rem 1.4055636896rem;
   }
 }
@@ -5438,6 +5447,114 @@ table {
   width: -moz-max-content;
   width: max-content;
   margin: 0 auto;
+}
+
+.popup-spec {
+  position: relative;
+}
+@media (max-width: 599px) {
+  .popup-spec {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+.popup-spec-title {
+  font-family: "TRIAL Oceanic";
+  font-weight: 400;
+  font-size: 3.513909224rem;
+  line-height: 1;
+  color: #E9B566;
+  margin-bottom: 1.9326500732rem;
+}
+@media (max-width: 899px) {
+  .popup-spec-title {
+    font-size: 2.1083455344rem;
+    line-height: 0.85;
+    margin-bottom: 1.4055636896rem;
+  }
+}
+.popup-spec-text {
+  font-weight: 400;
+  font-size: 2.1083455344rem;
+  line-height: 1.4;
+  max-height: 33.2064421669rem;
+  overflow-y: auto;
+  margin-bottom: 2.1083455344rem;
+}
+@media (max-width: 899px) {
+  .popup-spec-text {
+    font-size: 1.4055636896rem;
+    line-height: 1.4;
+    margin-bottom: 1.4055636896rem;
+  }
+}
+.popup-spec-text p {
+  margin-top: 0;
+  margin-bottom: 1.4055636896rem;
+  line-height: 1.37;
+}
+.popup-spec-text p:last-child {
+  margin-bottom: 0;
+}
+@media (max-width: 899px) {
+  .popup-spec .ui-btn {
+    display: block;
+    font-size: 1.4055636896rem;
+  }
+}
+.popup-spec .mfp-inner {
+  padding: 4.9194729136rem;
+  width: 52.7086383602rem;
+  height: min(56.5739385066rem, 99vh);
+  overflow: auto;
+  background-color: rgba(12, 39, 32, 0.5);
+  background-blend-mode: soft-light, normal;
+  -webkit-backdrop-filter: blur(16px);
+          backdrop-filter: blur(16px);
+  border-radius: 3.513909224rem;
+  background-size: 6.149341142rem 6.149341142rem;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.4' numOctaves='1.5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+}
+@media (max-width: 899px) {
+  .popup-spec .mfp-inner {
+    padding: 2.1083455344rem;
+    width: 28.3748169839rem;
+    height: min(38.4016105417rem, 99vh);
+    border-radius: 2.1083455344rem;
+  }
+}
+@media (max-width: 899px) and (max-width: 599px) {
+  .popup-spec .mfp-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+}
+.popup-spec .mfp-close {
+  top: 4.9194729136rem;
+  right: 0;
+  left: 48.4919472914rem;
+  background-size: 1.756954612rem;
+}
+@media (max-width: 899px) {
+  .popup-spec .mfp-close {
+    top: 2.4597364568rem;
+    left: 26.0029282577rem;
+    background-size: 1.5812591508rem;
+  }
+}
+@media (max-width: 599px) {
+  .popup-spec .mfp-close {
+    top: 0;
+    left: unset;
+    right: 1.4055636896rem;
+  }
 }
 
 @media (max-width: 599px) {
