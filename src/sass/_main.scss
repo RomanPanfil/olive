@@ -3386,6 +3386,21 @@
     }
   }
 
+  &-txt {
+    font-size: p2r(16);
+    line-height: 1.2;
+    margin-bottom: p2r(8);
+
+    @include mobile {
+      font-size: p2r(14);
+    }
+  }
+
+  &-phone {
+    margin-bottom: p2r(16);
+    display: block;
+  }
+
   &-top {
     padding: p2r(40) p2r(40) p2r(32) p2r(40);
 

@@ -1,0 +1,146 @@
+<div class="mfp-popup popup-feedback mfp-anim">
+  <div class="mfp-inner">
+    <form class="popup-feedback-form">
+      <div class="popup-feedback-top">
+        <div class="popup-feedback-title hidden-tablet">
+          Перезвоните мне
+        </div>
+        <div class="popup-feedback-title hidden-desktop">
+          Связаться с нами
+        </div>
+        <div class="popup-feedback-text hidden-tablet">
+          Оставьте свои контактные данные,
+          <br>
+          и мы свяжемся с вами в ближайшее время
+        </div>
+        <div class="popup-feedback-txt hidden-desktop">
+          Свяжитесь с нами по номеру ниже
+        </div>
+        <a href="tel:88312000077" class="popup-feedback-phone">
+          8 831 2-0000-77
+        </a>
+        <div class="popup-feedback-text hidden-desktop">
+          или оставьте свои контактные данные
+          <br>
+          и мы свяжемся с вами сами в ближайшее время
+        </div>
+        <div class="inputs-wrapper">
+          <label class="input-item input-item__half">
+            <div class="ui-field ui-field__input required">
+              <span class="ui-label">Ваше имя</span>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                class="ui-input"
+                required
+              >
+            </div>
+          </label>
+          <label class="input-item input-item__half">
+            <div class="ui-field ui-field__input required">
+              <span class="ui-label">Телефон</span>
+              <input
+                type="text"
+                name="tel"
+                id="tel"
+                class="ui-input ux-phonemask"
+                required
+              >
+            </div>
+          </label>
+        </div>
+      </div>
+      <div class="popup-feedback-bottom">
+        <input
+          type="checkbox"
+          name="agree"
+          id="agree"
+          class="ui-checkbox"
+        >
+        <div class="popup-feedback-agree">
+          Я принимаю условия
+          <a href="#">политики конфиденциальности</a>
+          и даю согласие на обработку своих персональных данных
+        </div>
+        <button type="submit" class="ui-btn ui-btn-opacity">
+          Отправить
+          <svg class="ui-btn-icon">
+            <use xlink:href="svg/svg/symbols.svg#ui-icons-right"/>
+          </svg>
+        </button>
+      </div>
+    </form>
+  </div>
+  <script>
+      $(document).ready(function () {
+        document.querySelectorAll('.ui-field.required > .ui-input').forEach(input => {
+          input.addEventListener('focus', () => {
+            input.closest('.ui-field').classList.add('input-active');
+          });
+          
+          input.addEventListener('blur', () => {
+            if (!input.value) {
+              input.closest('.ui-field').classList.remove('input-active');
+            }
+          });
+          
+          input.addEventListener('input', () => {
+            if (input.value) {
+              input.closest('.ui-field').classList.add('input-active');
+            } else {
+              input.closest('.ui-field').classList.remove('input-active');
+            }
+          });
+        }); 
+        
+  
+        $('.ui-select, .ui-checkbox').styler();
+  
+        $.validator.addMethod("noDigits", function(value, element) {
+          return this.optional(element) || !/\d/.test(value);
+        }, 'Неправильно заполнено поле');
+  
+        $.validator.addMethod("phone", function (value, element) {
+          if (value.startsWith('+375')) {
+            return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){12}(\s*)?$/i.test(value);
+          } else if (value.startsWith('+7')) {
+            return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){11}(\s*)?$/i.test(value);
+          } else {
+            return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){11,14}(\s*)?$/i.test(value);
+          }
+        }, "Неправильно заполнено поле");
+  
+        $.validator.messages.required = 'Не заполнено поле';
+      
+        $(".popup-feedback-form").validate({
+          submitHandler: function(form, event) {
+            event.preventDefault();
+            form.reset();
+          },
+          rules: {
+            name: { noDigits: true, required: true },
+            tel: { phone: true, required: true },
+            agree: { required: true },
+          },
+        });
+  
+          // маска ввода номера телефона
+        function initMask() {
+          const phoneInputs = document.querySelectorAll('.ux-phonemask');      
+        
+          if (phoneInputs.length) {
+            phoneInputs.forEach(element => {
+              IMask(element, {
+                mask: '+{7} (000) 000-00-00',
+                lazy: false,
+                placeholderChar: '_'
+              });
+            });
+          }        
+        }
+        
+        initMask();
+          });
+  </script>
+</div>

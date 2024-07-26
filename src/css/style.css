@@ -6000,6 +6000,20 @@ table {
     font-size: 1.2298682284rem;
   }
 }
+.popup-feedback-txt {
+  font-size: 1.4055636896rem;
+  line-height: 1.2;
+  margin-bottom: 0.7027818448rem;
+}
+@media (max-width: 599px) {
+  .popup-feedback-txt {
+    font-size: 1.2298682284rem;
+  }
+}
+.popup-feedback-phone {
+  margin-bottom: 1.4055636896rem;
+  display: block;
+}
 .popup-feedback-top {
   padding: 3.513909224rem 3.513909224rem 2.8111273792rem 3.513909224rem;
 }
