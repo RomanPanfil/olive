@@ -1,0 +1,77 @@
+<div class="mfp-popup popup-feedback mfp-anim">
+  <div class="mfp-inner">
+    <form>
+      <div class="popup-feedback-top">
+        <div class="popup-feedback-title">
+          Обратная связь
+        </div>
+        <div class="popup-feedback-text">
+          Оставьте свои контактные данные,
+          <br>
+          и мы свяжемся с вами в ближайшее время
+        </div>
+        <div class="inputs-wrapper">
+          <label class="input-item input-item__half">
+            <div class="ui-field required">
+              <input
+                type="text"
+                name="name"
+                id="name"
+                class="ui-input"
+                required
+              >
+              <span class="ui-label">Ваше имя</span>
+            </div>
+          </label>
+          <label class="input-item input-item__half">
+            <div class="ui-field required">
+              <input
+                type="text"
+                name="tel"
+                id="tel"
+                class="ui-input"
+                required
+              >
+              <span class="ui-label">Телефон</span>
+            </div>
+          </label>
+          <label class="input-item">
+            <div class="ui-field ui-field__textarea required">
+              <textarea
+                name="comment"
+                id="comment"
+                class="ui-textarea"
+                required
+              ></textarea>
+              <span class="ui-label ui-label__textarea">Комментарий</span>
+            </div>
+          </label>
+        </div>
+      </div>
+      <div class="popup-feedback-bottom">
+        <input
+          type="checkbox"
+          name="agree"
+          id="agree"
+          class="ui-checkbox"
+        >
+        <div class="popup-feedback-agree">
+          Я принимаю условия
+          <a href="#">политики конфиденциальности</a>
+          и даю согласие на обработку своих персональных данных
+        </div>
+        <button type="submit" class="ui-btn ui-btn-opacity">
+          Отправить
+          <svg class="ui-btn-icon">
+            <use xlink:href="svg/svg/symbols.svg#ui-icons-right"/>
+          </svg>
+        </button>
+      </div>
+    </form>
+  </div>
+  <script>
+    $(document).ready(function () {
+        $('.ui-select, .ui-checkbox').styler();
+    });
+  </script>
+</div>

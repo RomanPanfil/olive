@@ -263,6 +263,180 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
+  // создание мобильного меню и логика работы мобильного меню
+  (function() {
+    const headerNav = document.querySelector('.header-nav');
+    const menuAside = document.querySelector('.menu-aside');
+    const menuMain = document.querySelector('.menu-main');    
+
+    if(!headerNav || !menuAside || !menuMain) return
+ 
+    const mobileMenu = document.createElement('div');
+    mobileMenu.className = 'header-nav-mobile-menu';
+    headerNav.appendChild(mobileMenu);
+
+    // создание menu items
+    function createMenuItem(element, isSubmenu = false) {
+      const item = document.createElement('a');
+      item.className = 'mobile-menu-item';
+      item.href = element.getAttribute('href');      
+     
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = element.innerHTML;
+      
+      const icon = tempDiv.querySelector('.menu-aside-icon');
+      if (icon) {
+        item.appendChild(icon.cloneNode(true));
+      }      
+    
+      tempDiv.querySelectorAll('br').forEach(br => br.replaceWith(' '));      
+     
+      const textSpan = document.createElement('span');
+      textSpan.textContent = tempDiv.textContent.trim();
+      item.appendChild(textSpan);
+      
+      if (isSubmenu) {
+        item.classList.add('mobile-menu-submenu');
+        const arrow = document.createElement('img');
+        arrow.className = 'mobile-menu-arrow';
+        arrow.src = './images/svg/menu-arrow-right.svg';
+        arrow.alt = 'Подменю';
+        item.appendChild(arrow);
+      }
+      
+      return item;
+    }
+
+    // заголовки и назад
+    function createHeader(backText, titleElement, showBackButton = true) {
+      const header = document.createElement('div');
+      header.className = 'mobile-menu-header';
+      header.innerHTML = `
+        ${showBackButton ? `
+          <div class="mobile-menu-back">
+            <svg class="mobile-menu-arrow"><use xlink:href="svg/svg/symbols.svg#arrow-left"/></svg>
+            <span>${backText}</span>
+          </div>
+        ` : ''}
+        <div class="mobile-menu-close">
+          <img src="./images/svg/close.svg" alt="Закрыть">
+        </div>
+      `;
+      
+      // создание title link
+      const titleLink = document.createElement('a');
+      titleLink.className = 'mobile-menu-title';
+      titleLink.href = titleElement.getAttribute('href');      
+    
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = titleElement.innerHTML;
+      tempDiv.querySelectorAll('br').forEach(br => br.replaceWith(' '));
+      titleLink.textContent = tempDiv.textContent.trim();
+      
+      header.insertBefore(titleLink, header.querySelector('.mobile-menu-close'));      
+     
+      const closeButton = header.querySelector('.mobile-menu-close');
+      closeButton.addEventListener('click', closeMobileMenu);
+      
+      return header;
+    }
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('active');
+      document.body.classList.remove('menu-open');
+    }
+
+    // создание пунктов меню первого уровня
+    function generateInitialMenu() {
+      mobileMenu.innerHTML = '';
+      const header = createHeader('', { getAttribute: () => '#', innerHTML: 'Услуги' }, false);
+      mobileMenu.appendChild(header);
+
+      const asideItems = menuAside.querySelectorAll('ul > li > a');
+      asideItems.forEach(item => {
+        const menuItem = createMenuItem(item, true);
+        mobileMenu.appendChild(menuItem);
+        
+        menuItem.addEventListener('click', (e) => {
+          e.preventDefault();
+          const sectionTitle = item.textContent.trim();
+          generateSubmenu('Услуги', sectionTitle);
+        });
+      });
+    }
+
+    // создание пунктов меню второго уровня
+    function generateSubmenu(backText, sectionTitle) {
+      mobileMenu.innerHTML = '';
+      const section = Array.from(menuMain.querySelectorAll('.menu-main-section')).find(
+        section => {
+          const titleElement = section.querySelector('.menu-main-title');
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = titleElement.innerHTML;
+          tempDiv.querySelectorAll('br').forEach(br => br.replaceWith(' '));
+          return tempDiv.textContent.trim() === sectionTitle;
+        }
+      );
+
+      if (section) {
+        const titleLink = section.querySelector('.menu-main-title');
+        const header = createHeader(backText, titleLink);
+        mobileMenu.appendChild(header);
+        
+        header.querySelector('.mobile-menu-back').addEventListener('click', () => {
+          if (backText === 'Услуги') {
+            generateInitialMenu();
+          } else {
+            generateSubmenu('Услуги', backText);
+          }
+        });
+
+        const menuItems = section.querySelectorAll('.menu-main-section > ul > li > a');
+        menuItems.forEach(item => {
+          const hasSubmenu = item.nextElementSibling && item.nextElementSibling.tagName === 'UL';
+          const menuItem = createMenuItem(item, hasSubmenu);
+          mobileMenu.appendChild(menuItem);
+
+          if (hasSubmenu) {
+            menuItem.addEventListener('click', (e) => {
+              e.preventDefault();
+              generateSubSubmenu(sectionTitle, item);
+            });
+          }
+        });
+      }
+    }
+
+    // создание пунктов меню третьего уровня
+    function generateSubSubmenu(backText, itemElement) {
+      mobileMenu.innerHTML = '';
+      const header = createHeader(backText, itemElement);
+      mobileMenu.appendChild(header);
+      
+      header.querySelector('.mobile-menu-back').addEventListener('click', () => {
+        generateSubmenu('Услуги', backText);
+      });
+
+      const subMenu = itemElement.nextElementSibling;
+      const menuItems = subMenu.querySelectorAll('li > a');
+      menuItems.forEach(item => {
+        const menuItem = createMenuItem(item);
+        mobileMenu.appendChild(menuItem);
+      });
+    }
+
+    // инициализация mobile menu
+    generateInitialMenu();
+
+    // открытие/закрытие мобильного меню
+    const menuToggle = document.querySelector('.header-nav > ul > li > a');
+    menuToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      mobileMenu.classList.toggle('active');
+      document.body.classList.toggle('menu-open');
+    });
+  })();
+
   // многоточие при переполнении текста в карточках
   (function() {
     function applyEllipsis() {

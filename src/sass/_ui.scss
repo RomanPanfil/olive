@@ -777,6 +777,138 @@ table {
 	}
 }
 
+.inputs-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	border-radius: p2r(24);
+	overflow: hidden;
+}
+
+.input-item {
+	width: 100%;
+	flex: 0 0 100%;
+
+	&__half {
+		width: 50%;
+		flex: 0 0 50%;
+		border-bottom: p2r(4) solid transparent;
+
+		&:first-of-type {
+			border-right: p2r(4) solid transparent;
+		}
+
+		&:last-of-type {
+			border-left: p2r(4) solid transparent;
+		}
+	}
+}
+
+.ui-field {
+	position: relative;
+	padding-top: p2r(35);
+	padding-bottom: p2r(16);
+	background-color: $bg;
+
+	&.required {
+		&::before {
+			position: absolute;
+			left: p2r(16);
+			top: 50%;
+			transform: translateY(-50%);			
+			content: '';
+			background-image: url(../images/svg/star.svg);
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: p2r(8) p2r(9);
+			width: p2r(8);
+			height: p2r(9);
+			z-index: 1;
+		}
+	}
+
+	&__textarea {
+		&.required {
+			&::before {					
+				top: p2r(20);				
+			}
+		}
+	}
+}
+
+.ui-field.required > .ui-input:focus + .ui-label,
+.ui-field.required > .ui-input:valid + .ui-label {
+	transform: translateY(-100%) scale(.65);
+	padding-left: p2r(16);
+}
+
+.ui-field.required > .ui-textarea:focus + .ui-label,
+.ui-field.required > .ui-textarea:valid + .ui-label {
+	transform: translateY(-100%) scale(.65);
+	padding-left: p2r(16);
+}
+
+.ui-label {
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);	
+	font-size: p2r(20);
+	line-height: 1.2;
+	opacity: 0.5;
+	padding-left: p2r(36);
+	padding-right: p2r(36);
+	transition: transform 0.3s;
+
+	&__textarea {
+		top: p2r(26);
+	}
+}
+
+.ui-input {
+	display: block;
+	background-color: $bg;
+	border: none;
+	outline: none;
+	color: $font_white;
+	position: relative;
+	padding-left: p2r(36);
+	padding-right: p2r(36);
+}
+
+.ui-textarea {
+	display: block;
+	background-color: $bg;
+	border: none;
+	outline: none;
+	color: $font_white;
+	position: relative;
+	padding-left: p2r(36);
+	padding-right: p2r(36);
+	resize: none;
+	width: 100%;
+	height: p2r(100);
+}
+
+.ui-checkbox {
+	width: p2r(48);
+	height: p2r(48);
+	background-color: $bg;
+	border-radius: p2r(12);
+	border: 1px solid $bg;
+	cursor: pointer;
+
+	&.checked {
+		background-image: url(../images/svg/checked.svg);
+		background-repeat: no-repeat;
+		background-size: p2r(24);
+		background-position: center;
+	}
+
+	&.error {
+		border-color: #E22E2E;
+	}
+}
+
 /* Стили для попапа, выезжающего слева */
 // .my-mfp-slide-left .mfp-content {
 // 	opacity: 0;
