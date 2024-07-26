@@ -1247,9 +1247,15 @@ table {
 
 .input-item {
   width: 100%;
+  height: 6.588579795rem;
   -webkit-box-flex: 0;
       -ms-flex: 0 0 100%;
           flex: 0 0 100%;
+}
+@media (max-width: 899px) {
+  .input-item {
+    height: 5.1830161054rem;
+  }
 }
 .input-item__half {
   width: 50%;
@@ -1258,18 +1264,48 @@ table {
           flex: 0 0 50%;
   border-bottom: 0.3513909224rem solid transparent;
 }
+@media (max-width: 599px) {
+  .input-item__half {
+    width: 100%;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+  }
+}
 .input-item__half:first-of-type {
   border-right: 0.3513909224rem solid transparent;
+}
+@media (max-width: 599px) {
+  .input-item__half:first-of-type {
+    border-right: none;
+  }
 }
 .input-item__half:last-of-type {
   border-left: 0.3513909224rem solid transparent;
 }
+@media (max-width: 599px) {
+  .input-item__half:last-of-type {
+    border-left: none;
+  }
+}
+
+.textarea-item {
+  width: 100%;
+  height: 17.5695461201rem;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+}
+@media (max-width: 899px) {
+  .textarea-item {
+    height: 11.420204978rem;
+  }
+}
 
 .ui-field {
   position: relative;
-  padding-top: 3.074670571rem;
-  padding-bottom: 1.4055636896rem;
   background-color: #344135;
+  height: 100%;
 }
 .ui-field.required::before {
   position: absolute;
@@ -1287,33 +1323,67 @@ table {
   height: 0.7906295754rem;
   z-index: 1;
 }
+.ui-field__input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.ui-field__textarea {
+  padding-top: 3.074670571rem;
+  padding-bottom: 1.4055636896rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
 .ui-field__textarea.required::before {
   top: 1.756954612rem;
 }
-
-.ui-field.required > .ui-input:focus + .ui-label,
-.ui-field.required > .ui-input:valid + .ui-label {
-  -webkit-transform: translateY(-100%) scale(0.65);
-      -ms-transform: translateY(-100%) scale(0.65);
-          transform: translateY(-100%) scale(0.65);
-  padding-left: 1.4055636896rem;
+.ui-field__textarea label.error {
+  margin-top: auto;
+}
+.ui-field label.error {
+  font-size: 1.2298682284rem;
+  line-height: 1.2;
+  color: #E22E2E;
+  padding-left: 3.1625183016rem;
+}
+@media (max-width: 899px) {
+  .ui-field label.error {
+    font-size: 1.0541727672rem;
+  }
 }
 
-.ui-field.required > .ui-textarea:focus + .ui-label,
-.ui-field.required > .ui-textarea:valid + .ui-label {
-  -webkit-transform: translateY(-100%) scale(0.65);
-      -ms-transform: translateY(-100%) scale(0.65);
-          transform: translateY(-100%) scale(0.65);
-  padding-left: 1.4055636896rem;
+.ui-field__input.required.input-active > .ui-label {
+  position: relative;
+  -webkit-transform: translateX(-2.8111273792rem) scale(0.75);
+      -ms-transform: translateX(-2.8111273792rem) scale(0.75);
+          transform: translateX(-2.8111273792rem) scale(0.75);
+}
+
+.ui-field__textarea.required.input-active > .ui-label {
+  -webkit-transform: translateY(26%) translateX(-1.4055636896rem) scale(0.75);
+      -ms-transform: translateY(26%) translateX(-1.4055636896rem) scale(0.75);
+          transform: translateY(26%) translateX(-1.4055636896rem) scale(0.75);
 }
 
 .ui-label {
-  position: absolute;
+  position: relative;
+  z-index: 1;
   left: 0;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-          transform: translateY(-50%);
+  -webkit-transform: translateY(50%);
+      -ms-transform: translateY(50%);
+          transform: translateY(50%);
   font-size: 1.756954612rem;
   line-height: 1.2;
   opacity: 0.5;
@@ -1325,8 +1395,15 @@ table {
   transition: transform 0.3s;
   transition: transform 0.3s, -webkit-transform 0.3s;
 }
+@media (max-width: 899px) {
+  .ui-label {
+    font-size: 1.4055636896rem;
+  }
+}
 .ui-label__textarea {
-  top: 2.2840409956rem;
+  position: absolute;
+  top: 0.3513909224rem;
+  left: 0;
 }
 
 .ui-input {
@@ -1338,6 +1415,11 @@ table {
   position: relative;
   padding-left: 3.1625183016rem;
   padding-right: 3.1625183016rem;
+}
+@media (max-width: 899px) {
+  .ui-input {
+    font-size: 1.4055636896rem;
+  }
 }
 
 .ui-textarea {
@@ -1351,16 +1433,36 @@ table {
   padding-right: 3.1625183016rem;
   resize: none;
   width: 100%;
-  height: 8.78477306rem;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+@media (max-width: 899px) {
+  .ui-textarea {
+    font-size: 1.4055636896rem;
+  }
 }
 
 .ui-checkbox {
   width: 4.2166910688rem;
   height: 4.2166910688rem;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 4.2166910688rem;
+          flex: 0 0 4.2166910688rem;
   background-color: #344135;
   border-radius: 1.0541727672rem;
   border: 1px solid #344135;
   cursor: pointer;
+}
+@media (max-width: 899px) {
+  .ui-checkbox {
+    width: 3.513909224rem;
+    height: 3.513909224rem;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 3.513909224rem;
+            flex: 0 0 3.513909224rem;
+    border-radius: 0.7027818448rem;
+  }
 }
 .ui-checkbox.checked {
   background-image: url(../images/svg/checked.svg);
@@ -1368,8 +1470,17 @@ table {
   background-size: 2.1083455344rem;
   background-position: center;
 }
-.ui-checkbox.error {
+@media (max-width: 899px) {
+  .ui-checkbox.checked {
+    background-size: 1.756954612rem;
+  }
+}
+.ui-checkbox:not(.checked):has(> .ui-checkbox.error) {
   border-color: #E22E2E;
+}
+
+#agree-error {
+  display: none !important;
 }
 
 /* Стили для попапа, выезжающего слева */
@@ -5853,6 +5964,18 @@ table {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.4' numOctaves='1.5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
   background-size: 6.149341142rem;
 }
+@media (max-width: 899px) {
+  .popup-feedback {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    max-width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+}
 .popup-feedback-title {
   font-family: "TRIAL Oceanic";
   font-weight: 400;
@@ -5861,14 +5984,34 @@ table {
   color: #E9B566;
   margin-bottom: 1.4055636896rem;
 }
+@media (max-width: 599px) {
+  .popup-feedback-title {
+    font-size: 2.4597364568rem;
+  }
+}
 .popup-feedback-text {
   font-weight: 400;
   font-size: 1.4055636896rem;
   line-height: 1.2;
   margin-bottom: 1.4055636896rem;
 }
+@media (max-width: 599px) {
+  .popup-feedback-text {
+    font-size: 1.2298682284rem;
+  }
+}
 .popup-feedback-top {
   padding: 3.513909224rem 3.513909224rem 2.8111273792rem 3.513909224rem;
+}
+@media (max-width: 899px) {
+  .popup-feedback-top {
+    padding: 3.8653001464rem 1.4055636896rem 0 1.4055636896rem;
+  }
+}
+@media (max-width: 599px) {
+  .popup-feedback-top {
+    padding: 0.7027818448rem 1.4055636896rem 0 1.4055636896rem;
+  }
 }
 .popup-feedback-bottom {
   padding: 1.4055636896rem 3.513909224rem;
@@ -5881,12 +6024,47 @@ table {
       -ms-flex-align: center;
           align-items: center;
 }
+@media (max-width: 899px) {
+  .popup-feedback-bottom {
+    padding-left: 1.4055636896rem;
+    padding-right: 1.4055636896rem;
+    background-color: unset;
+  }
+}
+@media (max-width: 599px) {
+  .popup-feedback-bottom {
+    padding-top: 0.7027818448rem;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
 .popup-feedback-agree {
   font-size: 1.0541727672rem;
   line-height: 1.2;
   max-width: 22.4890190337rem;
   margin-left: 0.7027818448rem;
   margin-right: auto;
+}
+@media (max-width: 599px) {
+  .popup-feedback-agree {
+    max-width: 21.0834553441rem;
+    margin-bottom: 2.5475841874rem;
+  }
+}
+@media (max-width: 599px) {
+  .popup-feedback .ui-checkbox {
+    margin-bottom: 2.5475841874rem;
+  }
+}
+@media (max-width: 599px) {
+  .popup-feedback .ui-btn {
+    font-size: 1.756954612rem;
+    height: 6.149341142rem;
+    line-height: 6.149341142rem;
+    width: 100%;
+    background: #344135;
+    border-radius: 8.78477306rem;
+  }
 }
 .popup-feedback .mfp-inner {
   border-radius: 0;
