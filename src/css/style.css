@@ -6084,6 +6084,61 @@ table {
   border-radius: 0;
 }
 
+.popup-success {
+  position: relative;
+  background-color: #182C22;
+  padding: 3.513909224rem;
+  max-width: 63.6017569546rem;
+  margin: 0 auto;
+  border-radius: 3.513909224rem;
+  overflow: hidden;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.4' numOctaves='1.5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+  background-size: 6.149341142rem;
+}
+@media (max-width: 899px) {
+  .popup-success {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    max-width: 100%;
+    height: 100%;
+    border-radius: 0;
+    padding-left: 1.4055636896rem;
+    padding-right: 1.4055636896rem;
+  }
+}
+.popup-success-title {
+  font-family: "TRIAL Oceanic";
+  font-weight: 400;
+  font-size: 2.8111273792rem;
+  line-height: 0.85;
+  color: #E9B566;
+  margin-bottom: 1.4055636896rem;
+}
+@media (max-width: 599px) {
+  .popup-success-title {
+    font-size: 2.4597364568rem;
+  }
+}
+.popup-success-text {
+  font-weight: 400;
+  font-size: 1.4055636896rem;
+  line-height: 1.2;
+}
+@media (max-width: 599px) {
+  .popup-success-text {
+    font-size: 1.2298682284rem;
+  }
+}
+.popup-success .mfp-close {
+  top: 3.513909224rem;
+}
+.popup-success .mfp-inner {
+  border-radius: 0;
+}
+
 @media (max-width: 599px) {
   .footer__min .footer-feedback {
     display: none;
@@ -6157,6 +6212,8 @@ table {
   }
 }
 .footer-wrapper {
+  position: relative;
+  z-index: 1;
   background-color: #182C22;
   border-radius: 3.513909224rem;
   padding: 2.8111273792rem 4.2166910688rem;

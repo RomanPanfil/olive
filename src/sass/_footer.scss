@@ -77,6 +77,8 @@
     }
 
     &-wrapper {
+        position: relative;
+        z-index: 1;
         background-color: $primary;
         border-radius: p2r(40);
         padding: p2r(32) p2r(48);
