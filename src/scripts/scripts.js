@@ -35,10 +35,11 @@ const FARBA = {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Нормализация скролла для mac
+  
   $(() => {
     gsap.registerPlugin(ScrollTrigger);
   
+    // Нормализация скролла для mac
     if (isMac()) {	
       console.log('MAC');
       ScrollTrigger.normalizeScroll(true);
@@ -47,6 +48,20 @@ document.addEventListener('DOMContentLoaded', () => {
     function isMac() {
       return navigator.platform.indexOf('Mac') > -1
     }
+
+    // параллакс блока "Создатели"
+    const image = document.querySelector(".founders-image");
+    gsap.to(image, {
+      yPercent: 15, // Изображение будет двигаться на 10% от своей высоты
+      ease: "none", // Линейное движение
+      scrollTrigger: {
+        trigger: ".founders", // Элемент, который запускает анимацию
+        start: "top top", // Начинаем анимацию, когда верх .founders достигает верха viewport
+        end: "bottom top", // Заканчиваем, когда низ .founders достигает верха viewport
+        scrub: true, // Плавная анимация при скролле
+        // markers: true, // Раскомментировать для отладки
+      }
+    });
   })
   
   // Открытие попапа
@@ -653,60 +668,124 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   // раскрытие текста в описании подкатегории
-  (function() {
-    const textCollapsibles = document.querySelectorAll('.text-collapsible');
+  // (function() {
+  //   const textCollapsibles = document.querySelectorAll('.text-collapsible');
   
-    textCollapsibles.forEach(collapsible => {
-      const textBlock = collapsible.querySelector('.text-collapse');
-      const expandButton = collapsible.querySelector('.text-expand');
-      const buttonText = expandButton.childNodes[0];
-      const buttonIcon = expandButton.querySelector('.text-expand-icon');
+  //   textCollapsibles.forEach(collapsible => {
+  //     const textBlock = collapsible.querySelector('.text-collapse');
+  //     const expandButton = collapsible.querySelector('.text-expand');
+  //     const buttonText = expandButton.childNodes[0];
+  //     const buttonIcon = expandButton.querySelector('.text-expand-icon');
 
-      if(!textBlock || !expandButton || !buttonText || !buttonIcon) return
+  //     if(!textBlock || !expandButton || !buttonText || !buttonIcon) return
   
-      function toggleText() {
-        if (textBlock.classList.contains('show')) {
-          textBlock.style.maxHeight = null;
-          textBlock.classList.remove('show');
-          buttonText.textContent = 'Показать еще';
-          expandButton.classList.remove('show');
-          buttonIcon.style.transform = 'rotate(0deg)';
-        } else {
-          textBlock.classList.add('show');
-          const textHeight = textBlock.scrollHeight;
-          textBlock.style.maxHeight = textHeight + 'px';
-          buttonText.textContent = 'Свернуть';
-          expandButton.classList.add('show');
-          buttonIcon.style.transform = 'rotate(180deg)';
-        }
+  //     function toggleText() {
+  //       if (textBlock.classList.contains('show')) {
+  //         textBlock.style.maxHeight = null;
+  //         textBlock.classList.remove('show');
+  //         buttonText.textContent = 'Показать еще';
+  //         expandButton.classList.remove('show');
+  //         buttonIcon.style.transform = 'rotate(0deg)';
+  //       } else {
+  //         textBlock.classList.add('show');
+  //         const textHeight = textBlock.scrollHeight;
+  //         textBlock.style.maxHeight = textHeight + 'px';
+  //         buttonText.textContent = 'Свернуть';
+  //         expandButton.classList.add('show');
+  //         buttonIcon.style.transform = 'rotate(180deg)';
+  //       }
+  //     }
+  
+  //     function handleClick(event) {
+  //       if (window.innerWidth < 899) {
+  //         if (event.target === expandButton || expandButton.contains(event.target)) {
+  //           toggleText();
+  //         }
+  //       } else {
+  //         if (event.target === textBlock || event.target === expandButton || expandButton.contains(event.target)) {
+  //           toggleText();
+  //         }
+  //       }
+  //     }
+  
+  //     collapsible.addEventListener('click', handleClick);
+  
+  //     // Обработка изменения размера окна
+  //     window.addEventListener('resize', () => {
+  //       if (window.innerWidth >= 899) {
+  //         textBlock.style.maxHeight = null;
+  //         textBlock.classList.remove('show');
+  //         buttonText.textContent = 'Показать еще';
+  //         expandButton.classList.remove('show');
+  //         buttonIcon.style.transform = 'rotate(0deg)';
+  //       }
+  //     });
+  //   });
+  // })();
+
+  // раскрытие текста в описании подкатегории
+(function() {
+  const textCollapsibles = document.querySelectorAll('.text-collapsible');
+
+  textCollapsibles.forEach(collapsible => {
+    const textBlock = collapsible.querySelector('.text-collapse');
+    const expandButton = collapsible.querySelector('.text-expand');
+    const buttonText = expandButton?.childNodes[0];
+    const buttonIcon = expandButton?.querySelector('.text-expand-icon');
+
+    if(!textBlock || !expandButton || !buttonText || !buttonIcon) return;
+
+    function toggleText() {
+      if (textBlock.classList.contains('show')) {
+        textBlock.style.maxHeight = null;
+        textBlock.classList.remove('show');
+        buttonText.textContent = 'Показать еще';
+        expandButton.classList.remove('show');
+        buttonIcon.style.transform = 'rotate(0deg)';
+      } else {
+        textBlock.classList.add('show');
+        const textHeight = getFullHeight(textBlock);
+        textBlock.style.maxHeight = textHeight + 'px';
+        buttonText.textContent = 'Свернуть';
+        expandButton.classList.add('show');
+        buttonIcon.style.transform = 'rotate(180deg)';
       }
-  
-      function handleClick(event) {
+    }
+
+    function getFullHeight(element) {
+      const style = window.getComputedStyle(element);
+      const marginTop = parseFloat(style.marginTop);
+      const marginBottom = parseFloat(style.marginBottom);
+      
+      let totalHeight = element.offsetHeight + marginTop + marginBottom;
+
+      Array.from(element.children).forEach(child => {
+        totalHeight += getFullHeight(child);
+      });
+
+      return totalHeight;
+    }
+
+    function handleClick(event) {
+      // Проверяем, что клик произошел внутри .text-collapsible
+      if (collapsible.contains(event.target)) {
         if (window.innerWidth < 899) {
+          // На мобильных устройствах реагируем только на клик по кнопке
           if (event.target === expandButton || expandButton.contains(event.target)) {
             toggleText();
           }
         } else {
-          if (event.target === textBlock || event.target === expandButton || expandButton.contains(event.target)) {
-            toggleText();
-          }
+          // На десктопе реагируем на клик в любом месте .text-collapsible
+          toggleText();
         }
       }
-  
-      collapsible.addEventListener('click', handleClick);
-  
-      // Обработка изменения размера окна
-      window.addEventListener('resize', () => {
-        if (window.innerWidth >= 899) {
-          textBlock.style.maxHeight = null;
-          textBlock.classList.remove('show');
-          buttonText.textContent = 'Показать еще';
-          expandButton.classList.remove('show');
-          buttonIcon.style.transform = 'rotate(0deg)';
-        }
-      });
-    });
-  })();
+    }
+
+    // Добавляем обработчик на весь документ
+    document.addEventListener('click', handleClick);
+  });
+})();
+
 
   // слайдер фотографий услуги
   (function() {
@@ -1189,5 +1268,5 @@ document.addEventListener('DOMContentLoaded', () => {
     
       // Запускаем обработку при загрузке страницы
       handleCookieConsent();
-    })();
+    })();    
 })

@@ -2064,8 +2064,8 @@ table {
 }
 .header-blur > div:nth-of-type(2) {
   z-index: 3;
-  -webkit-backdrop-filter: blur(0.1756954612rem);
-          backdrop-filter: blur(0.1756954612rem);
+  -webkit-backdrop-filter: blur(0.2635431918rem);
+          backdrop-filter: blur(0.2635431918rem);
   -webkit-mask-image: -webkit-gradient(linear, left bottom, left top, color-stop(12.5%, rgba(255, 255, 255, 0)), color-stop(37.5%, white), color-stop(50%, white), color-stop(62.5%, rgba(255, 255, 255, 0)));
   -webkit-mask-image: linear-gradient(to top, rgba(255, 255, 255, 0) 12.5%, white 37.5%, white 50%, rgba(255, 255, 255, 0) 62.5%);
           mask-image: -webkit-gradient(linear, left bottom, left top, color-stop(12.5%, rgba(255, 255, 255, 0)), color-stop(37.5%, white), color-stop(50%, white), color-stop(62.5%, rgba(255, 255, 255, 0)));
@@ -2073,8 +2073,8 @@ table {
 }
 .header-blur > div:nth-of-type(3) {
   z-index: 4;
-  -webkit-backdrop-filter: blur(0.2635431918rem);
-          backdrop-filter: blur(0.2635431918rem);
+  -webkit-backdrop-filter: blur(0.3513909224rem);
+          backdrop-filter: blur(0.3513909224rem);
   -webkit-mask-image: -webkit-gradient(linear, left bottom, left top, color-stop(37.5%, rgba(255, 255, 255, 0)), color-stop(50%, white), color-stop(62.5%, white), color-stop(75%, rgba(255, 255, 255, 0)));
   -webkit-mask-image: linear-gradient(to top, rgba(255, 255, 255, 0) 37.5%, white 50%, white 62.5%, rgba(255, 255, 255, 0) 75%);
           mask-image: -webkit-gradient(linear, left bottom, left top, color-stop(37.5%, rgba(255, 255, 255, 0)), color-stop(50%, white), color-stop(62.5%, white), color-stop(75%, rgba(255, 255, 255, 0)));
@@ -2082,8 +2082,8 @@ table {
 }
 .header-blur > div:nth-of-type(4) {
   z-index: 5;
-  -webkit-backdrop-filter: blur(0.3513909224rem);
-          backdrop-filter: blur(0.3513909224rem);
+  -webkit-backdrop-filter: blur(0.5270863836rem);
+          backdrop-filter: blur(0.5270863836rem);
   -webkit-mask-image: -webkit-gradient(linear, left bottom, left top, color-stop(50%, rgba(255, 255, 255, 0)), color-stop(62.5%, white), color-stop(75%, white), color-stop(87.5%, rgba(255, 255, 255, 0)));
   -webkit-mask-image: linear-gradient(to top, rgba(255, 255, 255, 0) 50%, white 62.5%, white 75%, rgba(255, 255, 255, 0) 87.5%);
           mask-image: -webkit-gradient(linear, left bottom, left top, color-stop(50%, rgba(255, 255, 255, 0)), color-stop(62.5%, white), color-stop(75%, white), color-stop(87.5%, rgba(255, 255, 255, 0)));
@@ -2655,6 +2655,7 @@ table {
   border-radius: 3.513909224rem;
   height: 59.7364568082rem;
   overflow: hidden;
+  background-color: #11231F;
   z-index: 1;
 }
 @media (max-width: 899px) {
@@ -3016,10 +3017,10 @@ table {
 }
 @media (max-width: 599px) {
   .team-image {
-    width: 34.5241581259rem;
-    height: 19.3265007321rem;
+    width: 28.1112737921rem;
+    height: 19.4143484627rem;
     margin-left: -1.4055636896rem;
-    margin-right: -1.4055636896rem;
+    margin-right: -1.9326500732rem;
   }
 }
 .team-img {
@@ -4579,36 +4580,64 @@ table {
     margin-bottom: 3.1625183016rem;
   }
 }
-.subcategory-description-image {
+.subcategory-description-content img {
+  display: block;
   border-radius: 2.1083455344rem;
-  overflow: hidden;
   margin-bottom: 2.8111273792rem;
 }
 @media (max-width: 899px) {
-  .subcategory-description-image {
+  .subcategory-description-content img {
     margin-bottom: 1.0541727672rem;
   }
 }
-.subcategory-description-image img {
-  display: block;
-}
 .subcategory-description-txt {
-  max-height: 14.7584187408rem;
+  max-height: 57.9795021962rem;
 }
 @media (hover: hover) and (pointer: fine) {
-  .subcategory-description-txt:hover {
+  .subcategory-description-txt:hover p, .subcategory-description-txt:hover h3, .subcategory-description-txt:hover h4, .subcategory-description-txt:hover h5, .subcategory-description-txt:hover ul, .subcategory-description-txt:hover li {
     opacity: 0.5;
   }
 }
 @media (max-width: 899px) {
   .subcategory-description-txt {
-    max-height: 11.5959004392rem;
+    max-height: 45.3294289898rem;
     font-size: 1.4055636896rem;
   }
 }
 @media (max-width: 599px) {
   .subcategory-description-txt {
-    max-height: 23.1918008785rem;
+    max-height: 41.1127379209rem;
+  }
+}
+.subcategory-description-txt p, .subcategory-description-txt h3, .subcategory-description-txt h4, .subcategory-description-txt h5, .subcategory-description-txt ul, .subcategory-description-txt li {
+  -webkit-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+.subcategory-description-txt h1, .subcategory-description-txt h2, .subcategory-description-txt h3, .subcategory-description-txt h4, .subcategory-description-txt h5, .subcategory-description-txt h6 {
+  color: #3C392E;
+}
+.subcategory-description-txt h3 {
+  font-size: 2.1083455344rem;
+  margin-bottom: 1.4055636896rem;
+}
+.subcategory-description-txt h4 {
+  font-size: 1.756954612rem;
+  margin-bottom: 1.0541727672rem;
+}
+.subcategory-description-txt h5 {
+  font-size: 1.4055636896rem;
+  margin-bottom: 0.878477306rem;
+}
+.subcategory-description-txt img {
+  display: block;
+  border-radius: 2.1083455344rem;
+  margin-bottom: 2.8111273792rem;
+  width: 100%;
+}
+@media (max-width: 899px) {
+  .subcategory-description-txt img {
+    margin-bottom: 1.0541727672rem;
   }
 }
 .subcategory-gallery {
@@ -4777,6 +4806,8 @@ table {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  border-top-left-radius: 3.513909224rem;
+  border-bottom-left-radius: 3.513909224rem;
 }
 @media (max-width: 899px) {
   .subcategory-presentation-image {
@@ -5851,6 +5882,10 @@ table {
 
 .popup-spec {
   position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin-left: 0;
 }
 @media (max-width: 599px) {
   .popup-spec {
@@ -5925,7 +5960,7 @@ table {
   .popup-spec .mfp-inner {
     padding: 2.1083455344rem;
     width: 28.3748169839rem;
-    height: min(38.4016105417rem, 99vh);
+    height: min(38.5016105417rem, 99vh);
     border-radius: 2.1083455344rem;
   }
 }
@@ -5951,7 +5986,7 @@ table {
 }
 @media (max-width: 599px) {
   .popup-spec .mfp-close {
-    top: 0;
+    top: 1.756954612rem;
     left: unset;
     right: 1.4055636896rem;
   }

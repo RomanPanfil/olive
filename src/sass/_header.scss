@@ -60,19 +60,19 @@
   
           &:nth-of-type(2) {
             z-index: 3;
-            backdrop-filter: blur(p2r(2));
+            backdrop-filter: blur(p2r(3));
             mask-image: linear-gradient(to top, rgba(255, 255, 255, 0) 12.5%, rgb(255, 255, 255) 37.5%, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0) 62.5%);
           }
   
           &:nth-of-type(3) {
             z-index: 4;   
-            backdrop-filter: blur(p2r(3));
+            backdrop-filter: blur(p2r(4));
             mask-image: linear-gradient(to top, rgba(255, 255, 255, 0) 37.5%, rgb(255, 255, 255) 50%, rgb(255, 255, 255) 62.5%, rgba(255, 255, 255, 0) 75%);
           }
   
           &:nth-of-type(4) {
             z-index: 5;   
-            backdrop-filter: blur(p2r(4));
+            backdrop-filter: blur(p2r(6));
             mask-image: linear-gradient(to top, rgba(255, 255, 255, 0) 50%, rgb(255, 255, 255) 62.5%, rgb(255, 255, 255) 75%, rgba(255, 255, 255, 0) 87.5%)
           }
         }
