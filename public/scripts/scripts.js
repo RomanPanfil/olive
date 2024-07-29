@@ -50,18 +50,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // параллакс блока "Создатели"
-    const image = document.querySelector(".founders-image");
-    gsap.to(image, {
-      yPercent: 15, // Изображение будет двигаться на 10% от своей высоты
-      ease: "none", // Линейное движение
-      scrollTrigger: {
-        trigger: ".founders", // Элемент, который запускает анимацию
-        start: "top top", // Начинаем анимацию, когда верх .founders достигает верха viewport
-        end: "bottom top", // Заканчиваем, когда низ .founders достигает верха viewport
-        scrub: true, // Плавная анимация при скролле
-        // markers: true, // Раскомментировать для отладки
-      }
-    });
+    // const image = document.querySelector(".founders-image");
+    // gsap.to(image, {
+    //   yPercent: 15, // Изображение будет двигаться на 10% от своей высоты
+    //   ease: "none", // Линейное движение
+    //   scrollTrigger: {
+    //     trigger: ".founders", // Элемент, который запускает анимацию
+    //     start: "top top", // Начинаем анимацию, когда верх .founders достигает верха viewport
+    //     end: "bottom top", // Заканчиваем, когда низ .founders достигает верха viewport
+    //     scrub: true, // Плавная анимация при скролле
+    //     // markers: true, // Раскомментировать для отладки
+    //   }
+    // });
   })
   
   // Открытие попапа

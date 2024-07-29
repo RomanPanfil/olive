@@ -4116,10 +4116,25 @@ table {
   background-color: #344135;
   z-index: -1;
   width: 100%;
-  mask-image: -webkit-gradient(linear, left top, left bottom, from(#344135), color-stop(75%, #344135), to(rgba(52, 65, 53, 0)));
-  mask-image: linear-gradient(to bottom, #344135 0%, #344135 75%, rgba(52, 65, 53, 0) 100%);
-  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(#344135), color-stop(75%, #344135), to(rgba(52, 65, 53, 0)));
-  -webkit-mask-image: linear-gradient(to bottom, #344135 0%, #344135 75%, rgba(52, 65, 53, 0) 100%);
+  max-height: 59.7364568082rem;
+  mask-image: -webkit-gradient(linear, left top, left bottom, from(#344135), color-stop(75%, #344135), color-stop(93%, rgba(52, 65, 53, 0)));
+  mask-image: linear-gradient(to bottom, #344135 0%, #344135 75%, rgba(52, 65, 53, 0) 93%);
+  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(#344135), color-stop(75%, #344135), color-stop(93%, rgba(52, 65, 53, 0)));
+  -webkit-mask-image: linear-gradient(to bottom, #344135 0%, #344135 75%, rgba(52, 65, 53, 0) 93%);
+}
+@media (max-width: 899px) {
+  .service-category-bg {
+    max-height: unset;
+    mask-image: -webkit-gradient(linear, left top, left bottom, from(#344135), color-stop(75%, #344135), to(rgba(52, 65, 53, 0)));
+    mask-image: linear-gradient(to bottom, #344135 0%, #344135 75%, rgba(52, 65, 53, 0) 100%);
+    -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(#344135), color-stop(75%, #344135), to(rgba(52, 65, 53, 0)));
+    -webkit-mask-image: linear-gradient(to bottom, #344135 0%, #344135 75%, rgba(52, 65, 53, 0) 100%);
+  }
+}
+@media (max-width: 599px) {
+  .service-category-bg {
+    max-height: unset;
+  }
 }
 .service-category-image, .service-category-img {
   position: absolute;
@@ -4128,10 +4143,10 @@ table {
   right: 0;
   left: 0;
   width: 100%;
-  mask-image: -webkit-gradient(linear, left top, left bottom, from(#344135), color-stop(75%, #344135), to(rgba(52, 65, 53, 0)));
-  mask-image: linear-gradient(to bottom, #344135 0%, #344135 75%, rgba(52, 65, 53, 0) 100%);
-  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(#344135), color-stop(75%, #344135), to(rgba(52, 65, 53, 0)));
-  -webkit-mask-image: linear-gradient(to bottom, #344135 0%, #344135 75%, rgba(52, 65, 53, 0) 100%);
+  mask-image: -webkit-gradient(linear, left top, left bottom, from(#344135), color-stop(75%, #344135), color-stop(93%, rgba(52, 65, 53, 0)));
+  mask-image: linear-gradient(to bottom, #344135 0%, #344135 75%, rgba(52, 65, 53, 0) 93%);
+  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(#344135), color-stop(75%, #344135), color-stop(93%, rgba(52, 65, 53, 0)));
+  -webkit-mask-image: linear-gradient(to bottom, #344135 0%, #344135 75%, rgba(52, 65, 53, 0) 93%);
 }
 .service-category-image {
   z-index: -2;

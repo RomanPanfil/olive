@@ -1526,16 +1526,35 @@
       background-color: $bg;
       z-index: -1;
       width: 100%;
+      max-height: p2r(680);
       mask-image: linear-gradient(to bottom, 
         rgba(52, 65, 53, 1) 0%,
         rgba(52, 65, 53, 1) 75%,
-        rgba(52, 65, 53, 0) 100%
+        rgba(52, 65, 53, 0) 93%
       );
       -webkit-mask-image: linear-gradient(to bottom, 
       rgba(52, 65, 53, 1) 0%,
       rgba(52, 65, 53, 1) 75%,
-      rgba(52, 65, 53, 0) 100%
+      rgba(52, 65, 53, 0) 93%
       );
+
+      @include tablet {
+        max-height: unset;   
+        mask-image: linear-gradient(to bottom, 
+          rgba(52, 65, 53, 1) 0%,
+          rgba(52, 65, 53, 1) 75%,
+          rgba(52, 65, 53, 0) 100%
+        );
+        -webkit-mask-image: linear-gradient(to bottom, 
+        rgba(52, 65, 53, 1) 0%,
+        rgba(52, 65, 53, 1) 75%,
+        rgba(52, 65, 53, 0) 100%
+        );
+      }
+
+      @include mobile {
+        max-height: unset;
+      }
     }
   
     &-image, &-img {
@@ -1544,18 +1563,18 @@
       bottom: 0;
       right: 0;
       left: 0;
-      width: 100%;
+      width: 100%;    
       // height: 100%;
       // object-fit: contain;
       mask-image: linear-gradient(to bottom, 
         rgba(52, 65, 53, 1) 0%,
         rgba(52, 65, 53, 1) 75%,
-        rgba(52, 65, 53, 0) 100%
+        rgba(52, 65, 53, 0) 93%
       );
       -webkit-mask-image: linear-gradient(to bottom, 
       rgba(52, 65, 53, 1) 0%,
       rgba(52, 65, 53, 1) 75%,
-      rgba(52, 65, 53, 0) 100%
+      rgba(52, 65, 53, 0) 93%
       );
     }
   
