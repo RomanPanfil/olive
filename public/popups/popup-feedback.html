@@ -59,8 +59,11 @@
           Я принимаю условия
           <a href="#">политики конфиденциальности</a>
           и даю согласие на обработку своих персональных данных
+          <span class="error hidden">
+            Поле обязательно для заполнения
+          </span>
         </div>
-        <button type="submit" class="ui-btn ui-btn-opacity">
+        <button type="submit" class="ui-btn ui-btn-opacity disabled">
           Отправить
           <svg class="ui-btn-icon">
             <use xlink:href="svg/svg/symbols.svg#ui-icons-right"/>
@@ -111,7 +114,7 @@
         });
       });
 
-        $('.ui-select, .ui-checkbox').styler();
+      $('.ui-select, .ui-checkbox').styler();
 
       $.validator.addMethod("noDigits", function(value, element) {
         return this.optional(element) || !/\d/.test(value);
@@ -128,11 +131,21 @@
       }, "Неправильно заполнено поле");
 
       $.validator.messages.required = 'Не заполнено поле';
-    
-      $(".popup-feedback-form").validate({
+
+      let form = $(".popup-feedback-form");
+      let submitButton = form.find(".ui-btn");
+      let agreeErrorElement = $(".popup-feedback-agree .error");
+      let wasValid = false;
+      let fieldsChanged = {};
+
+      let validator = form.validate({
         submitHandler: function(form, event) {
           event.preventDefault();
           form.reset();
+          wasValid = false;
+          fieldsChanged = {};
+          updateSubmitButton();
+          updateAgreeErrorVisibility(true);
         },
         rules: {
           name: { noDigits: true, required: true },
@@ -140,9 +153,70 @@
           comment: { required: true },
           agree: { required: true },
         },
+        errorPlacement: function(error, element) {
+          if (element.attr('name') !== 'agree' && fieldsChanged[element.attr('name')]) {
+            error.insertAfter(element);
+          }
+        },
+        ignore: ":hidden:not(#agree)"
       });
 
-        // маска ввода номера телефона
+      let debounceTimer;
+      form.on('input', 'input, textarea', function() {
+        var fieldName = $(this).attr('name');
+        fieldsChanged[fieldName] = true;
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(validateForm, 300);
+      });
+
+      form.on('change', 'input[type="checkbox"]', function() {
+        let fieldName = $(this).attr('name');
+        fieldsChanged[fieldName] = true;
+        validateForm();
+      });
+
+      function validateForm() {
+        let isCurrentlyValid = validator.checkForm();
+        
+        if (wasValid && !isCurrentlyValid) {
+          validator.form();
+        } else {
+          form.find('input, textarea').each(function() {
+            let field = $(this);
+            let fieldName = field.attr('name');
+            if (fieldsChanged[fieldName]) {
+              validator.element(field);
+            }
+          });
+        }
+
+        wasValid = isCurrentlyValid;
+        updateSubmitButton(isCurrentlyValid);
+        updateAgreeErrorVisibility();
+      }
+
+      function updateSubmitButton(isValid) {
+        if (isValid) {
+          submitButton.removeClass("disabled");
+        } else {
+          submitButton.addClass("disabled");
+        }
+      }
+
+      function updateAgreeErrorVisibility(forceHide) {
+        let agreeField = form.find('#agree');
+        if (forceHide || (fieldsChanged['agree'] && agreeField.valid())) {
+          agreeErrorElement.addClass('hidden');
+        } else if (fieldsChanged['agree'] && !agreeField.valid()) {
+          agreeErrorElement.removeClass('hidden');
+        }
+      }
+
+      // Инициализация состояния кнопки и сообщения об ошибке при загрузке страницы
+      updateSubmitButton(false);
+      updateAgreeErrorVisibility(true);          
+
+      // маска ввода номера телефона
       function initMask() {
         const phoneInputs = document.querySelectorAll('.ux-phonemask');      
       

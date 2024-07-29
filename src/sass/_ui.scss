@@ -274,6 +274,11 @@ table {
 		height: max-content;
 		line-height: 1;
 	}
+
+	&.disabled {
+		opacity: 0.5;
+		pointer-events: none;
+	}
 }
 
 .info-title {	
@@ -966,6 +971,7 @@ table {
 	width: 100%;
 	height: p2r(200);
 	flex: 0 0 100%;
+	
 
 	@include tablet {
 		height: p2r(130);
@@ -979,6 +985,13 @@ table {
 	background-color: $bg;
 	height: 100%;
 
+	@media (hover: hover) and (pointer: fine) {
+		&:hover {
+			.ui-label {
+				color: $font_accent;
+			}
+		}
+	}
 
 
 	&.required {
@@ -1064,7 +1077,7 @@ table {
 	opacity: 0.5;
 	padding-left: p2r(36);
 	padding-right: p2r(36);
-	transition: transform 0.3s;
+	transition: transform 0.3s, color 0.3s;
 
 	@include tablet {
 		font-size: p2r(16);
@@ -1105,6 +1118,17 @@ table {
 	resize: none;
 	width: 100%;
 	flex-grow: 1;
+
+	overflow: -moz-scrollbars-none;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		-webkit-appearance: none;
+		width: 0;
+		height: 0;
+		display: none;
+	}
 
 	@include tablet {
 		font-size: p2r(16);

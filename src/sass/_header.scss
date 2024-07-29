@@ -6,6 +6,7 @@
     z-index: 1000;
     transition: background-color 0.3s;
     box-shadow: 0 0 0 p2r(128) rgba(38, 51, 39, 0.01) inset;
+    width: 100vw;
 
     &__light {
         background-color: $bg_article;        
@@ -355,6 +356,11 @@
         padding-right: p2r(16);
         padding-bottom: p2r(16);
         background-color: $primary;
+        
+        // height: 100vh; /* Fallback */
+        height: calc(var(--vh, 1vh) * 100);
+        // height: -webkit-fill-available;
+       
 
         &.active {
             display: block;

@@ -7,9 +7,16 @@
   overflow: hidden;  
 }
 
+.menu-open {
+  overflow: hidden !important;
+  // height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
 .non-scroll {
   overflow: hidden !important;
-  height: 100vh;
+  // height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 // -----header-----
@@ -19,6 +26,7 @@
   flex-grow: 1;
   // background-color: $bg;
   padding-top: p2r(72);
+  width: 100vw;
 
   @include tablet {
     padding-top: p2r(52);
@@ -101,6 +109,7 @@
   border-radius: p2r(40);
   font-size: p2r(16);
   width: max-content;
+  z-index: 9;
 
   @include tablet {
     font-size: p2r(14);
@@ -3549,6 +3558,16 @@
     @include mobile {
       max-width: p2r(240);
       margin-bottom: p2r(29);
+    }
+
+    .error {          
+      font-size: p2r(10);
+      line-height: 1.2;
+      color: $error;
+
+      &.hidden {
+        display: none;
+      }
     }
   }
 
