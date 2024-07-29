@@ -2048,6 +2048,39 @@
         margin-bottom: p2r(10);
       }
 
+      ul {  
+        margin-bottom: p2r(28);
+    
+        @include tablet {
+          font-size: p2r(16);
+          margin-bottom: p2r(16);
+        }
+        li {
+          position: relative;
+          padding-left: p2r(24);
+          margin-bottom: p2r(16);
+    
+          @include tablet {
+            padding-left: p2r(16);
+          }
+    
+          &::before {
+            position: absolute;
+            left: 0;
+            top: p2r(10);
+            content: '';
+            width: p2r(8);
+            height: p2r(8);
+            border-radius: 50%;
+            background-color: $font_accent;       
+            
+            @include tablet {
+              top: p2r(8);
+            }
+          }
+        }
+      }
+
       img {
         display: block;
         border-radius: p2r(24);
