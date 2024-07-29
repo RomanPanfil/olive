@@ -2277,15 +2277,6 @@ table {
 .header-feedback {
   margin-left: auto;
 }
-@media (hover: hover) and (pointer: fine) {
-  .header-feedback:hover {
-    color: #fff;
-  }
-  .header-feedback:hover .header-feedback-icon {
-    -webkit-filter: brightness(10);
-            filter: brightness(10);
-  }
-}
 @media (max-width: 899px) {
   .header-feedback {
     margin-left: 2.8111273792rem;
@@ -2303,6 +2294,18 @@ table {
 .header-feedback-phone {
   margin-right: 2.0204978038rem;
   position: relative;
+  -webkit-transition: color 0.3s;
+  -o-transition: color 0.3s;
+  transition: color 0.3s;
+}
+@media (hover: hover) and (pointer: fine) {
+  .header-feedback-phone:hover {
+    color: #fff;
+  }
+  .header-feedback-phone:hover .header-feedback-icon {
+    -webkit-filter: brightness(10);
+            filter: brightness(10);
+  }
 }
 @media (max-width: 899px) {
   .header-feedback-phone {

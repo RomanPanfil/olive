@@ -260,17 +260,7 @@
     }
 
     &-feedback {
-        margin-left: auto;
-
-        @media (hover: hover) and (pointer: fine) {
-            &:hover {
-                color: $font_white;
-
-                .header-feedback-icon {
-                    filter: brightness(10);
-                }
-            }
-        }
+        margin-left: auto;        
 
         @include tablet {
             margin-left: p2r(32);
@@ -288,6 +278,17 @@
         &-phone {
             margin-right: p2r(23);
             position: relative;
+            transition: color 0.3s;
+
+            @media (hover: hover) and (pointer: fine) {
+                &:hover {
+                    color: $font_white;
+    
+                    .header-feedback-icon {
+                        filter: brightness(10);
+                    }
+                }
+            }
 
             @include tablet {
                 margin-right: 0;
