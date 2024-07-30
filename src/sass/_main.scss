@@ -2033,16 +2033,17 @@
     }
 
     &-txt {     
-      max-height: p2r(660);      
-
-      @media (hover: hover) and (pointer: fine) {
-        &:hover {
-          p, h3, h4, h5, ul, li {
-            opacity: 0.5;
+      max-height: p2r(660);     
+      
+      &:not(.show) {
+        @media (hover: hover) and (pointer: fine) {
+          &:hover {
+            p, h3, h4, h5, ul, li {
+              opacity: 0.5;
+            }            
           }
-          
         }
-      }
+      }      
 
       @include tablet {
         max-height: p2r(516);

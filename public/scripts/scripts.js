@@ -342,7 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
         item.classList.add('mobile-menu-submenu');
         const arrow = document.createElement('img');
         arrow.className = 'mobile-menu-arrow';
-        arrow.src = './images/svg/menu-arrow-right.svg';
+        arrow.src = '/images/svg/menu-arrow-right.svg';
         arrow.alt = 'Подменю';
         item.appendChild(arrow);
       }
@@ -362,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         ` : ''}
         <div class="mobile-menu-close">
-          <img src="./images/svg/close.svg" alt="Закрыть">
+          <img src="/images/svg/close.svg" alt="Закрыть">
         </div>
       `;
       
@@ -816,84 +816,172 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // слайдер фотографий услуги
-  (function() {
-    if (!document.querySelector('.galley-slider')) return;
+  // (function() {
+  //   if (!document.querySelector('.galley-slider')) return;
   
-    // Функция для дублирования слайдов
-    function handleSlides() {
-      const slider = document.querySelector('.galley-slider .swiper-wrapper');
-      const slides = slider.querySelectorAll('.swiper-slide');
-      const slidesCount = slides.length;
-      const desiredCount = 3;
+  //   // Функция для дублирования слайдов
+  //   function handleSlides() {
+  //     const slider = document.querySelector('.galley-slider .swiper-wrapper');
+  //     const slides = slider.querySelectorAll('.swiper-slide');
+  //     const slidesCount = slides.length;
+  //     const desiredCount = 3;
   
-      if (slidesCount === 1) {
-        console.log("one photo only");
-        const sliderInner = document.querySelector('.subcategory-gallery-inner');
-        const sliderArrows = document.querySelector('.gallery-slider-arrows');
-        const sliderTitle = document.querySelector('.subcategory-content-title__gallery');
+  //     if (slidesCount === 1) {
+  //       console.log("one photo only");
+  //       const sliderInner = document.querySelector('.subcategory-gallery-inner');
+  //       const sliderArrows = document.querySelector('.gallery-slider-arrows');
+  //       const sliderTitle = document.querySelector('.subcategory-content-title__gallery');
 
-        if(sliderArrows) {
-          sliderArrows.style.display ='none';
-        }
+  //       if(sliderArrows) {
+  //         sliderArrows.style.display ='none';
+  //       }
 
-        if(sliderInner) {
-          sliderInner.classList.add('subcategory-gallery-inner__single');
-        }
+  //       if(sliderInner) {
+  //         sliderInner.classList.add('subcategory-gallery-inner__single');
+  //       }
 
-        if(sliderTitle) {       
-          sliderTitle.textContent = "Фотография процедуры";    
-          sliderTitle.setAttribute("data-title", "Фотография процедуры");
-        }
+  //       if(sliderTitle) {       
+  //         sliderTitle.textContent = "Фотография процедуры";    
+  //         sliderTitle.setAttribute("data-title", "Фотография процедуры");
+  //       }
         
-        return false;
-      } else if (slidesCount < desiredCount) {
-        for (let i = 0; i < desiredCount - slidesCount; i++) {
+  //       return false;
+  //     } else if (slidesCount < desiredCount) {
+  //       for (let i = 0; i < desiredCount - slidesCount; i++) {
+  //         slides.forEach(slide => {
+  //           const clone = slide.cloneNode(true);
+  //           slider.appendChild(clone);
+  //         });
+  //       }
+  //     }
+  //     return true;
+  //   }  
+ 
+  //   const shouldInitSwiper = handleSlides();
+  
+  //   // Инициализируем Swiper только если слайдов больше одного
+  //   if (shouldInitSwiper) {
+  //     var swiper = new Swiper('.galley-slider', {   
+  //       grabCursor: true,     
+  //       slidesPerView: 2,
+  //       slidesPerGroup: 1,
+  //       spaceBetween: 0,
+  //       autoplay: false,
+  //       loop: true,
+  //       keyboard: {
+  //         enabled: true,
+  //         pageUpDown: false
+  //       },
+  //       navigation: {
+  //         nextEl: ".slider-next",
+  //         prevEl: ".slider-prew",
+  //       },
+  //       breakpoints: {             
+  //         900: {
+  //           slidesPerView: 3,       
+  //           spaceBetween: 0,
+  //           loop: true,
+  //         },       
+  //       }
+  //     });  
+
+  //     document.addEventListener('keydown', function(event) {
+  //       if (event.key === 'ArrowLeft') {
+  //         swiper.slidePrev();
+  //       } else if (event.key === 'ArrowRight') {
+  //         swiper.slideNext();
+  //       }
+  //     });
+  //   }
+  // })();
+  // слайдер фотографий услуги
+(function() {
+  if (!document.querySelector('.galley-slider')) return;
+
+  // Функция для обработки слайдов
+  function handleSlides() {
+    const slider = document.querySelector('.galley-slider .swiper-wrapper');
+    const slides = slider.querySelectorAll('.swiper-slide');
+    const slidesCount = slides.length;
+    const sliderInner = document.querySelector('.subcategory-gallery-inner');
+    const sliderArrows = document.querySelector('.gallery-slider-arrows');
+    const sliderTitle = document.querySelector('.subcategory-content-title__gallery');
+
+    if (slidesCount === 1) {
+      console.log("one photo only");
+      if(sliderArrows) {
+        sliderArrows.style.display = 'none';
+      }
+      if(sliderInner) {
+        sliderInner.classList.add('subcategory-gallery-inner__single');
+      }
+      if(sliderTitle) {       
+        sliderTitle.textContent = "Фотография процедуры";    
+        sliderTitle.setAttribute("data-title", "Фотография процедуры");
+      }
+      return false;
+    } else {
+      // Убедимся, что у нас всегда есть хотя бы 4 слайда для корректной работы loop
+      const minSlides = 4;
+      if (slidesCount < minSlides) {
+        const slidesToAdd = minSlides - slidesCount;
+        for (let i = 0; i < slidesToAdd; i++) {
           slides.forEach(slide => {
             const clone = slide.cloneNode(true);
             slider.appendChild(clone);
           });
         }
       }
+      // Восстановим отображение стрелок, если они были скрыты
+      if(sliderArrows) {
+        sliderArrows.style.display = '';
+      }
+      if(sliderTitle) {       
+        sliderTitle.textContent = "Фотографии процедуры";    
+        sliderTitle.setAttribute("data-title", "Фотографии процедуры");
+      }
       return true;
-    }  
- 
-    const shouldInitSwiper = handleSlides();
-  
-    // Инициализируем Swiper только если слайдов больше одного
-    if (shouldInitSwiper) {
-      var swiper = new Swiper('.galley-slider', {   
-        grabCursor: true,     
-        slidesPerView: 2,
-        slidesPerGroup: 1,
-        spaceBetween: 0,
-        autoplay: false,
-        loop: true,
-        keyboard: {
-          enabled: true,
-          pageUpDown: false
-        },
-        navigation: {
-          nextEl: ".slider-next",
-          prevEl: ".slider-prew",
-        },
-        breakpoints: {             
-          900: {
-            slidesPerView: 3,       
-            spaceBetween: 0,
-            loop: true,
-          },       
-        }
-      });  
-
-      document.addEventListener('keydown', function(event) {
-        if (event.key === 'ArrowLeft') {
-          swiper.slidePrev();
-        } else if (event.key === 'ArrowRight') {
-          swiper.slideNext();
-        }
-      });
     }
-  })();
+  }  
+
+  const shouldInitSwiper = handleSlides();
+
+  // Инициализируем Swiper только если слайдов больше одного
+  if (shouldInitSwiper) {
+    var swiper = new Swiper('.galley-slider', {   
+      grabCursor: true,     
+      slidesPerView: 2,
+      slidesPerGroup: 1,
+      spaceBetween: 0,
+      autoplay: false,
+      loop: true,
+      loopedSlides: 4, // Устанавливаем минимальное количество слайдов для loop
+      keyboard: {
+        enabled: true,
+        pageUpDown: false
+      },
+      navigation: {
+        nextEl: ".slider-next",
+        prevEl: ".slider-prew",
+      },
+      breakpoints: {             
+        900: {
+          slidesPerView: 3,       
+          spaceBetween: 0,
+          loop: true,
+        },       
+      }
+    });  
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'ArrowLeft') {
+        swiper.slidePrev();
+      } else if (event.key === 'ArrowRight') {
+        swiper.slideNext();
+      }
+    });
+  }
+})();
 
   // фиксирование блока при прокрутке
   // (function() {

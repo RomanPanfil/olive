@@ -4636,7 +4636,7 @@ table {
   max-height: 57.9795021962rem;
 }
 @media (hover: hover) and (pointer: fine) {
-  .subcategory-description-txt:hover p, .subcategory-description-txt:hover h3, .subcategory-description-txt:hover h4, .subcategory-description-txt:hover h5, .subcategory-description-txt:hover ul, .subcategory-description-txt:hover li {
+  .subcategory-description-txt:not(.show):hover p, .subcategory-description-txt:not(.show):hover h3, .subcategory-description-txt:not(.show):hover h4, .subcategory-description-txt:not(.show):hover h5, .subcategory-description-txt:not(.show):hover ul, .subcategory-description-txt:not(.show):hover li {
     opacity: 0.5;
   }
 }
