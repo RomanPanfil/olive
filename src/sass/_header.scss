@@ -189,6 +189,14 @@
                     transition: color 0.3s;
                     // padding: p2r(12) p2r(18);
                     display: block;
+
+                    &.active {
+                        color: $font_accent;
+
+                        .header-nav-icon {
+                            stroke: $font_accent;
+                        }
+                    }
     
                     @media (hover: hover) and (pointer: fine) {           
                         &:hover {

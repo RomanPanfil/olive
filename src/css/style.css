@@ -2226,6 +2226,12 @@ table {
   transition: color 0.3s;
   display: block;
 }
+.header-nav > ul > li > a.active {
+  color: #E9B566;
+}
+.header-nav > ul > li > a.active .header-nav-icon {
+  stroke: #E9B566;
+}
 @media (hover: hover) and (pointer: fine) {
   .header-nav > ul > li > a:hover {
     color: #E9B566;
@@ -3409,6 +3415,9 @@ table {
   padding-bottom: 0.5270863836rem;
   margin-bottom: 0.3513909224rem;
 }
+.menu-main-section > ul > li > a.active {
+  color: #E9B566;
+}
 .menu-main-section > ul > li ul > li a {
   color: #fff;
   font-size: 1.4055636896rem;
@@ -3422,6 +3431,9 @@ table {
   width: -moz-max-content;
   width: max-content;
   max-width: 26.3543191801rem;
+}
+.menu-main-section > ul > li ul > li a.active {
+  color: #E9B566;
 }
 
 .contacts-main {
@@ -4910,6 +4922,7 @@ table {
 }
 .subcategory-presentation-title {
   font-family: "TRIAL Oceanic";
+  color: #3C392E;
   font-size: 3.513909224rem;
   line-height: 1;
   margin-bottom: 2.1083455344rem;

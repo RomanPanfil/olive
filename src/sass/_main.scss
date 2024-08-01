@@ -810,6 +810,10 @@
             padding-top: p2r(6);
             padding-bottom: p2r(6);
             margin-bottom: p2r(4);
+
+            &.active {
+              color: $font_accent;
+            }
           }
 
           ul {
@@ -825,6 +829,10 @@
                 margin-bottom: p2r(4);
                 width: max-content;
                 max-width: p2r(300);
+
+                &.active {
+                  color: $font_accent;
+                }
               }
             }
           }
@@ -2316,6 +2324,7 @@
 
     &-title {
       font-family: $second_font;
+      color: $font_black;
       font-size: p2r(40);
       line-height: 1;
       margin-bottom: p2r(24);

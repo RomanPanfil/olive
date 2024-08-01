@@ -908,17 +908,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const sliderTitle = document.querySelector('.subcategory-content-title__gallery');
 
     if (slidesCount === 1) {
-      console.log("one photo only");
+  
       if(sliderArrows) {
         sliderArrows.style.display = 'none';
       }
       if(sliderInner) {
         sliderInner.classList.add('subcategory-gallery-inner__single');
-      }
-      if(sliderTitle) {       
-        sliderTitle.textContent = "Фотография процедуры";    
-        sliderTitle.setAttribute("data-title", "Фотография процедуры");
-      }
+      }      
       return false;
     } else {
       // Убедимся, что у нас всегда есть хотя бы 4 слайда для корректной работы loop
@@ -936,10 +932,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if(sliderArrows) {
         sliderArrows.style.display = '';
       }
-      if(sliderTitle) {       
-        sliderTitle.textContent = "Фотографии процедуры";    
-        sliderTitle.setAttribute("data-title", "Фотографии процедуры");
-      }
+     
       return true;
     }
   }  
