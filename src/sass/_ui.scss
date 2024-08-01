@@ -1203,3 +1203,22 @@ table {
 //   .my-mfp-slide-left.mfp-removing.mfp-bg {
 // 	opacity: 0;
 //   }
+
+
+.custom-preloader {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 2999;
+}
+.custom-preloader svg {
+	animation: spin 1s linear infinite;
+	width: 50px;
+	height: 50px;
+}
+@keyframes spin {
+	100% {
+		transform: rotate(360deg);
+	}
+}

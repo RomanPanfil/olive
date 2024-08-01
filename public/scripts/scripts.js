@@ -94,6 +94,27 @@ document.addEventListener('DOMContentLoaded', () => {
     //   }
     // });
   })
+
+  // Глобальная переменная для отслеживания состояния попапа
+  let isPopupOpen = false;
+
+  // Функция для обработки изменения состояния истории
+  function handlePopState(event) {
+    if (isPopupOpen) {
+      $.magnificPopup.close();
+      isPopupOpen = false;
+    }
+  }
+
+  // Добавляем обработчик события popstate
+  window.addEventListener('popstate', handlePopState);
+
+  // Обработчик закрытия попапа при нажатии Escape
+  $(document).keydown(function(e) {
+    if (e.keyCode === 27 && isPopupOpen) {
+      history.back();
+    }
+  });
   
   // Открытие попапа
   $(document).on("click", ".mfp-link", function (e) {
@@ -104,17 +125,44 @@ document.addEventListener('DOMContentLoaded', () => {
     if (clickedElement.hasClass('mfp-gallery-item')) {
       // Логика для открытия галереи
       var galleryItems = [];
+      var uniqueIds = new Set(); // Для отслеживания уникальных data-id
+      var isInSlider = clickedElement.closest('.swiper').length > 0;
   
       // Собираем все элементы галереи
       $(".mfp-gallery-item").each(function () {
-        galleryItems.push({
-          src: $(this).attr("data-href"),
-          title: $(this).find('.diploms-card-title').text().trim()
-        });
+        var $this = $(this);
+        var $img = $this.find('img');
+        var dataId = $img.attr('data-id');
+        var itemIsInSlider = $this.closest('.swiper').length > 0;
+  
+        // Если элемент в слайдере, проверяем уникальность
+        if (itemIsInSlider) {
+          if (!uniqueIds.has(dataId)) {
+            uniqueIds.add(dataId);
+            galleryItems.push({
+              src: $this.attr("data-href"),
+              title: $this.find('.diploms-card-title').text().trim(),
+              dataId: dataId
+            });
+          }
+        } else {
+          // Если элемент не в слайдере, добавляем его без проверки уникальности
+          galleryItems.push({
+            src: $this.attr("data-href"),
+            title: $this.find('.diploms-card-title').text().trim(),
+            dataId: dataId
+          });
+        }
       });
   
       // Находим индекс кликнутого элемента
-      var index = $(".mfp-gallery-item").index(clickedElement);
+      var index;
+      if (isInSlider) {
+        var clickedDataId = clickedElement.find('img').attr('data-id');
+        index = galleryItems.findIndex(item => item.dataId === clickedDataId);
+      } else {
+        index = $(".mfp-gallery-item").index(clickedElement);
+      }
   
       $.magnificPopup.open({
         items: galleryItems,
@@ -159,9 +207,12 @@ document.addEventListener('DOMContentLoaded', () => {
               $('.mfp-popup').addClass('not_delay');
             }, 700);
             document.documentElement.style.overflow = 'hidden';
+            history.pushState({ popup: 'gallery' }, '');
+            isPopupOpen = true;
           },
           close: function() {
             document.documentElement.style.overflow = '';
+            isPopupOpen = false;
           }
         }
       });
@@ -1136,33 +1187,63 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   
-    menuItems.forEach((item, index) => {
-      const li = document.createElement('li');
-      li.classList.add('side-navigation-item');
+    // menuItems.forEach((item, index) => {
+    //   const li = document.createElement('li');
+    //   li.classList.add('side-navigation-item');
       
-      if (index === 0) {
-        li.classList.add('active');
-      }
+    //   if (index === 0) {
+    //     li.classList.add('active');
+    //   }
       
-      li.textContent = item.dataset.title || item.textContent;
+    //   li.textContent = item.dataset.title || item.textContent;
   
-      li.addEventListener('click', () => {
-        isScrolling = true;
-        clearTimeout(timeoutId);
+    //   li.addEventListener('click', () => {
+    //     isScrolling = true;
+    //     clearTimeout(timeoutId);
         
-        menuList.querySelectorAll('.side-navigation-item').forEach(el => el.classList.remove('active'));
-        li.classList.add('active');
+    //     menuList.querySelectorAll('.side-navigation-item').forEach(el => el.classList.remove('active'));
+    //     li.classList.add('active');
         
-        scrollToElement(item);
+    //     scrollToElement(item);
         
-        timeoutId = setTimeout(() => {
-          isScrolling = false;
-        }, 1000); // Время, достаточное для завершения прокрутки
-      });
+    //     timeoutId = setTimeout(() => {
+    //       isScrolling = false;
+    //     }, 1000); // Время, достаточное для завершения прокрутки
+    //   });
   
-      menuList.appendChild(li);      
-    });      
+    //   menuList.appendChild(li);      
+    // });      
 
+    if (menuItems.length < 2) {
+      navigation.classList.add('hidden');
+    } else {
+      menuItems.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.classList.add('side-navigation-item');
+        
+        if (index === 0) {
+          li.classList.add('active');
+        }
+        
+        li.textContent = item.dataset.title || item.textContent;
+
+        li.addEventListener('click', () => {
+          isScrolling = true;
+          clearTimeout(timeoutId);
+          
+          menuList.querySelectorAll('.side-navigation-item').forEach(el => el.classList.remove('active'));
+          li.classList.add('active');
+          
+          scrollToElement(item);
+          
+          timeoutId = setTimeout(() => {
+            isScrolling = false;
+          }, 1000); // Время, достаточное для завершения прокрутки
+        });
+
+        menuList.appendChild(li);      
+      });
+    }
 
   
     let currentActive = menuList.querySelector('.active');

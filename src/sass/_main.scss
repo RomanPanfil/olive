@@ -2409,6 +2409,7 @@
   //   padding-left: p2r(354) !important;
   // }
   &-image {
+    cursor: pointer;
 
     @include tablet {
       // padding-left: p2r(16);
@@ -2500,6 +2501,10 @@
       border-radius: 0;
       padding: 0;
       margin-bottom: p2r(24);
+    }
+
+    &.hidden {
+      display: none;
     }
 
     &.float {
