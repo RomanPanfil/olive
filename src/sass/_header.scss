@@ -103,6 +103,7 @@
         transition: opacity 0.3s;
         position: relative;
         z-index: 2000;
+        line-height: 1;
 
         img {
             width: p2r(77.5);
@@ -114,7 +115,7 @@
         }
 
         @media (hover: hover) and (pointer: fine) {
-            &:hover {
+            &:not(span):hover {
                 opacity: 0.5;
             }
         }

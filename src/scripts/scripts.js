@@ -276,24 +276,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     menuLinks.forEach(link => {
       link.addEventListener('click', (e) => {
-        e.preventDefault();
         const parentLi = link.closest('li');
         const hasSubMenu = parentLi.querySelector('.header-nav-menu');
-        const wasActive = parentLi.classList.contains('active');
   
-        // Закрываем все открытые меню
-        menuLinks.forEach(otherLink => {
-          otherLink.closest('li').classList.remove('active');
-        });
-  
-        // Если элемент не был активен и у него есть подменю, открываем его
-        if (!wasActive && hasSubMenu) {
+        if (parentLi.classList.contains('active')) {
+          // Если элемент активен, предотвращаем стандартное действие и закрываем меню
+          e.preventDefault();
+          parentLi.classList.remove('active');
+        } else if (hasSubMenu) {
+          // Если элемент неактивен, но имеет подменю, открываем его
+          e.preventDefault();
+          // Закрываем все другие открытые меню
+          menuLinks.forEach(otherLink => {
+            otherLink.closest('li').classList.remove('active');
+          });
           parentLi.classList.add('active');
           setTimeout(() => {
             scrollToActiveLink();
             updateActiveLink();
           }, 0);
         }
+        // Если элемент неактивен и не имеет подменю, позволяем стандартный переход по ссылке
       });
     });
   

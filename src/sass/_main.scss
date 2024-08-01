@@ -914,6 +914,12 @@
       line-height: 1;
       margin-bottom: p2r(20);
 
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            color: $font_accent;
+        }
+      }
+
       @include tablet {
         font-size: p2r(71);
       }
@@ -1008,7 +1014,7 @@
           }
 
           @include mobile {
-            margin-right: p2r(8);
+            margin-right: p2r(14);
           }
         }
 
@@ -1329,11 +1335,14 @@
   border-radius: p2r(40);
   padding: p2r(48);
   margin-bottom: p2r(16);
-  text-align: center;
+  // text-align: center;
+
+  padding-left: p2r(354);
 
   @include tablet {
     font-size: p2r(32);
     line-height: 1;
+    text-align: center;    
     padding: p2r(20);
     border: 100%;
   }

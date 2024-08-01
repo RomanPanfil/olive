@@ -2150,7 +2150,7 @@ table {
   }
 }
 @media (hover: hover) and (pointer: fine) {
-  .header-logo:hover {
+  .header-logo:not(span):hover {
     opacity: 0.5;
   }
 }
@@ -3511,6 +3511,11 @@ table {
   line-height: 1;
   margin-bottom: 1.756954612rem;
 }
+@media (hover: hover) and (pointer: fine) {
+  .contacts-main-tel:hover {
+    color: #E9B566;
+  }
+}
 @media (max-width: 899px) {
   .contacts-main-tel {
     font-size: 6.2371888726rem;
@@ -3621,7 +3626,7 @@ table {
 }
 @media (max-width: 599px) {
   .contacts-main-socials-item:not(:last-child) {
-    margin-right: 0.7027818448rem;
+    margin-right: 1.2298682284rem;
   }
 }
 @media (max-width: 899px) {
@@ -3951,12 +3956,13 @@ table {
   border-radius: 3.513909224rem;
   padding: 4.2166910688rem;
   margin-bottom: 1.4055636896rem;
-  text-align: center;
+  padding-left: 31.0980966325rem;
 }
 @media (max-width: 899px) {
   .feedback {
     font-size: 2.8111273792rem;
     line-height: 1;
+    text-align: center;
     padding: 1.756954612rem;
     border: 100%;
   }
