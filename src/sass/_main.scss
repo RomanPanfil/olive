@@ -7,10 +7,13 @@
   overflow: hidden;  
 }
 
-.menu-open {
-  overflow: hidden !important;
+.menu-open {  
   // height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
+
+  @include tablet {
+    overflow: hidden !important;
+  }
 }
 
 .non-scroll {
@@ -129,6 +132,16 @@
 
   &-text {
     margin-right: p2r(16);
+
+    a {
+      color: $font_white;
+
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            color: $font_accent;
+        }
+    }
+    }
 
     @include mobile {
       margin-right: 0;
@@ -811,6 +824,12 @@
             padding-bottom: p2r(6);
             margin-bottom: p2r(4);
 
+            @media (hover: hover) and (pointer: fine) {
+              &:hover {
+                color: $font_accent;
+              }
+            }
+
             &.active {
               color: $font_accent;
             }
@@ -829,6 +848,12 @@
                 margin-bottom: p2r(4);
                 width: max-content;
                 max-width: p2r(300);
+
+                @media (hover: hover) and (pointer: fine) {
+                  &:hover {
+                    color: $font_accent;
+                  }
+                }
 
                 &.active {
                   color: $font_accent;

@@ -33,6 +33,12 @@
     &-tel {
         margin-bottom: p2r(64);
 
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                color: $font_accent;
+            }
+        }
+
         @include tablet {
             margin-bottom: p2r(24);
         }

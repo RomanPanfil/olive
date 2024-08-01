@@ -432,7 +432,7 @@ li {
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6, .h20 {
-  font-family: "TRIAL Oceanic";
+  font-family: "Oceanic";
   font-weight: 500;
   color: #fff;
   margin: 40px 0px 40px;
@@ -607,7 +607,7 @@ table {
   color: #E9B566;
   outline: none;
   border: none;
-  font-family: "TRIAL Oceanic";
+  font-family: "Oceanic";
   display: inline-block;
   background: #182C22;
   -webkit-backdrop-filter: blur(1.4055636896rem);
@@ -2534,8 +2534,12 @@ table {
 }
 
 .menu-open {
-  overflow: hidden !important;
   height: calc(var(--vh, 1vh) * 100);
+}
+@media (max-width: 899px) {
+  .menu-open {
+    overflow: hidden !important;
+  }
 }
 
 .non-scroll {
@@ -2674,6 +2678,14 @@ table {
 }
 .cookie-text {
   margin-right: 1.4055636896rem;
+}
+.cookie-text a {
+  color: #fff;
+}
+@media (hover: hover) and (pointer: fine) {
+  .cookie-text a:hover {
+    color: #E9B566;
+  }
 }
 @media (max-width: 599px) {
   .cookie-text {
@@ -2831,7 +2843,7 @@ table {
   }
 }
 .founders-trigger-surname {
-  font-family: "TRIAL Oceanic";
+  font-family: "Oceanic";
   font-weight: 400;
   font-size: 2.8111273792rem;
   line-height: 0.85;
@@ -2866,7 +2878,7 @@ table {
   top: 19.3265007321rem;
   right: 2.1083455344rem;
   max-width: 54.4655929722rem;
-  font-family: "TRIAL Oceanic";
+  font-family: "Oceanic";
   font-weight: 400;
   font-size: 7.7306002928rem;
   line-height: 0.85;
@@ -3378,7 +3390,7 @@ table {
   margin-bottom: 2.8111273792rem;
 }
 .menu-main-title {
-  font-family: "TRIAL Oceanic";
+  font-family: "Oceanic";
   font-size: 2.8111273792rem;
   color: #E9B566;
   font-weight: 400;
@@ -3415,6 +3427,11 @@ table {
   padding-bottom: 0.5270863836rem;
   margin-bottom: 0.3513909224rem;
 }
+@media (hover: hover) and (pointer: fine) {
+  .menu-main-section > ul > li > a:hover {
+    color: #E9B566;
+  }
+}
 .menu-main-section > ul > li > a.active {
   color: #E9B566;
 }
@@ -3431,6 +3448,11 @@ table {
   width: -moz-max-content;
   width: max-content;
   max-width: 26.3543191801rem;
+}
+@media (hover: hover) and (pointer: fine) {
+  .menu-main-section > ul > li ul > li a:hover {
+    color: #E9B566;
+  }
 }
 .menu-main-section > ul > li ul > li a.active {
   color: #E9B566;
@@ -3453,7 +3475,7 @@ table {
   }
 }
 .contacts-main-title {
-  font-family: "TRIAL Oceanic";
+  font-family: "Oceanic";
   font-size: 6.3250366032rem;
   font-weight: 400;
   line-height: 0.85;
@@ -3473,7 +3495,7 @@ table {
   }
 }
 .contacts-main-tel {
-  font-family: "TRIAL Oceanic";
+  font-family: "Oceanic";
   color: #fff;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3552,7 +3574,7 @@ table {
   }
 }
 .contacts-main-mail {
-  font-family: "TRIAL Oceanic";
+  font-family: "Oceanic";
   font-weight: 400;
   font-size: 2.8111273792rem;
   line-height: 0.85;
@@ -3924,7 +3946,7 @@ table {
 .feedback {
   display: block;
   font-size: 6.3250366032rem;
-  font-family: "TRIAL Oceanic";
+  font-family: "Oceanic";
   background-color: #182C22;
   border-radius: 3.513909224rem;
   padding: 4.2166910688rem;
@@ -4000,7 +4022,7 @@ table {
   }
 }
 .services-title {
-  font-family: "TRIAL Oceanic";
+  font-family: "Oceanic";
   font-size: 7.7306002928rem;
   line-height: 0.85;
   text-align: center;
@@ -4089,7 +4111,7 @@ table {
 }
 .service-preview-title {
   color: #fff;
-  font-family: "TRIAL Oceanic";
+  font-family: "Oceanic";
   font-size: 2.8111273792rem;
   -webkit-hyphens: manual;
       -ms-hyphens: manual;
@@ -4219,7 +4241,7 @@ table {
 }
 .category-title {
   max-width: 57.9795021962rem;
-  font-family: "TRIAL Oceanic";
+  font-family: "Oceanic";
   font-weight: 400;
   font-size: 7.7306002928rem;
   line-height: 0.85;
@@ -4315,7 +4337,7 @@ table {
 }
 .subcategory-text-title {
   max-width: 60.6149341142rem;
-  font-family: "TRIAL Oceanic";
+  font-family: "Oceanic";
   font-weight: 400;
   font-size: 5.6222547584rem;
   line-height: 0.85;
@@ -4921,7 +4943,7 @@ table {
   }
 }
 .subcategory-presentation-title {
-  font-family: "TRIAL Oceanic";
+  font-family: "Oceanic";
   color: #3C392E;
   font-size: 3.513909224rem;
   line-height: 1;
@@ -5989,7 +6011,7 @@ table {
   }
 }
 .popup-spec-title {
-  font-family: "TRIAL Oceanic";
+  font-family: "Oceanic";
   font-weight: 400;
   font-size: 3.513909224rem;
   line-height: 1;
@@ -6104,7 +6126,7 @@ table {
   }
 }
 .popup-feedback-title {
-  font-family: "TRIAL Oceanic";
+  font-family: "Oceanic";
   font-weight: 400;
   font-size: 2.8111273792rem;
   line-height: 0.85;
@@ -6245,7 +6267,7 @@ table {
   }
 }
 .popup-success-title {
-  font-family: "TRIAL Oceanic";
+  font-family: "Oceanic";
   font-weight: 400;
   font-size: 2.8111273792rem;
   line-height: 0.85;
@@ -6283,7 +6305,7 @@ table {
   }
 }
 .footer-title {
-  font-family: "TRIAL Oceanic";
+  font-family: "Oceanic";
   font-weight: 400;
   font-size: 6.3250366032rem;
   line-height: 0.85;
@@ -6306,6 +6328,11 @@ table {
 }
 .footer-tel {
   margin-bottom: 5.6222547584rem;
+}
+@media (hover: hover) and (pointer: fine) {
+  .footer-tel:hover {
+    color: #E9B566;
+  }
 }
 @media (max-width: 899px) {
   .footer-tel {

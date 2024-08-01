@@ -12,14 +12,34 @@
     <meta name="format-detection" content="telephone=no">
     <style>
       @font-face {
-      font-family: 'TRIAL Oceanic';
-      src: local('TRIAL Oceanic'), local('TRIAL Oceanic Regular'),
-        url('./fonts/oceanic/TRIAL_Oceanic-Regular.woff2') format('woff2'),
-        url('./fonts/oceanic/TRIAL_Oceanic-Regular.woff') format('woff');
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
+        font-family: 'Oceanic';
+        src: local('Oceanic'), local('TRIAL Oceanic Regular'),
+          url('./fonts/oceanic/Oceanic-Regular-Web.woff2') format('woff2'),
+          url('./fonts/oceanic/Oceanic-Regular-Web.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'TT Norms Pro';
+        src: local('TT Norms Pro Regular'), local('TTNormsPro-Regular'),
+          url('./fonts/TTNormsPro/TT_Norms_Pro_Regular.woff2') format('woff2'),
+          url('./fonts/TTNormsPro/TT_Norms_Pro_Regular.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'TT Norms Pro';
+        src: local('TT Norms Pro Medium'), local('TTNormsPro-Medium'),
+          url('./fonts/TTNormsPro/TT_Norms_Pro_Medium.woff2') format('woff2'),
+          url('./fonts/TTNormsPro/TT_Norms_Pro_Medium.woff') format('woff');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-form-styler@latest/dist/jquery.formstyler.css">
     <link
@@ -35,12 +55,6 @@
       type="text/css"
       media="all"
     >
-    <link
-      rel="stylesheet"
-      href="./fonts/TTNormsPro/stylesheet.css"
-      type="text/css"
-      media="all"
-    >
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
     <!-- <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -49,7 +63,7 @@
     <!-- gsap -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   </head>
-  <body class="ui-noise-png">
+  <body class="ui-noise">
     <div class="wrapper">
       <header class="header">
         <div class="header-blur">
@@ -83,7 +97,7 @@
                       <div class="menu-aside">
                         <ul>
                           <li>
-                            <a href="#" class="active">
+                            <a href="#">
                               <img src="./images/svg/icons-service.svg" alt="alt" class="menu-aside-icon">
                               Врачебная косметология для лица
                             </a>
@@ -101,7 +115,7 @@
                             </a>
                           </li>
                           <li>
-                            <a href="#">
+                            <a href="#" class="active">
                               <img src="./images/svg/icons-service-4.svg" alt="alt" class="menu-aside-icon">
                               Забота о теле
                             </a>

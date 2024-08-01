@@ -67,14 +67,17 @@ document.addEventListener('DOMContentLoaded', () => {
   $(() => {
     gsap.registerPlugin(ScrollTrigger);
   
-    // Нормализация скролла для mac
-    if (isMac()) {	
+    // Нормализация скролла для Mac
+    if (isMac()) {
       console.log('MAC');
-      ScrollTrigger.normalizeScroll(true);
+      ScrollTrigger.normalizeScroll({
+        allowNestedScroll: true,
+        target: document.body
+      });
     }
 
     function isMac() {
-      return navigator.platform.indexOf('Mac') > -1
+      return navigator.platform.indexOf('Mac') > -1;
     }
 
     // параллакс блока "Создатели"
@@ -167,21 +170,18 @@ document.addEventListener('DOMContentLoaded', () => {
     return false;
   });
 
-  // открытие меню в header  
+  // открытие меню в header
   (function() {
     const menuLinks = document.querySelectorAll('.header-nav > ul > li > a');
     const asideLinks = document.querySelectorAll('.menu-aside > ul > li > a');
     const mainSections = document.querySelectorAll('.menu-main-section');
     const menuMain = document.querySelector('.menu-main');
     const headerNavMenu = document.querySelector('.header-nav-menu-inner');
-
-    if(!menuMain || !headerNavMenu) return
   
     let scrollOffset = parseInt(window.getComputedStyle(menuMain).marginTop, 10);
     let selectedIndex = null;
     let visibleSections = new Set();
   
- 
     function smoothScroll(target, duration) {
       const targetPosition = target.offsetTop - scrollOffset;
       const startPosition = menuMain.scrollTop;
@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
       requestAnimationFrame(animation);
     }   
-
+  
     function updateActiveLink() {
       let activeIndex;
   
@@ -224,6 +224,20 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   
+    function scrollToActiveLink() {
+      const activeLink = document.querySelector('.menu-aside > ul > li > a.active');
+      if (activeLink) {
+        const index = Array.from(asideLinks).indexOf(activeLink);
+        selectedIndex = index;
+        smoothScroll(mainSections[index], 500);
+      } else {
+        // Если нет активных ссылок, делаем активной первую и скроллим к ней
+        asideLinks[0].classList.add('active');
+        selectedIndex = 0;
+        smoothScroll(mainSections[0], 500);
+      }
+    }
+  
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const index = Array.from(mainSections).indexOf(entry.target);
@@ -233,7 +247,9 @@ document.addEventListener('DOMContentLoaded', () => {
           visibleSections.delete(index);
         }
       });
-      updateActiveLink();
+      if (selectedIndex === null) {
+        updateActiveLink();
+      }
     }, {
       root: menuMain,
       rootMargin: `-${scrollOffset}px 0px -${scrollOffset}px 0px`,
@@ -257,46 +273,37 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       updateActiveLink();
     });
-  
-    // Открытие меню
+
     menuLinks.forEach(link => {
       link.addEventListener('click', (e) => {
+        e.preventDefault();
         const parentLi = link.closest('li');
         const hasSubMenu = parentLi.querySelector('.header-nav-menu');
+        const wasActive = parentLi.classList.contains('active');
   
-        if (hasSubMenu) {
-          e.preventDefault();
-          menuLinks.forEach(otherLink => {
-            otherLink.closest('li').classList.remove('active');
-          });
-          parentLi.classList.toggle('active');
-
-          document.querySelector('.wrapper').classList.add('non-scroll');
+        // Закрываем все открытые меню
+        menuLinks.forEach(otherLink => {
+          otherLink.closest('li').classList.remove('active');
+        });
+  
+        // Если элемент не был активен и у него есть подменю, открываем его
+        if (!wasActive && hasSubMenu) {
+          parentLi.classList.add('active');
+          setTimeout(() => {
+            scrollToActiveLink();
+            updateActiveLink();
+          }, 0);
         }
       });
     });
   
-    // Закрытие меню при клике вне .header-nav-menu-inner
     document.addEventListener('click', (e) => {
       if (!headerNavMenu.contains(e.target) && !e.target.closest('.header-nav > ul > li > a')) {
         menuLinks.forEach(link => {
           link.closest('li').classList.remove('active');
-          document.querySelector('.wrapper').classList.remove('non-scroll');
         });
       }
     });
-
-    // закрытие по esc
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        // Закрываем меню
-        menuLinks.forEach(link => {
-          link.closest('li').classList.remove('active');
-          document.querySelector('.wrapper').classList.remove('non-scroll');
-        });
-      }
-    });
-    
   
     window.addEventListener('resize', () => {
       scrollOffset = parseInt(window.getComputedStyle(menuMain).marginTop, 10);
@@ -304,6 +311,12 @@ document.addEventListener('DOMContentLoaded', () => {
       observer.rootMargin = `-${scrollOffset}px 0px -${scrollOffset}px 0px`;
       mainSections.forEach(section => observer.observe(section));
     });
+  
+    // Инициализация: установка selectedIndex на основе изначально активной ссылки
+    const initialActiveLink = document.querySelector('.menu-aside > ul > li > a.active');
+    if (initialActiveLink) {
+      selectedIndex = Array.from(asideLinks).indexOf(initialActiveLink);
+    }
   })();
 
   // создание мобильного меню и логика работы мобильного меню
