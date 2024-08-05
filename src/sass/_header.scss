@@ -339,6 +339,7 @@
                 height: p2r(24);
                 margin-right: 0;
                 margin-bottom: 0;
+                margin-bottom: p2r(2);
                 // filter: brightness(10);
             }
 
@@ -465,6 +466,10 @@
             top: p2r(-58);
             right: 0;
 
+            @include tablet {
+                top: p2r(-62)
+            }
+
             @include mobile {
                 top: p2r(-50);
             }
@@ -473,6 +478,11 @@
                 width: p2r(24);
                 height: p2r(24);                
                 z-index: 99;
+
+                @include tablet {
+                    width: p2r(22);
+                    height: p2r(22);
+                }
 
                 @include mobile {
                     width: p2r(20);

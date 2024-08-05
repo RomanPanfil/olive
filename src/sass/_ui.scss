@@ -941,8 +941,12 @@ table {
 
 	&__half {
 		width: 50%;
-		flex: 0 0 50%;
-		border-bottom: p2r(4) solid transparent;
+		flex: 0 0 50%;		
+		// margin-bottom: p2r(4);		
+
+		& + .textarea-item {
+			margin-top: p2r(4);
+		}
 
 		@include mobile {
 			width: 100%;
@@ -954,6 +958,7 @@ table {
 
 			@include mobile {
 				border-right: none;
+				margin-bottom: p2r(4);
 			}
 		}
 
@@ -1204,6 +1209,14 @@ table {
 // 	opacity: 0;
 //   }
 
+/* Скрываем стандартное сообщение о загрузке */
+.mfp-preloader {
+    display: none !important;
+}
+/* Стили для контейнера прелоадера */
+.mfp-s-loading .mfp-content {
+    display: none;
+}
 
 .custom-preloader {
 	position: fixed;
@@ -1214,8 +1227,9 @@ table {
 }
 .custom-preloader svg {
 	animation: spin 1s linear infinite;
-	width: 50px;
-	height: 50px;
+	width: p2r(50);
+	height: p2r(50);
+	stroke: $font_accent;
 }
 @keyframes spin {
 	100% {

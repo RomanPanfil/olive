@@ -73,52 +73,38 @@
     </form>
   </div>
   <script>
-    $(document).ready(function () {
+      $(document).ready(function () {
+      function updateInputActiveClass(input) {
+        const field = input.closest('.ui-field');
+        if (input.value) {
+          field.classList.add('input-active');
+        } else {
+          field.classList.remove('input-active');
+        }
+      }
+
       document.querySelectorAll('.ui-field.required > .ui-input').forEach(input => {
         input.addEventListener('focus', () => {
           input.closest('.ui-field').classList.add('input-active');
         });
         
         input.addEventListener('blur', () => {
-          if (!input.value) {
-            input.closest('.ui-field').classList.remove('input-active');
-          }
+          updateInputActiveClass(input);
         });
         
         input.addEventListener('input', () => {
-          if (input.value) {
-            input.closest('.ui-field').classList.add('input-active');
-          } else {
-            input.closest('.ui-field').classList.remove('input-active');
-          }
+          updateInputActiveClass(input);
         });
-      });
 
-      document.querySelectorAll('.ui-field.required > .ui-textarea').forEach(input => {
-        input.addEventListener('focus', () => {
-          input.closest('.ui-field').classList.add('input-active');
-        });
-        
-        input.addEventListener('blur', () => {
-          if (!input.value) {
-            input.closest('.ui-field').classList.remove('input-active');
-          }
-        });
-        
-        input.addEventListener('input', () => {
-          if (input.value) {
-            input.closest('.ui-field').classList.add('input-active');
-          } else {
-            input.closest('.ui-field').classList.remove('input-active');
-          }
-        });
-      });
-
+        // Проверяем состояние поля при загрузке страницы
+        updateInputActiveClass(input);
+      }); 
+      
       $('.ui-select, .ui-checkbox').styler();
 
       $.validator.addMethod("noDigits", function(value, element) {
         return this.optional(element) || !/\d/.test(value);
-      }, 'Неправильно заполнено поле');
+      }, 'Поле обязательно для заполнения');
 
       $.validator.addMethod("phone", function (value, element) {
         if (value.startsWith('+375')) {
@@ -128,9 +114,9 @@
         } else {
           return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){11,14}(\s*)?$/i.test(value);
         }
-      }, "Неправильно заполнено поле");
+      }, "Поле обязательно для заполнения");
 
-      $.validator.messages.required = 'Не заполнено поле';
+      $.validator.messages.required = 'Неправильно заполнено поле';
 
       let form = $(".popup-feedback-form");
       let submitButton = form.find(".ui-btn");
@@ -141,6 +127,10 @@
       let validator = form.validate({
         submitHandler: function(form, event) {
           event.preventDefault();
+          // Очищаем куки при успешной отправке формы
+          setCookie('formName', '', -1);
+          setCookie('formTel', '', -1);
+          setCookie('formAgree', '', -1);
           form.reset();
           wasValid = false;
           fieldsChanged = {};
@@ -150,7 +140,7 @@
         rules: {
           name: { noDigits: true, required: true },
           tel: { phone: true, required: true },
-          comment: { required: true },
+          comment: { required: true },       
           agree: { required: true },
         },
         errorPlacement: function(error, element) {
@@ -167,12 +157,14 @@
         fieldsChanged[fieldName] = true;
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(validateForm, 300);
+        saveFormDataToCookies();
       });
 
       form.on('change', 'input[type="checkbox"]', function() {
         let fieldName = $(this).attr('name');
         fieldsChanged[fieldName] = true;
         validateForm();
+        saveFormDataToCookies();
       });
 
       function validateForm() {
@@ -214,7 +206,60 @@
 
       // Инициализация состояния кнопки и сообщения об ошибке при загрузке страницы
       updateSubmitButton(false);
-      updateAgreeErrorVisibility(true);          
+      updateAgreeErrorVisibility(true); 
+
+      // Функции для работы с куки
+      function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+          let date = new Date();
+          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+          expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+      }
+
+      function getCookie(name) {
+        let nameEQ = name + "=";
+        let ca = document.cookie.split(';');
+        for(let i = 0; i < ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+      }
+
+      // --- Функция сохранения данных формы в куки  начало ---
+      function saveFormDataToCookies() {
+        setCookie('formName', $('#name').val(), 1); // Сохраняем на 1 день
+        setCookie('formTel', $('#tel').val(), 1);
+        setCookie('formAgree', $('#agree').prop('checked'), 1);
+      }
+
+      // Функция восстановления данных формы из куки
+      function restoreFormDataFromCookies() {
+        let name = getCookie('formName');
+        let tel = getCookie('formTel');
+        let agree = getCookie('formAgree');
+
+        if (name) {
+          $('#name').val(name).trigger('input');
+          updateInputActiveClass(document.getElementById('name'));
+        }
+        if (tel) {
+          $('#tel').val(tel).trigger('input');
+          updateInputActiveClass(document.getElementById('tel'));
+        }
+        if (agree === 'true') {
+          $('#agree').prop('checked', true).trigger('change');
+        }
+
+        // Обновляем состояние формы
+        validateForm();
+      }
+
+      // --- Функция сохранения данных формы в куки  конец ---
 
       // маска ввода номера телефона
       function initMask() {
@@ -222,16 +267,29 @@
       
         if (phoneInputs.length) {
           phoneInputs.forEach(element => {
-            IMask(element, {
-              mask: '+{7} (000) 000-00-00',
-              lazy: false,
+            let maskInstance = IMask(element, {
+              mask: '+{7}(000)000-00-00',              
               placeholderChar: '_'
             });
+
+            // Обновляем маску и класс 'input-active' при восстановлении данных из куки
+            element.addEventListener('input', function() {
+              if (this.value) {
+                maskInstance.updateValue();
+              }
+              updateInputActiveClass(this);
+            });
+
+            // Проверяем состояние поля при инициализации маски
+            updateInputActiveClass(element);
           });
         }        
       }
       
       initMask();
-        });
+
+      // Вызываем restoreFormDataFromCookies после инициализации всех обработчиков
+      restoreFormDataFromCookies();
+    });
   </script>
 </div>
