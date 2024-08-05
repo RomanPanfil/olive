@@ -1348,7 +1348,7 @@ table {
           justify-content: center;
 }
 .ui-field__textarea {
-  padding-top: 3.074670571rem;
+  padding-top: 1.4055636896rem;
   padding-bottom: 1.4055636896rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1357,6 +1357,12 @@ table {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+@media (max-width: 899px) {
+  .ui-field__textarea {
+    padding-top: 1.2298682284rem;
+    padding-bottom: 1.2298682284rem;
+  }
 }
 .ui-field__textarea.required::before {
   top: 1.756954612rem;
@@ -1369,33 +1375,57 @@ table {
   line-height: 1.2;
   color: #E22E2E;
   padding-left: 3.1625183016rem;
+  position: absolute;
+  bottom: 0.5270863836rem;
 }
 @media (max-width: 899px) {
   .ui-field label.error {
     font-size: 1.0541727672rem;
+    bottom: 0.3513909224rem;
   }
 }
 
 .ui-field__input.required.input-active > .ui-label {
   position: relative;
-  -webkit-transform: translateX(-2.8111273792rem) scale(0.75);
-      -ms-transform: translateX(-2.8111273792rem) scale(0.75);
-          transform: translateX(-2.8111273792rem) scale(0.75);
+  -webkit-transform: translateX(-2.8111273792rem) translateY(-1.9326500732rem) scale(0.75);
+      -ms-transform: translateX(-2.8111273792rem) translateY(-1.9326500732rem) scale(0.75);
+          transform: translateX(-2.8111273792rem) translateY(-1.9326500732rem) scale(0.75);
+}
+@media (max-width: 899px) {
+  .ui-field__input.required.input-active > .ui-label {
+    -webkit-transform: translateX(-2.8111273792rem) translateY(-1.4055636896rem) scale(0.7);
+        -ms-transform: translateX(-2.8111273792rem) translateY(-1.4055636896rem) scale(0.7);
+            transform: translateX(-2.8111273792rem) translateY(-1.4055636896rem) scale(0.7);
+  }
 }
 
 .ui-field__textarea.required.input-active > .ui-label {
-  -webkit-transform: translateY(26%) translateX(-1.4055636896rem) scale(0.75);
-      -ms-transform: translateY(26%) translateX(-1.4055636896rem) scale(0.75);
-          transform: translateY(26%) translateX(-1.4055636896rem) scale(0.75);
+  -webkit-transform: translateX(-6.3250366032rem) translateY(-1.2298682284rem) scale(0.75);
+      -ms-transform: translateX(-6.3250366032rem) translateY(-1.2298682284rem) scale(0.75);
+          transform: translateX(-6.3250366032rem) translateY(-1.2298682284rem) scale(0.75);
+}
+@media (max-width: 899px) {
+  .ui-field__textarea.required.input-active > .ui-label {
+    -webkit-transform: translateX(-6.6764275256rem) translateY(-1.2298682284rem) scale(0.7);
+        -ms-transform: translateX(-6.6764275256rem) translateY(-1.2298682284rem) scale(0.7);
+            transform: translateX(-6.6764275256rem) translateY(-1.2298682284rem) scale(0.7);
+  }
+}
+@media (max-width: 599px) {
+  .ui-field__textarea.required.input-active > .ui-label {
+    -webkit-transform: translateX(-2.8111273792rem) translateY(-1.2298682284rem) scale(0.7);
+        -ms-transform: translateX(-2.8111273792rem) translateY(-1.2298682284rem) scale(0.7);
+            transform: translateX(-2.8111273792rem) translateY(-1.2298682284rem) scale(0.7);
+  }
 }
 
 .ui-label {
   position: relative;
   z-index: 1;
   left: 0;
-  -webkit-transform: translateY(50%);
-      -ms-transform: translateY(50%);
-          transform: translateY(50%);
+  -webkit-transform: translateY(0%);
+      -ms-transform: translateY(0%);
+          transform: translateY(0%);
   font-size: 1.756954612rem;
   line-height: 1.2;
   opacity: 0.5;
@@ -1413,8 +1443,6 @@ table {
   }
 }
 .ui-label__textarea {
-  position: absolute;
-  top: 0.3513909224rem;
   left: 0;
 }
 
@@ -1427,6 +1455,11 @@ table {
   position: relative;
   padding-left: 3.1625183016rem;
   padding-right: 3.1625183016rem;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 @media (max-width: 899px) {
   .ui-input {
@@ -1448,6 +1481,9 @@ table {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+  -webkit-transform: translateY(-1.0541727672rem);
+      -ms-transform: translateY(-1.0541727672rem);
+          transform: translateY(-1.0541727672rem);
   overflow: -moz-scrollbars-none;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -1461,6 +1497,9 @@ table {
 @media (max-width: 899px) {
   .ui-textarea {
     font-size: 1.4055636896rem;
+    -webkit-transform: translateY(-1.5812591508rem);
+        -ms-transform: translateY(-1.5812591508rem);
+            transform: translateY(-1.5812591508rem);
   }
 }
 

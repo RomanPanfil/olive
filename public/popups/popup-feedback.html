@@ -99,6 +99,23 @@
         // Проверяем состояние поля при загрузке страницы
         updateInputActiveClass(input);
       }); 
+
+      document.querySelectorAll('.ui-field.required > .ui-textarea').forEach(input => {
+        input.addEventListener('focus', () => {
+          input.closest('.ui-field').classList.add('input-active');
+        });
+        
+        input.addEventListener('blur', () => {
+          updateInputActiveClass(input);
+        });
+        
+        input.addEventListener('input', () => {
+          updateInputActiveClass(input);
+        });
+
+        // Проверяем состояние поля при загрузке страницы
+        updateInputActiveClass(input);
+      }); 
       
       $('.ui-select, .ui-checkbox').styler();
 
