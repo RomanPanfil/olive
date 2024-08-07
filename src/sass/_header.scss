@@ -108,6 +108,7 @@
         img {
             width: p2r(77.5);
             height: auto;
+            display: block;
 
             @include mobile {
                 width: p2r(54);               

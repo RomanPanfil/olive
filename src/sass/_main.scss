@@ -3685,7 +3685,17 @@
   }
 
   .mfp-close {
-    top: p2r(8);
+    top: p2r(40);
+    right: p2r(36);
+
+    @include tablet {
+      top: p2r(42);
+      right: p2r(10);
+    }  
+
+    @include mobile {
+      top: p2r(8);
+    }    
   }          
 }
 

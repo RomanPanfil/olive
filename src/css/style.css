@@ -2227,6 +2227,7 @@ table {
 .header-logo img {
   width: 6.8081991215rem;
   height: auto;
+  display: block;
 }
 @media (max-width: 599px) {
   .header-logo img {
@@ -6385,7 +6386,19 @@ table {
   }
 }
 .popup-feedback .mfp-close {
-  top: 0.7027818448rem;
+  top: 3.513909224rem;
+  right: 3.1625183016rem;
+}
+@media (max-width: 899px) {
+  .popup-feedback .mfp-close {
+    top: 3.6896046852rem;
+    right: 0.878477306rem;
+  }
+}
+@media (max-width: 599px) {
+  .popup-feedback .mfp-close {
+    top: 0.7027818448rem;
+  }
 }
 
 .popup-success {
