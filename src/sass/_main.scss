@@ -3578,6 +3578,10 @@
     line-height: 1.2;
     margin-bottom: p2r(8);
 
+    @include tablet {
+      margin-top: p2r(24);
+    }
+
     @include mobile {
       font-size: p2r(14);
     }
@@ -3689,7 +3693,7 @@
     right: p2r(36);
 
     @include tablet {
-      top: p2r(42);
+      top: p2r(43);
       right: p2r(10);
     }  
 

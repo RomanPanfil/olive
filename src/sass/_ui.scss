@@ -945,6 +945,10 @@ table {
 
 		& + .textarea-item {
 			margin-top: p2r(4);
+
+			@include tablet {
+				margin-top: p2r(7);
+			}
 		}
 
 		@include mobile {
@@ -1048,8 +1052,6 @@ table {
 		line-height: 1.2;
 		color: $error;
 		padding-left: p2r(36);
-		position: absolute;
-		bottom: p2r(6);
 
 		@include tablet {
 			font-size: p2r(12);
@@ -1060,23 +1062,22 @@ table {
 
 .ui-field__input.required.input-active > .ui-label {
 	position: relative;
-	transform: translateX(p2r(-32)) translateY(p2r(-22)) scale(.75);
+	transform: translateX(p2r(-32)) translateY(0%) scale(.75);
 
 	@include tablet {
-		transform: translateX(p2r(-32)) translateY(p2r(-16)) scale(.7);
+		transform: translateX(p2r(-32)) translateY(p2r(0)) scale(.7);
 	}
 }
 
 .ui-field__textarea.required.input-active > .ui-label {
-	// position: relative;
-	transform: translateX(p2r(-72)) translateY(p2r(-14)) scale(.75);
+	transform: translateX(p2r(-18)) translateY(p2r(-14)) scale(.75);
 
 	@include tablet {
-		transform: translateX(p2r(-76)) translateY(p2r(-14)) scale(.7);
+		transform: translateX(p2r(-16)) translateY(p2r(-18)) scale(.7);
 	}
 
 	@include mobile {
-		transform: translateX(p2r(-32)) translateY(p2r(-14)) scale(.7);
+		transform: translateX(p2r(-16)) translateY(p2r(-16)) scale(.7);
 	}
 	
 }
@@ -1085,7 +1086,6 @@ table {
 	position: relative;
 	z-index: 1;
 	left: 0;
-	// top: 50%;
 	transform: translateY(0%);	
 	font-size: p2r(20);
 	line-height: 1.2;
@@ -1094,12 +1094,11 @@ table {
 	padding-right: p2r(36);
 	transition: transform 0.3s, color 0.3s;	
 
+	transform: translateY(0%);	
+	position: absolute;	
+		
 	@include tablet {
 		font-size: p2r(16);
-	}
-
-	&__textarea {
-		left: 0;
 	}
 }
 
@@ -1112,13 +1111,15 @@ table {
 	position: relative;
 	padding-left: p2r(36);
 	padding-right: p2r(36);
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
+	margin-bottom: p2r(4);	
 
 	@include tablet {
 		font-size: p2r(16);
 	}
+}
+
+.ui-field__input:not(.input-active):has(.ui-input.error) .ui-label {
+    transform: translateY(-30%);
 }
 
 .ui-textarea {
@@ -1133,10 +1134,7 @@ table {
 	resize: none;
 	width: 100%;
 	flex-grow: 1;
-
-	transform: translateY(p2r(-12));
-
-	
+	padding-top: p2r(8);	
 
 	overflow: -moz-scrollbars-none;
 	-ms-overflow-style: none;
@@ -1151,8 +1149,8 @@ table {
 
 	@include tablet {
 		font-size: p2r(16);
-
 		transform: translateY(p2r(-18));
+		padding-top: p2r(18);
 	}
 }
 
