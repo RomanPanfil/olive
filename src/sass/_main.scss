@@ -1627,6 +1627,20 @@
       rgba(52, 65, 53, 1) 75%,
       rgba(52, 65, 53, 0) 93%
       );
+      aspect-ratio: 1.78;
+      object-fit: cover;
+      object-position: center;
+
+      @include tablet {
+        aspect-ratio: 0.65;     
+        object-position: center right;
+        object-position: p2r(-870) p2r(0);
+      }
+
+      @include mobile {
+        aspect-ratio: 0.53;
+        object-position: p2r(-570) p2r(0);
+      }
     }
   
     &-image {
@@ -1736,8 +1750,16 @@
       border-top-right-radius: p2r(40);
       width: 100%;
       height: auto;
+      aspect-ratio: 2.5;
+      object-fit: cover;
+      object-position: center;
+
+      @include tablet {
+        aspect-ratio: 1.13;
+      }
 
       @include mobile {
+        aspect-ratio: 1.34;
         border-top-left-radius: p2r(0);
         border-top-right-radius: p2r(0);
         border-bottom-left-radius: p2r(24);
@@ -2273,9 +2295,7 @@
 
     @include tablet {
       aspect-ratio: 2.52;
-      display: block;
-  
-      border-radius: p2r(24);
+      display: block;      
       overflow: hidden;
     }
 
@@ -2295,6 +2315,12 @@
       border-radius: p2r(24);
       z-index: 2;
 
+      @include tablet {
+        object-position: center;  
+        border-radius: 0 0 p2r(24) p2r(24);
+        filter: brightness(70%);
+      }
+
       @include mobile {
         aspect-ratio: 1.23;
       }
@@ -2309,6 +2335,7 @@
     margin-bottom: p2r(80);
     overflow: hidden;
     margin-top: p2r(22);
+    min-height: p2r(300);
 
     @include tablet {
       padding: 0;
@@ -2317,6 +2344,7 @@
       margin-bottom: p2r(56);
       background: none;
       border-radius: 0;
+      min-height: unset;
     }
 
     @include mobile {

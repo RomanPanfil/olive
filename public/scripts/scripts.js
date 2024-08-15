@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Функция для обработки изменения состояния истории
   function handlePopState(event) {
-    if (isPopupOpen) {
+    if ($.magnificPopup.instance.isOpen) {
       $.magnificPopup.close();
       isPopupOpen = false;
     }
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('popstate', handlePopState);
 
   // Обработчик закрытия попапа при нажатии Escape
-  $(document).keydown(function(e) {
+  $(document).keydown(function(e) {    
     if (e.keyCode === 27 && isPopupOpen) {
       history.back();
     }
@@ -212,9 +212,12 @@ document.addEventListener('DOMContentLoaded', () => {
               hidePreloader();          
             }, 700);
             document.documentElement.style.overflow = 'hidden';
+            history.pushState({ popup: 'gallery' }, '');
+            isPopupOpen = true;
           },
           close: function() {
             document.documentElement.style.overflow = '';
+            isPopupOpen = false;
           },
           imageLoadComplete: function() {
             // Скрываем прелоадер после загрузки изображения

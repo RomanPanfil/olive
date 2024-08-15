@@ -4315,6 +4315,27 @@ table {
   mask-image: linear-gradient(to bottom, #344135 0%, #344135 75%, rgba(52, 65, 53, 0) 93%);
   -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(#344135), color-stop(75%, #344135), color-stop(93%, rgba(52, 65, 53, 0)));
   -webkit-mask-image: linear-gradient(to bottom, #344135 0%, #344135 75%, rgba(52, 65, 53, 0) 93%);
+  aspect-ratio: 1.78;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+@media (max-width: 899px) {
+  .service-category-image, .service-category-img {
+    aspect-ratio: 0.65;
+    -o-object-position: center right;
+       object-position: center right;
+    -o-object-position: -76.4275256223rem 0;
+       object-position: -76.4275256223rem 0;
+  }
+}
+@media (max-width: 599px) {
+  .service-category-image, .service-category-img {
+    aspect-ratio: 0.53;
+    -o-object-position: -50.0732064422rem 0;
+       object-position: -50.0732064422rem 0;
+  }
 }
 .service-category-image {
   z-index: -2;
@@ -4422,9 +4443,20 @@ table {
   border-top-right-radius: 3.513909224rem;
   width: 100%;
   height: auto;
+  aspect-ratio: 2.5;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+@media (max-width: 899px) {
+  .subcategory-banner-image {
+    aspect-ratio: 1.13;
+  }
 }
 @media (max-width: 599px) {
   .subcategory-banner-image {
+    aspect-ratio: 1.34;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     border-bottom-left-radius: 2.1083455344rem;
@@ -4961,7 +4993,6 @@ table {
   .subcategory-picture {
     aspect-ratio: 2.52;
     display: block;
-    border-radius: 2.1083455344rem;
     overflow: hidden;
   }
 }
@@ -4984,6 +5015,15 @@ table {
   border-radius: 2.1083455344rem;
   z-index: 2;
 }
+@media (max-width: 899px) {
+  .subcategory-picture-bg {
+    -o-object-position: center;
+       object-position: center;
+    border-radius: 0 0 2.1083455344rem 2.1083455344rem;
+    -webkit-filter: brightness(70%);
+            filter: brightness(70%);
+  }
+}
 @media (max-width: 599px) {
   .subcategory-picture-bg {
     aspect-ratio: 1.23;
@@ -4997,6 +5037,7 @@ table {
   margin-bottom: 7.027818448rem;
   overflow: hidden;
   margin-top: 1.9326500732rem;
+  min-height: 26.3543191801rem;
 }
 @media (max-width: 899px) {
   .subcategory-presentation {
@@ -5006,6 +5047,7 @@ table {
     margin-bottom: 4.9194729136rem;
     background: none;
     border-radius: 0;
+    min-height: unset;
   }
 }
 @media (max-width: 599px) {
