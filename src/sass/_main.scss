@@ -133,14 +133,12 @@
   &-text {
     margin-right: p2r(16);
 
-    a {
-      color: $font_white;
-
-      @media (hover: hover) and (pointer: fine) {
-        &:hover {
-            color: $font_accent;
-        }
+    span {
+      color: $font_accent;
     }
+
+    a {
+      color: $font_white;      
     }
 
     @include mobile {
@@ -2228,6 +2226,53 @@
         margin-right: p2r(-240);
         margin-right: p2r(-220);
       }
+
+      &__pair {
+        margin-left: p2r(-334);
+        margin-right: p2r(-121);
+
+        @include tablet {
+          margin-left: p2r(-315);
+          margin-right: p2r(-147);
+        }
+
+        @include mobile {
+          margin-left: 0;
+          margin-right: p2r(16);
+        }
+
+        .swiper-slide {
+          &:first-of-type {
+            .gallery-image {
+              padding-left: p2r(334);
+
+              @include tablet {
+                padding-left: p2r(315);
+              }
+
+              @include mobile {
+                padding-left: 0;
+              }
+            }
+          }
+
+          &:last-of-type {
+            .gallery-image {
+              padding-left: p2r(18);
+
+              @include mobile {
+                padding-left: p2r(8);
+              }
+            }
+          }
+        }
+
+        
+
+        .swiper {
+          overflow: visible;
+        }
+      }
     }
   }
 
@@ -2531,7 +2576,8 @@
     padding: p2r(32) p2r(20);
     border-radius: p2r(24);
     max-width: p2r(184);
-    transition: background-color 0.3s; 
+    transition: background-color 0.3s;
+    width: max-content;
     
     @include tablet {
       max-width: none;      

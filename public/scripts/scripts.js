@@ -926,7 +926,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 
-  // слайдер фотографий услуги
+  // слайдер фотографий услуги оригинал
   // (function() {
   //   if (!document.querySelector('.galley-slider')) return;
   
@@ -1005,78 +1005,215 @@ document.addEventListener('DOMContentLoaded', () => {
   //     });
   //   }
   // })();
-  // слайдер фотографий услуги
-(function() {
-  if (!document.querySelector('.galley-slider')) return;
 
-  // Функция для обработки слайдов
-  function handleSlides() {
-    const slider = document.querySelector('.galley-slider .swiper-wrapper');
-    const slides = slider.querySelectorAll('.swiper-slide');
-    const slidesCount = slides.length;
-    const sliderInner = document.querySelector('.subcategory-gallery-inner');
-    const sliderArrows = document.querySelector('.gallery-slider-arrows');
-    const sliderTitle = document.querySelector('.subcategory-content-title__gallery');
+  // слайдер фотографий услуги 2 варинат
+  // (function() {
+  //   if (!document.querySelector('.galley-slider')) return;
 
-    if (slidesCount === 1) {
+  //   // Функция для обработки слайдов
+  //   function handleSlides() {
+  //     const slider = document.querySelector('.galley-slider .swiper-wrapper');
+  //     const slides = slider.querySelectorAll('.swiper-slide');
+  //     const slidesCount = slides.length;
+  //     const sliderInner = document.querySelector('.subcategory-gallery-inner');
+  //     const sliderArrows = document.querySelector('.gallery-slider-arrows');  
+
+  //     if (slidesCount === 1) {
+    
+  //       if(sliderArrows) {
+  //         sliderArrows.style.display = 'none';
+  //       }
+  //       if(sliderInner) {
+  //         sliderInner.classList.add('subcategory-gallery-inner__single');
+  //       }      
+  //       return false;
+  //     } else {
+  //       // Убедимся, что у нас всегда есть хотя бы 4 слайда для корректной работы loop
+  //       const minSlides = 4;
+  //       if (slidesCount < minSlides) {
+  //         const slidesToAdd = minSlides - slidesCount;
+  //         for (let i = 0; i < slidesToAdd; i++) {
+  //           slides.forEach(slide => {
+  //             const clone = slide.cloneNode(true);
+  //             slider.appendChild(clone);
+  //           });
+  //         }
+  //       }
+  //       // Восстановим отображение стрелок, если они были скрыты
+  //       if(sliderArrows) {
+  //         sliderArrows.style.display = '';
+  //       }
+      
+  //       return true;
+  //     }
+  //   }  
+
+  //   const shouldInitSwiper = handleSlides();
+
+  //   // Инициализируем Swiper только если слайдов больше одного
+  //   if (shouldInitSwiper) {
+  //     var swiper = new Swiper('.galley-slider', {   
+  //       grabCursor: true,     
+  //       slidesPerView: 2,
+  //       slidesPerGroup: 1,
+  //       spaceBetween: 0,
+  //       autoplay: false,
+  //       // loop: true,
+  //       loopedSlides: 4, // Устанавливаем минимальное количество слайдов для loop
+  //       keyboard: {
+  //         enabled: true,
+  //         pageUpDown: false
+  //       },
+  //       navigation: {
+  //         nextEl: ".slider-next",
+  //         prevEl: ".slider-prew",
+  //       },
+  //       breakpoints: {             
+  //         900: {
+  //           slidesPerView: 3,       
+  //           spaceBetween: 0,
+  //           loop: true,
+  //         },       
+  //       }
+  //     });  
+
+  //     document.addEventListener('keydown', function(event) {
+  //       if (event.key === 'ArrowLeft') {
+  //         swiper.slidePrev();
+  //       } else if (event.key === 'ArrowRight') {
+  //         swiper.slideNext();
+  //       }
+  //     });
+  //   }
+  // })();
+
+  // слайдер фотографий услуги 3 варинат
+  (function() {
+    if (!document.querySelector('.galley-slider')) return;
   
-      if(sliderArrows) {
-        sliderArrows.style.display = 'none';
-      }
-      if(sliderInner) {
-        sliderInner.classList.add('subcategory-gallery-inner__single');
-      }      
-      return false;
-    } else {
-      // Убедимся, что у нас всегда есть хотя бы 4 слайда для корректной работы loop
-      const minSlides = 4;
-      if (slidesCount < minSlides) {
-        const slidesToAdd = minSlides - slidesCount;
-        for (let i = 0; i < slidesToAdd; i++) {
-          slides.forEach(slide => {
-            const clone = slide.cloneNode(true);
-            slider.appendChild(clone);
-          });
+    // Функция для обработки слайдов
+    function handleSlides() {
+      const slider = document.querySelector('.galley-slider .swiper-wrapper');
+      const slides = slider.querySelectorAll('.swiper-slide');
+      const slidesCount = slides.length;
+      const sliderInner = document.querySelector('.subcategory-gallery-inner');
+      const sliderArrows = document.querySelector('.gallery-slider-arrows');  
+  
+      if (slidesCount === 1) {
+        if(sliderArrows) {
+          sliderArrows.style.display = 'none';
         }
+        if(sliderInner) {
+          sliderInner.classList.add('subcategory-gallery-inner__single');
+        }      
+        return 1;
+      } else if (slidesCount === 2) {
+        if(sliderArrows) {
+          sliderArrows.style.display = 'none';
+        }
+        if(sliderInner) {
+          sliderInner.classList.add('subcategory-gallery-inner__pair');
+        }
+        return 2;
+      } else {
+        if(sliderArrows) {
+          sliderArrows.style.display = '';
+        }
+        if(sliderInner) {
+          sliderInner.classList.remove('subcategory-gallery-inner__single', 'subcategory-gallery-inner__pair');
+        }
+        return slidesCount; // Возвращаем точное количество слайдов
       }
-      // Восстановим отображение стрелок, если они были скрыты
-      if(sliderArrows) {
-        sliderArrows.style.display = '';
+    }  
+  
+    const slidesCount = handleSlides();
+  
+    let swiperConfig;
+  
+    if (slidesCount >= 3) {
+      // Конфигурация для 3 и более слайдов
+      swiperConfig = {
+        grabCursor: true,     
+        slidesPerView: 2,
+        slidesPerGroup: 1,
+        spaceBetween: 0,
+        autoplay: false,
+        loop: true,
+        loopedSlides: 3, // Минимальное количество слайдов для зацикливания
+        keyboard: {
+          enabled: true,
+          pageUpDown: false
+        },
+        navigation: {
+          nextEl: ".slider-next",
+          prevEl: ".slider-prew",
+        },
+        breakpoints: {             
+          900: {
+            slidesPerView: 3,       
+            spaceBetween: 0,
+            loop: true,
+          },       
+        }
+      };
+  
+      // Если слайдов ровно 3, добавляем копии для корректного зацикливания
+      if (slidesCount === 3) {
+        const slider = document.querySelector('.galley-slider .swiper-wrapper');
+        const slides = slider.querySelectorAll('.swiper-slide');
+        slides.forEach(slide => {
+          const clone = slide.cloneNode(true);
+          slider.appendChild(clone);
+        });
       }
-     
-      return true;
+    } else if (slidesCount === 2) {
+      // Конфигурация для 2 слайдов
+      swiperConfig = {
+        grabCursor: true,     
+        slidesPerView: 1.2,
+        slidesPerGroup: 1,
+        spaceBetween: 0,
+        autoplay: false,
+        loop: false,
+        keyboard: {
+          enabled: true,
+          pageUpDown: false
+        },
+        navigation: {
+          nextEl: ".slider-next",
+          prevEl: ".slider-prew",
+        },
+        breakpoints: {
+          600: {
+            slidesPerView: 1.4,
+          },
+          900: {
+            slidesPerView: 1.3,
+          },
+        }
+      };
+    } else {
+      // Конфигурация для 1 слайда
+      swiperConfig = {
+        grabCursor: true,     
+        slidesPerView: 1,
+        slidesPerGroup: 1,
+        spaceBetween: 0,
+        autoplay: false,
+        loop: false,
+        keyboard: {
+          enabled: true,
+          pageUpDown: false
+        },
+        navigation: {
+          nextEl: ".slider-next",
+          prevEl: ".slider-prew",
+        }
+      };
     }
-  }  
-
-  const shouldInitSwiper = handleSlides();
-
-  // Инициализируем Swiper только если слайдов больше одного
-  if (shouldInitSwiper) {
-    var swiper = new Swiper('.galley-slider', {   
-      grabCursor: true,     
-      slidesPerView: 2,
-      slidesPerGroup: 1,
-      spaceBetween: 0,
-      autoplay: false,
-      loop: true,
-      loopedSlides: 4, // Устанавливаем минимальное количество слайдов для loop
-      keyboard: {
-        enabled: true,
-        pageUpDown: false
-      },
-      navigation: {
-        nextEl: ".slider-next",
-        prevEl: ".slider-prew",
-      },
-      breakpoints: {             
-        900: {
-          slidesPerView: 3,       
-          spaceBetween: 0,
-          loop: true,
-        },       
-      }
-    });  
-
+  
+    var swiper = new Swiper('.galley-slider', swiperConfig);  
+  
     document.addEventListener('keydown', function(event) {
       if (event.key === 'ArrowLeft') {
         swiper.slidePrev();
@@ -1084,8 +1221,7 @@ document.addEventListener('DOMContentLoaded', () => {
         swiper.slideNext();
       }
     });
-  }
-})();
+  })();
 
   // фиксирование блока при прокрутке
   // (function() {

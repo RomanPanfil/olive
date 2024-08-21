@@ -15,12 +15,12 @@
         font-size: p2r(72);
         line-height: 0.85;
         margin-bottom: p2r(48);
-        max-width: p2r(498);
+        // max-width: p2r(498);
         margin-top: p2r(24);
 
         @include tablet {
             font-size: p2r(32);
-            max-width: p2r(225);
+            // max-width: p2r(225);
             margin-bottom: p2r(26);
             margin-top: 0;
         }

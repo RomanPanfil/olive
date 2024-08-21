@@ -102,11 +102,11 @@ table {
 /*---- ICONS ---- */
 
 ::selection {
-	background: $bgc;
+	background: $font_black;
 	color: #FFF;
 }
 ::-moz-selection {
-	background: $bgc;
+	background: $font_black;
 	color: #FFF;	
 }
 @media (min-width: 992px) {
@@ -176,6 +176,14 @@ table {
 .hidden-mobile {
 	@include mobile {
 		display: none !important;
+	}
+}
+
+.visible-mobile {
+	display: none;
+	
+	@include mobile {
+		display: inherit !important;
 	}
 }
 
