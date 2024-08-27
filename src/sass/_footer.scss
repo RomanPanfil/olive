@@ -251,6 +251,18 @@
                     filter: brightness(10);
                 }
             }
+
+            img {
+                width: p2r(24);
+                height: p2r(24);
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: p2r(12);
+
+                @include mobile {
+                    filter: brightness(10);
+                }
+            }
         }
     }
 

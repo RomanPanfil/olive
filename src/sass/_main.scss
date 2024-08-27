@@ -133,9 +133,9 @@
   &-text {
     margin-right: p2r(16);
 
-    span {
-      color: $font_accent;
-    }
+    // span {
+    //   color: $font_accent;
+    // }
 
     a {
       color: $font_white;      
@@ -1727,6 +1727,8 @@
     padding-bottom: p2r(82);
     margin-top: p2r(9);
 
+    margin-bottom: p2r(-36);
+
     @include tablet {
       position: static;
       margin-top: 0;
@@ -1748,12 +1750,14 @@
       border-top-right-radius: p2r(40);
       width: 100%;
       height: auto;
+      height: 100%;
       aspect-ratio: 2.5;
       object-fit: cover;
       object-position: center;
 
       @include tablet {
         aspect-ratio: 1.13;
+        height: auto;
       }
 
       @include mobile {
@@ -1802,6 +1806,8 @@
     &-description {
       max-width: p2r(523);
       margin-left: auto;
+
+      padding-bottom: 36px;
 
       @include tablet {
         font-size: p2r(16);

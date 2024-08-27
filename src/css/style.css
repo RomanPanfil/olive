@@ -2788,9 +2788,6 @@ table {
 .cookie-text {
   margin-right: 1.4055636896rem;
 }
-.cookie-text span {
-  color: #E9B566;
-}
 .cookie-text a {
   color: #fff;
 }
@@ -4425,6 +4422,7 @@ table {
   padding-top: 3.3382137628rem;
   padding-bottom: 7.2035139092rem;
   margin-top: 0.7906295754rem;
+  margin-bottom: -3.1625183016rem;
 }
 @media (max-width: 899px) {
   .subcategory-banner {
@@ -4449,6 +4447,7 @@ table {
   border-top-right-radius: 3.513909224rem;
   width: 100%;
   height: auto;
+  height: 100%;
   aspect-ratio: 2.5;
   -o-object-fit: cover;
      object-fit: cover;
@@ -4458,6 +4457,7 @@ table {
 @media (max-width: 899px) {
   .subcategory-banner-image {
     aspect-ratio: 1.13;
+    height: auto;
   }
 }
 @media (max-width: 599px) {
@@ -4505,6 +4505,7 @@ table {
 .subcategory-text-description {
   max-width: 45.944363104rem;
   margin-left: auto;
+  padding-bottom: 36px;
 }
 @media (max-width: 899px) {
   .subcategory-text-description {
@@ -6832,6 +6833,19 @@ table {
 }
 @media (max-width: 599px) {
   .footer-feedback-socials svg {
+    -webkit-filter: brightness(10);
+            filter: brightness(10);
+  }
+}
+.footer-feedback-socials img {
+  width: 2.1083455344rem;
+  height: 2.1083455344rem;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 1.0541727672rem;
+}
+@media (max-width: 599px) {
+  .footer-feedback-socials img {
     -webkit-filter: brightness(10);
             filter: brightness(10);
   }

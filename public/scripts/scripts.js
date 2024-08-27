@@ -303,20 +303,29 @@ document.addEventListener('DOMContentLoaded', () => {
   
     function updateActiveLink() {
       let activeIndex;
-  
+    
       if (selectedIndex !== null && visibleSections.has(selectedIndex)) {
         activeIndex = selectedIndex;
-      } else {
+      } else if (visibleSections.size > 0) {
         activeIndex = Math.min(...visibleSections);
+      } else {
+        activeIndex = 0; // Если нет видимых секций, выбираем первый элемент
       }
-  
+    
+      let hasActiveLink = false;
       asideLinks.forEach((link, index) => {
         if (index === activeIndex) {
           link.classList.add('active');
+          hasActiveLink = true;
         } else {
           link.classList.remove('active');
         }
       });
+    
+      // Если после обхода нет активных ссылок, делаем активной первую
+      if (!hasActiveLink) {
+        asideLinks[0].classList.add('active');
+      }
     }
   
     function scrollToActiveLink() {
@@ -331,6 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
         selectedIndex = 0;
         smoothScroll(mainSections[0], 500);
       }
+      updateActiveLink(); // Добавляем вызов updateActiveLink() здесь
     }
   
     const observer = new IntersectionObserver((entries) => {
@@ -373,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
       link.addEventListener('click', (e) => {
         const parentLi = link.closest('li');
         const hasSubMenu = parentLi.querySelector('.header-nav-menu');
-  
+    
         if (parentLi.classList.contains('active')) {
           // Если элемент активен, предотвращаем стандартное действие и закрываем меню
           e.preventDefault();
@@ -388,7 +398,6 @@ document.addEventListener('DOMContentLoaded', () => {
           parentLi.classList.add('active');
           setTimeout(() => {
             scrollToActiveLink();
-            updateActiveLink();
           }, 0);
         }
         // Если элемент неактивен и не имеет подменю, позволяем стандартный переход по ссылке
