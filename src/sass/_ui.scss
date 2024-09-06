@@ -250,6 +250,17 @@ table {
 		padding-left: p2r(16);
 		padding-right: p2r(16);
 	}
+
+	&__base {
+		font-family: $basefont;
+	}
+
+	&-mid {
+		font-size: p2r(20);
+		font-family: $basefont;
+		height: p2r(64);
+		line-height: p2r(64);
+	}
 	
 	&-min {
 		font-size: p2r(16);
@@ -608,11 +619,11 @@ table {
 
 		span {
 			margin-left: p2r(6);
-			margin-right: p2r(12);
+			// margin-right: p2r(12);
 
 			@include tablet {
 				margin-left: p2r(3);
-				margin-right: p2r(9);
+				// margin-right: p2r(9);
 			}
 		}
 
@@ -624,11 +635,15 @@ table {
 			stroke-width: p2r(0.4);
 			display: inline-block;
 			vertical-align: middle;
+
+			margin-left: p2r(12);
 			
 			@include tablet {
 				width: p2r(16);
 				height: p2r(16);
 				margin-top: p2r(-3);
+
+				margin-left: p2r(9);
 			}
 		}
 	}
@@ -734,6 +749,11 @@ table {
 				}
 			}
 
+			&.disabled {
+				opacity: 0.5;
+				pointer-events: none;
+			}
+
 			&-icon {				
 				width: p2r(10);
 				height: p2r(20);
@@ -775,7 +795,8 @@ table {
 
 			@media (hover: hover) and (pointer: fine) {
 				&:hover {
-				  	color: $font_accent;					
+				  	color: $font_accent;		
+					opacity: 0.5;			
 				}
 			}   
 		}
@@ -786,6 +807,82 @@ table {
 
 		@include tablet {
 			margin-right: p2r(14);
+		}
+	}
+
+	&__dark {
+
+		.pagination {
+			&-more {
+				background-color: $primary;
+				backdrop-filter: blur(p2r(16));
+				color: $font_white;
+				transition: color 0.3s;
+
+				&-icon {
+					stroke: $font_white;
+					transition: stroke 0.3s;
+				}
+
+				@media (hover: hover) and (pointer: fine) {
+					&:hover {
+						color: $font_accent;
+						
+						.pagination-more-icon {
+							stroke: $font_accent;;
+						}
+					}
+				}   
+			}
+
+			&-list {
+				&::before, &::after {
+					background: $font_white;
+					opacity: 0.5;
+				}
+			}
+
+			&-nav {
+				background-color: $primary;
+				backdrop-filter: blur(p2r(16));
+			}
+
+			&-item {
+				margin-right: p2r(12);
+
+				&:last-of-type {
+					margin-right: 0;
+				}
+
+				&-nav {
+					color: $font_white;
+
+					@media (hover: hover) and (pointer: fine) {
+						&:hover {
+							color: $font_accent;
+						}
+					}
+
+					&-icon {
+						stroke: $font_white;
+					}
+				}
+
+				&-link {
+					color: $font_white;
+
+					&.active {
+						color: $font_accent;
+					}
+
+					@media (hover: hover) and (pointer: fine) {
+						&:hover {
+							color: $font_accent;		
+							opacity: 0.5;			
+						}
+					}   
+				}
+			}
 		}
 	}
 }

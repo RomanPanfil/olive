@@ -121,7 +121,8 @@
   -ms-align-self: center;
   align-self: center;
 }
-%flg {
+%flg,
+.flex-grow {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;

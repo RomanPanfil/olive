@@ -256,7 +256,11 @@ document.addEventListener('DOMContentLoaded', () => {
           },
           close: function() {
             document.documentElement.style.overflow = '';
-            isPopupOpen = false;            
+            isPopupOpen = false;
+            if (this.cleanupFunction) {
+              this.cleanupFunction();
+              this.cleanupFunction = null;
+            }    
           }          
         }
       });
@@ -266,23 +270,193 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // открытие меню в header
-  (function() {
-    const menuLinks = document.querySelectorAll('.header-nav > ul > li > a');
-    const asideLinks = document.querySelectorAll('.menu-aside > ul > li > a');
-    const mainSections = document.querySelectorAll('.menu-main-section');
-    const menuMain = document.querySelector('.menu-main');
-    const headerNavMenu = document.querySelector('.header-nav-menu-inner');
+  // (function() {
+  //   const menuLinks = document.querySelectorAll('.header-nav > ul > li > a');
+  //   const asideLinks = document.querySelectorAll('.menu-aside > ul > li > a');
+  //   const mainSections = document.querySelectorAll('.menu-main-section');
+  //   const menuMain = document.querySelector('.menu-main');
+  //   const headerNavMenu = document.querySelector('.header-nav-menu-inner');
   
+  //   let scrollOffset = parseInt(window.getComputedStyle(menuMain).marginTop, 10);
+  //   let selectedIndex = null;
+  //   let visibleSections = new Set();
+  
+  //   function smoothScroll(target, duration) {
+  //     const targetPosition = target.offsetTop - scrollOffset;
+  //     const startPosition = menuMain.scrollTop;
+  //     const distance = targetPosition - startPosition;
+  //     let startTime = null;
+  
+  //     function animation(currentTime) {
+  //       if (startTime === null) startTime = currentTime;
+  //       const timeElapsed = currentTime - startTime;
+  //       const run = ease(timeElapsed, startPosition, distance, duration);
+  //       menuMain.scrollTo(0, run);
+  //       if (timeElapsed < duration) requestAnimationFrame(animation);
+  //     }
+  
+  //     function ease(t, b, c, d) {
+  //       t /= d / 2;
+  //       if (t < 1) return c / 2 * t * t + b;
+  //       t--;
+  //       return -c / 2 * (t * (t - 2) - 1) + b;
+  //     }
+  
+  //     requestAnimationFrame(animation);
+  //   }   
+  
+  //   function updateActiveLink() {
+  //     let activeIndex;
+    
+  //     if (selectedIndex !== null && visibleSections.has(selectedIndex)) {
+  //       activeIndex = selectedIndex;
+  //     } else if (visibleSections.size > 0) {
+  //       activeIndex = Math.min(...visibleSections);
+  //     } else {
+  //       activeIndex = 0; // Если нет видимых секций, выбираем первый элемент
+  //     }
+    
+  //     let hasActiveLink = false;
+  //     asideLinks.forEach((link, index) => {
+  //       if (index === activeIndex) {
+  //         link.classList.add('active');
+  //         hasActiveLink = true;
+  //       } else {
+  //         link.classList.remove('active');
+  //       }
+  //     });
+    
+  //     // Если после обхода нет активных ссылок, делаем активной первую
+  //     if (!hasActiveLink) {
+  //       asideLinks[0].classList.add('active');
+  //     }
+  //   }
+  
+  //   function scrollToActiveLink() {
+  //     const activeLink = document.querySelector('.menu-aside > ul > li > a.active');
+  //     if (activeLink) {
+  //       const index = Array.from(asideLinks).indexOf(activeLink);
+  //       selectedIndex = index;
+  //       smoothScroll(mainSections[index], 500);
+  //     } else {
+  //       // Если нет активных ссылок, делаем активной первую и скроллим к ней
+  //       asideLinks[0].classList.add('active');
+  //       selectedIndex = 0;
+  //       smoothScroll(mainSections[0], 500);
+  //     }
+  //     updateActiveLink(); // Добавляем вызов updateActiveLink() здесь
+  //   }
+  
+  //   const observer = new IntersectionObserver((entries) => {
+  //     entries.forEach(entry => {
+  //       const index = Array.from(mainSections).indexOf(entry.target);
+  //       if (entry.isIntersecting) {
+  //         visibleSections.add(index);
+  //       } else {
+  //         visibleSections.delete(index);
+  //       }
+  //     });
+  //     if (selectedIndex === null) {
+  //       updateActiveLink();
+  //     }
+  //   }, {
+  //     root: menuMain,
+  //     rootMargin: `-${scrollOffset}px 0px -${scrollOffset}px 0px`,
+  //     threshold: 0.1
+  //   });
+  
+  //   mainSections.forEach(section => observer.observe(section));
+  
+  //   asideLinks.forEach((link, index) => {
+  //     link.addEventListener('click', (e) => {
+  //       e.preventDefault();
+  //       selectedIndex = index;
+  //       smoothScroll(mainSections[index], 500);
+  //       updateActiveLink();
+  //     });
+  //   });
+  
+  //   menuMain.addEventListener('scroll', () => {
+  //     if (menuMain.scrollTop === 0) {
+  //       selectedIndex = null;
+  //     }
+  //     updateActiveLink();
+  //   });
+
+  //   menuLinks.forEach(link => {
+  //     link.addEventListener('click', (e) => {
+  //       const parentLi = link.closest('li');
+  //       const hasSubMenu = parentLi.querySelector('.header-nav-menu');
+    
+  //       if (parentLi.classList.contains('active')) {
+  //         // Если элемент активен, предотвращаем стандартное действие и закрываем меню
+  //         e.preventDefault();
+  //         parentLi.classList.remove('active');
+  //       } else if (hasSubMenu) {
+  //         // Если элемент неактивен, но имеет подменю, открываем его
+  //         e.preventDefault();
+  //         // Закрываем все другие открытые меню
+  //         menuLinks.forEach(otherLink => {
+  //           otherLink.closest('li').classList.remove('active');
+  //         });
+  //         parentLi.classList.add('active');
+  //         setTimeout(() => {
+  //           scrollToActiveLink();
+  //         }, 0);
+  //       }
+  //       // Если элемент неактивен и не имеет подменю, позволяем стандартный переход по ссылке
+  //     });
+  //   });
+  
+  //   document.addEventListener('click', (e) => {
+  //     if (!headerNavMenu.contains(e.target) && !e.target.closest('.header-nav > ul > li > a')) {
+  //       menuLinks.forEach(link => {
+  //         link.closest('li').classList.remove('active');
+  //       });
+  //     }
+  //   });
+  
+  //   window.addEventListener('resize', () => {
+  //     scrollOffset = parseInt(window.getComputedStyle(menuMain).marginTop, 10);
+  //     observer.disconnect();
+  //     observer.rootMargin = `-${scrollOffset}px 0px -${scrollOffset}px 0px`;
+  //     mainSections.forEach(section => observer.observe(section));
+  //   });
+  
+  //   // Инициализация: установка selectedIndex на основе изначально активной ссылки
+  //   const initialActiveLink = document.querySelector('.menu-aside > ul > li > a.active');
+  //   if (initialActiveLink) {
+  //     selectedIndex = Array.from(asideLinks).indexOf(initialActiveLink);
+  //   }
+  // })();
+
+      // открытие меню в header
+(function() {
+  const menuLinks = document.querySelectorAll('.header-nav > ul > li > a');
+  const menuStates = new Map(); // Для хранения состояния каждого меню
+
+  menuLinks.forEach(link => {
+    const parentLi = link.closest('li');
+    const headerNavMenu = parentLi.querySelector('.header-nav-menu-inner');
+    
+    if (!headerNavMenu) return; // Пропускаем, если нет подменю
+
+    const menuMain = headerNavMenu.querySelector('.menu-main');
+    const asideLinks = headerNavMenu.querySelectorAll('.menu-aside-nav > ul > li > a');
+    const mainSections = headerNavMenu.querySelectorAll('.menu-main-section');
+
+    
+
     let scrollOffset = parseInt(window.getComputedStyle(menuMain).marginTop, 10);
     let selectedIndex = null;
-    let visibleSections = new Set();
-  
+    let visibleSections = new Set();   
+
     function smoothScroll(target, duration) {
       const targetPosition = target.offsetTop - scrollOffset;
       const startPosition = menuMain.scrollTop;
       const distance = targetPosition - startPosition;
       let startTime = null;
-  
+
       function animation(currentTime) {
         if (startTime === null) startTime = currentTime;
         const timeElapsed = currentTime - startTime;
@@ -290,28 +464,28 @@ document.addEventListener('DOMContentLoaded', () => {
         menuMain.scrollTo(0, run);
         if (timeElapsed < duration) requestAnimationFrame(animation);
       }
-  
+
       function ease(t, b, c, d) {
         t /= d / 2;
         if (t < 1) return c / 2 * t * t + b;
         t--;
         return -c / 2 * (t * (t - 2) - 1) + b;
       }
-  
+
       requestAnimationFrame(animation);
     }   
-  
+
     function updateActiveLink() {
       let activeIndex;
-    
+
       if (selectedIndex !== null && visibleSections.has(selectedIndex)) {
         activeIndex = selectedIndex;
       } else if (visibleSections.size > 0) {
         activeIndex = Math.min(...visibleSections);
       } else {
-        activeIndex = 0; // Если нет видимых секций, выбираем первый элемент
+        activeIndex = 0;
       }
-    
+
       let hasActiveLink = false;
       asideLinks.forEach((link, index) => {
         if (index === activeIndex) {
@@ -321,28 +495,36 @@ document.addEventListener('DOMContentLoaded', () => {
           link.classList.remove('active');
         }
       });
-    
-      // Если после обхода нет активных ссылок, делаем активной первую
+
       if (!hasActiveLink) {
         asideLinks[0].classList.add('active');
       }
+
+      // Сохраняем состояние меню
+      menuStates.set(parentLi, activeIndex);
     }
-  
+
     function scrollToActiveLink() {
-      const activeLink = document.querySelector('.menu-aside > ul > li > a.active');
+      // Восстанавливаем состояние меню, если оно было сохранено
+      if (menuStates.has(parentLi)) {
+        selectedIndex = menuStates.get(parentLi);
+      }
+
+      const activeLink = headerNavMenu.querySelector('.menu-aside-nav > ul > li > a.active');
+
+      if(!activeLink) return;
+
       if (activeLink) {
         const index = Array.from(asideLinks).indexOf(activeLink);
         selectedIndex = index;
-        smoothScroll(mainSections[index], 500);
-      } else {
-        // Если нет активных ссылок, делаем активной первую и скроллим к ней
-        asideLinks[0].classList.add('active');
+      } else if (selectedIndex === null) {
         selectedIndex = 0;
-        smoothScroll(mainSections[0], 500);
       }
-      updateActiveLink(); // Добавляем вызов updateActiveLink() здесь
+
+      smoothScroll(mainSections[selectedIndex], 500);
+      updateActiveLink();
     }
-  
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const index = Array.from(mainSections).indexOf(entry.target);
@@ -360,9 +542,9 @@ document.addEventListener('DOMContentLoaded', () => {
       rootMargin: `-${scrollOffset}px 0px -${scrollOffset}px 0px`,
       threshold: 0.1
     });
-  
+
     mainSections.forEach(section => observer.observe(section));
-  
+
     asideLinks.forEach((link, index) => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -371,7 +553,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateActiveLink();
       });
     });
-  
+
     menuMain.addEventListener('scroll', () => {
       if (menuMain.scrollTop === 0) {
         selectedIndex = null;
@@ -379,57 +561,52 @@ document.addEventListener('DOMContentLoaded', () => {
       updateActiveLink();
     });
 
-    menuLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        const parentLi = link.closest('li');
-        const hasSubMenu = parentLi.querySelector('.header-nav-menu');
-    
-        if (parentLi.classList.contains('active')) {
-          // Если элемент активен, предотвращаем стандартное действие и закрываем меню
-          e.preventDefault();
-          parentLi.classList.remove('active');
-        } else if (hasSubMenu) {
-          // Если элемент неактивен, но имеет подменю, открываем его
-          e.preventDefault();
-          // Закрываем все другие открытые меню
-          menuLinks.forEach(otherLink => {
-            otherLink.closest('li').classList.remove('active');
-          });
-          parentLi.classList.add('active');
-          setTimeout(() => {
-            scrollToActiveLink();
-          }, 0);
-        }
-        // Если элемент неактивен и не имеет подменю, позволяем стандартный переход по ссылке
-      });
-    });
-  
-    document.addEventListener('click', (e) => {
-      if (!headerNavMenu.contains(e.target) && !e.target.closest('.header-nav > ul > li > a')) {
-        menuLinks.forEach(link => {
-          link.closest('li').classList.remove('active');
+    link.addEventListener('click', (e) => {
+      const hasSubMenu = parentLi.querySelector('.header-nav-menu');
+
+      if (parentLi.classList.contains('active')) {
+        e.preventDefault();
+        parentLi.classList.remove('active');
+      } else if (hasSubMenu) {
+        e.preventDefault();
+        // Закрываем все другие открытые меню
+        menuLinks.forEach(otherLink => {
+          otherLink.closest('li').classList.remove('active');
         });
+        parentLi.classList.add('active');
+        setTimeout(() => {
+          scrollToActiveLink();
+        }, 0);
       }
     });
-  
+
+    document.addEventListener('click', (e) => {
+      if (!headerNavMenu.contains(e.target) && !e.target.closest('.header-nav > ul > li > a')) {
+        parentLi.classList.remove('active');
+      }
+    });
+
     window.addEventListener('resize', () => {
       scrollOffset = parseInt(window.getComputedStyle(menuMain).marginTop, 10);
       observer.disconnect();
       observer.rootMargin = `-${scrollOffset}px 0px -${scrollOffset}px 0px`;
       mainSections.forEach(section => observer.observe(section));
     });
-  
+
     // Инициализация: установка selectedIndex на основе изначально активной ссылки
-    const initialActiveLink = document.querySelector('.menu-aside > ul > li > a.active');
+    const initialActiveLink = headerNavMenu.querySelector('.menu-aside-nav > ul > li > a.active');
     if (initialActiveLink) {
       selectedIndex = Array.from(asideLinks).indexOf(initialActiveLink);
+      menuStates.set(parentLi, selectedIndex);
     }
-  })();
+  });
+})();
+
 
   // создание мобильного меню и логика работы мобильного меню
   (function() {
     const headerNav = document.querySelector('.header-nav');
-    const menuAside = document.querySelector('.menu-aside');
+    const menuAside = document.querySelector('.menu-aside-nav');
     const menuMain = document.querySelector('.menu-main');    
 
     if(!headerNav || !menuAside || !menuMain) return
@@ -592,13 +769,15 @@ document.addEventListener('DOMContentLoaded', () => {
     generateInitialMenu();
 
     // открытие/закрытие мобильного меню
-    const menuToggle = document.querySelector('.header-nav > ul > li > a');
-    menuToggle.addEventListener('click', (e) => {
-      e.preventDefault();
-      mobileMenu.classList.toggle('active');
-      document.body.classList.toggle('menu-open');
-    });
-  })();
+    // const menuToggle = document.querySelector('.header-nav > ul > li > a');
+    // menuToggle.addEventListener('click', (e) => {
+    //   e.preventDefault();
+    //   mobileMenu.classList.toggle('active');
+    //   document.body.classList.toggle('menu-open');
+    // });
+  })();  
+
+  
 
   // многоточие при переполнении текста в карточках
   (function() {
@@ -1675,5 +1854,229 @@ document.addEventListener('DOMContentLoaded', () => {
     
       // Запускаем обработку при загрузке страницы
       handleCookieConsent();
-    })();    
+    })();      
+
+  // бургер-меню
+  // (function() {
+  //   const header = document.querySelector('.header')
+  //   const burger = document.querySelector('.header-burger');
+  //   const burgerBtnIcon = document.querySelector('.header-burger span');
+  //   const menu = document.querySelector('.header-burger-menu');
+
+  //   if(!burger || !burgerBtnIcon || !menu) return;
+
+  //   burger.addEventListener('click', () => {
+  //     burgerBtnIcon.classList.toggle('active');
+  //     menu.classList.toggle('show');
+
+  //     if(menu.classList.contains('show')) {
+  //       document.body.classList.add('menu-open');
+  //     } else {
+  //       document.body.classList.remove('menu-open');
+  //     }
+  //     // document.body.classList.toggle('menu-open');
+  //     header.classList.toggle('hidden');
+  //   });
+
+  //   const menuList = document.querySelectorAll('.header-burger-menu-wrapper > ul > li');
+
+  //   menuList.forEach((menuListItem) => {
+  //     menuListItem.addEventListener('click', () => {
+  //       // Если кликнутый элемент уже активен, просто делаем его неактивным
+  //       if (menuListItem.classList.contains('active')) {
+  //         menuListItem.classList.remove('active');
+  //       } else {
+  //         // Иначе, сначала удаляем класс 'active' у всех элементов
+  //         menuList.forEach((item) => {
+  //           item.classList.remove('active');
+  //         });
+  //         // Затем добавляем класс 'active' только к кликнутому элементу          
+  //         menuListItem.classList.add('active');
+  //       }
+  //     })
+  //   })
+  // })();
+
+  // бургер-меню
+(function() {
+  const header = document.querySelector('.header')
+  const burger = document.querySelector('.header-burger');
+  const burgerBtnIcon = document.querySelector('.header-burger span');
+  const menu = document.querySelector('.header-burger-menu');
+
+  if(!burger || !burgerBtnIcon || !menu) return;
+
+  burger.addEventListener('click', () => {
+    burgerBtnIcon.classList.toggle('active');
+    menu.classList.toggle('show');
+
+    if(menu.classList.contains('show')) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
+    header.classList.toggle('hidden');
+  });
+
+  const menuList = document.querySelectorAll('.header-burger-menu-wrapper > ul > li');
+
+  menuList.forEach((menuListItem) => {
+    menuListItem.addEventListener('click', () => {
+      if (menuListItem.classList.contains('active')) {
+        // Если кликнутый элемент уже активен, делаем его неактивным
+        menuListItem.classList.remove('active');
+        menuList.forEach((item) => {
+          item.classList.remove('hidden-tablet');
+        });
+      } else {
+        // Иначе, обрабатываем клик на неактивный элемент
+        menuList.forEach((item) => {
+          if (item === menuListItem) {
+            item.classList.add('active');
+            item.classList.remove('hidden-tablet');
+          } else {
+            item.classList.remove('active');
+            item.classList.add('hidden-tablet');
+          }
+        });
+      }
+    })
+  })
+
+  const subMenuList = document.querySelectorAll('.header-burger-menu-wrapper > ul > li > ul > li');
+
+  subMenuList.forEach((menuListItem) => {
+    menuListItem.addEventListener('click', (ev) => {   
+      ev.stopPropagation();
+
+      if (menuListItem.classList.contains('active')) {
+        // Если кликнутый элемент уже активен, делаем его неактивным
+        menuListItem.classList.remove('active');
+        subMenuList.forEach((item) => {
+          item.classList.remove('hidden-tablet');
+        });
+      } else {
+        // Иначе, обрабатываем клик на неактивный элемент
+        subMenuList.forEach((item) => {
+          if (item === menuListItem) {
+            item.classList.add('active');
+            item.classList.remove('hidden-tablet');
+          } else {
+            item.classList.remove('active');
+            item.classList.add('hidden-tablet');
+          }
+        });
+      }
+    })
+  })
+
+  const subSubMenuList = document.querySelectorAll('.header-burger-menu-wrapper > ul > li > ul > li > ul > li');
+
+  subSubMenuList.forEach((menuListItem) => {
+    menuListItem.addEventListener('click', (ev) => {   
+      ev.stopPropagation();
+
+      if (menuListItem.classList.contains('active')) {
+        // Если кликнутый элемент уже активен, делаем его неактивным
+        menuListItem.classList.remove('active');
+        subSubMenuList.forEach((item) => {
+          item.classList.remove('hidden-tablet');
+        });
+      } else {
+        // Иначе, обрабатываем клик на неактивный элемент
+        subSubMenuList.forEach((item) => {
+          if (item === menuListItem) {
+            item.classList.add('active');
+            item.classList.remove('hidden-tablet');
+          } else {
+            item.classList.remove('active');
+            item.classList.add('hidden-tablet');
+          }
+        });
+      }
+    })
+  })
+
+})();
+
+  // важная новость
+  (function() {
+    function adjustHeaderTop() {
+      const importantNew = document.querySelector('.important-new');
+      const header = document.querySelector('.header');
+      const wrapper = document.querySelector('.wrapper');
+  
+      if (importantNew && header && wrapper && importantNew.classList.contains('show')) {
+        wrapper.classList.add('important');
+        const importantNewHeight = importantNew.offsetHeight;
+        header.style.top = `${importantNewHeight}px`;
+      }
+
+      const close = document.querySelector('.important-new-close');
+
+      if(close) {    
+        close.addEventListener('click', () => {
+          importantNew.classList.remove('show');
+          wrapper.classList.remove('important');
+          header.style.top = `0px`;
+        })
+      }
+    }    
+  
+    adjustHeaderTop();    
+   
+    window.addEventListener('resize', adjustHeaderTop);
+    
+  })();
+
+  // поиск
+  (function() {
+    const trigger = document.querySelector('.header-search');
+    const searchMenu = document.querySelector('.search');
+
+    if(!trigger || !searchMenu) return;
+
+    trigger.addEventListener('click', () => {
+      searchMenu.classList.add('show');
+
+      document.body.classList.add('menu-open');
+
+      const close = document.querySelector('.search-close');
+
+      if(close) {
+        close.addEventListener('click', () => {
+          searchMenu.classList.remove('show');
+          document.body.classList.remove('menu-open');
+        })        
+      }      
+    })
+
+    const searchInput = document.querySelector('.search .search-input');
+    const searchRemove = document.querySelector('.search .search-remove');
+
+    if(!searchInput || !searchRemove) return;
+
+    function toggleRemoveButton() {
+      if (searchInput.value.length > 0) {
+        searchRemove.classList.add('show');
+      } else {
+        searchRemove.classList.remove('show');
+      }
+    }
+
+    // Отслеживаем ввод
+    searchInput.addEventListener('input', toggleRemoveButton);
+    searchInput.addEventListener('change', toggleRemoveButton);
+    searchInput.addEventListener('keyup', toggleRemoveButton);
+
+    // Обработка клика по кнопке удаления
+    searchRemove.addEventListener('click', () => {
+        searchInput.value = '';
+        toggleRemoveButton();
+    });
+
+    toggleRemoveButton();
+  })();
+  
+
 })

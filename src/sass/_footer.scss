@@ -101,7 +101,6 @@
 
     &-links {
         border-bottom: 1px solid rgba(233, 181, 102, 0.3);
-        padding-bottom: p2r(22);
         margin-bottom: p2r(23);
         
         @include tablet {
@@ -120,19 +119,19 @@
         align-items: center;
         color: $font_accent;
         font-size: p2r(16);
+        font-size: p2r(16);
+        padding-bottom: p2r(24);
+        font-size: p2r(16);        
         padding-bottom: p2r(24);
 
         @include tablet {
             font-size: p2r(14);          
             flex-wrap: wrap;
             padding-bottom: p2r(16);
-            margin-bottom: p2r(16);
-            border-bottom: 1px solid rgba(233, 181, 102, 0.3);
         }
         
         @include mobile {
-            padding-bottom: p2r(22);
-            margin-bottom: p2r(22);
+            padding-bottom: 0;           
         }
 
         &-item {
@@ -155,7 +154,6 @@
             }
 
             @include mobile {
-                color: $font_white;
                 font-size: p2r(14);
                 margin-right: 0;               
                 width: 100%;              
@@ -209,13 +207,13 @@
 
             @include mobile {
                 margin-right: p2r(4);
-                filter: brightness(10);
                 margin-bottom: p2r(-1);
             }
         }
 
         &-socials {
             display: inline-block;
+            margin-left: auto;
 
             @include tablet {
                 margin-left: p2r(32);
@@ -246,6 +244,7 @@
                 display: inline-block;
                 vertical-align: middle;
                 margin-right: p2r(12);
+                // filter: brightness(10);
 
                 @include mobile {
                     filter: brightness(10);
@@ -337,8 +336,8 @@
 
             @include mobile {
                 flex-direction: column;
-                padding-bottom: p2r(22);
-                margin-bottom: p2r(22);
+                padding-bottom: p2r(16);
+                margin-bottom: p2r(16);
             }
            
         }   
@@ -385,7 +384,7 @@
                     top: 50%;
                     transform: translate(50%, -50%);
 
-                    @include mobile {
+                    @include tablet {
                         display: none;
                     }
                 }
@@ -406,8 +405,10 @@
         }
 
         @include mobile {
-            margin-bottom: p2r(8);
+            margin-bottom: 0;
+            margin-top: p2r(8);
             margin-right: 0;
+            order: 1;
         }
     }
 
