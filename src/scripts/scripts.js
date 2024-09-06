@@ -931,6 +931,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Добавляем обработчик на весь документ
     document.addEventListener('click', handleClick);
+
+    // Проверка фактической высоты текстового блока для того, чтобы вычислять добавлять полупрозрачнгость в конце или нет
+    function getActualHeight(element) {      
+      const clone = element.cloneNode(true);     
+      clone.style.maxHeight = 'none';
+      clone.style.position = 'absolute';
+      clone.style.visibility = 'hidden';
+      document.body.appendChild(clone);      
+      const height = clone.scrollHeight;     
+      document.body.removeChild(clone);
+
+      return height;
+    }     
+ 
+    const fulllHeight = getActualHeight(textBlock);
+    const actualHeight = parseFloat(window.getComputedStyle(textBlock).getPropertyValue('max-height')); 
+
+    if(fulllHeight <= actualHeight) {
+      textBlock.classList.add('not-collapse');
+    }
+  
   });
 })();
 

@@ -429,7 +429,7 @@ table {
 	}
 }
 
-.text-collapse {
+.text-collapse:not(.not-collapse) {
 	position: relative;
 	overflow: hidden;
 	transition: max-height 0.5s, opacity 0.5s;
