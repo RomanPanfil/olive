@@ -751,7 +751,11 @@
     &-subtitle {
       max-width: p2r(270);
       font-size: p2r(16);
-      line-height: 1.40;
+      line-height: 1.4;
+
+      @include tablet {
+        line-height: 1.2;
+      }
     }
     
     li {
@@ -830,6 +834,28 @@
       display: flex;
       align-items: center;
       color: $font_white;
+
+      @include mobile {
+        font-size: p2r(12);
+      }
+
+      &::before {
+        content: '';
+        // content: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.09766 8C6.98489 8.30831 10.3065 10.2165 11.0977 14" stroke="white"/><path d="M5.09766 8C6.98489 7.69169 10.3065 5.78351 11.0977 2" stroke="white"/></svg>');
+        background-image: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.09766 8C6.98489 8.30831 10.3065 10.2165 11.0977 14" stroke="white"/><path d="M5.09766 8C6.98489 7.69169 10.3065 5.78351 11.0977 2" stroke="white"/></svg>');;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: p2r(16) p2r(16);
+        width: p2r(16);
+        height: p2r(16);
+        margin-right: p2r(4);
+
+        @include mobile {
+          width: p2r(10);
+          height: p2r(10);
+          background-size: p2r(108) p2r(10);
+        }
+      }
 
       &-icon {
         width: p2r(16);
@@ -1733,8 +1759,8 @@
       padding: 0;
       margin: 0;
       border-radius: 0;
-      padding-top: p2r(16);
-      padding-bottom: p2r(16);
+      padding-top: p2r(17);
+      padding-bottom: p2r(17);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
       &.last {
@@ -1756,6 +1782,10 @@
       @include tablet {
         max-width: 100%;
         margin-bottom: 0;
+      }
+
+      @include mobile {
+        font-size: p2r(14);
       }
     }
 
@@ -2080,7 +2110,7 @@
       max-width: p2r(523);
       margin-left: auto;
 
-      padding-bottom: 36px;
+      padding-bottom: p2r(36);
 
       @include tablet {
         font-size: p2r(16);
@@ -2289,7 +2319,7 @@
     color: $font_black; 
     padding: p2r(20) p2r(32);
     background: $bg_light; 
-    backdrop-filter: blur(16px);  
+    backdrop-filter: blur(p2r(16));  
     border-radius: p2r(40);
     width: max-content;
     cursor: pointer;
@@ -4390,7 +4420,7 @@
   &-info {
 
     @include tablet {
-      margin-bottom: 12px;
+      margin-bottom: p2r(16);
     }
 
     ul {
@@ -4577,20 +4607,35 @@
 }
 
 .popup-selection {
+  position: relative;
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+
+  .header-nav-menu-inner {
+    max-width: p2r(1206);
+  }
+
   @include tablet {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
-    right: 0;       
+    right: 0;   
+    width: inherit;    
   }
   .mfp-close {
-    right: p2r(72);
-    top: p2r(32);
+    right: p2r(32);
+    top: p2r(28);
 
     @include tablet {
       right: p2r(16);
       top: p2r(16);
+    }
+
+    @include mobile {
+      right: p2r(10);
+      top: p2r(10);
     }
   }
 
@@ -4609,8 +4654,13 @@
   }
 
   .menu-main {
+    margin-top: p2r(16);
+    margin-bottom: p2r(0);
 
     &-title {
+      font-size: p2r(24);
+      margin-bottom: p2r(20);
+
       @include tablet {
         display: block;    
         font-family: $basefont;
@@ -4619,9 +4669,14 @@
         line-height: 1.1;
         margin-bottom: p2r(12);
       }
+
+      @include mobile {
+        font-size: p2r(16);
+      }
     }
 
     &-section {
+      margin-right: p2r(128);
       @include tablet {
         display: none;
         margin-bottom: 0;
@@ -4645,15 +4700,21 @@
   }
 
   .menu-aside-head {
+    margin-top: p2r(24);
     @include tablet {
       margin: 0;
     }
   }
 
-  .menu-aside-title {   
+  .menu-aside-title {
     @include tablet {
       max-width: none;
-      margin-bottom: p2r(32);
+      margin-bottom: p2r(44);
+    }
+
+    @include mobile {
+      font-size: p2r(20);
+      margin-bottom: p2r(26);
     }
   }
 
@@ -4661,6 +4722,10 @@
     @include tablet {
       max-width: none;
       margin-bottom: p2r(24);
+    }
+
+    @include mobile {
+      font-size: p2r(14);
     }
   }
 
@@ -4681,6 +4746,21 @@
           border-bottom: none;
         }
       }
+    }
+
+    li {
+      a {
+        @include mobile {
+          font-size: p2r(14);
+          gap: p2r(8);
+        }
+      }
+    }
+  }
+
+  .menu-aside-icon {
+    @include mobile {
+      margin-right: 0;
     }
   }
 }

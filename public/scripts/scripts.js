@@ -256,7 +256,11 @@ document.addEventListener('DOMContentLoaded', () => {
           },
           close: function() {
             document.documentElement.style.overflow = '';
-            isPopupOpen = false;            
+            isPopupOpen = false;
+            if (this.cleanupFunction) {
+              this.cleanupFunction();
+              this.cleanupFunction = null;
+            }    
           }          
         }
       });
@@ -2073,5 +2077,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     toggleRemoveButton();
   })();
+  
 
 })
