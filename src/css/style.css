@@ -4816,7 +4816,7 @@ table {
   max-height: 57.9795021962rem;
 }
 @media (hover: hover) and (pointer: fine) {
-  .subcategory-description-txt:not(.show):hover p, .subcategory-description-txt:not(.show):hover h3, .subcategory-description-txt:not(.show):hover h4, .subcategory-description-txt:not(.show):hover h5, .subcategory-description-txt:not(.show):hover ul, .subcategory-description-txt:not(.show):hover li {
+  .subcategory-description-txt:not(.show):not(.not-collapse):hover p, .subcategory-description-txt:not(.show):not(.not-collapse):hover h3, .subcategory-description-txt:not(.show):not(.not-collapse):hover h4, .subcategory-description-txt:not(.show):not(.not-collapse):hover h5, .subcategory-description-txt:not(.show):not(.not-collapse):hover ul, .subcategory-description-txt:not(.show):not(.not-collapse):hover li {
     opacity: 0.5;
   }
 }
@@ -5820,6 +5820,7 @@ table {
 }
 .document-info {
   max-width: 30.7467057101rem;
+  margin-right: 1.4055636896rem;
 }
 @media (max-width: 899px) {
   .document-info {
