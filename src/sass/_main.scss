@@ -2100,8 +2100,60 @@
       }
     }
 
-    &-txt {     
-      max-height: p2r(660);     
+    &-txt {    
+      
+       &:has(img) {
+        max-height: p2r(660);
+
+        @include tablet {
+          max-height: p2r(516);
+        }
+  
+        @include mobile {
+          max-height: p2r(468);
+        }
+      }
+
+   
+      &:not(:has(img)) {
+        max-height: p2r(168);
+
+        @include tablet {
+          max-height: p2r(132);
+        }
+  
+        @include mobile {
+          max-height: p2r(264);
+        }
+      }
+      
+      // /* Стили для случая, когда первый потомок - img */
+      // &:has(> img:first-child) {
+      //   max-height: p2r(660);
+
+      //   @include tablet {
+      //     max-height: p2r(516);
+      //   }
+  
+      //   @include mobile {
+      //     max-height: p2r(468);
+      //   }
+      // }
+
+      // /* Стили для случая, когда первый потомок - не img */
+      // &:not(:has(> img:first-child)) {
+      //   max-height: p2r(168);
+
+      //   @include tablet {
+      //     max-height: p2r(132);
+      //   }
+  
+      //   @include mobile {
+      //     max-height: p2r(264);
+      //   }
+      // }
+
+
       
       &:not(.show):not(.not-collapse) {
         @media (hover: hover) and (pointer: fine) {
@@ -2111,7 +2163,7 @@
             }            
           }
         }
-      }      
+      }
 
       @include tablet {
         max-height: p2r(516);

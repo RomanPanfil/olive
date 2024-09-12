@@ -948,6 +948,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if(fulllHeight <= actualHeight) {
       textBlock.classList.add('not-collapse');
+      expandButton.classList.add('hidden');
     }
   
   });

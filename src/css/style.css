@@ -891,6 +891,9 @@ table {
   display: inline-block;
   vertical-align: middle;
 }
+.text-expand.hidden {
+  display: none;
+}
 .text-expand-icon {
   width: 1.4055636896rem;
   height: 1.4055636896rem;
@@ -4812,8 +4815,31 @@ table {
     margin-bottom: 1.0541727672rem;
   }
 }
-.subcategory-description-txt {
+.subcategory-description-txt:has(img) {
   max-height: 57.9795021962rem;
+}
+@media (max-width: 899px) {
+  .subcategory-description-txt:has(img) {
+    max-height: 45.3294289898rem;
+  }
+}
+@media (max-width: 599px) {
+  .subcategory-description-txt:has(img) {
+    max-height: 41.1127379209rem;
+  }
+}
+.subcategory-description-txt:not(:has(img)) {
+  max-height: 14.7584187408rem;
+}
+@media (max-width: 899px) {
+  .subcategory-description-txt:not(:has(img)) {
+    max-height: 11.5959004392rem;
+  }
+}
+@media (max-width: 599px) {
+  .subcategory-description-txt:not(:has(img)) {
+    max-height: 23.1918008785rem;
+  }
 }
 @media (hover: hover) and (pointer: fine) {
   .subcategory-description-txt:not(.show):not(.not-collapse):hover p, .subcategory-description-txt:not(.show):not(.not-collapse):hover h3, .subcategory-description-txt:not(.show):not(.not-collapse):hover h4, .subcategory-description-txt:not(.show):not(.not-collapse):hover h5, .subcategory-description-txt:not(.show):not(.not-collapse):hover ul, .subcategory-description-txt:not(.show):not(.not-collapse):hover li {
