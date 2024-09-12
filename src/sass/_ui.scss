@@ -260,6 +260,12 @@ table {
 		font-family: $basefont;
 		height: p2r(64);
 		line-height: p2r(64);
+
+		@include tablet {
+			font-size: p2r(16);
+			height: p2r(51);
+			line-height: p2r(51)
+		}
 	}
 	
 	&-min {

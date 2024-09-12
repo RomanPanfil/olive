@@ -2078,5 +2078,65 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleRemoveButton();
   })();
   
+  // слайдер до/после
+  (function() {
+    const container = document.getElementById('beforeAfterSlider');
+    const handle = document.getElementById('sliderHandle');
+    const afterImage = container.querySelector('.comparison-image__after');
+
+    let isDragging = false;
+
+    const getPercentage = (clientX) => {
+        const containerRect = container.getBoundingClientRect();
+        let percentage = ((clientX - containerRect.left) / containerRect.width) * 100;
+        return Math.min(Math.max(percentage, 0), 100);
+    };
+
+    const updateSliderPosition = (percentage) => {
+        handle.style.left = `${percentage}%`;
+        afterImage.style.clipPath = `inset(0 0 0 ${percentage}%)`;
+    };
+
+    const onStart = (event) => {
+        isDragging = true;
+        event.preventDefault();
+    };
+
+    const onMove = (event) => {
+        if (!isDragging) return;
+        const clientX = event.type.includes('mouse') ? event.clientX : event.touches[0].clientX;
+        updateSliderPosition(getPercentage(clientX));
+        event.preventDefault();
+    };
+
+    const onEnd = () => {
+        isDragging = false;
+    };
+
+    // Mouse Events
+    handle.addEventListener('mousedown', onStart);
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onEnd);
+
+    // Touch Events
+    handle.addEventListener('touchstart', onStart);
+    document.addEventListener('touchmove', onMove);
+    document.addEventListener('touchend', onEnd);
+
+    container.addEventListener('selectstart', (e) => e.preventDefault());
+
+    const setInitialPosition = () => {
+      const screenWidth = window.innerWidth;
+      if (screenWidth <= 599) {
+        updateSliderPosition(50);
+      } else {
+        updateSliderPosition(33);
+      }
+    };
+
+    setInitialPosition();
+ 
+    window.addEventListener('resize', setInitialPosition);
+  })();
 
 })

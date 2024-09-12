@@ -693,6 +693,13 @@ table {
   height: 5.6222547584rem;
   line-height: 5.6222547584rem;
 }
+@media (max-width: 899px) {
+  .ui-btn-mid {
+    font-size: 1.4055636896rem;
+    height: 4.4802342606rem;
+    line-height: 4.4802342606rem;
+  }
+}
 .ui-btn-min {
   font-size: 1.4055636896rem;
   font-family: "TT Norms Pro";
@@ -3719,8 +3726,8 @@ table {
   }
 }
 .period-benefits {
-  padding-left: 6.149341142rem;
-  padding-right: 6.149341142rem;
+  padding-left: 5.0951683748rem;
+  padding-right: 5.0951683748rem;
 }
 @media (max-width: 899px) {
   .period-benefits {
@@ -8185,6 +8192,416 @@ table {
 @media (max-width: 599px) {
   .popup-selection .menu-aside-icon {
     margin-right: 0;
+  }
+}
+
+.solutions {
+  position: relative;
+  z-index: 9;
+  margin-bottom: 14.055636896rem;
+}
+@media (max-width: 899px) {
+  .solutions {
+    margin-bottom: 7.027818448rem;
+  }
+}
+@media (max-width: 899px) {
+  .solutions {
+    margin-bottom: 5.270863836rem;
+  }
+}
+.solutions-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 105.944363104rem;
+}
+.solutions-title {
+  font-family: "Oceanic";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 6.3250366032rem;
+  line-height: 0.85;
+  color: #fff;
+  margin-bottom: 3.513909224rem;
+}
+@media (max-width: 899px) {
+  .solutions-title {
+    font-size: 3.513909224rem;
+    margin-bottom: 2.1083455344rem;
+  }
+}
+@media (max-width: 599px) {
+  .solutions-title {
+    font-size: 2.8111273792rem;
+    margin-bottom: 2.1083455344rem;
+  }
+}
+.solutions-cards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+@media (max-width: 899px) {
+  .solutions-cards {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+.solutions-card {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: calc(25% - 0.9224011713rem);
+  height: 35.1390922401rem;
+  margin-right: 1.2298682284rem;
+  padding: 1.756954612rem 1.4055636896rem;
+  background-color: #182C22;
+  border-radius: 2.1083455344rem;
+  -webkit-transition: width 0.5s ease;
+  -o-transition: width 0.5s ease;
+  transition: width 0.5s ease;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow: hidden;
+  cursor: pointer;
+}
+@media (max-width: 899px) {
+  .solutions-card {
+    width: calc(50% - 0.3513909224rem);
+    height: 21.9619326501rem;
+    margin-right: 0.7027818448rem;
+    margin-bottom: 0.7027818448rem;
+    padding: 1.4055636896rem;
+  }
+}
+@media (max-width: 599px) {
+  .solutions-card {
+    width: 100%;
+    height: 17.5695461201rem;
+    margin-right: 0;
+  }
+}
+.solutions-card:last-child {
+  margin-right: 0;
+}
+@media (max-width: 899px) {
+  .solutions-card:nth-child(even) {
+    margin-right: 0;
+  }
+}
+.solutions-card-image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 35.1390922401rem;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  z-index: 1;
+}
+@media (max-width: 899px) {
+  .solutions-card-image {
+    height: 21.9619326501rem;
+    -o-object-position: center -3.513909224rem;
+       object-position: center -3.513909224rem;
+  }
+}
+@media (max-width: 599px) {
+  .solutions-card-image {
+    height: 17.5695461201rem;
+  }
+}
+.solutions-card-info {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+}
+.solutions-card-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-family: "Oceanic";
+  font-weight: 400;
+  font-size: 2.8111273792rem;
+  line-height: 0.85;
+  color: #fff;
+  word-break: break-word;
+}
+@media (max-width: 599px) {
+  .solutions-card-title {
+    font-size: 2.1083455344rem;
+  }
+}
+.solutions-card-title .icon {
+  width: 2.8111273792rem;
+  height: 1.4055636896rem;
+  fill: none;
+  -webkit-filter: brightness(10);
+          filter: brightness(10);
+}
+.solutions-card-content {
+  overflow: hidden;
+  max-height: 0;
+  -webkit-transition: max-height 0.7s, margin-top 0.7s;
+  -o-transition: max-height 0.7s, margin-top 0.7s;
+  transition: max-height 0.7s, margin-top 0.7s;
+}
+.solutions-card-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  font-weight: 400;
+  font-size: 1.4055636896rem;
+  line-height: 1.2;
+}
+.solutions-card-list a {
+  position: relative;
+  color: #fff;
+}
+@media (hover: hover) and (pointer: fine) {
+  .solutions-card-list a:hover {
+    color: #E9B566;
+  }
+}
+.solutions-card-list a:not(:last-child)::after {
+  position: absolute;
+  top: 50%;
+  right: -0.878477306rem;
+  -webkit-transform: translate(50%, -50%);
+      -ms-transform: translate(50%, -50%);
+          transform: translate(50%, -50%);
+  content: "";
+  width: 0.3513909224rem;
+  height: 0.3513909224rem;
+  border-radius: 50%;
+  background-color: #E9B566;
+}
+.solutions-card-list-item {
+  margin-right: 1.756954612rem;
+}
+.solutions-card-more {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Oceanic";
+  font-weight: 400;
+  font-size: 2.1083455344rem;
+  line-height: 0.85;
+  letter-spacing: 0.02em;
+  color: #E9B566;
+  margin-top: 1.756954612rem;
+}
+@media (hover: hover) and (pointer: fine) {
+  .solutions-card-more:hover .icon {
+    -webkit-filter: brightness(10);
+            filter: brightness(10);
+  }
+}
+.solutions-card-more .icon {
+  width: 4.2166910688rem;
+  height: 2.1083455344rem;
+  fill: none;
+  margin-left: 1.0541727672rem;
+  -webkit-transition: color 0.3s, -webkit-filter 0.15s;
+  transition: color 0.3s, -webkit-filter 0.15s;
+  -o-transition: color 0.3s, filter 0.15s;
+  transition: color 0.3s, filter 0.15s;
+  transition: color 0.3s, filter 0.15s, -webkit-filter 0.15s;
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 899px) {
+  .solutions-cards:has(.solutions-card:hover) .solutions-card:not(:hover) {
+    width: calc((100% - 3.6896046852rem - 39.8%) / 3);
+  }
+
+  .solutions-card:hover {
+    width: 39.8%;
+  }
+  .solutions-card:hover .solutions-card-content {
+    max-height: 8.78477306rem;
+    margin-top: 1.756954612rem;
+  }
+}
+.comparison {
+  margin-bottom: 14.055636896rem;
+}
+@media (max-width: 899px) {
+  .comparison {
+    margin-bottom: 7.027818448rem;
+  }
+}
+@media (max-width: 599px) {
+  .comparison {
+    margin-bottom: 5.6222547584rem;
+  }
+}
+.comparison-container {
+  position: relative;
+  width: 100%;
+  height: 59.7364568082rem;
+  overflow: hidden;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border-radius: 3.513909224rem;
+  -ms-touch-action: none;
+      touch-action: none;
+  padding-left: 4.2166910688rem;
+  padding-right: 4.2166910688rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+@media (max-width: 899px) {
+  .comparison-container {
+    height: 36.8960468521rem;
+    border-radius: 2.1083455344rem;
+    padding: 1.4055636896rem;
+  }
+}
+@media (max-width: 599px) {
+  .comparison-container {
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+  }
+}
+.comparison-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: left top;
+     object-position: left top;
+  display: block;
+}
+.comparison-image__after {
+  -webkit-clip-path: inset(0 0 0 50%);
+          clip-path: inset(0 0 0 50%);
+}
+.comparison-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: rgba(233, 181, 102, 0.5);
+  left: 50%;
+  cursor: ew-resize;
+}
+.comparison-labels {
+  position: absolute;
+  top: 89%;
+  left: 33%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+@media (max-width: 899px) {
+  .comparison-labels {
+    top: 88%;
+  }
+}
+@media (max-width: 599px) {
+  .comparison-labels {
+    top: 4%;
+  }
+}
+.comparison-label {
+  color: #E9B566;
+  padding: 0.7027818448rem 1.0541727672rem;
+  font-size: 1.2298682284rem;
+  line-height: 1;
+  background-color: rgba(16, 51, 43, 0.5);
+  -webkit-backdrop-filter: blur(1.4055636896rem);
+          backdrop-filter: blur(1.4055636896rem);
+}
+.comparison-label__before {
+  position: absolute;
+  right: 0;
+  border-radius: 0.7027818448rem 0 0 0.7027818448rem;
+}
+@media (max-width: 899px) {
+  .comparison-label__before {
+    border-radius: 1.4055636896rem 0 0 1.4055636896rem;
+  }
+}
+.comparison-label__after {
+  position: absolute;
+  left: 0;
+  border-radius: 0 0.7027818448rem 0.7027818448rem 0;
+  border-left: 1px solid rgba(233, 181, 102, 0.5);
+}
+@media (max-width: 899px) {
+  .comparison-label__after {
+    border-radius: 0 1.4055636896rem 1.4055636896rem 0;
+  }
+}
+.comparison-content {
+  position: relative;
+  z-index: 2;
+  max-width: 49.2825768668rem;
+}
+@media (max-width: 899px) {
+  .comparison-content {
+    width: 21.8740849195rem;
+  }
+}
+.comparison-content-title {
+  font-family: "Oceanic";
+  font-size: 7.7306002928rem;
+  line-height: 0.85;
+  margin-bottom: 3.513909224rem;
+}
+@media (max-width: 899px) {
+  .comparison-content-title {
+    font-size: 3.513909224rem;
+    margin-bottom: 1.4055636896rem;
+  }
+}
+@media (max-width: 599px) {
+  .comparison-content-title {
+    font-size: 2.8111273792rem;
   }
 }
 
