@@ -3080,32 +3080,25 @@
   }
 
   &-img {
-    width: p2r(64);
-    height: p2r(64);
-    flex: 0 0 p2r(64);
+    width: p2r(56);
+    height: p2r(79);
+    flex: 0 0 p2r(56);
     fill: none;
     stroke: $font_accent;
     margin-right: p2r(16);
-    stroke-width: p2r(1.5);
+    stroke-width: p2r(1);
 
     @include tablet {
       width: p2r(48);
-      height: p2r(48);
+      height: p2r(67);
       flex: 0 0 p2r(48);
-    }
-
-    @include mobile {
-      width: p2r(24);
-      height: p2r(24);
-      flex: 0 0 p2r(24);
-    }
+    } 
   }
 
   &-picture {
     width: p2r(56);    
     flex: 0 0 p2r(56);
     margin-right: p2r(16);
-    margin-left: p2r(16);
     display: block;
     border-radius: p2r(8);
 
