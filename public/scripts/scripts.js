@@ -1898,13 +1898,148 @@ document.addEventListener('DOMContentLoaded', () => {
   // })();
 
   // бургер-меню
+// (function() {
+//   const header = document.querySelector('.header')
+//   const burger = document.querySelector('.header-burger');
+//   const burgerBtnIcon = document.querySelector('.header-burger span');
+//   const menu = document.querySelector('.header-burger-menu');
+
+//   if(!burger || !burgerBtnIcon || !menu) return;
+
+//   burger.addEventListener('click', () => {
+//     burgerBtnIcon.classList.toggle('active');
+//     menu.classList.toggle('show');
+
+//     if(menu.classList.contains('show')) {
+//       document.body.classList.add('menu-open');
+//     } else {
+//       document.body.classList.remove('menu-open');
+//     }
+//     header.classList.toggle('hidden');
+//   });
+
+//   const menuList = document.querySelectorAll('.header-burger-menu-wrapper > ul > li');
+
+//   menuList.forEach((menuListItem) => {
+//     menuListItem.addEventListener('click', () => {
+//       if (menuListItem.classList.contains('active')) {
+//         // Если кликнутый элемент уже активен, делаем его неактивным
+//         menuListItem.classList.remove('active');
+//         menuList.forEach((item) => {
+//           item.classList.remove('hidden-tablet');
+//         });
+//       } else {
+//         // Иначе, обрабатываем клик на неактивный элемент
+//         menuList.forEach((item) => {
+//           if (item === menuListItem) {
+//             item.classList.add('active');
+//             item.classList.remove('hidden-tablet');
+//           } else {
+//             item.classList.remove('active');
+//             item.classList.add('hidden-tablet');
+//           }
+//         });
+//       }
+//     })
+//   })
+
+//   const subMenuList = document.querySelectorAll('.header-burger-menu-wrapper > ul > li > ul > li');
+
+//   subMenuList.forEach((menuListItem) => {
+//     menuListItem.addEventListener('click', (ev) => {   
+//       ev.stopPropagation();
+
+//       if (menuListItem.classList.contains('active')) {
+//         // Если кликнутый элемент уже активен, делаем его неактивным
+//         menuListItem.classList.remove('active');
+//         subMenuList.forEach((item) => {
+//           item.classList.remove('hidden-tablet');
+//         });
+//       } else {
+//         // Иначе, обрабатываем клик на неактивный элемент
+//         subMenuList.forEach((item) => {
+//           if (item === menuListItem) {
+//             item.classList.add('active');
+//             item.classList.remove('hidden-tablet');
+//           } else {
+//             item.classList.remove('active');
+//             item.classList.add('hidden-tablet');
+//           }
+//         });
+//       }
+//     })
+//   })
+
+//   const subSubMenuList = document.querySelectorAll('.header-burger-menu-wrapper > ul > li > ul > li > ul > li');
+
+//   subSubMenuList.forEach((menuListItem) => {
+//     menuListItem.addEventListener('click', (ev) => {   
+//       ev.stopPropagation();
+
+//       if (menuListItem.classList.contains('active')) {
+//         // Если кликнутый элемент уже активен, делаем его неактивным
+//         menuListItem.classList.remove('active');
+//         subSubMenuList.forEach((item) => {
+//           item.classList.remove('hidden-tablet');
+//         });
+//       } else {
+//         // Иначе, обрабатываем клик на неактивный элемент
+//         subSubMenuList.forEach((item) => {
+//           if (item === menuListItem) {
+//             item.classList.add('active');
+//             item.classList.remove('hidden-tablet');
+//           } else {
+//             item.classList.remove('active');
+//             item.classList.add('hidden-tablet');
+//           }
+//         });
+//       }
+//     })
+//   })
+
+// })();
+
+// бургер-меню
 (function() {
   const header = document.querySelector('.header')
   const burger = document.querySelector('.header-burger');
   const burgerBtnIcon = document.querySelector('.header-burger span');
   const menu = document.querySelector('.header-burger-menu');
+  const closeButton = document.querySelector('.header-burger-menu-head .close');
 
-  if(!burger || !burgerBtnIcon || !menu) return;
+  if(!burger || !burgerBtnIcon || !menu || !closeButton) return;
+
+  function checkMenuState() {
+    const isAnyMenuItemOpen = document.querySelector('.header-burger-menu-wrapper > ul > li.active') ||
+                              document.querySelector('.header-burger-menu-wrapper > ul > li > ul > li.active') ||
+                              document.querySelector('.header-burger-menu-wrapper > ul > li > ul > li > ul > li.active');
+
+    const menuLogo = document.querySelector('.header-burger-menu-head .header-logo');
+    
+    if(!menuLogo) return;
+    
+    if (isAnyMenuItemOpen) {
+      menuLogo.classList.add('hidden');
+    } else {
+      menuLogo.classList.remove('hidden');
+    }
+  }
+
+  function closeMenu() {  
+    burgerBtnIcon.classList.remove('active');
+    menu.classList.remove('show');
+    document.body.classList.remove('menu-open');
+    header.classList.remove('hidden');
+  
+    // Сбрасываем все активные состояния и убираем класс hidden-tablet
+    const allMenuItems = document.querySelectorAll('.header-burger-menu-wrapper ul li');
+    allMenuItems.forEach(item => {
+      item.classList.remove('active');
+      item.classList.remove('hidden-tablet');
+    });
+  
+    // checkMenuState();
+  }
 
   burger.addEventListener('click', () => {
     burgerBtnIcon.classList.toggle('active');
@@ -1916,20 +2051,28 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.remove('menu-open');
     }
     header.classList.toggle('hidden');
+    checkMenuState();
   });
+
+  // Добавляем обработчик для кнопки закрытия
+  closeButton.addEventListener('click', closeMenu);
 
   const menuList = document.querySelectorAll('.header-burger-menu-wrapper > ul > li');
 
   menuList.forEach((menuListItem) => {
-    menuListItem.addEventListener('click', () => {
+    menuListItem.addEventListener('click', (ev) => {
+      if(ev.target.tagName === 'A'  && ev.target.nextElementSibling && ev.target.nextElementSibling.tagName === 'UL') {
+        ev.preventDefault();
+      }
+
+      if(ev.target.tagName === 'A' && !ev.target.nextElementSibling) return    
+
       if (menuListItem.classList.contains('active')) {
-        // Если кликнутый элемент уже активен, делаем его неактивным
         menuListItem.classList.remove('active');
         menuList.forEach((item) => {
           item.classList.remove('hidden-tablet');
         });
       } else {
-        // Иначе, обрабатываем клик на неактивный элемент
         menuList.forEach((item) => {
           if (item === menuListItem) {
             item.classList.add('active');
@@ -1940,6 +2083,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
       }
+      checkMenuState();
     })
   })
 
@@ -1949,14 +2093,18 @@ document.addEventListener('DOMContentLoaded', () => {
     menuListItem.addEventListener('click', (ev) => {   
       ev.stopPropagation();
 
+      if(ev.target.tagName === 'A'  && ev.target.nextElementSibling && ev.target.nextElementSibling.tagName === 'UL') {
+        ev.preventDefault();
+      }
+
+      if(ev.target.tagName === 'A' && !ev.target.nextElementSibling) return
+
       if (menuListItem.classList.contains('active')) {
-        // Если кликнутый элемент уже активен, делаем его неактивным
         menuListItem.classList.remove('active');
         subMenuList.forEach((item) => {
           item.classList.remove('hidden-tablet');
         });
       } else {
-        // Иначе, обрабатываем клик на неактивный элемент
         subMenuList.forEach((item) => {
           if (item === menuListItem) {
             item.classList.add('active');
@@ -1967,6 +2115,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
       }
+      checkMenuState();
     })
   })
 
@@ -1976,14 +2125,18 @@ document.addEventListener('DOMContentLoaded', () => {
     menuListItem.addEventListener('click', (ev) => {   
       ev.stopPropagation();
 
+      if(ev.target.tagName === 'A' && ev.target.nextElementSibling && ev.target.nextElementSibling.tagName === 'UL') {
+        ev.preventDefault();
+      }
+
+      if(ev.target.tagName === 'A' && !ev.target.nextElementSibling) return
+
       if (menuListItem.classList.contains('active')) {
-        // Если кликнутый элемент уже активен, делаем его неактивным
         menuListItem.classList.remove('active');
         subSubMenuList.forEach((item) => {
           item.classList.remove('hidden-tablet');
         });
       } else {
-        // Иначе, обрабатываем клик на неактивный элемент
         subSubMenuList.forEach((item) => {
           if (item === menuListItem) {
             item.classList.add('active');
@@ -1994,9 +2147,12 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
       }
+      checkMenuState();
     })
   })
 
+  // Проверяем начальное состояние меню
+  checkMenuState();
 })();
 
   // важная новость
@@ -2051,38 +2207,47 @@ document.addEventListener('DOMContentLoaded', () => {
       }      
     })
 
-    const searchInput = document.querySelector('.search .search-input');
-    const searchRemove = document.querySelector('.search .search-remove');
+    const searchContainers = document.querySelectorAll('.search-field');
 
-    if(!searchInput || !searchRemove) return;
+    searchContainers.forEach(container => {
+      const searchInput = container.querySelector('.search-input');
+      const searchRemove = container.querySelector('.search-remove');
 
-    function toggleRemoveButton() {
-      if (searchInput.value.length > 0) {
-        searchRemove.classList.add('show');
-      } else {
-        searchRemove.classList.remove('show');
+      if (!searchInput || !searchRemove) return;
+
+      function toggleRemoveButton() {
+        if (searchInput.value.length > 0) {
+          searchRemove.classList.add('show');
+        } else {
+          searchRemove.classList.remove('show');
+        }
       }
-    }
 
-    // Отслеживаем ввод
-    searchInput.addEventListener('input', toggleRemoveButton);
-    searchInput.addEventListener('change', toggleRemoveButton);
-    searchInput.addEventListener('keyup', toggleRemoveButton);
+      // Отслеживаем ввод
+      searchInput.addEventListener('input', toggleRemoveButton);
+      searchInput.addEventListener('change', toggleRemoveButton);
+      searchInput.addEventListener('keyup', toggleRemoveButton);
 
-    // Обработка клика по кнопке удаления
-    searchRemove.addEventListener('click', () => {
+      // Обработка клика по кнопке удаления
+      searchRemove.addEventListener('click', () => {
         searchInput.value = '';
         toggleRemoveButton();
-    });
+      });
 
-    toggleRemoveButton();
+      toggleRemoveButton();
+    });
   })();
   
   // слайдер до/после
   (function() {
     const container = document.getElementById('beforeAfterSlider');
     const handle = document.getElementById('sliderHandle');
+
+    if(!container || !handle) return;
+
     const afterImage = container.querySelector('.comparison-image__after');
+
+    if(!afterImage) return;
 
     let isDragging = false;
 

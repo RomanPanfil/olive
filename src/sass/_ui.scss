@@ -264,7 +264,9 @@ table {
 		@include tablet {
 			font-size: p2r(16);
 			height: p2r(51);
-			line-height: p2r(51)
+			line-height: p2r(51);
+			padding-left: p2r(16);
+			padding-right: p2r(16);
 		}
 	}
 	
@@ -744,6 +746,10 @@ table {
 			margin-right: p2r(12);
 		}
 
+		@include mobile{
+			font-size: p2r(14);
+		}
+
 		&:last-child {
 			margin-right: 0;
 		}
@@ -830,20 +836,20 @@ table {
 			&-more {
 				background-color: $primary;
 				backdrop-filter: blur(p2r(16));
-				color: $font_white;
+				color: $font_accent;
 				transition: color 0.3s;
 
 				&-icon {
-					stroke: $font_white;
+					stroke: $font_accent;
 					transition: stroke 0.3s;
 				}
 
 				@media (hover: hover) and (pointer: fine) {
 					&:hover {
-						color: $font_accent;
+						color: $font_white;
 						
 						.pagination-more-icon {
-							stroke: $font_accent;;
+							stroke: $font_white;
 						}
 					}
 				}   
@@ -869,29 +875,34 @@ table {
 				}
 
 				&-nav {
-					color: $font_white;
+					color: $font_accent;
 
 					@media (hover: hover) and (pointer: fine) {
 						&:hover {
-							color: $font_accent;
+							color: $font_white;
+
+							.pagination-item-nav-icon {
+								stroke: $font_white;
+							}
 						}
 					}
 
 					&-icon {
-						stroke: $font_white;
+						stroke: $font_accent;
 					}
 				}
 
 				&-link {
-					color: $font_white;
+					color: $font_accent;
+					transition: color 0.3s opacity 0.3s;
 
 					&.active {
-						color: $font_accent;
+						color: $font_white;
 					}
 
 					@media (hover: hover) and (pointer: fine) {
 						&:hover {
-							color: $font_accent;		
+							color: $font_white;		
 							opacity: 0.5;			
 						}
 					}   

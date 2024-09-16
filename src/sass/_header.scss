@@ -83,22 +83,22 @@
         }
     }
 
-    &.hidden {
-        z-index: 1003;
+    // &.hidden {
+    //     z-index: 1003;
 
-        .header-logo, .header-nav, .header-search, .header-feedback, .header-blur {
-            opacity: 0;
-            z-index: -1;
-            visibility: hidden;
-        }
+    //     .header-logo, .header-nav, .header-search, .header-feedback, .header-blur {
+    //         opacity: 0;
+    //         z-index: -1;
+    //         visibility: hidden;
+    //     }
         
-        .header-logo, .header-blur {
-            @include tablet {
-                opacity: 1;
-                visibility: visible;
-            }
-        }
-    }
+    //     .header-logo, .header-blur {
+    //         @include tablet {
+    //             opacity: 1;
+    //             visibility: visible;
+    //         }
+    //     }
+    // }
 
     &-wrapper {
         position: relative;
@@ -469,7 +469,7 @@
               background-color: $bgc;     
               position: absolute;
               left: 0;
-              transition: transform 0.2s ease-in-out;
+              transition: transform 0.2s ease-in-out, background-color 0.3s;
             }
             &:before {
               top: p2r(-4);             
@@ -478,19 +478,29 @@
                 top: p2r(4);         
             }
       
-            &.active {
-              transform: translate(-50%, -50%) rotate(45deg);       
+            // &.active {
+            //   transform: translate(-50%, -50%) rotate(45deg);       
              
-              &:before {
-                top: 0;
-                transform: rotate(0deg);
-                width: p2r(20);
-              }
-              &:after {
-                top: 0;
-                transform: rotate(90deg);
-                width: p2r(20);
-              }
+            //   &:before {
+            //     top: 0;
+            //     transform: rotate(0deg);
+            //     width: p2r(20);
+            //   }
+            //   &:after {
+            //     top: 0;
+            //     transform: rotate(90deg);
+            //     width: p2r(20);
+            //   }
+            // }            
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {           
+                span {
+                    &::before, &::after {
+                        background-color: $font_accent;
+                    }
+                }
             }
         }
 
@@ -512,13 +522,66 @@
             @include tablet {
                 justify-content: flex-start;
                 align-items: flex-start;
-                padding-top: p2r(32);
+                padding-top: p2r(16);
                 padding-left: p2r(16);
                 padding-right: p2r(16);
             }
 
             &.show {
                 display: flex;
+            }
+
+            &-head {         
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+
+                .header-logo {
+                    &.hidden {
+                        opacity: 0;
+                        visibility: hidden;
+                    }
+                }
+
+                .close {      
+                    position: absolute;   
+                    left: p2r(80);
+                    top: p2r(26); 
+                    z-index: 99;
+                    border: none;
+                    outline: none;
+                    background-color: transparent;
+                    width: p2r(16);
+                    height: p2r(16);
+                    cursor: pointer;
+                    margin-left: auto;
+
+                    @media (hover: hover) and (pointer: fine) {
+                        &:hover {
+                            .icon {
+                                path {
+                                    stroke: $font_accent;
+                                }
+                            }
+                        }
+                    }
+
+                    @include tablet {
+                        position: relative; 
+                        left: unset;
+                        top: unset;
+                    }
+                    
+                    .icon {
+                      width: p2r(16);
+                      height: p2r(16);
+                      transition: filter 0.15s;
+                      path {
+                        transition: stroke 0.3s;
+                      }
+                    }
+                }
             }
 
             &-wrapper {
@@ -532,7 +595,7 @@
                 @include tablet {
                     flex-direction: column;
                     gap: 0;
-                    padding-top: p2r(56);
+                    padding-top: p2r(0);
                     width: 100%;
                 }
 
@@ -622,12 +685,17 @@
 
                             @include tablet {
                                 border: none;
+                                margin-top: p2r(-56);
 
                                 &:has(ul li.active) {
                                     & > a {
                                         display: none;
                                     }
                                 }
+                            }
+
+                            @include mobile {
+                                margin-top: p2r(-50);
                             }
                         }
     
@@ -656,9 +724,10 @@
                                         transform: translateY(-50%) rotate(-90deg);
                                     }
 
-                                    @include mobile {
+                                    @include mobile {                                    
                                         width: p2r(24);
                                         height: p2r(24);
+                                        background-size: p2r(12);
                                     }
                                 }
                             }
@@ -743,8 +812,8 @@
 
                                     @include tablet {
                                         display: flex;
-                                        align-items: center;
-                                    }
+                                        align-items: center;                                    
+                                    }                                    
                                 }
     
                                 @media (hover: hover) and (pointer: fine) {
@@ -759,6 +828,7 @@
 
                                     @include tablet {
                                         border: none;
+                                        margin-top: p2r(-6);
                                     }
 
                                     & > a {
@@ -789,12 +859,15 @@
                                                     width: p2r(24);
                                                     height: p2r(24);
                                                     flex: 0 0 p2r(24);
+                                                    background-size: p2r(12) p2r(12);
                                                 }
                                             }
                                         }
 
                                         @include mobile {
                                             font-size: p2r(20);
+                                            align-items: flex-start;
+                                            max-width: p2r(268);
                                         }
                                     }
                                     
@@ -826,6 +899,7 @@
 
                                             &.active {
                                                 border: none;
+                                                margin-top: p2r(-22);
 
                                                 & > ul {
                                                     display: block;
@@ -835,6 +909,10 @@
                                                     font-size: p2r(24);
                                                     color: $font_accent;
                                                     font-family: $second_font;
+
+                                                    @include mobile {
+                                                        font-size: p2r(20);
+                                                    }
 
                                                     &:before {      
                                                         content: '';
@@ -854,6 +932,7 @@
                                                             width: p2r(24);
                                                             height: p2r(24);
                                                             flex: 0 0 p2r(24);
+                                                            background-size: p2r(12);
                                                         }
                                                     }
                                                 }                                                
@@ -879,8 +958,13 @@
                                                             width: p2r(24);
                                                             height: p2r(24);
                                                             flex: 0 0 p2r(24);
+                                                            background-size: p2r(12) p2r(12);
                                                         }
                                                     }
+                                                }
+
+                                                span {
+                                                    padding-right: p2r(8);
                                                 }
                                             }
                                         }
@@ -918,11 +1002,25 @@
                                         &::after {
                                             content: '';
                                             margin-left: auto;
-                                            background-image: url(../images/svg/arrow-right.svg);
-                                            width: p2r(16);
-                                            height: p2r(16);
-                                            background-size: p2r(16) p2r(16);
-                                            background-repeat: no-repeat;                                           
+                                            width: p2r(32);
+                                            height: p2r(32);
+                                            border-radius: 50%;
+                                            background-color: #10211D;
+                                            background-image: url('data:image/svg+xml,<svg width="16" height="8" viewBox="0 0 16 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 7C8.30831 5.11277 10.2165 1.79112 14 1" stroke="%23E9B566"/><path d="M8 7C7.69169 5.11277 5.78351 1.79112 2 1" stroke="%23E9B566"/></svg>');
+                                            background-repeat: no-repeat;
+                                            background-position: center;
+                                            transition: transform 0.3s;                                            
+        
+                                            @include tablet {
+                                                right: 0;
+                                                transform: rotate(-90deg);
+                                            }
+        
+                                            @include mobile {                                    
+                                                width: p2r(24);
+                                                height: p2r(24);
+                                                background-size: p2r(12);
+                                            }
                                         }
                                     }
                                    

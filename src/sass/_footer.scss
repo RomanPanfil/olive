@@ -244,11 +244,6 @@
                 display: inline-block;
                 vertical-align: middle;
                 margin-right: p2r(12);
-                // filter: brightness(10);
-
-                @include mobile {
-                    filter: brightness(10);
-                }
             }
 
             img {
