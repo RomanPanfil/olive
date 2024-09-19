@@ -42,13 +42,13 @@
         @include tablet {
             margin-bottom: p2r(24);
         }
-        
+
         @include mobile {
             margin-bottom: p2r(18);
             font-size: p2r(35);
         }
 
-        
+
 
         .contacts-main-tel-item:not(:last-child)::after {
             width: p2r(14);
@@ -57,7 +57,7 @@
             @include tablet {
                 width: p2r(4);
                 height: p2r(4);
-            }      
+            }
         }
 
         .contacts-main-tel-item:not(:last-child) {
@@ -69,11 +69,11 @@
               background-color: #FFB26A;
               display: block;
               margin-left: p2r(28);
-  
+
               @include tablet {
-                margin-left: p2r(8);                
+                margin-left: p2r(8);
               }
-  
+
               @include mobile {
                 margin-left: p2r(5);
                 width: p2r(4);
@@ -102,14 +102,14 @@
     &-links {
         border-bottom: 1px solid rgba(233, 181, 102, 0.3);
         margin-bottom: p2r(23);
-        
+
         @include tablet {
             padding-bottom: p2r(0);
             margin-bottom: p2r(12);
         }
 
-        @include mobile {    
-            padding-bottom: p2r(8);      
+        @include mobile {
+            padding-bottom: p2r(8);
             margin-bottom: p2r(20);
         }
     }
@@ -125,11 +125,11 @@
         padding-bottom: p2r(24);
 
         @include tablet {
-            font-size: p2r(14);          
+            font-size: p2r(14);
             flex-wrap: wrap;
             padding-bottom: p2r(16);
         }
-        
+
         @include mobile {
             padding-bottom: 0;           
         }
@@ -156,8 +156,8 @@
 
             @include mobile {
                 font-size: p2r(14);
-                margin-right: 0;               
-                width: 100%;              
+                margin-right: 0;
+                width: 100%;
 
                 &:not(:last-of-type) {
                     margin-bottom: p2r(10);
@@ -169,7 +169,7 @@
             }
 
             &__address {
-                @include tablet {                   
+                @include tablet {
                     width: 100%;
                     margin-bottom: p2r(8);
                     order: -2;
@@ -184,7 +184,7 @@
                 @include tablet {
                     order: -1;
                 }
-                
+
                 @include mobile {
                     order: initial;
                 }
@@ -222,10 +222,10 @@
             }
 
             @include mobile {
-                margin-left: 0;               
+                margin-left: 0;
             }
 
-            a {     
+            a {
                 filter: brightness(1);
                 transition: filter 0.15s;
 
@@ -234,10 +234,10 @@
                         filter: brightness(10);
                         filter: brightness(10);
                         transition: filter 0.3s;
-                        filter: brightness(10);                        
+                        filter: brightness(10);
                         transition: filter 0.3s;
                     }
-                }               
+                }
             }
 
             svg {
@@ -271,7 +271,7 @@
             line-height: 1.2;
             display: flex;
 
-            @include tablet {               
+            @include tablet {
                 flex-wrap: wrap;
             }
 
@@ -280,26 +280,26 @@
                 display: inline-block;
                 line-height: 1.2;
                 margin-right: p2r(32);
-                
+
                 @include tablet {
                     font-size: p2r(14);
-                    
+
                     order: 5;
                     margin-bottom: p2r(12);
 
                     &:nth-child(1) {
                         order: 1;
                         width: p2r(168);
-                    }                    
-              
+                    }
+
                     &:nth-child(3) {
                         order: 2;
-                    }                    
-                
+                    }
+
                     &:nth-child(2) {
                         order: 3;
                         width: p2r(168);
-                    }                    
+                    }
 
                     &:nth-child(4) {
                         order: 4;
@@ -336,8 +336,8 @@
                 padding-bottom: p2r(16);
                 margin-bottom: p2r(16);
             }
-           
-        }   
+
+        }
     }
 
     &-confident {
@@ -353,7 +353,7 @@
         }
     }
 
-    &-copy {  
+    &-copy {
         margin-right: p2r(32);
 
         @include tablet {
@@ -394,7 +394,7 @@
         }
     }
 
-    &-text {       
+    &-text {
         margin-right: p2r(32);
 
         @include tablet {
