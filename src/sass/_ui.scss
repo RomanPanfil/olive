@@ -211,17 +211,19 @@ table {
 		display: inline-block;
 		vertical-align: middle;
 		margin-left: p2r(12);
-		transition: filter 0.15s;
+		transition: filter 0.15s, stroke 0.3s;
 		margin-top: p2r(-4);
+		stroke: $font_accent;
 
 		@include tablet {
 			height: p2r(16);
 			max-width: p2r(32);
-			margin-left: p2r(8);
+			margin-left: p2r(4);
+			margin-top: p2r(-1);
 		}
 		
 		@include mobile {
-			margin-left: p2r(8);
+			margin-left: p2r(4);
 		}
 	}
 
@@ -229,8 +231,8 @@ table {
 		&:hover {
 			color: $font_white;
 
-			.ui-btn-icon {
-				filter: brightness(10);
+			.ui-btn-icon {				
+				stroke: $font_white;
 			}
 		}
 	}
@@ -658,7 +660,6 @@ table {
 				width: p2r(16);
 				height: p2r(16);
 				margin-top: p2r(-3);
-
 				margin-left: p2r(9);
 			}
 		}
@@ -842,6 +843,16 @@ table {
 				&-icon {
 					stroke: $font_accent;
 					transition: stroke 0.3s;
+
+					@include tablet {
+						margin-top: p2r(-1);
+						margin-left: p2r(7);
+					}
+
+					@include mobile {
+						margin-top: p2r(-4);
+						margin-left: p2r(6);
+					}
 				}
 
 				@media (hover: hover) and (pointer: fine) {
@@ -1077,7 +1088,7 @@ table {
 			margin-top: p2r(4);
 
 			@include tablet {
-				margin-top: p2r(7);
+				margin-top: p2r(4);
 			}
 		}
 
@@ -1096,7 +1107,7 @@ table {
 		}
 
 		&:last-of-type {
-			border-left: p2r(4) solid transparent;
+			border-left: p2r(2) solid transparent;
 
 			@include mobile {
 				border-left: none;
@@ -1200,14 +1211,14 @@ table {
 }
 
 .ui-field__textarea.required.input-active > .ui-label {
-	transform: translateX(p2r(-18)) translateY(p2r(-14)) scale(.75);
+	transform: translateX(p2r(-72)) translateY(p2r(-8)) scale(.75);
 
 	@include tablet {
-		transform: translateX(p2r(-16)) translateY(p2r(-18)) scale(.7);
+		transform: translateX(p2r(-74)) translateY(p2r(-12)) scale(.7);
 	}
 
 	@include mobile {
-		transform: translateX(p2r(-16)) translateY(p2r(-16)) scale(.7);
+		transform: translateX(p2r(-34)) translateY(p2r(-12)) scale(.7);
 	}
 	
 }
@@ -1216,16 +1227,14 @@ table {
 	position: relative;
 	z-index: 1;
 	left: 0;
-	transform: translateY(0%);	
+	transform: translateY(50%) translateX(0%);	
 	font-size: p2r(20);
 	line-height: 1.2;
 	opacity: 0.5;
 	padding-left: p2r(36);
 	padding-right: p2r(36);
-	transition: transform 0.3s, color 0.3s;	
-
-	transform: translateY(0%);	
-	position: absolute;	
+	transition: transform 0.5s, color 0.3s;		
+	// position: absolute;	
 		
 	@include tablet {
 		font-size: p2r(16);
@@ -1249,7 +1258,7 @@ table {
 }
 
 .ui-field__input:not(.input-active):has(.ui-input.error) .ui-label {
-    transform: translateY(-30%);
+    transform: translateY(100%) translateX(0%);	
 }
 
 .ui-textarea {

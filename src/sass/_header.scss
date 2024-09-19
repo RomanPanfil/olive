@@ -42,12 +42,14 @@
         transform-origin: left top;
         transform: translateZ(0) translateY(-25%);
 
+        
+
         @include tablet {
             height: p2r(80);
         }
 
         @include mobile {
-            height: p2r(60);
+            height: p2r(90);
         }
   
         & > div {
@@ -61,24 +63,28 @@
             z-index: 2;
             backdrop-filter: blur(p2r(1));
             mask-image: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 12.5%, rgb(255, 255, 255) 37.5%, rgba(255, 255, 255, 0) 50%);
+            filter: brightness(91%);  
           }
   
           &:nth-of-type(2) {
             z-index: 3;
             backdrop-filter: blur(p2r(3));
             mask-image: linear-gradient(to top, rgba(255, 255, 255, 0) 12.5%, rgb(255, 255, 255) 37.5%, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0) 62.5%);
+            filter: brightness(90%);
           }
   
           &:nth-of-type(3) {
             z-index: 4;   
             backdrop-filter: blur(p2r(4));
             mask-image: linear-gradient(to top, rgba(255, 255, 255, 0) 37.5%, rgb(255, 255, 255) 50%, rgb(255, 255, 255) 62.5%, rgba(255, 255, 255, 0) 75%);
+            filter: brightness(89%);
           }
   
           &:nth-of-type(4) {
             z-index: 5;   
             backdrop-filter: blur(p2r(6));
-            mask-image: linear-gradient(to top, rgba(255, 255, 255, 0) 50%, rgb(255, 255, 255) 62.5%, rgb(255, 255, 255) 75%, rgba(255, 255, 255, 0) 87.5%)
+            mask-image: linear-gradient(to top, rgba(255, 255, 255, 0) 50%, rgb(255, 255, 255) 62.5%, rgb(255, 255, 255) 75%, rgba(255, 255, 255, 0) 87.5%);
+            filter: brightness(96%);      
           }
         }
     }
@@ -260,6 +266,10 @@
             top: 0;
             bottom: 0;
             z-index: -2;
+
+            &:not(.header-nav-menu__simple) {
+                width: 100vw;
+            }
             
             &__simple {
                 position: static;
@@ -372,7 +382,8 @@
                     color: $font_white;
     
                     .header-feedback-icon {
-                        filter: brightness(10);
+                        // filter: brightness(10);
+                        stroke: $font_white;
                     }
                 }
             }
@@ -408,7 +419,7 @@
             display: inline-block;
             vertical-align: middle;
             margin-right: p2r(1);
-            transition: filter 0.15s;
+            transition: filter 0.3s, stroke 0.3s;
             margin-bottom: p2r(2);
 
             @include tablet {
@@ -417,7 +428,8 @@
                 margin-right: 0;
                 margin-bottom: 0;
                 margin-bottom: p2r(2);
-                filter: brightness(10);               
+                // filter: brightness(10);    
+                stroke: $font_white;           
             }
 
             @include mobile {
@@ -525,6 +537,7 @@
                 padding-top: p2r(16);
                 padding-left: p2r(16);
                 padding-right: p2r(16);
+                height: calc(var(--vh, 1vh) * 100);                         
             }
 
             &.show {
@@ -536,6 +549,10 @@
                 justify-content: space-between;
                 align-items: center;
                 width: 100%;
+
+                @include mobile {
+                    margin-bottom: p2r(10);
+                }
 
                 .header-logo {
                     &.hidden {
@@ -614,7 +631,17 @@
                     }
 
                     @include mobile {
-                        font-size: p2r(20);
+                        font-size: p2r(20);       
+                    }
+
+                    &:last-child {
+                        & > li {
+                            &:last-child {
+                                @include tablet {
+                                    border-bottom: none;
+                                }
+                            }                            
+                        }
                     }
     
                     & > li {
@@ -628,13 +655,18 @@
                             padding-bottom: p2r(22);
                             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
                         }
+
+                        @include mobile{
+                            padding-top: p2r(14);
+                            padding-bottom: p2r(14);
+                        }
     
                         &:last-child {
                             margin-bottom: 0;
                             
-                            @include tablet {
-                                border: none;
-                            }
+                            // @include tablet {
+                            //     border: none;
+                            // }
                         }
     
                         & > a {
@@ -1047,6 +1079,7 @@
             transition: stroke 0.3s;
             display: inline-block;
             vertical-align: middle;
+            margin-top: p2r(-2);
 
             @media (hover: hover) and (pointer: fine) {
                 &:hover {
@@ -1062,6 +1095,7 @@
             @include mobile {
                 width: p2r(18);
                 height: p2r(18);
+                margin-top: p2r(-3);
             }
         }
         

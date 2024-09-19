@@ -142,7 +142,8 @@
             @media (hover: hover) and (pointer: fine) {
                 &:hover {
                     .footer-feedback-icon {
-                        filter: brightness(10);
+                        // filter: brightness(10);
+                        stroke: $font_white;
                     }
                 }
             }
@@ -197,8 +198,9 @@
             vertical-align: middle;
             fill: none;
             margin-right: p2r(2);
-            transition: filter 0.15s;
+            transition: filter 0.15s, stroke 0.3s;
             margin-bottom: p2r(2);
+            stroke: $font_accent;           
 
             @include tablet {
                 margin-right: p2r(2);

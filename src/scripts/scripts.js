@@ -42,8 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let vh = prev * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
   
-    window.addEventListener('load', () => {   
-        setTimeout(()=>{ 
+    window.addEventListener('load', () => {
+        setTimeout(()=>{
         let vh = window.innerHeight * 0.01;
         document.documentElement.style.setProperty('--vh', `${vh}px`);
       },1)
@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ornt = current
       }
     });
+    
   })();
   
   $(() => {
@@ -145,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
   $(document).on("click", ".mfp-link", function (e) {
     e.preventDefault();
     var clickedElement = $(this);
+    var customBackground = clickedElement.data('background');
 
     // Показываем прелоадер
     showPreloader();
@@ -252,6 +254,11 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(function(){
               hidePreloader();                         
             }, 100);
+
+            // Применяем кастомный фон, если он задан
+          if (customBackground) {
+            $('.mfp-bg').css('background-color', customBackground);
+          }
                                
           },
           close: function() {
@@ -260,7 +267,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (this.cleanupFunction) {
               this.cleanupFunction();
               this.cleanupFunction = null;
-            }    
+            }  
+            
+            // Сбрасываем фон при закрытии попапа
+          $('.mfp-bg').css('background-color', '');
           }          
         }
       });
@@ -478,7 +488,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateActiveLink() {
       let activeIndex;
 
-      if (selectedIndex !== null && visibleSections.has(selectedIndex)) {
+      // Проверяем, достиг ли скролл нижней границы
+      const isAtBottom = menuMain.scrollHeight - menuMain.scrollTop === menuMain.clientHeight;
+
+      if (isAtBottom) {
+        // Если скролл достиг нижней границы, выбираем последний пункт меню
+        activeIndex = asideLinks.length - 1;
+      } else if (selectedIndex !== null && visibleSections.has(selectedIndex)) {
         activeIndex = selectedIndex;
       } else if (visibleSections.size > 0) {
         activeIndex = Math.min(...visibleSections);
@@ -574,6 +590,7 @@ document.addEventListener('DOMContentLoaded', () => {
           otherLink.closest('li').classList.remove('active');
         });
         parentLi.classList.add('active');
+        document.querySelector('.wrapper').classList.add('non-scroll')
         setTimeout(() => {
           scrollToActiveLink();
         }, 0);
@@ -583,6 +600,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', (e) => {
       if (!headerNavMenu.contains(e.target) && !e.target.closest('.header-nav > ul > li > a')) {
         parentLi.classList.remove('active');
+        document.querySelector('.wrapper').classList.remove('non-scroll')
       }
     });
 
@@ -2242,19 +2260,20 @@ document.addEventListener('DOMContentLoaded', () => {
   (function() {
     const container = document.getElementById('beforeAfterSlider');
     const handle = document.getElementById('sliderHandle');
-
-    if(!container || !handle) return;
-
     const afterImage = container.querySelector('.comparison-image__after');
 
-    if(!afterImage) return;
-
     let isDragging = false;
+    let isLargeScreen = window.innerWidth >= 600;
 
     const getPercentage = (clientX) => {
         const containerRect = container.getBoundingClientRect();
         let percentage = ((clientX - containerRect.left) / containerRect.width) * 100;
-        return Math.min(Math.max(percentage, 0), 100);
+        if (isLargeScreen) {
+            percentage = Math.min(Math.max(percentage, 0), 50);
+        } else {
+            percentage = Math.min(Math.max(percentage, 0), 100);
+        }
+        return percentage;
     };
 
     const updateSliderPosition = (percentage) => {
@@ -2288,20 +2307,33 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('touchmove', onMove);
     document.addEventListener('touchend', onEnd);
 
+    // Prevent text selection
     container.addEventListener('selectstart', (e) => e.preventDefault());
 
+    // Function to set initial slider position based on screen width
     const setInitialPosition = () => {
-      const screenWidth = window.innerWidth;
-      if (screenWidth <= 599) {
-        updateSliderPosition(50);
-      } else {
-        updateSliderPosition(33);
-      }
+        isLargeScreen = window.innerWidth >= 600;
+        if (isLargeScreen) {
+            updateSliderPosition(33);
+        } else {
+            updateSliderPosition(50);
+        }
     };
 
+    // Set initial position on load
     setInitialPosition();
- 
-    window.addEventListener('resize', setInitialPosition);
+
+    // Update position and constraints on window resize
+    window.addEventListener('resize', () => {
+        setInitialPosition();
+        // If the handle is beyond the new limit after resizing to a large screen, adjust it
+        if (isLargeScreen) {
+            const currentPosition = parseFloat(handle.style.left);
+            if (currentPosition > 50) {
+                updateSliderPosition(50);
+            }
+        }
+    });
   })();
 
 })
