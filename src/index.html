@@ -1,2741 +1,193 @@
-<!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- <meta name="viewport" content="width=1024"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Olive</title>
-    <meta name="keywords" content="Olive">
-    <meta name="description" content="Olive">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="format-detection" content="telephone=no">
-    <style>
-      @font-face {
-        font-family: 'Oceanic';
-        src: local('Oceanic'), local('TRIAL Oceanic Regular'),
-          url('./fonts/oceanic/Oceanic-Regular-Web.woff2') format('woff2'),
-          url('./fonts/oceanic/Oceanic-Regular-Web.woff') format('woff');
-        font-weight: 400;
-        font-style: normal;
-        font-display: swap;
-      }
-
-      @font-face {
-        font-family: 'TT Norms Pro';
-        src: local('TT Norms Pro Regular'), local('TTNormsPro-Regular'),
-          url('./fonts/TTNormsPro/TT_Norms_Pro_Regular.woff2') format('woff2'),
-          url('./fonts/TTNormsPro/TT_Norms_Pro_Regular.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-      }
-
-      @font-face {
-        font-family: 'TT Norms Pro';
-        src: local('TT Norms Pro Medium'), local('TTNormsPro-Medium'),
-          url('./fonts/TTNormsPro/TT_Norms_Pro_Medium.woff2') format('woff2'),
-          url('./fonts/TTNormsPro/TT_Norms_Pro_Medium.woff') format('woff');
-        font-weight: 700;
-        font-style: normal;
-        font-display: swap;
-      }
-    </style>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-form-styler@latest/dist/jquery.formstyler.css">
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
-      integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    >
-    <link
-      rel="stylesheet"
-      href="./css/style.css"
-      type="text/css"
-      media="all"
-    >
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
-    <!-- <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon"> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!-- ScrollTrigger -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <!-- gsap -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  </head>
-  <body class="ui-noise">
-    <div class="wrapper">
-      <div class="important-new show ui-noise">
-        <div class="container container__min">
-          <div class="important-new-wrapper">
-            <a href="#" class="important-new-link">
-              Скидка 15% на SMAS-лифтинг Ulthera до 15 февраля
-              <svg class="important-new-icon desktop">
-                <use xlink:href="svg/svg/symbols.svg#ui-icons-right"/>
-              </svg>
-              <svg class="important-new-icon mobile">
-                <use xlink:href="svg/svg/symbols.svg#arrow-right-orange"/>
-              </svg>
-            </a>
-            <button class="important-new-close">
-              <svg
-                width="16"
-                height="17"
-                viewBox="0 0 16 17"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                class="icon"
-              >
-                <g clip-path="url(#clip0_6001_78642)">
-                  <path d="M15.1106 15.6111L0.88846 1.38889" stroke="#E9B566" stroke-linecap="round"/>
-                  <path d="M15.1115 1.38889L0.88941 15.6111" stroke="#E9B566" stroke-linecap="round"/>
-                </g>
-                <defs>
-                  <clipPath id="clip0_6001_78642">
-                    <rect
-                      width="16"
-                      height="16"
-                      fill="white"
-                      transform="translate(0 0.5)"
-                    />
-                  </clipPath>
-                </defs>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-      <header class="header">
-        <div class="header-main">
-          <div class="header-blur">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-          <div class="container container__min">
-            <div class="header-wrapper">
-              <button class="header-burger">
-                <span></span>
-              </button>
-              <a href="#" class="header-logo">
-                <img
-                  src="./images/logo.svg"
-                  alt="olive"
-                  width="77"
-                  height="40"
-                  loading="lazy"
-                >
-              </a>
-              <nav class="header-nav">
-                <ul>
-                  <li>
-                    <a href="#">
-                      Услуги
-                      <svg class="header-nav-icon hidden-tablet">
-                        <use xlink:href="svg/svg/symbols.svg#arrow-down"/>
-                      </svg>
-                    </a>
-                    <div class="header-nav-menu">
-                      <div class="header-nav-menu-inner ui-noise">
-                        <div class="menu-aside">
-                          <div class="menu-aside-nav">
-                            <ul>
-                              <li>
-                                <a href="#" class="active">
-                                  <img src="./images/svg/icons-service.svg" alt="alt" class="menu-aside-icon">
-                                  Врачебная косметология для лица
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  <img src="./images/svg/icons-service-2.svg" alt="alt" class="menu-aside-icon">
-                                  Врачебная косметология для тела
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  <img src="./images/svg/icons-service-3.svg" alt="alt" class="menu-aside-icon">
-                                  Эстетическая косметология для лица
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  <img src="./images/svg/icons-service-4.svg" alt="alt" class="menu-aside-icon">
-                                  Забота о теле
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  <img src="./images/svg/icons-service-5.svg" alt="alt" class="menu-aside-icon">
-                                  Многопрофильная медицина
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  <img src="./images/svg/icons-service-6.svg" alt="alt" class="menu-aside-icon">
-                                  Студия стиля
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  <img src="./images/svg/icons-service-7.svg" alt="alt" class="menu-aside-icon">
-                                  Диагностика
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="menu-main">
-                          <div class="menu-main-section">
-                            <div class="menu-main-title">
-                              Врачебная косметология для лица
-                            </div>
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  Аппаратная
-                                  <br>
-                                  косметология лица
-                                </a>
-                                <ul>
-                                  <li>
-                                    <a href="#">
-                                      Ультразвуковой лифтинг Ulthera
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Фотоомоложение на М22
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Лазерная шлифовка СО2
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      RF-омоложение FORMA
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      ФЛазерная терапия и омоложение
-                                      FOTONA 4D
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Фракционный радиочасточный лифтинг МORPHEUS 8
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Смас-лифтинг ULTRAFORMER MPT
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Аппарат GENEO+
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Аппарат Oligio
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Лазерная терапия MELSYTECH
-                                    </a>
-                                  </li>
-                                </ul>
-                              </li>
-                            </ul>
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  Инъекционная
-                                  <br>
-                                  косметология для лица
-                                </a>
-                                <ul>
-                                  <li>
-                                    <a href="#">
-                                      Ботулинотерапия
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="https://olive.farbatest.com/services/vrachebnaya-kosmetologiya-dlya-litsa/inektsionnaya-kosmetologiya-dlya-litsa/konturnaya-plastika.html">
-                                      Биоревитализация
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Мезотерапия
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Коллагеностимуляция с препаратом AestheFill
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Контурная пластика
-                                    </a>
-                                  </li>
-                                </ul>
-                              </li>
-                            </ul>
-                          </div>
-                          <div class="menu-main-section">
-                            <div class="menu-main-title">
-                              Врачебная косметология для тела
-                            </div>
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  Аппаратная
-                                  <br>
-                                  косметология лица
-                                </a>
-                                <ul>
-                                  <li>
-                                    <a href="#">
-                                      Ультразвуковой лифтинг Ulthera
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Фотоомоложение на М22
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Лазерная шлифовка СО2
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      RF-омоложение FORMA
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      ФЛазерная терапия и омоложение
-                                      FOTONA 4D
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Фракционный радиочасточный лифтинг МORPHEUS 8
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Смас-лифтинг ULTRAFORMER MPT
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Аппарат GENEO+
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Аппарат Oligio
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Лазерная терапия MELSYTECH
-                                    </a>
-                                  </li>
-                                </ul>
-                              </li>
-                            </ul>
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  Инъекционная
-                                  <br>
-                                  косметология для лица
-                                </a>
-                                <ul>
-                                  <li>
-                                    <a href="#">
-                                      Ботулинотерапия
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="https://olive.farbatest.com/services/vrachebnaya-kosmetologiya-dlya-litsa/inektsionnaya-kosmetologiya-dlya-litsa/konturnaya-plastika.html">
-                                      Биоревитализация
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Мезотерапия
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Коллагеностимуляция с препаратом AestheFill
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Контурная пластика
-                                    </a>
-                                  </li>
-                                </ul>
-                              </li>
-                            </ul>
-                          </div>
-                          <div class="menu-main-section">
-                            <div class="menu-main-title">
-                              Эстетическая косметология для лица
-                            </div>
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  Массаж лица
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Моментальный уход для лица
-                                </a>
-                              </li>
-                            </ul>
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  Уходы на профессиональной косметике
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Пилинг лица
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                          <div class="menu-main-section">
-                            <div class="menu-main-title">
-                              Забота о теле
-                            </div>
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  Коррекция фигуры
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Массаж
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Парные программы
-                                </a>
-                              </li>
-                            </ul>
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  Расслабление
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Лечебные методики
-                                  <br>
-                                  восстановления
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  SPA для мужчин
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                          <div class="menu-main-section">
-                            <div class="menu-main-title">
-                              Многопрофильная медицина
-                            </div>
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  Терапия
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Дерматология
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Эндокринология
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Неврология
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Оториноларингология
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Кардиология
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Гастроэетерология
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Гинекология
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Хирургия
-                                </a>
-                              </li>
-                            </ul>
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  Психотерапия
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Остеопатия
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Нутррициология
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Травматология-ортопедия
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Программы похудения
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Операционное лечение
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Анализы
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  УЗИ
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                          <div class="menu-main-section">
-                            <div class="menu-main-title">
-                              Студия стиля
-                            </div>
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  Парикмахерская студия
-                                </a>
-                              </li>
-                            </ul>
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  Маникюр и педикюр
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                          <div class="menu-main-section">
-                            <div class="menu-main-title">
-                              Диагностика
-                            </div>
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  Анализы
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  3D-диагностика клжи
-                                </a>
-                              </li>
-                            </ul>
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  УЗИ
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="header-nav-mobile-menu"></div>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Решения
-                      <svg class="header-nav-icon hidden-tablet">
-                        <use xlink:href="svg/svg/symbols.svg#arrow-down"/>
-                      </svg>
-                    </a>
-                    <div class="header-nav-menu">
-                      <div class="header-nav-menu-inner ui-noise">
-                        <div class="menu-aside">
-                          <div class="menu-aside-nav">
-                            <ul>
-                              <li>
-                                <a href="#" class="active">
-                                  <img src="./images/svg/icons-service.svg" alt="alt" class="menu-aside-icon">
-                                  Косметология для кожи лица и тела
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  <img src="./images/svg/icons-service-5.svg" alt="alt" class="menu-aside-icon">
-                                  Многопрофильная медицина
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  <img src="./images/svg/icons-service-8.svg" alt="alt" class="menu-aside-icon">
-                                  SPA
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  <img src="./images/svg/icons-service-3.svg" alt="alt" class="menu-aside-icon">
-                                  Beauty
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="menu-main">
-                          <div class="menu-main-section">
-                            <div class="menu-main-title">
-                              Косметология для кожи лица и тела
-                            </div>
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  Консультация косметолога
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  3D-диагностика кожи
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Омоложение
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Коррекция формы лица
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Улучшение качества кожи
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Лечение акне/постакне
-                                </a>
-                              </li>
-                            </ul>
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  Коррекция фигуры
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Лечение потливости
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Коррекция рубцов и стрий
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Удаление пигментных пятен и сосудов
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Удаление нежелательных волос
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                          <div class="menu-main-section">
-                            <div class="menu-main-title">
-                              Многопрофильная медицина
-                            </div>
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  Терапия
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Дерматология
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Эндокринология
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Неврология
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Оториноларингология
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Кардиология
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Гастроэнтерология
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Гинекология
-                                </a>
-                              </li>
-                            </ul>
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  Хирургия
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Остеопатия
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Нутрициология
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Травматология-ортопедия
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Программы похудения
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Операционное лечение
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Анализы
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  УЗИ
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                          <div class="menu-main-section">
-                            <div class="menu-main-title">
-                              SPA
-                            </div>
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  SPA - забота о лице и теле
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Массаж лечебный
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Массаж моделирующий
-                                </a>
-                              </li>
-                            </ul>
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  Массаж вибро-акустический
-                                </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  Управление стрессом
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                          <div class="menu-main-section">
-                            <div class="menu-main-title">
-                              Beauty
-                            </div>
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  Парикмахерская студия
-                                </a>
-                              </li>
-                            </ul>
-                            <ul>
-                              <li>
-                                <a href="#">
-                                  Маникюр и педикюр
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="header-nav-mobile-menu"></div>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Экспертиза
-                      <svg class="header-nav-icon hidden-tablet">
-                        <use xlink:href="svg/svg/symbols.svg#arrow-down"/>
-                      </svg>
-                    </a>
-                    <div class="header-nav-menu header-nav-menu__simple">
-                      <div class="header-nav-menu-inner header-nav-menu-inner__simple ui-noise">
-                        <div class="menu-main">
-                          <ul>
-                            <li>
-                              <a href="#">
-                                Наша экспертиза
-                              </a>
-                            </li>
-                            <li>
-                              <a href="#">
-                                Научные статьи
-                              </a>
-                            </li>
-                            <li>
-                              <a href="#">
-                                PLAn красоты
-                              </a>
-                            </li>
-                            <li>
-                              <a href="#">
-                                Подкасты
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="header-nav-mobile-menu"></div>
-                  </li>
-                  <li>
-                    <a href="#">
-                      До / после
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Акции
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Специалисты
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Контакты
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-              <a href="#" class="header-search">
-                <svg
-                  width="17"
-                  height="16"
-                  viewBox="0 0 17 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="header-search-icon"
-                >
-                  <path d="M8.16732 12.6667C11.1128 12.6667 13.5007 10.2789 13.5007 7.33333C13.5007 4.38781 11.1128 2 8.16732 2C5.2218 2 2.83398 4.38781 2.83398 7.33333C2.83398 10.2789 5.2218 12.6667 8.16732 12.6667Z" stroke-width="1.05174" stroke-linecap="square"/>
-                  <path d="M14.8336 14.0016L11.9336 11.1016" stroke-width="1.05174" stroke-linecap="round"/>
-                </svg>
-              </a>
-              <div class="header-feedback">
-                <a href="tel:88312000077" class="header-feedback-item header-feedback-phone hidden-tablet">
-                  <svg class="header-feedback-icon">
-                    <use xlink:href="svg/svg/symbols.svg#phone"/>
-                  </svg>
-                  <span class="hidden-tablet">8 831 2-0000-77</span>
-                </a>
-                <a href="#" class="header-feedback-item header-feedback-call mfp-link" data-href="./popups/popup-callback.html">
-                  <svg class="header-feedback-icon hidden-desktop">
-                    <use xlink:href="svg/svg/symbols.svg#phone"/>
-                  </svg>
-                  <span class="hidden-tablet">
-                    Перезвоните мне
-                  </span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
-      <main class="main">
-        <img src="./images/main-bg.jpg" alt="bg" class="main-bg ui-noise ui-fading-bg">
-        <div class="container container__min">
-          <div class="main-banner">
-            <div class="main-banner-content ui-fading-bg">
-              <h1 class="main-banner-title">
-                Клиника естественной красоты
-              </h1>
-              <a href="#" class="ui-btn mfp-link" data-href="./popups/popup-service-selection.html">
-                Подбор услуги
-                <svg class="ui-btn-icon">
-                  <use xlink:href="svg/svg/symbols.svg#ui-icons-right"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="container">
-          <div class="founders">
-            <h2 class="founders-title">
-              Клиника, основанная
-              <span class="founders-title-accent">известными экспертами-косметологами</span>
-            </h2>
-            <picture>
-              <source media="(max-width: 599px)" srcset="./images/founders-mobile.jpg">
-              <source media="(max-width: 899px)" srcset="./images/founders-tablet.jpg">
-              <source srcset="./images/founders.png">
-              <img src="./images/founders.png" alt="founders" class="founders-image">
-            </picture>
-            <div class="founders-trigger founders-trigger__left">
-              <div class="founders-trigger-text">
-                <div class="founders-trigger-surname">
-                  Филиппова
-                </div>
-                <div class="founders-trigger-lastname">
-                  Лариса Ивановна
-                </div>
-              </div>
-              <a
-                href="#"
-                class="founders-trigger-btn mfp-link"
-                data-href="./popups/popup-spec.html"
-                data-background="transparent"
-              >
-                <svg class="founders-trigger-btn-icon">
-                  <use xlink:href="svg/svg/symbols.svg#plus"/>
-                </svg>
-              </a>
-            </div>
-            <div class="founders-trigger founders-trigger__right">
-              <a
-                href="#"
-                class="founders-trigger-btn mfp-link"
-                data-href="./popups/popup-spec2.html"
-                data-background="transparent"
-              >
-                <svg class="founders-trigger-btn-icon">
-                  <use xlink:href="svg/svg/symbols.svg#plus"/>
-                </svg>
-              </a>
-              <div class="founders-trigger-text">
-                <div class="founders-trigger-surname">
-                  Горская
-                </div>
-                <div class="founders-trigger-lastname">
-                  Антонина Александровна
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="period">
-            <div class="svg-container desktop-svg">
-              <div class="blur-background"></div>
-              <svg
-                width="100%"
-                height="100%"
-                viewBox="0 0 1003 547"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <defs>
-                  <mask id="svg-mask-desktop" maskContentUnits="objectBoundingBox">
-                    <path fill="white" transform="scale(0.0009970089730807577, 0.001828153564899714)" d="M136.784 394.784H285.296C388.672 394.784 410.512 382.408 446.912 311.064L454.92 313.976L405.416 520H2.832L0.648001 511.992C158.624 364.208 260.544 279.032 260.544 159.64C260.544 72.28 216.864 19.864 158.624 19.864C125.136 19.864 103.296 38.064 103.296 58.448C103.296 90.48 167.36 96.304 167.36 154.544C167.36 190.216 142.608 224.432 93.832 224.432C43.6 224.432 17.392 190.216 17.392 147.992C17.392 73.736 88.736 0.207966 232.152 0.207966C360.28 0.207966 433.808 54.08 433.808 141.44C433.808 250.64 316.6 319.072 136.784 394.784ZM734.961 0.207966C882.017 0.207966 986.849 111.592 986.849 265.2C986.849 418.808 882.017 530.192 735.689 530.192C588.633 530.192 483.073 419.536 483.073 265.2C483.073 110.864 587.905 0.207966 734.961 0.207966ZM734.961 11.128C685.457 11.128 667.985 62.088 667.985 265.2C667.985 468.312 686.185 519.272 735.689 519.272C784.465 519.272 801.937 468.312 801.937 265.2C801.937 62.088 784.465 11.128 734.961 11.128Z"/>
-                  </mask>
-                </defs>
-                <path
-                  d="M136.784 394.784H285.296C388.672 394.784 410.512 382.408 446.912 311.064L454.92 313.976L405.416 520H2.832L0.648001 511.992C158.624 364.208 260.544 279.032 260.544 159.64C260.544 72.28 216.864 19.864 158.624 19.864C125.136 19.864 103.296 38.064 103.296 58.448C103.296 90.48 167.36 96.304 167.36 154.544C167.36 190.216 142.608 224.432 93.832 224.432C43.6 224.432 17.392 190.216 17.392 147.992C17.392 73.736 88.736 0.207966 232.152 0.207966C360.28 0.207966 433.808 54.08 433.808 141.44C433.808 250.64 316.6 319.072 136.784 394.784ZM734.961 0.207966C882.017 0.207966 986.849 111.592 986.849 265.2C986.849 418.808 882.017 530.192 735.689 530.192C588.633 530.192 483.073 419.536 483.073 265.2C483.073 110.864 587.905 0.207966 734.961 0.207966ZM734.961 11.128C685.457 11.128 667.985 62.088 667.985 265.2C667.985 468.312 686.185 519.272 735.689 519.272C784.465 519.272 801.937 468.312 801.937 265.2C801.937 62.088 784.465 11.128 734.961 11.128Z"
-                  fill="none"
-                  stroke="#E9B566"
-                  stroke-opacity="0.5"
-                  stroke-width="1.5"
-                />
-              </svg>
-            </div>
-            <div class="svg-container tablet-svg">
-              <div class="blur-background"></div>
-              <svg
-                width="100%"
-                height="100%"
-                viewBox="0 0 444 247"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <defs>
-                  <mask id="svg-mask-tablet" maskContentUnits="objectBoundingBox">
-                    <path fill="white" transform="scale(0.002252252252252252, 0.004048582995951417)" d="M57.766 191.489H126.244C172.348 191.489 182.857 185.387 199.129 150.809L202.858 151.826L180.484 242H1.831L0.814 238.271C79.462 169.115 123.871 131.147 123.871 74.873C123.871 33.854 104.209 8.76799 73.699 8.76799C53.698 8.76799 40.816 19.955 40.816 30.125C40.816 44.363 67.936 47.414 67.936 71.822C67.936 87.416 57.427 101.315 37.426 101.315C16.747 101.315 5.56 87.077 5.56 68.771C5.56 35.888 38.443 0.29298 101.836 0.29298C158.788 0.29298 191.332 26.735 191.332 66.398C191.332 116.57 134.38 152.843 57.766 191.489ZM331.985 0.29298C397.073 0.29298 443.855 52.16 443.855 123.35C443.855 194.54 397.073 246.407 332.324 246.407C267.236 246.407 220.115 194.879 220.115 123.35C220.115 51.821 266.897 0.29298 331.985 0.29298ZM331.985 5.03898C304.187 5.03898 291.983 31.82 291.983 123.35C291.983 214.88 304.187 241.661 332.324 241.661C360.122 241.661 371.987 214.88 371.987 123.35C371.987 31.82 360.122 5.03898 331.985 5.03898Z"/>
-                  </mask>
-                </defs>
-                <path
-                  d="M57.766 191.489H126.244C172.348 191.489 182.857 185.387 199.129 150.809L202.858 151.826L180.484 242H1.831L0.814 238.271C79.462 169.115 123.871 131.147 123.871 74.873C123.871 33.854 104.209 8.76799 73.699 8.76799C53.698 8.76799 40.816 19.955 40.816 30.125C40.816 44.363 67.936 47.414 67.936 71.822C67.936 87.416 57.427 101.315 37.426 101.315C16.747 101.315 5.56 87.077 5.56 68.771C5.56 35.888 38.443 0.29298 101.836 0.29298C158.788 0.29298 191.332 26.735 191.332 66.398C191.332 116.57 134.38 152.843 57.766 191.489ZM331.985 0.29298C397.073 0.29298 443.855 52.16 443.855 123.35C443.855 194.54 397.073 246.407 332.324 246.407C267.236 246.407 220.115 194.879 220.115 123.35C220.115 51.821 266.897 0.29298 331.985 0.29298ZM331.985 5.03898C304.187 5.03898 291.983 31.82 291.983 123.35C291.983 214.88 304.187 241.661 332.324 241.661C360.122 241.661 371.987 214.88 371.987 123.35C371.987 31.82 360.122 5.03898 331.985 5.03898Z"
-                  fill="none"
-                  stroke="#E9B566"
-                  stroke-opacity="0.5"
-                  stroke-width="1.5"
-                />
-              </svg>
-            </div>
-            <div class="svg-container mobile-svg">
-              <div class="blur-background"></div>
-              <svg
-                width="100%"
-                height="100%"
-                viewBox="0 0 393 218"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <defs>
-                  <mask id="svg-mask-mobile" maskContentUnits="objectBoundingBox">
-                    <path fill="white" transform="scale(0.002544529262086514, 0.004587155963302752)" d="M51.2 169.3H111.8C152.6 169.3 161.9 163.9 176.3 133.3L179.6 134.2L159.8 214H1.7L0.8 210.7C70.4 149.5 109.7 115.9 109.7 66.1C109.7 29.8 92.3 7.59999 65.3 7.59999C47.6 7.59999 36.2 17.5 36.2 26.5C36.2 39.1 60.2 41.8 60.2 63.4C60.2 77.2 50.9 89.5 33.2 89.5C14.9 89.5 5 76.9 5 60.7C5 31.6 34.1 0.0999823 90.2 0.0999823C140.6 0.0999823 169.4 23.5 169.4 58.6C169.4 103 119 135.1 51.2 169.3ZM293.872 0.0999823C351.472 0.0999823 392.872 46 392.872 109C392.872 172 351.472 217.9 294.172 217.9C236.572 217.9 194.872 172.3 194.872 109C194.872 45.7 236.272 0.0999823 293.872 0.0999823ZM293.872 4.29998C269.272 4.29998 258.472 28 258.472 109C258.472 190 269.272 213.7 294.172 213.7C318.772 213.7 329.272 190 329.272 109C329.272 28 318.772 4.29998 293.872 4.29998Z"/>
-                  </mask>
-                </defs>
-                <path
-                  d="M51.2 169.3H111.8C152.6 169.3 161.9 163.9 176.3 133.3L179.6 134.2L159.8 214H1.7L0.8 210.7C70.4 149.5 109.7 115.9 109.7 66.1C109.7 29.8 92.3 7.59999 65.3 7.59999C47.6 7.59999 36.2 17.5 36.2 26.5C36.2 39.1 60.2 41.8 60.2 63.4C60.2 77.2 50.9 89.5 33.2 89.5C14.9 89.5 5 76.9 5 60.7C5 31.6 34.1 0.0999823 90.2 0.0999823C140.6 0.0999823 169.4 23.5 169.4 58.6C169.4 103 119 135.1 51.2 169.3ZM293.872 0.0999823C351.472 0.0999823 392.872 46 392.872 109C392.872 172 351.472 217.9 294.172 217.9C236.572 217.9 194.872 172.3 194.872 109C194.872 45.7 236.272 0.0999823 293.872 0.0999823ZM293.872 4.29998C269.272 4.29998 258.472 28 258.472 109C258.472 190 269.272 213.7 294.172 213.7C318.772 213.7 329.272 190 329.272 109C329.272 28 318.772 4.29998 293.872 4.29998Z"
-                  fill="none"
-                  stroke="#E9B566"
-                  stroke-opacity="0.5"
-                  stroke-width="1.5"
-                />
-              </svg>
-            </div>
-            <div class="period-title">
-              <span class="font-accent">Более 20 лет</span>
-              придаем
-              естественную красоту
-              <a href="#" class="ui-btn ui-btn-mid hidden-tablet period-link">
-                О нашем опыте
-                <svg class="ui-btn-icon">
-                  <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
-                </svg>
-              </a>
-            </div>
-            <div class="period-benefits">
-              <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-4">
-                  <div class="period-benefits-item">
-                    <img src="./images/girl.svg" alt="girl" class="period-benefits-item-img">
-                    <div class="period-benefits-item-title">
-                      Мы первая
-                      <br>
-                      клиника врачебной
-                      косметологии
-                      <br>
-                      в Нижнем Новгороде
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-4">
-                  <div class="period-benefits-item">
-                    <img src="./images/girl.svg" alt="girl" class="period-benefits-item-img">
-                    <div class="period-benefits-item-title">
-                      Мы принимаем активное участие в развитии косметологии в России
-                      <br>
-                      и за рубежом
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-4">
-                  <div class="period-benefits-item">
-                    <img src="./images/girl.svg" alt="girl" class="period-benefits-item-img">
-                    <div class="period-benefits-item-title">
-                      Мы занимаемся
-                      <br>
-                      развитием коллагено-стимуляции на основе молочной кислоты
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-4 self-bottom">
-                  <a href="#" class="ui-btn ui-btn-mid hidden-desktop period-link">
-                    О нашем опыте
-                    <svg class="ui-btn-icon">
-                      <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="solutions">
-            <div class="solutions-wrapper">
-              <div class="solutions-title">
-                Решения для вас
-              </div>
-              <div class="solutions-cards">
-                <div class="solutions-card">
-                  <img
-                    src="./images/solution 1.jpg"
-                    width="291"
-                    height="400"
-                    class="solutions-card-image"
-                    alt="solution"
-                    loading="lazy"
-                  >
-                  <div class="solutions-card-info">
-                    <div class="solutions-card-title">
-                      Косметология
-                      <br>
-                      для кожи
-                      <br>
-                      лица и тела
-                      <svg class="icon hidden-desktop">
-                        <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
-                      </svg>
-                    </div>
-                    <div class="solutions-card-content">
-                      <div class="solutions-card-list">
-                        <a href="#" class="solutions-card-list-item">
-                          Консультация косметолога
-                        </a>
-                        <a href="#" class="solutions-card-list-item">
-                          Коррекция фигуры
-                        </a>
-                        <a href="#" class="solutions-card-list-item">
-                          3D-диагностика кожи
-                        </a>
-                        <a href="#" class="solutions-card-list-item">
-                          Лечение потливости
-                        </a>
-                      </div>
-                      <a href="#" class="solutions-card-more">
-                        Еще 15 решений
-                        <svg class="icon">
-                          <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="solutions-card">
-                  <img
-                    src="./images/solution 2.jpg"
-                    width="291"
-                    height="400"
-                    class="solutions-card-image"
-                    alt="solution"
-                    loading="lazy"
-                  >
-                  <div class="solutions-card-info">
-                    <div class="solutions-card-title">
-                      Много-
-                      <br>
-                      профильная
-                      <br>
-                      медицина
-                      <svg class="icon hidden-desktop">
-                        <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
-                      </svg>
-                    </div>
-                    <div class="solutions-card-content">
-                      <div class="solutions-card-list">
-                        <a href="#" class="solutions-card-list-item">
-                          Терапия
-                        </a>
-                        <a href="#" class="solutions-card-list-item">
-                          Хирургия
-                        </a>
-                        <a href="#" class="solutions-card-list-item">
-                          Дерматология
-                        </a>
-                        <a href="#" class="solutions-card-list-item">
-                          Остеопатия
-                        </a>
-                      </div>
-                      <a href="#" class="solutions-card-more">
-                        Еще 15 решений
-                        <svg class="icon">
-                          <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="solutions-card">
-                  <img
-                    src="./images/solution 3.jpg"
-                    width="291"
-                    height="400"
-                    class="solutions-card-image"
-                    alt="solution"
-                    loading="lazy"
-                  >
-                  <div class="solutions-card-info">
-                    <div class="solutions-card-title">
-                      Beauty
-                      <svg class="icon hidden-desktop">
-                        <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
-                      </svg>
-                    </div>
-                    <div class="solutions-card-content">
-                      <div class="solutions-card-list">
-                        <a href="#" class="solutions-card-list-item">
-                          Парикмахерская студия
-                        </a>
-                        <a href="#" class="solutions-card-list-item">
-                          Маникюр и педикюр
-                        </a>
-                      </div>
-                      <a href="#" class="solutions-card-more">
-                        Еще 15 решений
-                        <svg class="icon">
-                          <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="solutions-card">
-                  <img
-                    src="./images/solution 4.jpg"
-                    width="291"
-                    height="400"
-                    class="solutions-card-image"
-                    alt="solution"
-                    loading="lazy"
-                  >
-                  <div class="solutions-card-info">
-                    <div class="solutions-card-title">
-                      SPA
-                      <svg class="icon hidden-desktop">
-                        <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
-                      </svg>
-                    </div>
-                    <div class="solutions-card-content">
-                      <div class="solutions-card-list">
-                        <a href="#" class="solutions-card-list-item">
-                          SPA — забота о лице и теле
-                        </a>
-                        <a href="#" class="solutions-card-list-item">
-                          Массаж вибро-акустический
-                        </a>
-                        <a href="#" class="solutions-card-list-item">
-                          Массаж лечебный
-                        </a>
-                        <a href="#" class="solutions-card-list-item">
-                          Управление стрессом
-                        </a>
-                      </div>
-                      <a href="#" class="solutions-card-more">
-                        Еще 15 решений
-                        <svg class="icon">
-                          <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="comparison">
-            <div class="comparison-container" id="beforeAfterSlider">
-              <img src="./images/before.jpg" alt="До" class="comparison-image comparison-image__before">
-              <img src="./images/after.jpg" alt="После" class="comparison-image comparison-image__after">
-              <div class="comparison-content">
-                <div class="comparison-content-title">
-                  Красота
-                  <br>
-                  не на словах,
-                  <br>
-                  <span class="font-accent">а на лице</span>
-                </div>
-                <a href="#" class="ui-btn ui-btn-mid">
-                  Все результаты
-                  <svg class="ui-btn-icon">
-                    <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
-                  </svg>
-                </a>
-              </div>
-              <div class="comparison-handle" id="sliderHandle">
-                <span class="comparison-label comparison-label__before ui-noise">До</span>
-                <span class="comparison-label comparison-label__after ui-noise">После</span>
-              </div>
-            </div>
-          </div>
-          <div class="equipment">
-            <h2 class="equipment-title">
-              <span class="font-accent">Элитное оборудование</span>
-              <br>
-              от мировых производителей
-            </h2>
-            <picture>
-              <source media="(max-width: 599px)" srcset="./images/equipment-mobile.png">
-              <source media="(max-width: 899px)" srcset="./images/equipment-tablet.png">
-              <source srcset="./images/equipment.png">
-              <img
-                src="./images/equipment.png"
-                alt="equipment"
-                loading="lazy"
-                width="1302"
-                height="768"
-                class="equipment-img"
-              >
-            </picture>
-            <a href="#" class="ui-btn ui-btn-mid equipment-link">
-              Об оборудовании
-              <svg class="ui-btn-icon">
-                <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
-              </svg>
-            </a>
-          </div>
-          <div class="team">
-            <h2 class="team-title">
-              <span class="font-accent">Слаженная</span>
-              <br>
-              команда экспертов
-            </h2>
-            <div class="team-image">
-              <picture>
-                <source media="(max-width: 599px)" srcset="./images/team-mobile.png">
-                <source srcset="./images/team.png">
-                <img
-                  src="./images/team.png"
-                  alt="team"
-                  class="team-img"
-                  loading="lazy"
-                  width="1304"
-                  height="734"
-                >
-              </picture>
-            </div>
-            <a href="#" class="ui-btn ui-btn-mid team-link">
-              Все спецалисты
-              <svg class="ui-btn-icon">
-                <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
-              </svg>
-            </a>
-          </div>
-        </div>
-        <div class="container container__min">
-          <div class="photos">
-            <h2 class="photos-title">
-              Место,
-              <span class="font-accent">где происходит красота</span>
-            </h2>
-            <div class="photos-card photos-card__first">
-              <img
-                src="./images/photo-1.jpg"
-                alt="photo"
-                loading="lazy"
-                width="697"
-                height="857"
-              >
-            </div>
-            <div class="photos-card photos-card__second">
-              <img
-                src="./images/photo-2.jpg"
-                alt="photo"
-                loading="lazy"
-                width="469"
-                height="528"
-              >
-            </div>
-            <div class="photos-card photos-card__third">
-              <img
-                src="./images/photo-3.jpg"
-                alt="photo"
-                loading="lazy"
-                width="469"
-                height="528"
-              >
-            </div>
-            <a href="#" class="ui-btn ui-btn-mid photos-link">
-              Больше фотографий
-              <svg class="ui-btn-icon">
-                <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </main>
-      <footer class="footer">
-        <div class="container">
-          <div class="footer-wrapper">
-            <div class="footer-title">
-              Раскройте
-              <br>
-              свою красоту
-              <br class="visible-mobile">
-              с O’LIVE
-            </div>
-            <a href="tel:88312000077" class="footer-tel contacts-main-tel">
-              <div class="contacts-main-tel-item">
-                8
-              </div>
-              <div class="contacts-main-tel-item">
-                831
-              </div>
-              <div class="contacts-main-tel-item">
-                2
-              </div>
-              <div class="contacts-main-tel-item">
-                0000
-              </div>
-              <div class="contacts-main-tel-item">
-                77
-              </div>
-            </a>
-            <div class="footer-links">
-              <div class="footer-feedback">
-                <a href="#" class="footer-feedback-item footer-feedback-item__address">
-                  <svg class="footer-feedback-icon">
-                    <use xlink:href="svg/svg/symbols.svg#marker"/>
-                  </svg>
-                  Нижний Новгород, ул. Тимирязева, 31а
-                </a>
-                <a href="tel:+78312000077" class="footer-feedback-item footer-feedback-item__phone">
-                  <svg class="footer-feedback-icon">
-                    <use xlink:href="svg/svg/symbols.svg#phone"/>
-                  </svg>
-                  +7 831 2-0000-77
-                </a>
-                <a href="mailto:olive.clinic@yandex.ru" class="footer-feedback-item footer-feedback-item__mail">
-                  <svg class="footer-feedback-icon">
-                    <use xlink:href="svg/svg/symbols.svg#envelope"/>
-                  </svg>
-                  olive.clinic@yandex.ru
-                </a>
-                <div class="footer-feedback-socials">
-                  <a href="#" target="_blank">
-                    <svg>
-                      <use xlink:href="svg/svg/symbols.svg#youtube"/>
-                    </svg>
-                  </a>
-                  <a href="#" target="_blank">
-                    <svg>
-                      <use xlink:href="svg/svg/symbols.svg#vk"/>
-                    </svg>
-                  </a>
-                  <a href="#" target="_blank">
-                    <svg>
-                      <use xlink:href="svg/svg/symbols.svg#viber"/>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="footer-info">
-              <div class="footer-info-main">
-                <div class="footer-copy">
-                  <span class="footer-copy-txt">
-                    <span class="footer-copy-txt-year"></span>
-                    O'LIVE
-                  </span>
-                  <span class="footer-copy-txt">
-                    ООО «Клиника эстетической медицины»
-                  </span>
-                </div>
-                <div class="footer-confident">
-                  <div class="footer-text">
-                    Информация не является публичной офертой
-                  </div>
-                  <a href="#">
-                    Политика конфиденциальности
-                  </a>
-                </div>
-              </div>
-              <div class="footer-created">
-                Сделано в
-                <a href="https://vzdh.rocks/" target="_blank">VZDH</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-      <div class="cookie hidden">
-        <div class="cookie-text">
-          Мы используем cookie, чтобы улучшить сайт для вас
-        </div>
-        <button class="ui-btn ui-btn-min ui-btn-transparent ui-noise">
-          Хорошо
-        </button>
-      </div>
-      <div class="header-burger-menu ui-noise">
-        <div class="header-burger-menu-wrapper">
-          <div class="header-burger-menu-head">
-            <a href="#" class="header-logo hidden-desktop">
-              <img
-                src="./images/logo.svg"
-                alt="olive"
-                width="77"
-                height="40"
-                loading="lazy"
-              >
-            </a>
-            <button class="close">
-              <svg
-                width="16"
-                height="17"
-                viewBox="0 0 16 17"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                class="icon"
-              >
-                <g clip-path="url(#clip0_6001_78642)">
-                  <path d="M15.1106 15.6111L0.88846 1.38889" stroke="#ffffff" stroke-linecap="round"/>
-                  <path d="M15.1115 1.38889L0.88941 15.6111" stroke="#ffffff" stroke-linecap="round"/>
-                </g>
-                <defs>
-                  <clipPath id="clip0_6001_78642">
-                    <rect
-                      width="16"
-                      height="16"
-                      fill="white"
-                      transform="translate(0 0.5)"
-                    />
-                  </clipPath>
-                </defs>
-              </svg>
-            </button>
-          </div>
-          <ul>
-            <li>
-              <a href="#">
-                Услуги
-              </a>
-              <ul class="hidden-desktop">
-                <li>
-                  <a href="#">
-                    <img src="./images/svg/icons-service.svg" alt="alt" class="menu-aside-icon">
-                    <span class="menu-aside-txt">Врачебная косметология для лица</span>
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="#">
-                        <span>Инъекционная косметология лица</span>
-                      </a>
-                      <ul>
-                        <li>
-                          <a href="#">
-                            <span>Ботулинотерапия</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>Биоревитализация</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>Мезотерапия</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>Коллагеностимуляция с препаратом AestheFill</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>Контурная пластика</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <span>Аппаратная косметология лица</span>
-                      </a>
-                      <ul>
-                        <li>
-                          <a href="#">
-                            <span>Ультразвуковой лифтинг Ulthera</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>Фотоомоложение на М22</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>Лазерная шлифовка СО2</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>RF-омоложение FORMA</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>
-                              ФЛазерная терапия и омоложение
-                              FOTONA 4D
-                            </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>Фракционный радиочасточный лифтинг МORPHEUS 8</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>Смас-лифтинг ULTRAFORMER MPT</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>Аппарат GENEO+</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>Аппарат Oligio</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>Лазерная терапия MELSYTECH</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="./images/svg/icons-service-2.svg" alt="alt" class="menu-aside-icon">
-                    <span class="menu-aside-txt">Врачебная косметология для тела</span>
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="#">
-                        <span>Инъекционная косметология лица</span>
-                      </a>
-                      <ul>
-                        <li>
-                          <a href="#">
-                            <span>Ботулинотерапия</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="https://olive.farbatest.com/services/vrachebnaya-kosmetologiya-dlya-litsa/inektsionnaya-kosmetologiya-dlya-litsa/konturnaya-plastika.html">
-                            <span>Биоревитализация</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>Мезотерапия</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>Коллагеностимуляция с препаратом AestheFill</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>Контурная пластика</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <span>Аппаратная косметология лица</span>
-                      </a>
-                      <ul>
-                        <li>
-                          <a href="#">
-                            <span>Ультразвуковой лифтинг Ulthera</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>Фотоомоложение на М22</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>Лазерная шлифовка СО2</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>RF-омоложение FORMA</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>
-                              ФЛазерная терапия и омоложение
-                            FOTONA 4D
-                            </span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>Фракционный радиочасточный лифтинг МORPHEUS 8</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>Смас-лифтинг ULTRAFORMER MPT</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>Аппарат GENEO+</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>Аппарат Oligio</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <span>Лазерная терапия MELSYTECH</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="./images/svg/icons-service-3.svg" alt="alt" class="menu-aside-icon">
-                    <span class="menu-aside-txt">Эстетическая косметология для лица</span>
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="#">
-                        Массаж лица
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Моментальный уход для лица
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Уходы на профессиональной косметике
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Пилинг лица
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="./images/svg/icons-service-4.svg" alt="alt" class="menu-aside-icon">
-                    <span class="menu-aside-txt">Забота о теле</span>
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="#">
-                        Коррекция фигуры
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Массаж
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Парные программы
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Расслабление
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Лечебные методики
-                        <br>
-                        восстановления
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        SPA для мужчин
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="./images/svg/icons-service-6.svg" alt="alt" class="menu-aside-icon">
-                    <span class="menu-aside-txt">Студия стиля</span>
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="#">
-                        Парикмахерская студия
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Маникюр и педикюр
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="./images/svg/icons-service-5.svg" alt="alt" class="menu-aside-icon">
-                    <span class="menu-aside-txt">Многопрофильная медицина</span>
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="#">
-                        Терапия
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Дерматология
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Эндокринология
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Неврология
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Оториноларингология
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Кардиология
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Гастроэетерология
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Гинекология
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Хирургия
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Психотерапия
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Остеопатия
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Нутррициология
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Травматология-ортопедия
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Программы похудения
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Операционное лечение
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Анализы
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        УЗИ
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="./images/svg/icons-service-7.svg" alt="alt" class="menu-aside-icon">
-                    <span class="menu-aside-txt">Диагностика</span>
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="#">
-                        Анализы
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        3D-диагностика клжи
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        УЗИ
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">
-                Решения
-              </a>
-              <ul class="hidden-desktop">
-                <li>
-                  <a href="#" class="active">
-                    Косметология для кожи лица и тела
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="#">
-                        Консультация косметолога
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        3D-диагностика кожи
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Омоложение
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Коррекция формы лица
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Улучшение качества кожи
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Лечение акне/постакне
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Коррекция фигуры
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Лечение потливости
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Коррекция рубцов и стрий
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Удаление пигментных пятен и сосудов
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Удаление нежелательных волос
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#" class="">
-                    Многопрофильная медицина
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="#">
-                        Терапия
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Дерматология
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Эндокринология
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Неврология
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Оториноларингология
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Кардиология
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Гастроэнтерология
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Гинекология
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Хирургия
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Остеопатия
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Нутрициология
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Травматология-ортопедия
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Программы похудения
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Операционное лечение
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Анализы
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        УЗИ
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#" class="">
-                    SPA
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="#">
-                        SPA - забота о лице и теле
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Массаж лечебный
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Массаж моделирующий
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Массаж вибро-акустический
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Управление стрессом
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#" class="">
-                    Beauty
-                  </a>
-                  <ul>
-                    <li>
-                      <a href="#">
-                        Парикмахерская студия
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        Маникюр и педикюр
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">
-                До / после
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                Акции
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                Специалисты
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                Клиника
-              </a>
-              <ul>
-                <li>
-                  <a href="#">
-                    Наши клиники
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Дипломы и сертификаты
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Лицензии
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Новости
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Информация об организации
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Информация для пациентов
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <a href="#">
-                Аппараты
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                Косметика
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                Отзывы
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                Экспертиза
-              </a>
-              <ul>
-                <li>
-                  <a href="#">
-                    Наша экспертиза
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Научные статьи
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Подкасты
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    PLAn красоты
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">
-                Оплата
-              </a>
-              <ul>
-                <li>
-                  <a href="#">
-                    Стоимость услуг
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Подарочный сертификат
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Онлайн-оплата
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Рассрочка
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    Налоговый вычет
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">
-                Контакты
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="search">
-        <div class="container container__min">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            class="search-close"
-          >
-            <g>
-              <g clip-path="url(#clip0_6001_50246)">
-                <path d="M15.1145 15.1111L0.892367 0.888889" stroke-linecap="round"/>
-                <path d="M15.1076 0.888889L0.885503 15.1111" stroke-linecap="round"/>
-              </g>
-            </g>
-            <defs>
-              <clipPath id="clip0_6001_50246">
-                <rect width="16" height="16"/>
-              </clipPath>
-            </defs>
+<!--#include file="inc-header-important.html"-->
+<main class="main">
+  <img src="./images/main-bg.jpg" alt="bg" class="main-bg ui-noise ui-fading-bg">
+  <div class="container container__min">
+    <div class="main-banner">
+      <div class="main-banner-content ui-fading-bg">
+        <h1 class="main-banner-title">
+          Клиника естественной красоты
+        </h1>
+        <a href="#" class="ui-btn mfp-link" data-href="./popups/popup-service-selection.html">
+          Подбор услуги
+          <svg class="ui-btn-icon">
+            <use xlink:href="svg/svg/symbols.svg#ui-icons-right"/>
           </svg>
-          <div class="search-field">
-            <svg
-              width="17"
-              height="16"
-              viewBox="0 0 17 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              class="search-field-icon"
-            >
-              <path d="M8.16732 12.6667C11.1128 12.6667 13.5007 10.2789 13.5007 7.33333C13.5007 4.38781 11.1128 2 8.16732 2C5.2218 2 2.83398 4.38781 2.83398 7.33333C2.83398 10.2789 5.2218 12.6667 8.16732 12.6667Z" stroke-width="1.05174" stroke-linecap="square"/>
-              <path d="M14.8336 14.0016L11.9336 11.1016" stroke-width="1.05174" stroke-linecap="round"/>
-            </svg>
-            <input type="search" placeholder="Введите поисковый запрос" class="search-input">
-            <a href="#" class="search-remove">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                class="search-remove-icon"
-              >
-                <g clip-path="url(#clip0_6001_50246)">
-                  <path d="M15.1145 15.1111L0.892367 0.888889" stroke="white" stroke-linecap="round"/>
-                  <path d="M15.1076 0.888889L0.885503 15.1111" stroke="white" stroke-linecap="round"/>
-                </g>
-                <defs>
-                  <clipPath id="clip0_6001_50246">
-                    <rect width="16" height="16" fill="white"/>
-                  </clipPath>
-                </defs>
-              </svg>
-            </a>
-            <a href="#" class="search-btn">
-              Найти
-            </a>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="founders">
+      <h2 class="founders-title">
+        Клиника, основанная
+        <span class="founders-title-accent">известными экспертами-косметологами</span>
+      </h2>
+      <picture>
+        <source media="(max-width: 599px)" srcset="./images/founders-mobile.jpg">
+        <source media="(max-width: 899px)" srcset="./images/founders-tablet.jpg">
+        <source srcset="./images/founders.png">
+        <img src="./images/founders.png" alt="founders" class="founders-image">
+      </picture>
+      <div class="founders-trigger founders-trigger__left">
+        <div class="founders-trigger-text">
+          <div class="founders-trigger-surname">
+            Филиппова
           </div>
-          <div class="search-info">
-            <ul>
-              <li>
-                <a href="#">
-                  Найдено в услугах
-                </a>
-              </li>
-              <li>
-                <a href="#" class="active">
-                  Найдено на сайте
-                </a>
-              </li>
-            </ul>
+          <div class="founders-trigger-lastname">
+            Лариса Ивановна
           </div>
-          <div class="search-results">
-            <div class="search-result search-result__min">
-              <div class="breadcrumbs">
-                <ul>
-                  <li>
-                    <a href="#">
-                      Экспертиза
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Научные статьи
-                    </a>
-                  </li>
-                </ul>
+        </div>
+        <a
+          href="#"
+          class="founders-trigger-btn mfp-link"
+          data-href="./popups/popup-spec.html"
+          data-background="transparent"
+        >
+          <svg class="founders-trigger-btn-icon">
+            <use xlink:href="svg/svg/symbols.svg#plus"/>
+          </svg>
+        </a>
+      </div>
+      <div class="founders-trigger founders-trigger__right">
+        <a
+          href="#"
+          class="founders-trigger-btn mfp-link"
+          data-href="./popups/popup-spec2.html"
+          data-background="transparent"
+        >
+          <svg class="founders-trigger-btn-icon">
+            <use xlink:href="svg/svg/symbols.svg#plus"/>
+          </svg>
+        </a>
+        <div class="founders-trigger-text">
+          <div class="founders-trigger-surname">
+            Горская
+          </div>
+          <div class="founders-trigger-lastname">
+            Антонина Александровна
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="period">
+      <div class="svg-container desktop-svg">
+        <div class="blur-background"></div>
+        <svg
+          width="100%"
+          height="100%"
+          viewBox="0 0 1003 547"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <mask id="svg-mask-desktop" maskContentUnits="objectBoundingBox">
+              <path fill="white" transform="scale(0.0009970089730807577, 0.001828153564899714)" d="M136.784 394.784H285.296C388.672 394.784 410.512 382.408 446.912 311.064L454.92 313.976L405.416 520H2.832L0.648001 511.992C158.624 364.208 260.544 279.032 260.544 159.64C260.544 72.28 216.864 19.864 158.624 19.864C125.136 19.864 103.296 38.064 103.296 58.448C103.296 90.48 167.36 96.304 167.36 154.544C167.36 190.216 142.608 224.432 93.832 224.432C43.6 224.432 17.392 190.216 17.392 147.992C17.392 73.736 88.736 0.207966 232.152 0.207966C360.28 0.207966 433.808 54.08 433.808 141.44C433.808 250.64 316.6 319.072 136.784 394.784ZM734.961 0.207966C882.017 0.207966 986.849 111.592 986.849 265.2C986.849 418.808 882.017 530.192 735.689 530.192C588.633 530.192 483.073 419.536 483.073 265.2C483.073 110.864 587.905 0.207966 734.961 0.207966ZM734.961 11.128C685.457 11.128 667.985 62.088 667.985 265.2C667.985 468.312 686.185 519.272 735.689 519.272C784.465 519.272 801.937 468.312 801.937 265.2C801.937 62.088 784.465 11.128 734.961 11.128Z"/>
+            </mask>
+          </defs>
+          <path
+            d="M136.784 394.784H285.296C388.672 394.784 410.512 382.408 446.912 311.064L454.92 313.976L405.416 520H2.832L0.648001 511.992C158.624 364.208 260.544 279.032 260.544 159.64C260.544 72.28 216.864 19.864 158.624 19.864C125.136 19.864 103.296 38.064 103.296 58.448C103.296 90.48 167.36 96.304 167.36 154.544C167.36 190.216 142.608 224.432 93.832 224.432C43.6 224.432 17.392 190.216 17.392 147.992C17.392 73.736 88.736 0.207966 232.152 0.207966C360.28 0.207966 433.808 54.08 433.808 141.44C433.808 250.64 316.6 319.072 136.784 394.784ZM734.961 0.207966C882.017 0.207966 986.849 111.592 986.849 265.2C986.849 418.808 882.017 530.192 735.689 530.192C588.633 530.192 483.073 419.536 483.073 265.2C483.073 110.864 587.905 0.207966 734.961 0.207966ZM734.961 11.128C685.457 11.128 667.985 62.088 667.985 265.2C667.985 468.312 686.185 519.272 735.689 519.272C784.465 519.272 801.937 468.312 801.937 265.2C801.937 62.088 784.465 11.128 734.961 11.128Z"
+            fill="none"
+            stroke="#E9B566"
+            stroke-opacity="0.5"
+            stroke-width="1.5"
+          />
+        </svg>
+      </div>
+      <div class="svg-container tablet-svg">
+        <div class="blur-background"></div>
+        <svg
+          width="100%"
+          height="100%"
+          viewBox="0 0 444 247"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <mask id="svg-mask-tablet" maskContentUnits="objectBoundingBox">
+              <path fill="white" transform="scale(0.002252252252252252, 0.004048582995951417)" d="M57.766 191.489H126.244C172.348 191.489 182.857 185.387 199.129 150.809L202.858 151.826L180.484 242H1.831L0.814 238.271C79.462 169.115 123.871 131.147 123.871 74.873C123.871 33.854 104.209 8.76799 73.699 8.76799C53.698 8.76799 40.816 19.955 40.816 30.125C40.816 44.363 67.936 47.414 67.936 71.822C67.936 87.416 57.427 101.315 37.426 101.315C16.747 101.315 5.56 87.077 5.56 68.771C5.56 35.888 38.443 0.29298 101.836 0.29298C158.788 0.29298 191.332 26.735 191.332 66.398C191.332 116.57 134.38 152.843 57.766 191.489ZM331.985 0.29298C397.073 0.29298 443.855 52.16 443.855 123.35C443.855 194.54 397.073 246.407 332.324 246.407C267.236 246.407 220.115 194.879 220.115 123.35C220.115 51.821 266.897 0.29298 331.985 0.29298ZM331.985 5.03898C304.187 5.03898 291.983 31.82 291.983 123.35C291.983 214.88 304.187 241.661 332.324 241.661C360.122 241.661 371.987 214.88 371.987 123.35C371.987 31.82 360.122 5.03898 331.985 5.03898Z"/>
+            </mask>
+          </defs>
+          <path
+            d="M57.766 191.489H126.244C172.348 191.489 182.857 185.387 199.129 150.809L202.858 151.826L180.484 242H1.831L0.814 238.271C79.462 169.115 123.871 131.147 123.871 74.873C123.871 33.854 104.209 8.76799 73.699 8.76799C53.698 8.76799 40.816 19.955 40.816 30.125C40.816 44.363 67.936 47.414 67.936 71.822C67.936 87.416 57.427 101.315 37.426 101.315C16.747 101.315 5.56 87.077 5.56 68.771C5.56 35.888 38.443 0.29298 101.836 0.29298C158.788 0.29298 191.332 26.735 191.332 66.398C191.332 116.57 134.38 152.843 57.766 191.489ZM331.985 0.29298C397.073 0.29298 443.855 52.16 443.855 123.35C443.855 194.54 397.073 246.407 332.324 246.407C267.236 246.407 220.115 194.879 220.115 123.35C220.115 51.821 266.897 0.29298 331.985 0.29298ZM331.985 5.03898C304.187 5.03898 291.983 31.82 291.983 123.35C291.983 214.88 304.187 241.661 332.324 241.661C360.122 241.661 371.987 214.88 371.987 123.35C371.987 31.82 360.122 5.03898 331.985 5.03898Z"
+            fill="none"
+            stroke="#E9B566"
+            stroke-opacity="0.5"
+            stroke-width="1.5"
+          />
+        </svg>
+      </div>
+      <div class="svg-container mobile-svg">
+        <div class="blur-background"></div>
+        <svg
+          width="100%"
+          height="100%"
+          viewBox="0 0 393 218"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <mask id="svg-mask-mobile" maskContentUnits="objectBoundingBox">
+              <path fill="white" transform="scale(0.002544529262086514, 0.004587155963302752)" d="M51.2 169.3H111.8C152.6 169.3 161.9 163.9 176.3 133.3L179.6 134.2L159.8 214H1.7L0.8 210.7C70.4 149.5 109.7 115.9 109.7 66.1C109.7 29.8 92.3 7.59999 65.3 7.59999C47.6 7.59999 36.2 17.5 36.2 26.5C36.2 39.1 60.2 41.8 60.2 63.4C60.2 77.2 50.9 89.5 33.2 89.5C14.9 89.5 5 76.9 5 60.7C5 31.6 34.1 0.0999823 90.2 0.0999823C140.6 0.0999823 169.4 23.5 169.4 58.6C169.4 103 119 135.1 51.2 169.3ZM293.872 0.0999823C351.472 0.0999823 392.872 46 392.872 109C392.872 172 351.472 217.9 294.172 217.9C236.572 217.9 194.872 172.3 194.872 109C194.872 45.7 236.272 0.0999823 293.872 0.0999823ZM293.872 4.29998C269.272 4.29998 258.472 28 258.472 109C258.472 190 269.272 213.7 294.172 213.7C318.772 213.7 329.272 190 329.272 109C329.272 28 318.772 4.29998 293.872 4.29998Z"/>
+            </mask>
+          </defs>
+          <path
+            d="M51.2 169.3H111.8C152.6 169.3 161.9 163.9 176.3 133.3L179.6 134.2L159.8 214H1.7L0.8 210.7C70.4 149.5 109.7 115.9 109.7 66.1C109.7 29.8 92.3 7.59999 65.3 7.59999C47.6 7.59999 36.2 17.5 36.2 26.5C36.2 39.1 60.2 41.8 60.2 63.4C60.2 77.2 50.9 89.5 33.2 89.5C14.9 89.5 5 76.9 5 60.7C5 31.6 34.1 0.0999823 90.2 0.0999823C140.6 0.0999823 169.4 23.5 169.4 58.6C169.4 103 119 135.1 51.2 169.3ZM293.872 0.0999823C351.472 0.0999823 392.872 46 392.872 109C392.872 172 351.472 217.9 294.172 217.9C236.572 217.9 194.872 172.3 194.872 109C194.872 45.7 236.272 0.0999823 293.872 0.0999823ZM293.872 4.29998C269.272 4.29998 258.472 28 258.472 109C258.472 190 269.272 213.7 294.172 213.7C318.772 213.7 329.272 190 329.272 109C329.272 28 318.772 4.29998 293.872 4.29998Z"
+            fill="none"
+            stroke="#E9B566"
+            stroke-opacity="0.5"
+            stroke-width="1.5"
+          />
+        </svg>
+      </div>
+      <div class="period-title">
+        <span class="font-accent">Более 20 лет</span>
+        придаем
+              естественную красоту
+        <a href="#" class="ui-btn ui-btn-mid hidden-tablet period-link">
+          О нашем опыте
+          <svg class="ui-btn-icon">
+            <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="period-benefits">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-4">
+            <div class="period-benefits-item">
+              <img src="./images/girl.svg" alt="girl" class="period-benefits-item-img">
+              <div class="period-benefits-item-title">
+                Мы первая
+                <br>
+                клиника врачебной
+                      косметологии
+                <br>
+                в Нижнем Новгороде
               </div>
-              <a href="#" class="search-result-wrapper">
-                <div class="search-result-head">
-                  <div class="search-result-head-title">
-                    Когда нужна инъекционная
-                    <span>косметология</span>
-                    ?
-                  </div>
-                  <svg class="search-result-head-icon">
-                    <use xlink:href="svg/svg/symbols.svg#ui-icons-right"/>
-                  </svg>
-                </div>
-              </a>
-            </div>
-            <div class="search-result search-result__min">
-              <div class="breadcrumbs">
-                <ul>
-                  <li>
-                    <a href="#">
-                      Экспертиза
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Научные статьи
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <a href="#" class="search-result-wrapper">
-                <div class="search-result-head">
-                  <div class="search-result-head-title">
-                    Вопросы-ответы об инъекционной
-                    <span>косметологии</span>
-                  </div>
-                  <svg class="search-result-head-icon">
-                    <use xlink:href="svg/svg/symbols.svg#ui-icons-right"/>
-                  </svg>
-                </div>
-              </a>
-            </div>
-            <div class="search-result search-result__min">
-              <div class="breadcrumbs">
-                <ul>
-                  <li>
-                    <a href="#">
-                      Экспертиза
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Научные статьи
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <a href="#" class="search-result-wrapper">
-                <div class="search-result-head">
-                  <div class="search-result-head-title">
-                    Когда нужна инъекционная
-                    <span>косметология</span>
-                    ?
-                  </div>
-                  <svg class="search-result-head-icon">
-                    <use xlink:href="svg/svg/symbols.svg#ui-icons-right"/>
-                  </svg>
-                </div>
-              </a>
-            </div>
-            <div class="search-result search-result__min">
-              <div class="breadcrumbs">
-                <ul>
-                  <li>
-                    <a href="#">
-                      Экспертиза
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Научные статьи
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <a href="#" class="search-result-wrapper">
-                <div class="search-result-head">
-                  <div class="search-result-head-title">
-                    Вопросы-ответы об инъекционной
-                    <span>косметологии</span>
-                  </div>
-                  <svg class="search-result-head-icon">
-                    <use xlink:href="svg/svg/symbols.svg#ui-icons-right"/>
-                  </svg>
-                </div>
-              </a>
-            </div>
-            <div class="search-result search-result__min">
-              <div class="breadcrumbs">
-                <ul>
-                  <li>
-                    <a href="#">
-                      Экспертиза
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Научные статьи
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <a href="#" class="search-result-wrapper">
-                <div class="search-result-head">
-                  <div class="search-result-head-title">
-                    Когда нужна инъекционная
-                    <span>косметология</span>
-                    ?
-                  </div>
-                  <svg class="search-result-head-icon">
-                    <use xlink:href="svg/svg/symbols.svg#ui-icons-right"/>
-                  </svg>
-                </div>
-              </a>
-            </div>
-            <div class="search-result search-result__min">
-              <div class="breadcrumbs">
-                <ul>
-                  <li>
-                    <a href="#">
-                      Экспертиза
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Научные статьи
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <a href="#" class="search-result-wrapper">
-                <div class="search-result-head">
-                  <div class="search-result-head-title">
-                    Вопросы-ответы об инъекционной
-                    <span>косметологии</span>
-                  </div>
-                  <svg class="search-result-head-icon">
-                    <use xlink:href="svg/svg/symbols.svg#ui-icons-right"/>
-                  </svg>
-                </div>
-              </a>
-            </div>
-            <div class="search-result search-result__min">
-              <div class="breadcrumbs">
-                <ul>
-                  <li>
-                    <a href="#">
-                      Экспертиза
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Научные статьи
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <a href="#" class="search-result-wrapper">
-                <div class="search-result-head">
-                  <div class="search-result-head-title">
-                    Когда нужна инъекционная
-                    <span>косметология</span>
-                    ?
-                  </div>
-                  <svg class="search-result-head-icon">
-                    <use xlink:href="svg/svg/symbols.svg#ui-icons-right"/>
-                  </svg>
-                </div>
-              </a>
-            </div>
-            <div class="search-result search-result__min">
-              <div class="breadcrumbs">
-                <ul>
-                  <li>
-                    <a href="#">
-                      Экспертиза
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Научные статьи
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <a href="#" class="search-result-wrapper">
-                <div class="search-result-head">
-                  <div class="search-result-head-title">
-                    Вопросы-ответы об инъекционной
-                    <span>косметологии</span>
-                  </div>
-                  <svg class="search-result-head-icon">
-                    <use xlink:href="svg/svg/symbols.svg#ui-icons-right"/>
-                  </svg>
-                </div>
-              </a>
-            </div>
-            <div class="search-result search-result__min">
-              <div class="breadcrumbs">
-                <ul>
-                  <li>
-                    <a href="#">
-                      Экспертиза
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Научные статьи
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <a href="#" class="search-result-wrapper">
-                <div class="search-result-head">
-                  <div class="search-result-head-title">
-                    Когда нужна инъекционная
-                    <span>косметология</span>
-                    ?
-                  </div>
-                  <svg class="search-result-head-icon">
-                    <use xlink:href="svg/svg/symbols.svg#ui-icons-right"/>
-                  </svg>
-                </div>
-              </a>
-            </div>
-            <div class="search-result search-result__min">
-              <div class="breadcrumbs">
-                <ul>
-                  <li>
-                    <a href="#">
-                      Экспертиза
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Научные статьи
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <a href="#" class="search-result-wrapper">
-                <div class="search-result-head">
-                  <div class="search-result-head-title">
-                    Вопросы-ответы об инъекционной
-                    <span>косметологии</span>
-                  </div>
-                  <svg class="search-result-head-icon">
-                    <use xlink:href="svg/svg/symbols.svg#ui-icons-right"/>
-                  </svg>
-                </div>
-              </a>
-            </div>
-            <div class="search-result search-result__min">
-              <div class="breadcrumbs">
-                <ul>
-                  <li>
-                    <a href="#">
-                      Экспертиза
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Научные статьи
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <a href="#" class="search-result-wrapper">
-                <div class="search-result-head">
-                  <div class="search-result-head-title">
-                    Когда нужна инъекционная
-                    <span>косметология</span>
-                    ?
-                  </div>
-                  <svg class="search-result-head-icon">
-                    <use xlink:href="svg/svg/symbols.svg#ui-icons-right"/>
-                  </svg>
-                </div>
-              </a>
-            </div>
-            <div class="search-result search-result__min">
-              <div class="breadcrumbs">
-                <ul>
-                  <li>
-                    <a href="#">
-                      Экспертиза
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      Научные статьи
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <a href="#" class="search-result-wrapper">
-                <div class="search-result-head">
-                  <div class="search-result-head-title">
-                    Вопросы-ответы об инъекционной
-                    <span>косметологии</span>
-                  </div>
-                  <svg class="search-result-head-icon">
-                    <use xlink:href="svg/svg/symbols.svg#ui-icons-right"/>
-                  </svg>
-                </div>
-              </a>
             </div>
           </div>
-          <div class="search-all">
-            <a href="#" class="ui-btn ui-btn-mid ui-btn__base">
-              Перейти ко всем результатам
+          <div class="col-lg-4 col-md-6 col-sm-4">
+            <div class="period-benefits-item">
+              <img src="./images/girl.svg" alt="girl" class="period-benefits-item-img">
+              <div class="period-benefits-item-title">
+                Мы принимаем активное участие в развитии косметологии в России
+                <br>
+                и за рубежом
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-4">
+            <div class="period-benefits-item">
+              <img src="./images/girl.svg" alt="girl" class="period-benefits-item-img">
+              <div class="period-benefits-item-title">
+                Мы занимаемся
+                <br>
+                развитием коллагено-стимуляции на основе молочной кислоты
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-sm-4 self-bottom">
+            <a href="#" class="ui-btn ui-btn-mid hidden-desktop period-link">
+              О нашем опыте
               <svg class="ui-btn-icon">
                 <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
               </svg>
@@ -2744,22 +196,296 @@
         </div>
       </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-form-styler@latest/dist/jquery.formstyler.js"></script>
-    <!-- <script src="https://unpkg.com/imask"></script> -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/imask/7.6.0/imask.min.js"
-      integrity="sha512-nTNcq3y76KV0waC+4blkE81acF83+Q0wmdNlDfpXgzpswh6FbhemEYoIV3TH+tOhadNeviCA+WPD5FEuXeF6mQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"
-      integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script src="./scripts/scripts.js"></script>
-  </body>
-</html>
+    <div class="solutions">
+      <div class="solutions-wrapper">
+        <div class="solutions-title">
+          Решения для вас
+        </div>
+        <div class="solutions-cards">
+          <div class="solutions-card">
+            <img
+              src="./images/solution 1.jpg"
+              width="291"
+              height="400"
+              class="solutions-card-image"
+              alt="solution"
+              loading="lazy"
+            >
+            <div class="solutions-card-info">
+              <div class="solutions-card-title">
+                Косметология
+                <br>
+                для кожи
+                <br>
+                лица и тела
+                <svg class="icon hidden-desktop">
+                  <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
+                </svg>
+              </div>
+              <div class="solutions-card-content">
+                <div class="solutions-card-list">
+                  <a href="#" class="solutions-card-list-item">
+                    Консультация косметолога
+                  </a>
+                  <a href="#" class="solutions-card-list-item">
+                    Коррекция фигуры
+                  </a>
+                  <a href="#" class="solutions-card-list-item">
+                    3D-диагностика кожи
+                  </a>
+                  <a href="#" class="solutions-card-list-item">
+                    Лечение потливости
+                  </a>
+                </div>
+                <a href="#" class="solutions-card-more">
+                  Еще 15 решений
+                  <svg class="icon">
+                    <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="solutions-card">
+            <img
+              src="./images/solution 2.jpg"
+              width="291"
+              height="400"
+              class="solutions-card-image"
+              alt="solution"
+              loading="lazy"
+            >
+            <div class="solutions-card-info">
+              <div class="solutions-card-title">
+                Много-
+                <br>
+                профильная
+                <br>
+                медицина
+                <svg class="icon hidden-desktop">
+                  <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
+                </svg>
+              </div>
+              <div class="solutions-card-content">
+                <div class="solutions-card-list">
+                  <a href="#" class="solutions-card-list-item">
+                    Терапия
+                  </a>
+                  <a href="#" class="solutions-card-list-item">
+                    Хирургия
+                  </a>
+                  <a href="#" class="solutions-card-list-item">
+                    Дерматология
+                  </a>
+                  <a href="#" class="solutions-card-list-item">
+                    Остеопатия
+                  </a>
+                </div>
+                <a href="#" class="solutions-card-more">
+                  Еще 15 решений
+                  <svg class="icon">
+                    <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="solutions-card">
+            <img
+              src="./images/solution 3.jpg"
+              width="291"
+              height="400"
+              class="solutions-card-image"
+              alt="solution"
+              loading="lazy"
+            >
+            <div class="solutions-card-info">
+              <div class="solutions-card-title">
+                Beauty
+                <svg class="icon hidden-desktop">
+                  <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
+                </svg>
+              </div>
+              <div class="solutions-card-content">
+                <div class="solutions-card-list">
+                  <a href="#" class="solutions-card-list-item">
+                    Парикмахерская студия
+                  </a>
+                  <a href="#" class="solutions-card-list-item">
+                    Маникюр и педикюр
+                  </a>
+                </div>
+                <a href="#" class="solutions-card-more">
+                  Еще 15 решений
+                  <svg class="icon">
+                    <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="solutions-card">
+            <img
+              src="./images/solution 4.jpg"
+              width="291"
+              height="400"
+              class="solutions-card-image"
+              alt="solution"
+              loading="lazy"
+            >
+            <div class="solutions-card-info">
+              <div class="solutions-card-title">
+                SPA
+                <svg class="icon hidden-desktop">
+                  <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
+                </svg>
+              </div>
+              <div class="solutions-card-content">
+                <div class="solutions-card-list">
+                  <a href="#" class="solutions-card-list-item">
+                    SPA — забота о лице и теле
+                  </a>
+                  <a href="#" class="solutions-card-list-item">
+                    Массаж вибро-акустический
+                  </a>
+                  <a href="#" class="solutions-card-list-item">
+                    Массаж лечебный
+                  </a>
+                  <a href="#" class="solutions-card-list-item">
+                    Управление стрессом
+                  </a>
+                </div>
+                <a href="#" class="solutions-card-more">
+                  Еще 15 решений
+                  <svg class="icon">
+                    <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comparison">
+      <div class="comparison-container" id="beforeAfterSlider">
+        <img src="./images/before.jpg" alt="До" class="comparison-image comparison-image__before">
+        <img src="./images/after.jpg" alt="После" class="comparison-image comparison-image__after">
+        <div class="comparison-content">
+          <div class="comparison-content-title">
+            Красота
+            <br>
+            не на словах,
+            <br>
+            <span class="font-accent">а на лице</span>
+          </div>
+          <a href="#" class="ui-btn ui-btn-mid">
+            Все результаты
+            <svg class="ui-btn-icon">
+              <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
+            </svg>
+          </a>
+        </div>
+        <div class="comparison-handle" id="sliderHandle">
+          <span class="comparison-label comparison-label__before ui-noise">До</span>
+          <span class="comparison-label comparison-label__after ui-noise">После</span>
+        </div>
+      </div>
+    </div>
+    <div class="equipment">
+      <h2 class="equipment-title">
+        <span class="font-accent">Элитное оборудование</span>
+        <br>
+        от мировых производителей
+      </h2>
+      <picture>
+        <source media="(max-width: 599px)" srcset="./images/equipment-mobile.png">
+        <source media="(max-width: 899px)" srcset="./images/equipment-tablet.png">
+        <source srcset="./images/equipment.png">
+        <img
+          src="./images/equipment.png"
+          alt="equipment"
+          loading="lazy"
+          width="1302"
+          height="768"
+          class="equipment-img"
+        >
+      </picture>
+      <a href="#" class="ui-btn ui-btn-mid equipment-link">
+        Об оборудовании
+        <svg class="ui-btn-icon">
+          <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
+        </svg>
+      </a>
+    </div>
+    <div class="team">
+      <h2 class="team-title">
+        <span class="font-accent">Слаженная</span>
+        <br>
+        команда экспертов
+      </h2>
+      <div class="team-image">
+        <picture>
+          <source media="(max-width: 599px)" srcset="./images/team-mobile.png">
+          <source srcset="./images/team.png">
+          <img
+            src="./images/team.png"
+            alt="team"
+            class="team-img"
+            loading="lazy"
+            width="1304"
+            height="734"
+          >
+        </picture>
+      </div>
+      <a href="#" class="ui-btn ui-btn-mid team-link">
+        Все спецалисты
+        <svg class="ui-btn-icon">
+          <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="container container__min">
+    <div class="photos">
+      <h2 class="photos-title">
+        Место,
+        <span class="font-accent">где происходит красота</span>
+      </h2>
+      <div class="photos-card photos-card__first">
+        <img
+          src="./images/photo-1.jpg"
+          alt="photo"
+          loading="lazy"
+          width="697"
+          height="857"
+        >
+      </div>
+      <div class="photos-card photos-card__second">
+        <img
+          src="./images/photo-2.jpg"
+          alt="photo"
+          loading="lazy"
+          width="469"
+          height="528"
+        >
+      </div>
+      <div class="photos-card photos-card__third">
+        <img
+          src="./images/photo-3.jpg"
+          alt="photo"
+          loading="lazy"
+          width="469"
+          height="528"
+        >
+      </div>
+      <a href="#" class="ui-btn ui-btn-mid photos-link">
+        Больше фотографий
+        <svg class="ui-btn-icon">
+          <use xlink:href="svg/svg/symbols.svg#ui-icons-right"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+</main>
+<!--#include file="inc-footer.html"-->

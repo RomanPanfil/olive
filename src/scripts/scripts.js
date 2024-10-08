@@ -36,6 +36,148 @@ const FARBA = {
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  $(".ui-select, .ui-checkbox, .ui-radio").styler();
+
+  // кастомный селект
+  (function() {
+    const selects = document.querySelectorAll('.custom-select');
+    
+    if (selects.length === 0) return;
+
+    const main = document.querySelector('.main');
+    if (!main) return;
+
+    // Создаем общий оверлей
+    const overlay = document.createElement('div');
+    overlay.classList.add('select-overlay');
+    main.parentNode.insertBefore(overlay, main.nextSibling);
+
+    selects.forEach((select, index) => {
+      const header = select.querySelector('.select-header');
+      const headerChecked = select.querySelector('.select-header-checked');
+      const options = select.querySelector('.select-options');
+      
+      if (!options) return;
+      
+      const firstOption = options.querySelector('input[type="radio"]');
+
+      // Создаем мобильную версию options
+      const mobileOptions = options.cloneNode(true);
+      mobileOptions.classList.add('select-options-mobile');
+      mobileOptions.id = `select-options-mobile-${index}`;
+      
+      // Добавляем мобильные опции после main
+      main.parentNode.insertBefore(mobileOptions, overlay);
+
+      function updateCheckedState(selectedInput) {
+        [options, mobileOptions].forEach(optionsElem => {
+          optionsElem.querySelectorAll('input[type="radio"]').forEach(input => {
+            const label = input.closest('label');
+            if (input.value === selectedInput.value) {
+              label.classList.add('checked');
+              headerChecked.textContent = label.textContent.trim();
+            } else {
+              label.classList.remove('checked');
+            }
+          });
+        });
+      }
+
+      // Устанавливаем первый пункт выбранным по умолчанию
+      firstOption.checked = true;
+      updateCheckedState(firstOption);
+
+      function isMobile() {
+        return window.innerWidth <= 599;
+      }
+
+      function getActiveOptions() {
+        return isMobile() ? mobileOptions : options;
+      }
+
+      function openSelect() {
+        const activeOptions = getActiveOptions();
+        activeOptions.style.display = 'block';
+        if (isMobile()) {
+          overlay.style.display = 'block';
+          document.body.classList.add('modal-open');
+        }
+      }
+
+      function closeSelect() {
+        options.style.display = 'none';
+        mobileOptions.style.display = 'none';
+        overlay.style.display = 'none';
+        document.body.classList.remove('modal-open');
+      }
+
+      // Открытие/закрытие селекта
+      header.addEventListener('click', function(e) {
+        e.stopPropagation();
+        closeAllSelects();
+        if (getActiveOptions().style.display !== 'block') {
+          openSelect();
+        }
+      });
+
+      // Обработка выбора опции
+      [options, mobileOptions].forEach(optionsElem => {
+        optionsElem.addEventListener('change', function(e) {
+          if (e.target.type === 'radio') {
+            updateCheckedState(e.target);
+            closeSelect();
+          }
+        });
+      });
+
+      // Предотвращаем закрытие при клике на опции
+      [options, mobileOptions].forEach(optionsElem => {
+        optionsElem.addEventListener('click', function(e) {
+          e.stopPropagation();
+        });
+      });
+    });
+
+    function closeAllSelects() {
+      selects.forEach(select => {
+        const options = select.querySelector('.select-options');
+        const mobileOptions = document.getElementById(`select-options-mobile-${Array.from(selects).indexOf(select)}`);
+        if (options) options.style.display = 'none';
+        if (mobileOptions) mobileOptions.style.display = 'none';
+      });
+      overlay.style.display = 'none';
+      document.body.classList.remove('modal-open');
+    }
+
+    // Закрытие селекта при клике вне его
+    document.addEventListener('click', closeAllSelects);
+
+    // Закрытие при клике на оверлей
+    overlay.addEventListener('click', closeAllSelects);
+
+    // Обновление отображения при изменении размера окна
+    window.addEventListener('resize', function() {
+      if (isMobile()) {
+        selects.forEach((select, index) => {
+          const options = select.querySelector('.select-options');
+          const mobileOptions = document.getElementById(`select-options-mobile-${index}`);
+          if (options) options.style.display = 'none';
+          if (mobileOptions && mobileOptions.style.display === 'block') {
+            overlay.style.display = 'block';
+            document.body.classList.add('modal-open');
+          }
+        });
+      } else {
+        selects.forEach((select, index) => {
+          const mobileOptions = document.getElementById(`select-options-mobile-${index}`);
+          if (mobileOptions) mobileOptions.style.display = 'none';
+        });
+        overlay.style.display = 'none';
+        document.body.classList.remove('modal-open');
+      }
+    });
+  })();
+
   (function() {
     let ornt = window.innerWidth > window.innerHeight ? 'land' : 'port'
     let prev = window.innerHeight;
@@ -80,6 +222,43 @@ document.addEventListener('DOMContentLoaded', () => {
     function isMac() {
       return navigator.platform.indexOf('Mac') > -1;
     }
+
+    // Анимация блока "expertise-achievements" 
+    function createAnimation() {
+      const expertiseBlock = document.querySelector(".expertise-achievements");
+      if(!expertiseBlock) return;
+      
+      // Проверяем ширину экрана
+      if (window.innerWidth >= 899) {     
+        if (!ScrollTrigger.getById("expertiseAnimation")) {
+          gsap.to(expertiseBlock, {
+            x: '-100%', // Двигаем блок влево на 100% его ширины
+            ease: "none",
+            scrollTrigger: {
+              id: "expertiseAnimation", // Уникальный идентификатор для ScrollTrigger
+              trigger: expertiseBlock,
+              start: "bottom bottom",
+              end: "bottom top",
+              scrub: true,
+              toggleActions: "play reverse play reverse",
+            }
+          });
+        }
+      } else {
+        const trigger = ScrollTrigger.getById("expertiseAnimation");
+        if (trigger) {
+          trigger.kill();
+        }
+        // Сбрасываем положение блока
+        gsap.set(expertiseBlock, { x: 0 });
+      }
+    }
+
+    // Создаем анимацию при загрузке страницы
+    createAnimation();
+
+    // Обновляем анимацию при изменении размера окна с использованием debounce
+    window.addEventListener('resize', createAnimation);
 
     // параллакс блока "Создатели"
     // const image = document.querySelector(".founders-image");
@@ -151,86 +330,205 @@ document.addEventListener('DOMContentLoaded', () => {
     // Показываем прелоадер
     showPreloader();
   
-    // Проверяем, является ли элемент частью галереи
-    if (clickedElement.hasClass('mfp-gallery-item')) {
-      // Логика для открытия галереи
-      var galleryItems = [];
-      var uniqueIds = new Set(); // Для отслеживания уникальных data-id
-      var isInSlider = clickedElement.closest('.swiper').length > 0;
   
-      // Собираем все элементы галереи
-      $(".mfp-gallery-item").each(function () {
-        var $this = $(this);
-        var $img = $this.find('img');
-        var dataId = $img.attr('data-id');
-        var itemIsInSlider = $this.closest('.swiper').length > 0;
+    // Проверяем, является ли элемент видео
+  if (clickedElement.hasClass('mfp-link-video')) {
+    let videoSrc = clickedElement.attr("data-href");   
+    let videoFileName = clickedElement.attr("data-video-title");
+
+    // Добавляем параметры автовоспроизведения к URL видео
+    if (videoSrc.includes('?')) {
+      videoSrc += '&autoplay=1&mute=1';
+    } else {
+      videoSrc += '?autoplay=1&mute=1';
+    }
+    // Логика для открытия видео попапа
+    $.magnificPopup.open({
+      items: {
+        src: $('<div class="mfp-video-popup">'+
+               '<div class="mfp-video-wrapper">'+
+               '<iframe src="' + videoSrc + '" frameborder="0" allowfullscreen allow="autoplay"></iframe>'+
+               '<div class="mfp-video-title">' + videoFileName + '</div>'+
+               '</div>'+
+               '</div>'),
+        type: 'inline'
+      },
+      type: 'inline',
+      closeBtnInside: true,
+      removalDelay: 300,
+      mainClass: 'my-mfp-zoom-in',
+      callbacks: {
+        open: function () {
+          setTimeout(function(){
+            $('.mfp-wrap').addClass('not_delay');
+            $('.mfp-popup').addClass('not_delay');
+            hidePreloader();          
+          }, 700);
+          document.documentElement.style.overflow = 'hidden';
+          history.pushState({ popup: 'video' }, '');
+          isPopupOpen = true;
+        },
+        close: function() {
+          document.documentElement.style.overflow = '';
+          isPopupOpen = false;
+        }
+      }
+    });
+  } else if (clickedElement.hasClass('mfp-gallery-item')) {
+      // // Логика для открытия галереи
+      // var galleryItems = [];
+      // var uniqueIds = new Set(); // Для отслеживания уникальных data-id
+      // var isInSlider = clickedElement.closest('.swiper').length > 0;
   
-        // Если элемент в слайдере, проверяем уникальность
-        if (itemIsInSlider) {
-          if (!uniqueIds.has(dataId)) {
-            uniqueIds.add(dataId);
-            galleryItems.push({
-              src: $this.attr("data-href"),
-              title: $this.find('.diploms-card-title').text().trim(),
-              dataId: dataId
-            });
-          }
-        } else {
-          // Если элемент не в слайдере, добавляем его без проверки уникальности
+      // // Собираем все элементы галереи
+      // $(".mfp-gallery-item").each(function () {
+      //   var $this = $(this);
+      //   var $img = $this.find('img');
+      //   var dataId = $img.attr('data-id');
+      //   var itemIsInSlider = $this.closest('.swiper').length > 0;
+  
+      //   // Если элемент в слайдере, проверяем уникальность
+      //   if (itemIsInSlider) {
+      //     if (!uniqueIds.has(dataId)) {
+      //       uniqueIds.add(dataId);
+      //       galleryItems.push({
+      //         src: $this.attr("data-href"),
+      //         title: $this.find('.diploms-card-title').text().trim(),
+      //         dataId: dataId
+      //       });
+      //     }
+      //   } else {
+      //     // Если элемент не в слайдере, добавляем его без проверки уникальности
+      //     galleryItems.push({
+      //       src: $this.attr("data-href"),
+      //       title: $this.find('.diploms-card-title').text().trim(),
+      //       dataId: dataId
+      //     });
+      //   }
+      // });
+  
+      // // Находим индекс кликнутого элемента
+      // var index;
+      // if (isInSlider) {
+      //   var clickedDataId = clickedElement.find('img').attr('data-id');
+      //   index = galleryItems.findIndex(item => item.dataId === clickedDataId);
+      // } else {
+      //   index = $(".mfp-gallery-item").index(clickedElement);
+      // }
+  
+      // $.magnificPopup.open({
+      //   items: galleryItems,
+      //   type: 'image',
+      //   gallery: {
+      //     enabled: true,
+      //     navigateByImgClick: true,
+      //     preload: [0, 1],
+      //     tCounter: '%curr% из %total%' // Локализация счетчика на русский язык
+      //   },
+      //   overflowY: "scroll",
+      //   removalDelay: 300,
+      //   mainClass: 'my-mfp-zoom-in',
+      //   callbacks: {
+      //     open: function () {
+      //       setTimeout(function(){
+      //         $('.mfp-wrap').addClass('not_delay');
+      //         $('.mfp-popup').addClass('not_delay');
+      //         hidePreloader();          
+      //       }, 700);
+      //       document.documentElement.style.overflow = 'hidden';
+      //       history.pushState({ popup: 'gallery' }, '');
+      //       isPopupOpen = true;
+      //     },
+      //     close: function() {
+      //       document.documentElement.style.overflow = '';
+      //       isPopupOpen = false;
+      //     },
+      //     imageLoadComplete: function() {
+      //       // Скрываем прелоадер после загрузки изображения
+      //       hidePreloader();
+      //     },
+      //     beforeChange: function() {
+      //       // Показываем прелоадер перед сменой изображения
+      //       showPreloader();
+      //     }
+      //   }
+      // }, index);
+
+       // Логика для открытия галереи
+    var galleryItems = [];
+    var galleryGroup = clickedElement.data('gallery-group');
+    var isInSlider = clickedElement.closest('.swiper').length > 0;
+
+    // Собираем все элементы галереи с тем же gallery-group
+    $('.mfp-gallery-item[data-gallery-group="' + galleryGroup + '"]').each(function () {
+      var $this = $(this);
+      var $img = $this.find('img');
+      var dataId = $img.attr('data-id');
+      var itemIsInSlider = $this.closest('.swiper').length > 0;
+
+      // Для элементов в слайдере проверяем уникальность по data-id
+      if (itemIsInSlider) {
+        if (!galleryItems.some(item => item.dataId === dataId)) {
           galleryItems.push({
             src: $this.attr("data-href"),
             title: $this.find('.diploms-card-title').text().trim(),
             dataId: dataId
           });
         }
-      });
-  
-      // Находим индекс кликнутого элемента
-      var index;
-      if (isInSlider) {
-        var clickedDataId = clickedElement.find('img').attr('data-id');
-        index = galleryItems.findIndex(item => item.dataId === clickedDataId);
       } else {
-        index = $(".mfp-gallery-item").index(clickedElement);
+        // Для элементов не в слайдере добавляем без проверки
+        galleryItems.push({
+          src: $this.attr("data-href"),
+          title: $this.find('.diploms-card-title').text().trim(),
+          dataId: dataId
+        });
       }
-  
-      $.magnificPopup.open({
-        items: galleryItems,
-        type: 'image',
-        gallery: {
-          enabled: true,
-          navigateByImgClick: true,
-          preload: [0, 1],
-          tCounter: '%curr% из %total%' // Локализация счетчика на русский язык
+    });
+
+    // Находим индекс кликнутого элемента
+    var index;
+    if (isInSlider) {
+      var clickedDataId = clickedElement.find('img').attr('data-id');
+      index = galleryItems.findIndex(item => item.dataId === clickedDataId);
+    } else {
+      index = $('.mfp-gallery-item[data-gallery-group="' + galleryGroup + '"]').index(clickedElement);
+    }
+
+    $.magnificPopup.open({
+      items: galleryItems,
+      type: 'image',
+      gallery: {
+        enabled: true,
+        navigateByImgClick: true,
+        preload: [0, 1],
+        tCounter: '%curr% из %total%'
+      },
+      overflowY: "scroll",
+      removalDelay: 300,
+      mainClass: 'my-mfp-zoom-in',
+      callbacks: {
+        open: function () {
+          setTimeout(function(){
+            $('.mfp-wrap').addClass('not_delay');
+            $('.mfp-popup').addClass('not_delay');
+            hidePreloader();          
+          }, 700);
+          document.documentElement.style.overflow = 'hidden';
+          history.pushState({ popup: 'gallery' }, '');
+          isPopupOpen = true;
         },
-        overflowY: "scroll",
-        removalDelay: 300,
-        mainClass: 'my-mfp-zoom-in',
-        callbacks: {
-          open: function () {
-            setTimeout(function(){
-              $('.mfp-wrap').addClass('not_delay');
-              $('.mfp-popup').addClass('not_delay');
-              hidePreloader();          
-            }, 700);
-            document.documentElement.style.overflow = 'hidden';
-            history.pushState({ popup: 'gallery' }, '');
-            isPopupOpen = true;
-          },
-          close: function() {
-            document.documentElement.style.overflow = '';
-            isPopupOpen = false;
-          },
-          imageLoadComplete: function() {
-            // Скрываем прелоадер после загрузки изображения
-            hidePreloader();
-          },
-          beforeChange: function() {
-            // Показываем прелоадер перед сменой изображения
-            showPreloader();
-          }
+        close: function() {
+          document.documentElement.style.overflow = '';
+          isPopupOpen = false;
+        },
+        imageLoadComplete: function() {
+          hidePreloader();
+        },
+        beforeChange: function() {
+          showPreloader();
         }
-      }, index);
+      }
+    }, index);
     } else {     
       // Логика для открытия обычного попапа     
       $.magnificPopup.open({
@@ -455,6 +753,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const asideLinks = headerNavMenu.querySelectorAll('.menu-aside-nav > ul > li > a');
     const mainSections = headerNavMenu.querySelectorAll('.menu-main-section');
 
+    if(!menuMain) return;
     
 
     let scrollOffset = parseInt(window.getComputedStyle(menuMain).marginTop, 10);
@@ -512,7 +811,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      if (!hasActiveLink) {
+      if (!hasActiveLink && asideLinks.length) {
         asideLinks[0].classList.add('active');
       }
 
@@ -1012,6 +1311,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
   })();
 
+  // отображение скрытых решений, если больше 9
+  // мгновенное
+  (function() {
+    const subcategoryList = document.querySelectorAll('.problems-selection-list .problems-selection');
+    const moreButton = document.querySelector('.subcategory-more');
+    const moreCount = document.querySelector('.subcategory-more-count');
+    const moreIcon = document.querySelector('.subcategory-more-icon');
+    
+    if (!moreButton || subcategoryList.length <= 9) return;
+
+    const hiddenCards = subcategoryList.length - 9;
+    let isExpanded = false;
+
+    function getServiceWord(number) {
+      const cases = [2, 0, 1, 1, 1, 2];
+      const titles = ['решение', 'решения', 'решений'];
+      return titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
+    }
+
+    function updateButtonText() {
+      if (isExpanded) {
+        moreButton.textContent = 'Свернуть';
+        moreButton.appendChild(moreIcon);
+        moreIcon.style.transform = 'rotate(180deg)';
+      } else {
+        moreButton.textContent = 'Еще ';
+        moreButton.appendChild(moreCount);
+        moreCount.textContent = hiddenCards;
+        moreButton.appendChild(document.createTextNode(` ${getServiceWord(hiddenCards)} `));
+        moreButton.appendChild(moreIcon);
+        moreIcon.style.transform = 'rotate(0deg)';
+      }
+    }
+
+    function toggleCards() {
+      subcategoryList.forEach((card, index) => {
+        if (index >= 9) {
+          card.classList.toggle('hidden');
+        }
+      });
+    }
+
+    function init() {
+      subcategoryList.forEach((card, index) => {
+        if (index >= 9) {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    // Инициализация
+    init();
+    updateButtonText();
+
+    moreButton.addEventListener('click', () => {
+      isExpanded = !isExpanded;
+      toggleCards();
+      updateButtonText();
+    });
+
+  })();
+
   // раскрытие текста в описании подкатегории
   // (function() {
   //   const textCollapsibles = document.querySelectorAll('.text-collapsible');
@@ -1371,8 +1732,8 @@ document.addEventListener('DOMContentLoaded', () => {
           pageUpDown: false
         },
         navigation: {
-          nextEl: ".slider-next",
-          prevEl: ".slider-prew",
+          nextEl: ".gallery-slider-arrows .slider-next",
+          prevEl: ".gallery-slider-arrows .slider-prew",
         },
         breakpoints: {             
           900: {
@@ -1406,8 +1767,8 @@ document.addEventListener('DOMContentLoaded', () => {
           pageUpDown: false
         },
         navigation: {
-          nextEl: ".slider-next",
-          prevEl: ".slider-prew",
+          nextEl: ".gallery-slider-arrows .slider-next",
+          prevEl: ".gallery-slider-arrows .slider-prew",
         },
         breakpoints: {
           600: {
@@ -1534,10 +1895,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (windowWidth <= 899) {
           if (windowOffset > floatOffset && windowOffset < floatStop) {            
             $('.side-menu').addClass('float').removeClass('flip-bottom');
-            $('.header').addClass('header__light');
+            if (!$('.side-menu').hasClass('black')) {
+              $('.header').addClass('header__light');
+              $('.header').removeClass('header__dark');
+            } else {
+              $('.header').addClass('header__dark');
+              $('.header').removeClass('header__light');
+            }          
           } else {
             $('.side-menu').removeClass('float');
             $('.header').removeClass('header__light');
+            $('.header').removeClass('header__dark');
             if (windowOffset >= floatStop) {
               $('.side-menu').addClass('flip-bottom');
             } else {
@@ -1557,12 +1925,49 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           // Убираем класс header__light для больших разрешений
           $('.header').removeClass('header__light');
+          $('.header').removeClass('header__dark');
         }
       }
   
       // Вызываем функцию при прокрутке и изменении размера окна
       $(window).on('scroll resize', handleScroll);
   
+      // Вызываем функцию сразу после загрузки страницы
+      handleScroll();
+    }
+  })();
+
+  // прилипание информационного блока при прокрутке
+   (function() {
+    if ($('.side-info').length) {
+      function handleScroll() {
+        let windowWidth = $(window).width();
+        let windowOffset = $(window).scrollTop();
+        let floatOffset;
+
+        if (windowWidth >= 900) {
+          floatOffset = $('.side-spase').offset().top - (parseFloat($('.header').height()) * 1.116);       
+        
+          let contentHeight = $('.side-wrapper').height();
+          let floatHeight = $('.side-info').outerHeight();
+          let floatStop = floatOffset + contentHeight - floatHeight;
+          
+          if (windowOffset > floatOffset && windowOffset < floatStop) {
+            $('.side-info').addClass('float').removeClass('flip-bottom');
+          } else {
+            $('.side-info').removeClass('float').addClass('flip-bottom');
+            if (windowOffset < floatStop) {
+              $('.side-info').removeClass('flip-bottom');
+            }
+          }
+        } else {
+          $('.side-info').removeClass('float').removeClass('flip-bottom');
+        }          
+      }
+
+      // Вызываем функцию при прокрутке и изменении размера окна
+      $(window).on('scroll resize', handleScroll);
+
       // Вызываем функцию сразу после загрузки страницы
       handleScroll();
     }
@@ -1799,6 +2204,113 @@ document.addEventListener('DOMContentLoaded', () => {
     // Вызываем функцию сразу, чтобы установить начальное состояние
     checkHeaderColor();
   })();
+
+    // // смена цвета хедера при скролле
+    // (function() {
+    //   const header = document.querySelector('.side-menu');
+    //   const blackHeaderBlocks = document.querySelectorAll('.white-header');
+      
+    //   function isHeaderMiddleCrossing(el) {
+    //     const rect = el.getBoundingClientRect();
+    //     const headerMiddle = header.offsetHeight / 2;
+    //     return (
+    //       rect.top <= headerMiddle &&
+    //       rect.bottom >= headerMiddle
+    //     );
+    //   }
+      
+    //   function checkHeaderColor() {
+    //     let shouldBeBlack = false;
+        
+    //     blackHeaderBlocks.forEach(block => {
+    //       if (isHeaderMiddleCrossing(block)) {
+    //         shouldBeBlack = true;
+    //       }
+    //     });
+        
+    //     if (shouldBeBlack) {
+    //       header.classList.add('black');
+    //     } else {
+    //       header.classList.remove('black');
+    //     }
+    //   }
+      
+    //   window.addEventListener('scroll', checkHeaderColor);
+    //   window.addEventListener('resize', checkHeaderColor);
+      
+    //   // Вызываем функцию сразу, чтобы установить начальное состояние
+    //   checkHeaderColor();
+    // })();
+    // смена цвета хедера и бокового меню при скролле
+(function() {
+  const header = document.querySelector('.header');
+  const sideMenu = document.querySelector('.side-menu');
+  const blackHeaderBlocks = document.querySelectorAll('.black-header');
+  const whiteHeaderBlocks = document.querySelectorAll('.white-header');
+
+  if(!sideMenu) return;
+  
+  function isHeaderBottomCrossing(el) {
+    const rect = el.getBoundingClientRect();
+    const headerBottom = header.offsetHeight;
+    return (
+      rect.top <= headerBottom &&
+      rect.bottom >= headerBottom
+    );
+  }
+  
+  function isSideMenuBottomCrossingWhiteHeader(sideMenu, whiteHeader) {
+    const sideMenuRect = sideMenu.getBoundingClientRect();
+    const whiteHeaderRect = whiteHeader.getBoundingClientRect();
+    return (
+      sideMenuRect.bottom >= whiteHeaderRect.top &&
+      sideMenuRect.bottom <= whiteHeaderRect.bottom
+    );
+  }
+  
+  function checkHeaderColor() {
+    let shouldHeaderBeBlack = false;
+    
+    blackHeaderBlocks.forEach(block => {
+      if (isHeaderBottomCrossing(block)) {
+        shouldHeaderBeBlack = true;
+      }
+    });
+    
+    if (shouldHeaderBeBlack) {
+      header.classList.add('black');
+    } else {
+      header.classList.remove('black');
+    }
+  }
+  
+  function checkSideMenuColor() {
+    let shouldSideMenuBeBlack = false;
+    
+    whiteHeaderBlocks.forEach(block => {
+      if (isSideMenuBottomCrossingWhiteHeader(sideMenu, block)) {
+        shouldSideMenuBeBlack = true;
+      }
+    });
+    
+    if (shouldSideMenuBeBlack) {
+      sideMenu.classList.add('black');
+    } else {
+      sideMenu.classList.remove('black');
+    }
+  }
+  
+  function checkColors() {
+    checkHeaderColor();
+    checkSideMenuColor();
+  }
+  
+  window.addEventListener('scroll', checkColors);
+  window.addEventListener('resize', checkColors);
+  
+  // Вызываем функцию сразу, чтобы установить начальное состояние
+  checkColors();
+})();
 
   // плавный уход фона в прозрачность при скролле
   (function() {
@@ -2280,6 +2792,9 @@ document.addEventListener('DOMContentLoaded', () => {
   (function() {
     const container = document.getElementById('beforeAfterSlider');
     const handle = document.getElementById('sliderHandle');
+
+    if(!container || !handle) return;
+
     const afterImage = container.querySelector('.comparison-image__after');
 
     let isDragging = false;
@@ -2356,4 +2871,353 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
+  // аккордеон "медицинский подход"
+  (function() {
+    const accordItems = document.querySelectorAll('.medical-accordion-item');
+
+    accordItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        accordItems.forEach(el => {
+          el.classList.remove('opened');
+        })      
+        item.classList.toggle('opened');
+      })
+    })
+  })();
+
+   
+
+  // слайдер аппараты
+  // (function () {
+  //   if (!document.querySelector(".devices-category-slider")) return;
+
+  //   // Функция для обработки слайдов
+  //   function handleSlides() {
+  //     const sliderWrapper = document.querySelector('.devices-category-slider-wrapper');
+  //     const slider = document.querySelector('.devices-category-slider .swiper-wrapper');
+  //     const slides = slider.querySelectorAll('.swiper-slide');
+  //     const slidesCount = slides.length;
+  //     const navigation = document.querySelectorAll('.devices-slider-arrow');
+
+  //     // Добавляем или убираем класс 'wide' в зависимости от количества слайдов
+  //     if (slidesCount > 2) {
+  //       sliderWrapper.classList.add('wide');
+  //       navigation.forEach(nav => nav.style.display = '');
+  //     } else {
+  //       sliderWrapper.classList.remove('wide');
+  //       navigation.forEach(nav => nav.style.display = 'none');
+  //     }
+
+  //     // Если слайдов меньше 8 и больше 2, добавляем копии для корректного зацикливания
+  //     if (slidesCount > 2 && slidesCount < 8) {
+  //       const slidesToAdd = 8 - slidesCount;
+  //       for (let i = 0; i < slidesToAdd; i++) {
+  //         const clone = slides[i % slidesCount].cloneNode(true);
+  //         slider.appendChild(clone);
+  //       }
+  //     }
+
+  //     return slidesCount;
+  //   }
+
+  //   const originalSlidesCount = handleSlides();
+
+  //   const swiperConfig = {
+  //     grabCursor: true,
+  //     slidesPerView: 1.7,
+  //     slidesPerGroup: 1,
+  //     spaceBetween: 0,
+  //     loop: originalSlidesCount > 2,
+  //     loopedSlides: 3,
+  //     navigation: {
+  //       nextEl: ".devices-slider-arrow.slider-next",
+  //       prevEl: ".devices-slider-arrow.slider-prew",
+  //     },
+  //     on: {
+  //       init: function(swiper) {
+  //         if (originalSlidesCount <= 4) {
+  //           swiper.params.slidesPerView = originalSlidesCount;
+  //         }
+  //       }
+  //     },
+  //     breakpoints: {
+  //       600: {
+  //         slidesPerView: 2.5,
+  //         slidesPerGroup: 1,
+  //         loopedSlides: 3,
+  //       },
+  //       900: {
+  //         slidesPerView: 4,
+  //         slidesPerGroup: 1,
+  //         loopedSlides: 3,
+  //       },
+  //     }
+  //   };
+
+  //   var swiper = new Swiper('.devices-category-slider', swiperConfig);
+  // })();
+
+
+    // слайдер аппараты
+  (function () {
+    const sliders = document.querySelectorAll(".devices-category-slider");
+    if (sliders.length === 0) return;
+
+    // Функция для обработки слайдов
+    function handleSlides(slider) {
+      const deviceCategory = slider.closest('.devices-category');
+      const sliderWrapper = slider.closest('.devices-category-slider-wrapper');
+      const slides = slider.querySelectorAll('.swiper-slide');
+      const slidesCount = slides.length;
+      const navigation = deviceCategory.querySelector('.devices-slider-arrows');
+
+      // Добавляем или убираем класс 'wide' в зависимости от количества слайдов
+      if (slidesCount > 2) {
+        sliderWrapper.classList.add('wide');
+        // navigation.classList.remove('hidden-tablet');
+        navigation.style.display = ''
+      } else {
+        sliderWrapper.classList.remove('wide');
+        // navigation.classList.add('hidden-tablet');
+        navigation.style.display = 'none'
+      }
+
+      // Если слайдов меньше 8 и больше 2, добавляем копии для корректного зацикливания
+      if (slidesCount > 2 && slidesCount < 8) {
+        const slidesToAdd = 8 - slidesCount;
+        for (let i = 0; i < slidesToAdd; i++) {
+          const clone = slides[i % slidesCount].cloneNode(true);
+          slider.querySelector('.swiper-wrapper').appendChild(clone);
+        }
+      }
+
+      return slidesCount;
+    }
+
+    sliders.forEach((slider) => {
+      const originalSlidesCount = handleSlides(slider);
+      const deviceCategory = slider.closest('.devices-category');
+
+      const swiperConfig = {
+        grabCursor: true,
+        slidesPerView: 1.7,
+        slidesPerGroup: 1,
+        spaceBetween: 0,
+        loop: originalSlidesCount > 2,
+        loopedSlides: 3,
+        navigation: {
+          nextEl: deviceCategory.querySelector(".devices-slider-arrow.slider-next"),
+          prevEl: deviceCategory.querySelector(".devices-slider-arrow.slider-prew"),
+        },
+        on: {
+          init: function(swiper) {
+            if (originalSlidesCount <= 4) {
+              swiper.params.slidesPerView = originalSlidesCount;
+            }
+          }
+        },
+        breakpoints: {
+          600: {
+            slidesPerView: 2.5,
+            slidesPerGroup: 1,
+            loopedSlides: 3,
+          },
+          900: {
+            slidesPerView: 4,
+            slidesPerGroup: 1,
+            loopedSlides: 3,
+          },
+        }
+      };
+
+      new Swiper(slider, swiperConfig);
+    });
+  })();
+
+  // слайдер до/после
+  (function () {
+    if (!document.querySelector(".demonstration-slider")) return;
+
+    var swiper = new Swiper(".demonstration-slider", {
+      grabCursor: true,
+      slidesPerView: 1.28,
+      slidesPerGroup: 1,
+      spaceBetween: 0,  
+      loop: true,
+      navigation: {
+        nextEl: ".demonstration-nav .slider-next",
+        prevEl: ".demonstration-nav .slider-prew",
+      },
+      breakpoints: {
+        600: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+          autoplay: false,
+          loop: false,
+        },
+        900: {
+          slidesPerView: 1.337        
+        },       
+      },
+    });
+  })();
+
+  // слайдер специалисты
+  (function () {
+    if (!document.querySelector(".specialists-slider")) return;
+  
+    var swiper = new Swiper(".specialists-slider", {
+      grabCursor: true,
+      slidesPerView: 1.026,
+      slidesPerGroup: 1,
+      spaceBetween: 0,  
+      loop: true,
+      loopedSlides: 5, // Добавлено для обеспечения зацикливания
+      navigation: {
+        nextEl: ".specialists-nav .slider-next",
+        prevEl: ".specialists-nav .slider-prew",
+      },
+      breakpoints: {
+        600: {
+          slidesPerView: 2.062,
+        },
+        900: {
+          slidesPerView: 5,
+          loop: true,
+          loopedSlides: 5, // Добавлено для обеспечения зацикливания
+        },       
+      },
+      on: {
+        beforeInit: function () {
+          let numSlides = this.wrapperEl.querySelectorAll('.swiper-slide').length;
+          let sliderWrapper = this.el.closest('.specialists-slider-wrapper');
+
+          // Добавляем класс 'wide', если слайдов 3 или больше
+          if (numSlides >= 3) {
+            sliderWrapper.classList.add('wide');
+          } else {
+            sliderWrapper.classList.remove('wide');
+          }
+          
+          if (numSlides < 5 && numSlides >= 3) {
+            let originalSlides = Array.from(this.wrapperEl.children);
+            let slidesToAdd = 5 - numSlides;
+            for (let i = 0; i < slidesToAdd; i++) {
+              originalSlides.forEach(slide => {
+                this.wrapperEl.appendChild(slide.cloneNode(true));
+              });
+            }
+          }
+
+          if (numSlides === 2) {
+            sliderWrapper.classList.add('pair');
+            this.params.breakpoints[900].slidesPerView = 2.5;
+            this.params.breakpoints[600].slidesPerView = 1.96;
+          } else {
+            sliderWrapper.classList.remove('pair');
+          }
+        }
+      }
+    });
+  })();
+
+  // Показать/скрыть контент в карточках отзывов
+  (function() {
+    const reviewCards = document.querySelectorAll('.collapsed-card');
+
+  reviewCards.forEach(card => {
+    const desktopCollapse = card.querySelector('.card-collapse-desktop');
+    const mobileCollapse = card.querySelector('.card-collapse-mobile');
+    // const tabletExpandBtn = card.querySelector('.text-expand.hidden-desktop.hidden-mobile');
+    // const mobileExpandBtn = card.querySelector('.text-expand.hidden-desktop.hidden-tablet.visible-mobile');
+    const tabletExpandBtn = card.querySelector('.text-expand__tablet');
+    const mobileExpandBtn = card.querySelector('.text-expand__mobile');
+
+    function toggleExpand(element, button) {
+      element.classList.toggle('show');
+      if (button) {
+        button.classList.toggle('show');
+        const span = button.querySelector('span');
+        span.textContent = element.classList.contains('show') ? 'Скрыть' : 'Показать еще';
+      }
+    }
+
+    function checkOverflow(element) {
+      return element.scrollHeight > element.clientHeight;
+    }
+
+    function handleDesktopOverflow() {
+      if (desktopCollapse && window.innerWidth >= 900) {
+        if (checkOverflow(desktopCollapse)) {
+          desktopCollapse.classList.add('has-overflow');
+        } else {
+          desktopCollapse.classList.remove('has-overflow');
+        }
+      }
+    }
+
+    function handleResize() {
+      const width = window.innerWidth;
+      if (width >= 900) {
+        if (desktopCollapse) {
+          desktopCollapse.onclick = () => toggleExpand(desktopCollapse);
+        }
+        if (tabletExpandBtn) {
+          tabletExpandBtn.onclick = null;
+        }
+        if (mobileExpandBtn) {
+          mobileExpandBtn.onclick = null;
+        }
+        handleDesktopOverflow();
+      } else if (width >= 600 && width < 900) {
+        if (desktopCollapse) {
+          desktopCollapse.onclick = null;
+        }
+        if (tabletExpandBtn) {
+          tabletExpandBtn.onclick = () => toggleExpand(desktopCollapse, tabletExpandBtn);
+        }
+        if (mobileExpandBtn) {
+          mobileExpandBtn.onclick = null;
+        }
+      } else {
+        if (desktopCollapse) {
+          desktopCollapse.onclick = null;
+        }
+        if (tabletExpandBtn) {
+          tabletExpandBtn.onclick = null;
+        }
+        if (mobileExpandBtn) {
+          mobileExpandBtn.onclick = () => toggleExpand(mobileCollapse, mobileExpandBtn);
+        }
+      }
+    }
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    // Запустим проверку переполнения после загрузки всех изображений
+    window.addEventListener('load', handleDesktopOverflow);
+  });
+  })();
+
+  // Проврка на количество карточек на странице "наши клиники"
+  (function() {
+    const cards = document.querySelectorAll('.clinics-preview-wrapper');
+
+    if(!cards.length) return;
+
+    if(cards.length <= 2) {
+      console.log('remove lg-4 and change on lg-6');
+      cards.forEach(card => {
+        card.classList.add('col-lg-6');
+        card.classList.remove('col-lg-4');
+      })
+    } else {
+      cards.forEach(card => {
+        card.classList.add('col-lg-4');
+        card.classList.remove('col-lg-6');
+      })
+    }
+  })();
+ 
 })

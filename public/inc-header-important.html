@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=1024"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olive</title>
+    <meta name="keywords" content="Olive">
+    <meta name="description" content="Olive">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <style>
+      @font-face {
+        font-family: 'Oceanic';
+        src: local('Oceanic'), local('TRIAL Oceanic Regular'),
+          url('./fonts/oceanic/Oceanic-Regular-Web.woff2') format('woff2'),
+          url('./fonts/oceanic/Oceanic-Regular-Web.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'TT Norms Pro';
+        src: local('TT Norms Pro Regular'), local('TTNormsPro-Regular'),
+          url('./fonts/TTNormsPro/TT_Norms_Pro_Regular.woff2') format('woff2'),
+          url('./fonts/TTNormsPro/TT_Norms_Pro_Regular.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'TT Norms Pro';
+        src: local('TT Norms Pro Medium'), local('TTNormsPro-Medium'),
+          url('./fonts/TTNormsPro/TT_Norms_Pro_Medium.woff2') format('woff2'),
+          url('./fonts/TTNormsPro/TT_Norms_Pro_Medium.woff') format('woff');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-form-styler@latest/dist/jquery.formstyler.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
+      integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    >
+    <link
+      rel="stylesheet"
+      href="./css/style.css"
+      type="text/css"
+      media="all"
+    >
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <!-- <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- ScrollTrigger -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <!-- gsap -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  </head>
+  <body class="ui-noise">
+    <div class="wrapper">
+      <div class="important-new show ui-noise">
+        <div class="container container__min">
+          <div class="important-new-wrapper">
+            <a href="#" class="important-new-link">
+              Скидка 15% на SMAS-лифтинг Ulthera до 15 февраля
+              <svg class="important-new-icon desktop">
+                <use xlink:href="svg/svg/symbols.svg#ui-icons-right"/>
+              </svg>
+              <svg class="important-new-icon mobile">
+                <use xlink:href="svg/svg/symbols.svg#arrow-right-orange"/>
+              </svg>
+            </a>
+            <button class="important-new-close">
+              <svg
+                width="16"
+                height="17"
+                viewBox="0 0 16 17"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon"
+              >
+                <g clip-path="url(#clip0_6001_78642)">
+                  <path d="M15.1106 15.6111L0.88846 1.38889" stroke="#E9B566" stroke-linecap="round"/>
+                  <path d="M15.1115 1.38889L0.88941 15.6111" stroke="#E9B566" stroke-linecap="round"/>
+                </g>
+                <defs>
+                  <clipPath id="clip0_6001_78642">
+                    <rect
+                      width="16"
+                      height="16"
+                      fill="white"
+                      transform="translate(0 0.5)"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <header class="header">
+        <div class="header-main">
+          <div class="header-blur">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <div class="container container__min">
+            <div class="header-wrapper">
+              <button class="header-burger">
+                <span></span>
+              </button>
+              <a href="#" class="header-logo">
+                <img
+                  src="./images/logo.svg"
+                  alt="olive"
+                  width="77"
+                  height="40"
+                  loading="lazy"
+                >
+              </a>
+              <nav class="header-nav">
+                <ul>
+                  <li>
+                    <a href="#">
+                      Услуги
+                      <svg class="header-nav-icon hidden-tablet">
+                        <use xlink:href="svg/svg/symbols.svg#arrow-down"/>
+                      </svg>
+                    </a>
+                    <div class="header-nav-menu">
+                      <div class="header-nav-menu-inner ui-noise">
+                        <div class="menu-aside">
+                          <div class="menu-aside-nav">
+                            <ul>
+                              <li>
+                                <a href="#" class="active">
+                                  <img src="./images/svg/icons-service.svg" alt="alt" class="menu-aside-icon">
+                                  Врачебная косметология для лица
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <img src="./images/svg/icons-service-2.svg" alt="alt" class="menu-aside-icon">
+                                  Врачебная косметология для тела
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <img src="./images/svg/icons-service-3.svg" alt="alt" class="menu-aside-icon">
+                                  Эстетическая косметология для лица
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <img src="./images/svg/icons-service-4.svg" alt="alt" class="menu-aside-icon">
+                                  Забота о теле
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <img src="./images/svg/icons-service-5.svg" alt="alt" class="menu-aside-icon">
+                                  Многопрофильная медицина
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <img src="./images/svg/icons-service-6.svg" alt="alt" class="menu-aside-icon">
+                                  Студия стиля
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <img src="./images/svg/icons-service-7.svg" alt="alt" class="menu-aside-icon">
+                                  Диагностика
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="menu-main">
+                          <div class="menu-main-section">
+                            <div class="menu-main-title">
+                              Врачебная косметология для лица
+                            </div>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  Аппаратная
+                                  <br>
+                                  косметология лица
+                                </a>
+                                <ul>
+                                  <li>
+                                    <a href="#">
+                                      Ультразвуковой лифтинг Ulthera
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      Фотоомоложение на М22
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      Лазерная шлифовка СО2
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      RF-омоложение FORMA
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      ФЛазерная терапия и омоложение
+                                      FOTONA 4D
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      Фракционный радиочасточный лифтинг МORPHEUS 8
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      Смас-лифтинг ULTRAFORMER MPT
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      Аппарат GENEO+
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      Аппарат Oligio
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      Лазерная терапия MELSYTECH
+                                    </a>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  Инъекционная
+                                  <br>
+                                  косметология для лица
+                                </a>
+                                <ul>
+                                  <li>
+                                    <a href="#">
+                                      Ботулинотерапия
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      Биоревитализация
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      Мезотерапия
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      Коллагеностимуляция с препаратом AestheFill
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      Контурная пластика
+                                    </a>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="menu-main-section">
+                            <div class="menu-main-title">
+                              Врачебная косметология для тела
+                            </div>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  Аппаратная
+                                  <br>
+                                  косметология лица
+                                </a>
+                                <ul>
+                                  <li>
+                                    <a href="#">
+                                      Ультразвуковой лифтинг Ulthera
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      Фотоомоложение на М22
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      Лазерная шлифовка СО2
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      RF-омоложение FORMA
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      ФЛазерная терапия и омоложение
+                                      FOTONA 4D
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      Фракционный радиочасточный лифтинг МORPHEUS 8
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      Смас-лифтинг ULTRAFORMER MPT
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      Аппарат GENEO+
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      Аппарат Oligio
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      Лазерная терапия MELSYTECH
+                                    </a>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  Инъекционная
+                                  <br>
+                                  косметология для лица
+                                </a>
+                                <ul>
+                                  <li>
+                                    <a href="#">
+                                      Ботулинотерапия
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      Биоревитализация
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      Мезотерапия
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      Коллагеностимуляция с препаратом AestheFill
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                      Контурная пластика
+                                    </a>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="menu-main-section">
+                            <div class="menu-main-title">
+                              Эстетическая косметология для лица
+                            </div>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  Массаж лица
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Моментальный уход для лица
+                                </a>
+                              </li>
+                            </ul>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  Уходы на профессиональной косметике
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Пилинг лица
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="menu-main-section">
+                            <div class="menu-main-title">
+                              Забота о теле
+                            </div>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  Коррекция фигуры
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Массаж
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Парные программы
+                                </a>
+                              </li>
+                            </ul>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  Расслабление
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Лечебные методики
+                                  <br>
+                                  восстановления
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  SPA для мужчин
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="menu-main-section">
+                            <div class="menu-main-title">
+                              Многопрофильная медицина
+                            </div>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  Терапия
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Дерматология
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Эндокринология
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Неврология
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Оториноларингология
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Кардиология
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Гастроэетерология
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Гинекология
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Хирургия
+                                </a>
+                              </li>
+                            </ul>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  Психотерапия
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Остеопатия
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Нутррициология
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Травматология-ортопедия
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Программы похудения
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Операционное лечение
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Анализы
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  УЗИ
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="menu-main-section">
+                            <div class="menu-main-title">
+                              Студия стиля
+                            </div>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  Парикмахерская студия
+                                </a>
+                              </li>
+                            </ul>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  Маникюр и педикюр
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="menu-main-section">
+                            <div class="menu-main-title">
+                              Диагностика
+                            </div>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  Анализы
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  3D-диагностика клжи
+                                </a>
+                              </li>
+                            </ul>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  УЗИ
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="header-nav-mobile-menu"></div>
+                  </li>
+                  <li>
+                    <a href="#">
+                      Решения
+                      <svg class="header-nav-icon hidden-tablet">
+                        <use xlink:href="svg/svg/symbols.svg#arrow-down"/>
+                      </svg>
+                    </a>
+                    <div class="header-nav-menu">
+                      <div class="header-nav-menu-inner ui-noise">
+                        <div class="menu-aside">
+                          <div class="menu-aside-nav">
+                            <ul>
+                              <li>
+                                <a href="#" class="active">
+                                  <img src="./images/svg/icons-service.svg" alt="alt" class="menu-aside-icon">
+                                  Косметология для кожи лица и тела
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <img src="./images/svg/icons-service-5.svg" alt="alt" class="menu-aside-icon">
+                                  Многопрофильная медицина
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <img src="./images/svg/icons-service-8.svg" alt="alt" class="menu-aside-icon">
+                                  SPA
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <img src="./images/svg/icons-service-3.svg" alt="alt" class="menu-aside-icon">
+                                  Beauty
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="menu-main">
+                          <div class="menu-main-section">
+                            <div class="menu-main-title">
+                              Косметология для кожи лица и тела
+                            </div>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  Консультация косметолога
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  3D-диагностика кожи
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Омоложение
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Коррекция формы лица
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Улучшение качества кожи
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Лечение акне/постакне
+                                </a>
+                              </li>
+                            </ul>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  Коррекция фигуры
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Лечение потливости
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Коррекция рубцов и стрий
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Удаление пигментных пятен и сосудов
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Удаление нежелательных волос
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="menu-main-section">
+                            <div class="menu-main-title">
+                              Многопрофильная медицина
+                            </div>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  Терапия
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Дерматология
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Эндокринология
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Неврология
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Оториноларингология
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Кардиология
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Гастроэнтерология
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Гинекология
+                                </a>
+                              </li>
+                            </ul>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  Хирургия
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Остеопатия
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Нутрициология
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Травматология-ортопедия
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Программы похудения
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Операционное лечение
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Анализы
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  УЗИ
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="menu-main-section">
+                            <div class="menu-main-title">
+                              SPA
+                            </div>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  SPA - забота о лице и теле
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Массаж лечебный
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Массаж моделирующий
+                                </a>
+                              </li>
+                            </ul>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  Массаж вибро-акустический
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  Управление стрессом
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="menu-main-section">
+                            <div class="menu-main-title">
+                              Beauty
+                            </div>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  Парикмахерская студия
+                                </a>
+                              </li>
+                            </ul>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  Маникюр и педикюр
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="header-nav-mobile-menu"></div>
+                  </li>
+                  <li>
+                    <a href="#">
+                      Экспертиза
+                      <svg class="header-nav-icon hidden-tablet">
+                        <use xlink:href="svg/svg/symbols.svg#arrow-down"/>
+                      </svg>
+                    </a>
+                    <div class="header-nav-menu header-nav-menu__simple">
+                      <div class="header-nav-menu-inner header-nav-menu-inner__simple ui-noise">
+                        <div class="menu-main">
+                          <ul>
+                            <li>
+                              <a href="#">
+                                Наша экспертиза
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#">
+                                Научные статьи
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#">
+                                PLAn красоты
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#">
+                                Подкасты
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="header-nav-mobile-menu"></div>
+                  </li>
+                  <li>
+                    <a href="#">
+                      До / после
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      Акции
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      Специалисты
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      Контакты
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+              <a href="#" class="header-search">
+                <svg
+                  width="17"
+                  height="16"
+                  viewBox="0 0 17 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="header-search-icon"
+                >
+                  <path d="M8.16732 12.6667C11.1128 12.6667 13.5007 10.2789 13.5007 7.33333C13.5007 4.38781 11.1128 2 8.16732 2C5.2218 2 2.83398 4.38781 2.83398 7.33333C2.83398 10.2789 5.2218 12.6667 8.16732 12.6667Z" stroke-width="1.05174" stroke-linecap="square"/>
+                  <path d="M14.8336 14.0016L11.9336 11.1016" stroke-width="1.05174" stroke-linecap="round"/>
+                </svg>
+              </a>
+              <div class="header-feedback">
+                <a href="tel:88312000077" class="header-feedback-item header-feedback-phone hidden-tablet">
+                  <svg class="header-feedback-icon">
+                    <use xlink:href="svg/svg/symbols.svg#phone"/>
+                  </svg>
+                  <span class="hidden-tablet">8 831 2-0000-77</span>
+                </a>
+                <a href="#" class="header-feedback-item header-feedback-call mfp-link" data-href="./popups/popup-callback.html">
+                  <svg class="header-feedback-icon hidden-desktop">
+                    <use xlink:href="svg/svg/symbols.svg#phone"/>
+                  </svg>
+                  <span class="hidden-tablet">
+                    Перезвоните мне
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>

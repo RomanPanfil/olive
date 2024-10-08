@@ -1,0 +1,215 @@
+.clinics {
+    margin-bottom: p2r(120);
+
+    @include tablet {
+        margin-bottom: p2r(40);
+    }
+
+    &-title {
+        font-family: $second_font;
+        font-size: p2r(88);
+        line-height: 0.85;
+        text-align: center;
+        color: #FFFFFF;
+        margin-top: p2r(118);
+        margin-bottom: p2r(64);
+        z-index: -2;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        transition: opacity 0.3s;
+    
+        &.hidden {
+          opacity: 0;
+        }
+    
+        @include tablet {
+          font-size: p2r(64);
+          text-align: left;
+          padding-left: p2r(16);
+          padding-right: p2r(16);
+          margin-top: p2r(86);
+          margin-bottom: p2r(32);
+        }
+    
+        @include mobile {
+          font-size: p2r(40);
+          margin-top: p2r(60);
+          margin-bottom: p2r(24);
+        }
+    }
+
+    &-previews {
+        margin-top: p2r(187);
+        margin-bottom: p2r(-16);
+    
+        @include tablet {
+          margin-top: p2r(120);
+          margin-bottom: p2r(-8);
+        }
+    
+        @include mobile {
+          margin-top: p2r(84);
+        }
+    }
+
+    &-preview {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        border-radius: p2r(24);   
+        overflow: hidden;
+        padding:  p2r(32) p2r(24) p2r(16) p2r(24);
+        margin-bottom: p2r(16);
+        height: p2r(450);
+    
+        @include tablet {
+          padding:  p2r(20) p2r(14) p2r(14) p2r(14);
+          margin-bottom: p2r(8);
+          height: p2r(280);
+        }
+    
+        @include mobile {
+          padding:  p2r(16) p2r(16) p2r(14) p2r(14);
+          height: p2r(260);
+        }
+    
+        @media (hover: hover) and (pointer: fine) {
+          &:hover {
+            .clinics-preview-image {
+              transform: scale(1.1);
+            }
+          }
+        }
+    
+        &-title {
+            font-family: $second_font;
+            color: $font_white;     
+            font-size: p2r(32);
+            hyphens: manual;
+            line-height: 0.85;
+            max-width: p2r(316);
+            margin-bottom: p2r(12);
+            z-index: 6;
+            margin-bottom: auto;
+    
+            @include tablet {
+                font-size: p2r(24);
+            }
+        }
+    
+        &-image {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            display: block;
+            transition: transform 0.3s;
+            z-index: 1;
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            height: 100%;
+        }
+    
+        &-address {
+            font-size: p2r(16);
+            line-height: 1.2;           
+            padding: p2r(16) p2r(20);
+            background-color: rgba(38, 51, 39, 0.2);
+            backdrop-filter: blur(p2r(16));
+            border-radius: p2r(24);
+            width: max-content;
+            line-height: 1.2;
+            color: $font_white;
+            z-index: 1;
+
+            @include tablet {
+                padding: p2r(12);
+                font-size: p2r(14);
+                border-radius: p2r(16);
+            }
+        }
+    }
+}
+
+.side-info {   
+    padding: p2r(16) p2r(20);
+    width: p2r(232);
+    background: rgba(242, 231, 220, 0.8);
+    background-blend-mode: soft-light, normal;
+    backdrop-filter: blur(p2r(16));
+    border-radius: p2r(24);
+
+    @include tablet {
+        width: p2r(346);
+    }
+
+    @include mobile {
+        width: 100%;
+    }
+
+    &-item {
+        margin-bottom: p2r(12);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        @include tablet {
+            margin-bottom: p2r(8);
+        }
+    }
+
+    &-label {     
+        font-size: p2r(14);
+        line-height: 1.2;
+        color:rgba(0, 0, 0, 0.5);      
+        margin-bottom: p2r(2);
+
+        @include tablet {
+            font-size: p2r(12);
+        }
+    }
+
+    &-value {       
+        font-size: p2r(16);
+        line-height: 1.2;
+        color: #000000;
+        display: block;
+
+        &.phone {
+            @media (hover: hover) and (pointer: fine) {
+                &:hover {
+                    color: $font_black;		
+                }
+            }
+        }
+    }
+
+    &-link {    
+        display: block;  
+        font-size: p2r(16);
+        line-height: 1.2;
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                color: $font_accent;
+                opacity: 0.8; 
+            }
+        }
+   
+
+        &-icon {
+            width: p2r(16);
+            height: p2r(29);
+            fill: none;
+            display: inline-block;
+            vertical-align: middle;
+            margin-top: p2r(-4);
+            margin-left: p2r(2);
+        }
+    }
+}

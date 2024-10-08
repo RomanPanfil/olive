@@ -1,0 +1,154 @@
+.cosmetics {
+    &-title {
+        margin-top: p2r(42);
+        margin-bottom: p2r(74);
+        margin-left: p2r(181);       
+        font-size: p2r(88);
+
+        @include tablet {
+            font-size: p2r(64);
+            margin-top: p2r(22);
+            margin-bottom: p2r(35);
+            margin-left: 0;
+        }
+
+        @include mobile {
+            margin-top: p2r(10);
+            margin-bottom: p2r(28);
+            font-size: p2r(40);
+        }
+    }
+
+    &-description {
+        max-width: p2r(696);
+        font-size: p2r(24);
+        color: $font_black;
+        margin-bottom: p2r(32);
+
+        @include tablet {            
+            font-size: p2r(16);
+            margin-bottom: p2r(24);
+        }
+    }
+    
+    &-previews {
+        margin-bottom: p2r(16);
+
+        @include tablet {
+            margin-bottom: 0;
+        }
+    }
+
+    &-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: p2r(16) p2r(16) p2r(24);
+        background-color: #FFFFFF;
+        border-radius: p2r(24);
+        overflow: hidden;
+        margin-bottom: p2r(16);
+        height: calc(100% - 1.4055636896rem);
+
+        @include tablet {
+           padding: p2r(16);
+           border-radius: p2r(16);
+        }
+
+        @include mobile {
+            padding: p2r(8);
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: p2r(8);
+            height: auto;
+        }
+        
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                
+
+                .cosmetics-card-image img {
+                    transform: scale(1.1);
+                }
+
+                .cosmetics-card-brand {
+                    color: $font_accent;
+                }
+            }
+        }
+
+        &-image {
+            margin-bottom: p2r(16);
+            // aspect-ratio: 1.1;
+
+            @include tablet {
+                // aspect-ratio: 1.14;
+                margin-bottom: p2r(8);
+            }
+
+            @include mobile {
+                margin-bottom: 0;
+                margin-right: p2r(16);
+                width: p2r(96);
+                flex: 0 0 p2r(96);
+            }
+
+            img {
+                transition: transform 0.3s;
+                width: 100%;
+                object-fit: cover;
+                object-position: center;
+                aspect-ratio: 1.1;
+
+                @include tablet {
+                    aspect-ratio: 1.14;
+                }
+                
+                @include mobile {
+                    aspect-ratio: 2;                    
+                }
+            }            
+        }
+
+        &-text {
+            padding-left: p2r(8);
+            padding-right: p2r(8);
+
+            @include tablet {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+
+        &-brand {          
+            font-weight: 600;
+            font-size: p2r(20);
+            line-height: 1.2;
+            color: $font_black;
+            margin-bottom: p2r(8);
+            transition: color 0.3s;
+
+            @include tablet {
+                font-size: p2r(16);
+                margin-bottom: p2r(6);
+            }
+
+            @include mobile {
+                margin-bottom: p2r(4);
+                font-size: p2r(14);
+                line-height: 1;
+            }
+        }
+
+        &-country {            
+            font-size: p2r(14);
+            line-height: 1.3;
+            color: $font_black;
+
+            @include tablet {
+                font-size: p2r(12);
+            }
+        }
+    }
+}
