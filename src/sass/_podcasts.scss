@@ -1,0 +1,166 @@
+.podcasts {
+    &-title {
+        margin-top: p2r(42);
+        margin-bottom: p2r(74);
+        margin-left: p2r(181);       
+        font-size: p2r(88);
+
+        @include tablet {
+            font-size: p2r(64);
+            margin-top: p2r(22);
+            margin-bottom: p2r(35);
+            margin-left: 0;
+        }
+
+        @include mobile {
+            margin-top: p2r(10);
+            margin-bottom: p2r(28);
+            font-size: p2r(40);
+        }
+    }
+
+    &-description {
+        
+        font-size: p2r(20);
+        color: $font_black;
+        margin-bottom: p2r(32);
+
+        @include tablet {
+            font-size: p2r(16);
+            margin-bottom: p2r(16);
+        }
+
+        @include mobile {
+            margin-bottom: p2r(32);
+        }        
+    }
+
+    &-info {
+        max-width: p2r(696);
+
+        ul {
+            margin-bottom: 0;
+        }
+    }
+
+    &-previews {
+        margin-bottom: p2r(16);
+
+        @include tablet {
+            margin-bottom: 0;
+        }
+
+        @include mobile {
+            margin-bottom: p2r(8);
+        }
+    }
+
+    &-card {
+        display: block;
+        padding: p2r(16) p2r(16) p2r(24);
+        background: $bgc;
+        border-radius: p2r(24);
+        margin-bottom: p2r(16);
+        height: calc(100% - 1.4055636896rem);
+
+        @include tablet {
+            border-radius: p2r(16);
+            padding: p2r(16);
+        }
+
+        @include mobile {
+            display: flex;
+            align-items: center;
+            padding: p2r(8);
+            margin-bottom: p2r(8);
+            height: calc(100% - 0.7027818448rem);
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                .podcasts-card-preview {
+                    background-size: 110%;
+                }
+                .podcasts-card-preview-image {
+                    transform: scale(1.1);
+                }
+
+                .podcasts-card-title {
+                    color: $font_accent;
+                }
+            }
+        }
+
+        &-preview {
+            position: relative;
+            overflow: hidden;           
+            height: p2r(144);
+            border-radius: p2r(16);
+            margin-bottom: p2r(16);
+            background-image: url(../images/podcast-empty.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100%;
+            transition: background-size 0.3s;
+
+            @include tablet {
+                height: p2r(110);
+                border-radius: p2r(8);
+                background-size: cover;
+            }
+
+            @include mobile {
+                margin-bottom: 0;
+                margin-right: p2r(8);
+                width: p2r(48);
+                flex: 0 0 p2r(48);
+                height: p2r(72);
+            }
+
+            &-image {
+                display: block;
+                transition: transform 0.3s;
+                object-fit: cover;
+                object-position: center;
+                width: 100%;
+                height: 100%;
+            }
+
+            &-play {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: p2r(36);
+                height: p2r(36);
+
+                @include tablet {
+                    width: p2r(24);
+                    height: p2r(24);
+                }
+
+                @include mobile {
+                    width: p2r(16);
+                    height: p2r(16);
+                }
+            }
+        }
+
+        &-title {          
+            font-weight: 600;
+            font-size: p2r(16);
+            line-height: 1.2;            
+            color: $font_black;
+            transition: color 0.3s;
+            word-break: break-all;
+            padding-left: p2r(8);
+            padding-right: p2r(8);
+
+            @include tablet {
+                font-size: p2r(14);
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+    }
+}

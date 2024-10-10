@@ -36,6 +36,42 @@ const FARBA = {
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  function updateInputActiveClass(input) {
+    const field = input.closest('.ui-field');
+    if (input.value) {
+      field.classList.add('input-active');
+    } else {
+      field.classList.remove('input-active');
+    }
+  }
+
+  // маска ввода номера телефона
+  function initMask() {
+    const phoneInputs = document.querySelectorAll('.ux-phonemask');      
+  
+    if (phoneInputs.length) {
+      phoneInputs.forEach(element => {
+        let maskInstance = IMask(element, {
+          mask: '+{7}(000)000-00-00',              
+          placeholderChar: '_'
+        });
+
+        // Обновляем маску и класс 'input-active' при восстановлении данных из куки
+        element.addEventListener('input', function() {
+          if (this.value) {
+            maskInstance.updateValue();
+          }
+          updateInputActiveClass(this);
+        });
+
+        // Проверяем состояние поля при инициализации маски
+        updateInputActiveClass(element);
+      });
+    }        
+  }
+  
+  initMask();
+
   $(".ui-select, .ui-checkbox, .ui-radio").styler();
 
   // кастомный селект
@@ -320,7 +356,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-   
   // Открытие попапа
   $(document).on("click", ".mfp-link", function (e) {
     e.preventDefault();
@@ -329,206 +364,113 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Показываем прелоадер
     showPreloader();
-  
-  
+
     // Проверяем, является ли элемент видео
-  if (clickedElement.hasClass('mfp-link-video')) {
-    let videoSrc = clickedElement.attr("data-href");   
-    let videoFileName = clickedElement.attr("data-video-title");
+    if (clickedElement.hasClass('mfp-link-video')) {
+      let videoSrc = clickedElement.attr("data-href");   
+      let videoFileName = clickedElement.attr("data-video-title");
 
-    // Добавляем параметры автовоспроизведения к URL видео
-    if (videoSrc.includes('?')) {
-      videoSrc += '&autoplay=1&mute=1';
-    } else {
-      videoSrc += '?autoplay=1&mute=1';
-    }
-    // Логика для открытия видео попапа
-    $.magnificPopup.open({
-      items: {
-        src: $('<div class="mfp-video-popup">'+
-               '<div class="mfp-video-wrapper">'+
-               '<iframe src="' + videoSrc + '" frameborder="0" allowfullscreen allow="autoplay"></iframe>'+
-               '<div class="mfp-video-title">' + videoFileName + '</div>'+
-               '</div>'+
-               '</div>'),
-        type: 'inline'
-      },
-      type: 'inline',
-      closeBtnInside: true,
-      removalDelay: 300,
-      mainClass: 'my-mfp-zoom-in',
-      callbacks: {
-        open: function () {
-          setTimeout(function(){
-            $('.mfp-wrap').addClass('not_delay');
-            $('.mfp-popup').addClass('not_delay');
-            hidePreloader();          
-          }, 700);
-          document.documentElement.style.overflow = 'hidden';
-          history.pushState({ popup: 'video' }, '');
-          isPopupOpen = true;
-        },
-        close: function() {
-          document.documentElement.style.overflow = '';
-          isPopupOpen = false;
-        }
-      }
-    });
-  } else if (clickedElement.hasClass('mfp-gallery-item')) {
-      // // Логика для открытия галереи
-      // var galleryItems = [];
-      // var uniqueIds = new Set(); // Для отслеживания уникальных data-id
-      // var isInSlider = clickedElement.closest('.swiper').length > 0;
-  
-      // // Собираем все элементы галереи
-      // $(".mfp-gallery-item").each(function () {
-      //   var $this = $(this);
-      //   var $img = $this.find('img');
-      //   var dataId = $img.attr('data-id');
-      //   var itemIsInSlider = $this.closest('.swiper').length > 0;
-  
-      //   // Если элемент в слайдере, проверяем уникальность
-      //   if (itemIsInSlider) {
-      //     if (!uniqueIds.has(dataId)) {
-      //       uniqueIds.add(dataId);
-      //       galleryItems.push({
-      //         src: $this.attr("data-href"),
-      //         title: $this.find('.diploms-card-title').text().trim(),
-      //         dataId: dataId
-      //       });
-      //     }
-      //   } else {
-      //     // Если элемент не в слайдере, добавляем его без проверки уникальности
-      //     galleryItems.push({
-      //       src: $this.attr("data-href"),
-      //       title: $this.find('.diploms-card-title').text().trim(),
-      //       dataId: dataId
-      //     });
-      //   }
-      // });
-  
-      // // Находим индекс кликнутого элемента
-      // var index;
-      // if (isInSlider) {
-      //   var clickedDataId = clickedElement.find('img').attr('data-id');
-      //   index = galleryItems.findIndex(item => item.dataId === clickedDataId);
-      // } else {
-      //   index = $(".mfp-gallery-item").index(clickedElement);
-      // }
-  
-      // $.magnificPopup.open({
-      //   items: galleryItems,
-      //   type: 'image',
-      //   gallery: {
-      //     enabled: true,
-      //     navigateByImgClick: true,
-      //     preload: [0, 1],
-      //     tCounter: '%curr% из %total%' // Локализация счетчика на русский язык
-      //   },
-      //   overflowY: "scroll",
-      //   removalDelay: 300,
-      //   mainClass: 'my-mfp-zoom-in',
-      //   callbacks: {
-      //     open: function () {
-      //       setTimeout(function(){
-      //         $('.mfp-wrap').addClass('not_delay');
-      //         $('.mfp-popup').addClass('not_delay');
-      //         hidePreloader();          
-      //       }, 700);
-      //       document.documentElement.style.overflow = 'hidden';
-      //       history.pushState({ popup: 'gallery' }, '');
-      //       isPopupOpen = true;
-      //     },
-      //     close: function() {
-      //       document.documentElement.style.overflow = '';
-      //       isPopupOpen = false;
-      //     },
-      //     imageLoadComplete: function() {
-      //       // Скрываем прелоадер после загрузки изображения
-      //       hidePreloader();
-      //     },
-      //     beforeChange: function() {
-      //       // Показываем прелоадер перед сменой изображения
-      //       showPreloader();
-      //     }
-      //   }
-      // }, index);
-
-       // Логика для открытия галереи
-    var galleryItems = [];
-    var galleryGroup = clickedElement.data('gallery-group');
-    var isInSlider = clickedElement.closest('.swiper').length > 0;
-
-    // Собираем все элементы галереи с тем же gallery-group
-    $('.mfp-gallery-item[data-gallery-group="' + galleryGroup + '"]').each(function () {
-      var $this = $(this);
-      var $img = $this.find('img');
-      var dataId = $img.attr('data-id');
-      var itemIsInSlider = $this.closest('.swiper').length > 0;
-
-      // Для элементов в слайдере проверяем уникальность по data-id
-      if (itemIsInSlider) {
-        if (!galleryItems.some(item => item.dataId === dataId)) {
-          galleryItems.push({
-            src: $this.attr("data-href"),
-            title: $this.find('.diploms-card-title').text().trim(),
-            dataId: dataId
-          });
-        }
+      // Добавляем параметры автовоспроизведения к URL видео
+      if (videoSrc.includes('?')) {
+        videoSrc += '&autoplay=1&mute=1';
       } else {
-        // Для элементов не в слайдере добавляем без проверки
-        galleryItems.push({
-          src: $this.attr("data-href"),
-          title: $this.find('.diploms-card-title').text().trim(),
-          dataId: dataId
+        videoSrc += '?autoplay=1&mute=1';
+      }
+      // Логика для открытия видео попапа
+      $.magnificPopup.open({
+        items: {
+          src: $('<div class="mfp-video-popup">'+
+                '<div class="mfp-video-wrapper">'+
+                '<iframe src="' + videoSrc + '" frameborder="0" allowfullscreen allow="autoplay"></iframe>'+
+                '<div class="mfp-video-title">' + videoFileName + '</div>'+
+                '</div>'+
+                '</div>'),
+          type: 'inline'
+        },
+        type: 'inline',
+        closeBtnInside: true,
+        removalDelay: 300,
+        mainClass: 'my-mfp-zoom-in',
+        callbacks: {
+          open: function () {
+            setTimeout(function(){
+              $('.mfp-wrap').addClass('not_delay');
+              $('.mfp-popup').addClass('not_delay');
+              hidePreloader();          
+            }, 700);
+            document.documentElement.style.overflow = 'hidden';
+            history.pushState({ popup: 'video' }, '');
+            isPopupOpen = true;
+          },
+          close: function() {
+            document.documentElement.style.overflow = '';
+            isPopupOpen = false;
+          }
+        }
+      });
+    } else if (clickedElement.hasClass('mfp-gallery-item')) {
+      // Логика для открытия галереи
+      var galleryItems = [];
+      var galleryGroup = clickedElement.data('gallery-group');
+      var isInSlider = clickedElement.closest('.swiper').length > 0;
+
+      if (galleryGroup) {  
+        // Собираем все элементы галереи с тем же gallery-group       
+        $('.mfp-gallery-item[data-gallery-group="' + galleryGroup + '"]').each(function () {
+          addGalleryItem($(this), galleryItems);
+        });
+      } else {
+        // Собираем все элементы без data-gallery-group
+        $('.mfp-gallery-item:not([data-gallery-group])').each(function () {
+          addGalleryItem($(this), galleryItems);
         });
       }
-    });
 
-    // Находим индекс кликнутого элемента
-    var index;
-    if (isInSlider) {
-      var clickedDataId = clickedElement.find('img').attr('data-id');
-      index = galleryItems.findIndex(item => item.dataId === clickedDataId);
-    } else {
-      index = $('.mfp-gallery-item[data-gallery-group="' + galleryGroup + '"]').index(clickedElement);
-    }
-
-    $.magnificPopup.open({
-      items: galleryItems,
-      type: 'image',
-      gallery: {
-        enabled: true,
-        navigateByImgClick: true,
-        preload: [0, 1],
-        tCounter: '%curr% из %total%'
-      },
-      overflowY: "scroll",
-      removalDelay: 300,
-      mainClass: 'my-mfp-zoom-in',
-      callbacks: {
-        open: function () {
-          setTimeout(function(){
-            $('.mfp-wrap').addClass('not_delay');
-            $('.mfp-popup').addClass('not_delay');
-            hidePreloader();          
-          }, 700);
-          document.documentElement.style.overflow = 'hidden';
-          history.pushState({ popup: 'gallery' }, '');
-          isPopupOpen = true;
-        },
-        close: function() {
-          document.documentElement.style.overflow = '';
-          isPopupOpen = false;
-        },
-        imageLoadComplete: function() {
-          hidePreloader();
-        },
-        beforeChange: function() {
-          showPreloader();
-        }
+      // Находим индекс кликнутого элемента
+      var index;
+      if (isInSlider) {
+        var clickedDataId = clickedElement.find('img').attr('data-id');
+        index = galleryItems.findIndex(item => item.dataId === clickedDataId);
+      } else {
+        index = galleryItems.findIndex(item => item.src === clickedElement.attr("data-href"));
       }
-    }, index);
+
+      index = galleryItems.findIndex(item => item.src === clickedElement.attr("data-href"));
+      $.magnificPopup.open({
+        items: galleryItems,
+        type: 'image',
+        gallery: {
+          enabled: true,
+          navigateByImgClick: true,
+          preload: [0, 1],
+          tCounter: '%curr% из %total%'
+        },
+        overflowY: "scroll",
+        removalDelay: 300,
+        mainClass: 'my-mfp-zoom-in',
+        callbacks: {
+          open: function () {
+            setTimeout(function(){
+              $('.mfp-wrap').addClass('not_delay');
+              $('.mfp-popup').addClass('not_delay');
+              hidePreloader();          
+            }, 700);
+            document.documentElement.style.overflow = 'hidden';
+            history.pushState({ popup: 'gallery' }, '');
+            isPopupOpen = true;
+          },
+          close: function() {
+            document.documentElement.style.overflow = '';
+            isPopupOpen = false;
+          },
+          imageLoadComplete: function() {
+            hidePreloader();
+          },
+          beforeChange: function() {
+            showPreloader();
+          }
+        }
+      }, index);
     } else {     
       // Логика для открытия обычного попапа     
       $.magnificPopup.open({
@@ -547,17 +489,16 @@ document.addEventListener('DOMContentLoaded', () => {
               $('.mfp-popup').addClass('not_delay');                        
             }, 700);
             document.documentElement.style.overflow = 'hidden';
-            history.pushState({ popup: 'gallery' }, '');
+            history.pushState({ popup: 'ajax' }, '');
             isPopupOpen = true;
             setTimeout(function(){
               hidePreloader();                         
             }, 100);
 
             // Применяем кастомный фон, если он задан
-          if (customBackground) {
-            $('.mfp-bg').css('background-color', customBackground);
-          }
-                               
+            if (customBackground) {
+              $('.mfp-bg').css('background-color', customBackground);
+            }
           },
           close: function() {
             document.documentElement.style.overflow = '';
@@ -568,14 +509,39 @@ document.addEventListener('DOMContentLoaded', () => {
             }  
             
             // Сбрасываем фон при закрытии попапа
-          $('.mfp-bg').css('background-color', '');
+            $('.mfp-bg').css('background-color', '');
           }          
         }
       });
     }
-  
+
     return false;
   });
+
+// Вспомогательная функция для добавления элемента в galleryItems
+function addGalleryItem($element, galleryItems) {
+  var $img = $element.find('img');
+  var dataId = $img.attr('data-id');
+  var itemIsInSlider = $element.closest('.swiper').length > 0;
+
+  // Для элементов в слайдере проверяем уникальность по data-id
+  if (itemIsInSlider) {
+    if (!galleryItems.some(item => item.dataId === dataId)) { 
+      galleryItems.push({
+        src: $element.attr("data-href"),
+        title: $element.find('.diploms-card-title').text().trim(),
+        dataId: dataId
+      });
+    }
+  } else {
+    // Для элементов не в слайдере добавляем без проверки
+    galleryItems.push({
+      src: $element.attr("data-href"),
+      title: $element.find('.diploms-card-title').text().trim(),
+      dataId: dataId
+    });
+  } 
+}
 
   // открытие меню в header
   // (function() {
@@ -1356,6 +1322,71 @@ document.addEventListener('DOMContentLoaded', () => {
     function init() {
       subcategoryList.forEach((card, index) => {
         if (index >= 9) {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    // Инициализация
+    init();
+    updateButtonText();
+
+    moreButton.addEventListener('click', () => {
+      isExpanded = !isExpanded;
+      toggleCards();
+      updateButtonText();
+    });
+
+  })();
+
+  // отображение скрытых сертификатов на мобильном разрешении, если больше 3
+  // мгновенное
+  (function() {
+    const subcategoryList = document.querySelectorAll('.certificats-slider-wrapper .swiper-slide');
+    const moreButton = document.querySelector('.subcategory-more__certificats');
+    const moreCount = document.querySelector('.subcategory-more__certificats .subcategory-more-count');
+    const moreIcon = document.querySelector('.subcategory-more__certificats .subcategory-more-icon');
+
+    if(window.innerWidth >= 600) return;
+    
+    if (!moreButton || subcategoryList.length <= 3) return;
+
+    const hiddenCards = subcategoryList.length - 3;
+    let isExpanded = false;
+
+    function getServiceWord(number) {
+      const cases = [2, 0, 1, 1, 1, 2];
+      const titles = ['сертификат', 'сертификата', 'сертификатов'];
+      return titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
+    }
+
+    function updateButtonText() {
+      if (isExpanded) {
+        moreButton.textContent = 'Свернуть';
+        moreButton.appendChild(moreIcon);
+        moreIcon.style.transform = 'rotate(180deg)';
+      } else {
+        moreButton.textContent = 'Еще ';
+        moreButton.appendChild(moreCount);
+        moreCount.textContent = hiddenCards;
+        moreButton.appendChild(document.createTextNode(` ${getServiceWord(hiddenCards)} `));
+        moreButton.appendChild(moreIcon);
+        moreIcon.style.transform = 'rotate(0deg)';
+      }
+    }
+
+    function toggleCards() {
+      subcategoryList.forEach((card, index) => {
+
+        if (index >= 3) {
+          card.classList.toggle('hidden');
+        }
+      });
+    }
+
+    function init() {
+      subcategoryList.forEach((card, index) => {
+        if (index >= 3) {
           card.classList.add('hidden');
         }
       });
@@ -3121,6 +3152,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
+  // слайдер Сертификаты
+  (function() {
+    if (!document.querySelector(".certificats-slider")) return;
+  
+    let swiper;
+  
+    function initSwiper() {
+      swiper = new Swiper(".certificats-slider", {
+        grabCursor: true,
+        slidesPerView: 3,
+        slidesPerGroup: 1,
+        spaceBetween: 0,
+        loop: true,
+        navigation: {
+          nextEl: ".certificats-nav .slider-next",
+          prevEl: ".certificats-nav .slider-prew",
+        },
+      });
+    }
+  
+    function checkScreenSize() {
+      if (window.innerWidth <= 599) {
+        if (swiper !== undefined) swiper.destroy(true, true);
+      } else {
+        if (swiper === undefined) initSwiper();
+      }
+    }
+  
+    // Инициализация при загрузке страницы
+    checkScreenSize();
+  
+    // Проверка при изменении размера окна
+    window.addEventListener('resize', checkScreenSize);
+  })();
+
   // Показать/скрыть контент в карточках отзывов
   (function() {
     const reviewCards = document.querySelectorAll('.collapsed-card');
@@ -3207,7 +3273,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if(!cards.length) return;
 
     if(cards.length <= 2) {
-      console.log('remove lg-4 and change on lg-6');
       cards.forEach(card => {
         card.classList.add('col-lg-6');
         card.classList.remove('col-lg-4');

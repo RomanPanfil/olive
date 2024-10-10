@@ -1,0 +1,130 @@
+.certificate {
+    &-bg {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: $bg;
+        z-index: -1;
+        width: 100%;
+        max-height: p2r(680);       
+  
+        @include tablet {
+          max-height: unset;           
+        }
+  
+        @include mobile {
+          max-height: unset;
+          aspect-ratio: 1.35;
+          overflow: hidden;
+          border-bottom-left-radius: p2r(24);
+          border-bottom-right-radius: p2r(24);
+        }
+    }
+
+    &-image {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;       
+        aspect-ratio: 1.78;
+        object-fit: cover;
+        object-position: center;
+        z-index: -2;
+  
+        @include tablet {
+          aspect-ratio: 1.1;
+          object-position:  p2r(-200) center; 
+        }
+  
+        @include mobile {
+          aspect-ratio: 0.98;
+          object-position:  p2r(-190) center; 
+        }
+    }
+
+    &-banner {
+      padding-top: p2r(48);
+      margin-bottom: p2r(84);
+  
+      @include tablet {
+        padding-top: p2r(10);
+        margin-bottom: 0;
+      }
+  
+      @include mobile {
+        padding-top: p2r(3);
+      }
+    }
+    
+    
+    &-text {
+        margin-left: p2r(133);
+        max-width: p2r(697);
+
+        @include tablet {
+            margin-left: 0;
+        }
+    }
+
+    &-title {
+        max-width: p2r(690);
+        font-family: $second_font;
+        font-weight: 400;
+        font-size: p2r(88);
+        line-height: 0.85;
+        margin-bottom: p2r(32);
+    
+        @include tablet {
+            max-width: unset;
+            font-size: p2r(48);
+            margin-top: p2r(178);
+            margin-bottom: p2r(16);
+        }
+    
+        @include mobile {
+            font-size: p2r(40);
+            margin-top: p2r(156);
+            margin-bottom: p2r(20);
+        }
+    }
+
+    &-description {
+        max-width: p2r(523);
+        margin-left: auto; 
+    
+        @include tablet {    
+            max-width: 100%;
+            margin-left: unset;
+            padding-bottom: p2r(16);
+        }
+    
+        p {
+            font-size: p2r(24);
+            margin-bottom: p2r(32);
+    
+            @include tablet {
+            font-size: p2r(16);
+            margin-bottom: p2r(16);       
+            }
+        }
+    }
+
+    &-form {
+        margin-right: p2r(-28);
+        margin-bottom: p2r(24);
+
+        @include tablet {
+            margin-right: 0;
+            margin-bottom: p2r(-16);
+        }
+
+        @include mobile {
+            margin-right: p2r(-16);
+            margin-bottom: p2r(-24);
+        }
+    }
+}

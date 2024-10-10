@@ -2323,7 +2323,7 @@
     padding-top: p2r(38);
     padding-bottom: p2r(82);
     margin-top: p2r(9);
-    margin-bottom: p2r(-36); 
+    margin-bottom: p2r(-42); 
 
     @include tablet {
       position: static;
@@ -2417,6 +2417,52 @@
   &-text {
     max-width: p2r(697);
 
+    &-head {
+      display: flex;
+      align-items: center;
+
+      @include mobile {
+        margin-top: p2r(-10);
+      }
+
+      .subcategory-text-title {
+        @include mobile {       
+          font-size: p2r(32);
+        }
+      }
+    }
+
+    &-preview {    
+      padding: p2r(4);
+      width: p2r(54);
+      height: p2r(54);
+      flex: 0 0 p2r(54);
+      background-color: #FFFFFF;
+      border-radius: p2r(5.68421);
+      margin-right: p2r(16);
+      margin-bottom: p2r(32);
+
+      img {
+        object-fit: contain;
+        object-position: center;
+        height: 100%;  
+      }
+
+      @include tablet {      
+        margin-bottom: p2r(16);
+        margin-top: p2r(150);
+        margin-right: p2r(10);
+        width: p2r(44);
+        height: p2r(44);
+        flex: 0 0 p2r(44);
+      }
+
+      @include mobile {
+        margin-top: p2r(116);   
+        margin-bottom: p2r(20);
+      }      
+    }
+
     &-title {
       max-width: p2r(690);
       font-family: $second_font;
@@ -2497,13 +2543,9 @@
       margin-left: p2r(-16);
       margin-right: p2r(-16);
       border-radius: p2r(24);
-      margin-bottom: p2r(80);
-      padding: p2r(16) p2r(16) p2r(40) p2r(16);
-    }
-
-    @include mobile {
       margin-bottom: p2r(40);
-    }
+      padding: p2r(16) p2r(16) p2r(40) p2r(16);
+    }   
 
     &__problems {
       background: none;
@@ -2543,8 +2585,15 @@
     }
 
     h3 {
+      font-family: $basefont;
       font-size: p2r(24);
       margin-bottom: p2r(16);
+      font-weight: 600;
+      margin-top: 0;
+
+      @include tablet {
+        font-size: p2r(16);
+      }
     }
 
     h4 {
@@ -3741,6 +3790,94 @@
     margin-bottom: p2r(40);
   }
 
+  &-content {
+    max-width: p2r(696);
+    
+    h1, h2, h3, h4, h5, h6 {
+      color: $font_black;
+    }
+
+    h3 {
+      font-family: $basefont;
+      font-size: p2r(24);
+      margin-bottom: p2r(16);
+      font-weight: 600;
+      margin-top: 0;
+
+      @include tablet {
+        font-size: p2r(16);
+      }
+    }
+
+    h4 {
+      font-family: $basefont;
+      font-size: p2r(20);
+      margin-bottom: p2r(12);
+    }
+
+    h5 {
+      font-family: $basefont;
+      font-size: p2r(16);
+      margin-bottom: p2r(10);
+    }
+    
+    ul {
+      margin-bottom: p2r(28);
+      color: $font_black;
+
+      @include tablet {
+        font-size: p2r(16);
+        margin-bottom: p2r(16);
+      }
+    
+      li {
+        position: relative;
+        padding-left: p2r(24);
+        margin-bottom: p2r(16);
+
+        @include tablet {
+          padding-left: p2r(16);
+          margin-bottom: p2r(8);
+        }       
+
+        &::before {
+          position: absolute;
+          left: 0;
+          top: p2r(10);
+          content: '';
+          width: p2r(8);
+          height: p2r(8);
+          border-radius: 50%;
+          background-color: $font_accent;
+
+          @include tablet {
+            top: p2r(8);
+          }
+        }
+      }
+    }
+
+    ol {
+      margin-bottom: p2r(56);
+      line-height: 1.4;
+
+      @include tablet {
+        font-size: p2r(16);
+        margin-bottom: p2r(32);
+      }
+
+      @include mobile {
+        margin-bottom: p2r(24);
+      }
+
+      li {
+        padding-bottom: p2r(14);
+        list-style: decimal;
+        list-style-position: inside;
+      }
+    }
+  }
+
   &-main {
     margin-top: p2r(100);
     max-width: p2r(696);
@@ -3881,6 +4018,10 @@
       height: calc(100% - 0.7027818448rem);
       margin-bottom: p2r(8);
       padding: p2r(8);
+    }
+
+    &__slider {
+      margin-right: p2r(16);
     }
 
     &__horizontal {
@@ -6014,5 +6155,33 @@
 
   @include mobile {
     padding: p2r(16);
+  }
+}
+
+.certificats {
+  &-nav {
+    margin-bottom: p2r(16);
+  }
+
+  &-slider {
+    &-wrapper {
+      margin-right: p2r(-16);
+
+      @include mobile {
+        margin-bottom: p2r(8);
+      }
+    }
+
+    .swiper-wrapper {
+      @include mobile {
+        flex-direction: column;
+      }
+    }
+
+    .swiper-slide {
+      &.hidden {
+        display: none;
+      }      
+    }
   }
 }
